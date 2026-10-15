@@ -1,0 +1,56 @@
+{
+  "classification": "A prescribed metabolic timing, not demonstrated human suppression or functional recovery",
+  "induction_command_s": 0.5,
+  "schedule_horizon_s": 630,
+  "cases": [
+    {
+      "name": "unsuppressed",
+      "scenario": "unsuppressed",
+      "duration_s": 10,
+      "return_command_s": 320
+    },
+    {
+      "name": "modest_reduction-10s",
+      "scenario": "modest_reduction",
+      "duration_s": 10,
+      "return_command_s": 320
+    },
+    {
+      "name": "stronger_reduction-10s",
+      "scenario": "stronger_reduction",
+      "duration_s": 10,
+      "return_command_s": 320
+    },
+    {
+      "name": "stronger_reduction-60s",
+      "scenario": "stronger_reduction",
+      "duration_s": 60,
+      "return_command_s": 320
+    },
+    {
+      "name": "stronger_reduction-300s",
+      "scenario": "stronger_reduction",
+      "duration_s": 300,
+      "return_command_s": 320
+    },
+    {
+      "name": "hypothetical_5_percent-10s",
+      "scenario": "hypothetical_5_percent",
+      "duration_s": 10,
+      "return_command_s": 320
+    },
+    {
+      "name": "interrupted-stronger-10s",
+      "scenario": "stronger_reduction",
+      "duration_s": 10,
+      "return_command_s": 3
+    }
+  ],
+  "sources": {
+    "timings": "docs/m1-assumption-budget.md: adopted linear 10/60/300 s induction and return sensitivities",
+    "targets": "data/m1-demand-budget.json; 5% native residual is an additional speculative comparator",
+    "auxiliary": "Working auxiliary myocardial demand remains independent; default multiplier 1. Native-heart reduction is from the selected M1 scenario.",
+    "commands": "A: .5 s induction and 320 s return are synthetic verification times; 3 s return tests interruption.",
+    "physiology": "Rodent torpor and post-resuscitation hypothermia studies do not establish these human kinetics or 95% suppression."
+  }
+}

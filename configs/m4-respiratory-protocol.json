@@ -1,0 +1,181 @@
+{
+  "classification": "exploratory gas and storage comparisons; no recovery validation",
+  "cases": [
+    {
+      "name": "B1_maintained",
+      "hydraulic": "whole",
+      "architecture": "B1",
+      "mode": "maintained",
+      "store_seconds": 0
+    },
+    {
+      "name": "B1_reduced",
+      "hydraulic": "whole",
+      "architecture": "B1",
+      "mode": "reduced",
+      "ventilation_fraction": 0.5,
+      "store_seconds": 0
+    },
+    {
+      "name": "B1_apnea",
+      "hydraulic": "whole",
+      "architecture": "B1",
+      "mode": "apnea",
+      "store_seconds": 0
+    },
+    {
+      "name": "B1_feedback",
+      "hydraulic": "whole",
+      "architecture": "B1",
+      "mode": "feedback",
+      "store_seconds": 0
+    },
+    {
+      "name": "B1_drive_loss",
+      "hydraulic": "whole",
+      "architecture": "B1",
+      "mode": "feedback",
+      "drive_fraction": 0,
+      "store_seconds": 0
+    },
+    {
+      "name": "B1_no_exchange",
+      "hydraulic": "whole",
+      "architecture": "B1",
+      "mode": "maintained",
+      "exchange_fraction": 0,
+      "store_seconds": 0
+    },
+    {
+      "name": "B1_reduced_exchange",
+      "hydraulic": "whole",
+      "architecture": "B1",
+      "mode": "maintained",
+      "exchange_fraction": 0.5,
+      "store_seconds": 0
+    },
+    {
+      "name": "B1_feedback_store5",
+      "hydraulic": "whole",
+      "architecture": "B1",
+      "mode": "feedback",
+      "store_seconds": 5
+    },
+    {
+      "name": "handover_feedback",
+      "hydraulic": "handover",
+      "architecture": "B1",
+      "mode": "feedback",
+      "store_seconds": 5
+    },
+    {
+      "name": "E1_fed",
+      "hydraulic": "E1",
+      "architecture": "E1",
+      "mode": "apnea",
+      "store_seconds": 5,
+      "sweep_mL_s_STPD": 100
+    },
+    {
+      "name": "E1_finite",
+      "hydraulic": "E1",
+      "architecture": "E1",
+      "mode": "apnea",
+      "store_seconds": 5,
+      "sweep_mL_s_STPD": 0
+    },
+    {
+      "name": "E2_fed",
+      "hydraulic": "E2",
+      "architecture": "E2",
+      "mode": "apnea",
+      "store_seconds": 5,
+      "sweep_mL_s_STPD": 100,
+      "solver_rtol_scale": 0.1,
+      "solver_max_step_s": 0.01
+    },
+    {
+      "name": "BIO_feedback",
+      "hydraulic": "BIO_handover",
+      "architecture": "BIO",
+      "mode": "feedback",
+      "store_seconds": 5,
+      "auxiliary_total_mL_min": 10
+    },
+    {
+      "name": "native120_maintained",
+      "hydraulic": "periodic",
+      "architecture": "B1",
+      "mode": "maintained",
+      "store_seconds": 5,
+      "ventilation_fraction": 1.0,
+      "drive_fraction": 1.0
+    },
+    {
+      "name": "native120_reduced",
+      "hydraulic": "periodic",
+      "architecture": "B1",
+      "mode": "reduced",
+      "store_seconds": 5,
+      "ventilation_fraction": 0.5,
+      "drive_fraction": 1.0
+    },
+    {
+      "name": "native120_apnea",
+      "hydraulic": "periodic",
+      "architecture": "B1",
+      "mode": "apnea",
+      "store_seconds": 5,
+      "ventilation_fraction": 1.0,
+      "drive_fraction": 1.0
+    },
+    {
+      "name": "native120_feedback",
+      "hydraulic": "periodic",
+      "architecture": "B1",
+      "mode": "feedback",
+      "store_seconds": 5,
+      "ventilation_fraction": 1.0,
+      "drive_fraction": 0.0
+    }
+  ],
+  "solvers": [
+    {
+      "label": "nominal",
+      "rtol": 1e-07,
+      "max_step_s": 0.04
+    },
+    {
+      "label": "refined",
+      "rtol": 1e-09,
+      "max_step_s": 0.01
+    }
+  ],
+  "oxygenator": {
+    "gas_volume_mL_STPD": 100,
+    "transfer_limit_mL_s": 5,
+    "sweep_mL_s_STPD": 100,
+    "classification": "A ideal membrane fixture, not a manufacturer envelope"
+  },
+  "respiratory": {
+    "reference_ventilation_mL_min_BTPS": 4690,
+    "response_time_s": 5,
+    "classification": "A linear uptake-to-capacity closure; not validated diaphragm/CO2 control"
+  },
+  "stores": {
+    "cases_s": [
+      0,
+      5,
+      15
+    ],
+    "classification": "M1 no-credit and hypothetical demand-equivalent stores; not measured usable organ inventories"
+  },
+  "BIO_demand": "A additional 10 mL/min working comparator, not fitted to alpha; independent native reductions remain available",
+  "long_native_cases": "120 seconds of repeated native periodic hydraulics; gas dependency tests, not arrest support or recovery",
+  "periodic_solver": {
+    "method": "fixed RK4",
+    "nominal_step_s": 0.0025,
+    "refined_step_s": 0.00125,
+    "reason": "align integration with hydraulic knots; original adaptive pair exceeded declared .002 mL limit"
+  }
+}

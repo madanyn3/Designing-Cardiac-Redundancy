@@ -1,0 +1,33 @@
+{
+  "classification": "A research screens; not viability thresholds",
+  "pressure_contract": "configs/auxiliary-heart-design.yaml",
+  "oxygen_tolerance": {
+    "absolute_floor_mL_s": 1e-08,
+    "refinement_error_multiplier": 10,
+    "sensitivity_multipliers": [
+      1,
+      10,
+      100
+    ],
+    "meaning": "numerical uncertainty allowance derived per organ from paired saved runs; no physiological grace interval"
+  },
+  "unresolved_requirements": [
+    "regional organ pressure minima",
+    "whole-brain regional distribution and function",
+    "recovery-linked oxygen-deficit thresholds for every tissue",
+    "endogenous suppression mechanism and reversibility",
+    "respiratory drive, airway, ventilation-demand coupling and CO2 clearance",
+    "tissue oxygen accessibility and microvascular exchange",
+    "glycogen/glucose stock and delivery limits",
+    "blood compatibility, endothelial injury and reperfusion injury",
+    "biological auxiliary self-demand calibration where applicable"
+  ],
+  "active_parent_pools": [
+    "brain",
+    "liver",
+    "lungs",
+    "respiratory_muscle"
+  ],
+  "first_violation_policy": "pressure: first violating complete window; oxygen: first observed sample bracket, not exact onset",
+  "incomplete_horizon_policy": "unobserved future is unknown; no infinite support or safe duration"
+}

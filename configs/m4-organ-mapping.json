@@ -1,0 +1,64 @@
+{
+  "status": "exploratory mapping, not measured regional metabolism",
+  "mapping": {
+    "brain": {
+      "brain": 1.0
+    },
+    "heart": {
+      "coronary_left": 0.7,
+      "coronary_right": 0.3
+    },
+    "kidneys": {
+      "kidney_protected": 0.5,
+      "kidney_other": 0.5
+    },
+    "liver": {
+      "hepatic_outflow": 1.0
+    },
+    "limb_muscle": {
+      "limb_muscle_exchange": 1.0
+    },
+    "respiratory_muscle": {
+      "respiratory_muscle": 1.0
+    },
+    "gut": {
+      "stomach_oesophagus": 0.06666666666666667,
+      "small_intestine": 0.6666666666666667,
+      "large_intestine": 0.26666666666666666
+    },
+    "lungs": {
+      "lungs": 1.0
+    },
+    "remaining": {
+      "pancreas": 0.04912050368727151,
+      "spleen": 0.14736151106181453,
+      "remaining": 0.803517985250914
+    },
+    "limb_skin": {
+      "limb_skin_exchange": 1.0
+    },
+    "limb_bone": {
+      "limb_bone_exchange": 1.0
+    },
+    "limb_other": {
+      "limb_other_exchange": 1.0
+    },
+    "limb_adipose": {
+      "limb_adipose_exchange": 1.0
+    }
+  },
+  "extraction_limit_cases": [
+    0.5,
+    0.75,
+    1.0
+  ],
+  "illustrative_extraction_limit": 0.75,
+  "provenance": {
+    "gut": "A: fixed 1:10:4 allocation from M3 reference flow weights (Leggett/Williams source retained in M3); equal reference extraction proxy, not measured metabolic fractions. Equal-weight alternative required.",
+    "remaining": "A: M1 residual includes pancreas/spleen. Partition fixed demand by M3 reference flows across pancreas, spleen and remaining; debit the same parent pool, never add demand. Sensitivity scales pancreas/spleen shares by 0.5 and 2 with compensating remaining share.",
+    "heart": "A: 70/30 proxy from M2 coronary conductance split, not measured chamber metabolism; configurable.",
+    "kidneys": "A: equal split explicitly required by M2 demand contract; one kidney cannot inherit the unmet demand of the other.",
+    "extraction_limits": "A: 0.5/0.75 are exploratory capacity fractions, not empirical organ thresholds. 1.0 is the oxygen-conservation upper bound, not a feasible physiological ceiling.",
+    "other": "M1 parent totals unchanged. Limb uptake occurs at exchange resistor, lung nutritive uptake on lungs edge, liver after arterial/portal mixing. No added tissue stores."
+  }
+}

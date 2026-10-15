@@ -1,0 +1,33 @@
+{
+  "classification": "restrictive all-glucose exploratory accounting; no physiological support-time validation",
+  "parameters": {
+    "liver_volume_L": 1.44,
+    "glycogen_mmol_L_liver": 229.0,
+    "accessible_fraction": 1.0,
+    "initial_plasma_glucose_mmol_L": 5.0,
+    "plasma_to_whole_blood_ratio": 1.11,
+    "release_cap_mmol_min": 0.21,
+    "release_time_s": 1.0,
+    "export_increment_mmol_L": 1.0,
+    "blood_target_time_s": 60.0,
+    "nonoxidative_mmol_min": 0.0,
+    "nonoxidative_release_time_s": 1.0
+  },
+  "glucose_extraction_limit": 0.5,
+  "glucose_share": 1.0,
+  "liver_function_fraction": 1.0,
+  "evidence": {
+    "glycogen": "Beckmann et al. 1993, abstract: 229 +/- 34 mmol/L, observed 160-274, n=18, 12h overnight fast. https://pubmed.ncbi.nlm.nih.gov/8505893/",
+    "volume_glucose": "Taylor et al. 1996, pp128-129: liver volume 1.44 +/- 0.06 L; fasting plasma glucose 5.0 +/- 0.1 mmol/L. Cross-study reference transfer. https://doi.org/10.1172/JCI118379",
+    "release_scale": "Magnusson et al. 1992, Table II healthy controls: net glycogenolysis 2.8 +/- 0.7 umol/kg/min during fasting; 75kg gives 0.21 mmol/min. Using this as a modeled mobilization cap is A, not a measured maximum or arrest response. https://doi.org/10.1172/JCI115997",
+    "blood_conversion": "D'Orazio et al. IFCC 2006: plasma equivalent = whole blood concentration * 1.11; normal-composition transfer. https://pubmed.ncbi.nlm.nih.gov/17163827/"
+  },
+  "assumptions": [
+    "Full initial accessibility is an optimistic stock bound; vary 0, 0.5, 1.",
+    "Rate cap, functional liver fraction, export increment, controller and store release kinetics are A closures.",
+    "Every unit of modeled aerobic O2 use requires glucose in the all-glucose comparator. This is not a normal substrate mixture.",
+    "No interstitial glucose, tissue glycogen, fat, ketones, lactate recycling or gluconeogenesis credited.",
+    "Nonoxidative glucose sink defaults to zero: blood-cell glycolysis and other nonoxidative use remain unassessed, not absent biologically. Optional positive sink gives no aerobic energy credit.",
+    "No glucose concentration is declared a recovery or safety threshold."
+  ]
+}
