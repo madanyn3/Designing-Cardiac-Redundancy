@@ -1,0 +1,83 @@
+{
+  "classification": "Exploratory controller and fault scenarios; no biological controller realization",
+  "duration_s": 10,
+  "sample_period_s": 0.05,
+  "filter_window_s": 0.75,
+  "seed": 6202,
+  "cases": [
+    {
+      "name": "fixed_arrest",
+      "policy": "fixed"
+    },
+    {
+      "name": "observed_arrest",
+      "policy": "observed"
+    },
+    {
+      "name": "observed_noise",
+      "policy": "observed",
+      "noise": true
+    },
+    {
+      "name": "stuck_high",
+      "policy": "observed",
+      "stuck_high": true
+    },
+    {
+      "name": "sensor_loss",
+      "policy": "observed",
+      "sensor_loss": 2
+    },
+    {
+      "name": "graded_handover",
+      "policy": "fixed",
+      "restart": 4,
+      "withdraw": 7,
+      "withdrawal_s": 2,
+      "reopen": 5,
+      "demand_restore": 5.5
+    },
+    {
+      "name": "abrupt_handover",
+      "policy": "fixed",
+      "restart": 4,
+      "withdraw": 7,
+      "withdrawal_s": 0,
+      "reopen": 5,
+      "demand_restore": 5.5
+    },
+    {
+      "name": "rearrest",
+      "policy": "observed",
+      "restart": 4,
+      "rearrest": 8,
+      "reopen": 5,
+      "demand_restore": 5.5
+    },
+    {
+      "name": "ventilation_loss",
+      "policy": "observed",
+      "apnea": 2
+    },
+    {
+      "name": "inlet_obstruction",
+      "policy": "observed",
+      "inlet_multiplier": 10
+    },
+    {
+      "name": "low_preload",
+      "policy": "observed",
+      "deplete_PU": true
+    },
+    {
+      "name": "domain_boundary",
+      "policy": "observed",
+      "domain_boundary": true
+    },
+    {
+      "name": "observed_fast_sample",
+      "policy": "observed",
+      "sample_period_s": 0.025
+    }
+  ]
+}

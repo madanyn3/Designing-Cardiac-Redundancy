@@ -1,0 +1,25 @@
+{
+  "classification": "A supervisory policy inspired by feedback/reflex mechanisms, not a biological implementation",
+  "sample_period_s": 0.01,
+  "causal_filter_window_s": 0.75,
+  "parameters": {
+    "trigger_MAP_mmHg": 60.0,
+    "reset_MAP_mmHg": 65.0,
+    "native_failure_L_min": 0.5,
+    "recovery_MAP_mmHg": 70.0,
+    "recovery_native_L_min": 2.0,
+    "confirmation_s": 0.25,
+    "signal_s": 0.05,
+    "recruitment_s": 0.2,
+    "ramp_s": 1.0,
+    "recovery_dwell_s": 2.0,
+    "withdrawal_s": 2.0,
+    "max_sample_gap_s": 0.1
+  },
+  "notes": [
+    "All numerical settings are test assumptions, not physiological minima or calibrated sensor properties.",
+    "The controller accepts already causally filtered observations; the circulation/sensor adapter remains next work.",
+    "Recovery adequacy requires organ, substrate, pressure and inventory checks; pressure alone is insufficient.",
+    "FAULT holds the previous command and is latched; this is a policy to test, not a safety guarantee."
+  ]
+}
