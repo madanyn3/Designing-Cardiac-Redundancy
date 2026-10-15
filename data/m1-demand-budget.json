@@ -1,0 +1,84 @@
+{
+  "classification": "D conditional on A inputs; not pump sizing or viability",
+  "baseline_mL_min": {
+    "brain": 48.10996563573884,
+    "heart": 20.79037800687286,
+    "kidneys": 19.53035509736541,
+    "liver": 45.81901489117985,
+    "limb_muscle": 44.67353951890035,
+    "respiratory_muscle": 5,
+    "gut": 15,
+    "lungs": 3,
+    "remaining": 40.17869415807561,
+    "limb_skin": 2.577319587628866,
+    "limb_bone": 6.872852233676976,
+    "limb_other": 1.718213058419244,
+    "limb_adipose": 2.577319587628866
+  },
+  "scenarios": {
+    "unsuppressed": {
+      "organ_mL_min": {
+        "brain": 48.10996563573884,
+        "heart": 20.79037800687286,
+        "kidneys": 19.53035509736541,
+        "liver": 45.81901489117985,
+        "limb_muscle": 44.67353951890035,
+        "respiratory_muscle": 5,
+        "gut": 15,
+        "lungs": 3,
+        "remaining": 40.17869415807561,
+        "limb_skin": 2.577319587628866,
+        "limb_bone": 6.872852233676976,
+        "limb_other": 1.718213058419244,
+        "limb_adipose": 2.577319587628866
+      },
+      "whole_body_mL_min": 255.84765177548687,
+      "protected_set_mL_min": 197.42840778923255,
+      "limb_demand_mL_min": 58.4192439862543
+    },
+    "modest_reduction": {
+      "organ_mL_min": {
+        "brain": 38.48797250859107,
+        "heart": 10.39518900343643,
+        "kidneys": 14.647766323024056,
+        "liver": 34.364261168384886,
+        "limb_muscle": 44.67353951890035,
+        "respiratory_muscle": 5,
+        "gut": 11.25,
+        "lungs": 3,
+        "remaining": 40.17869415807561,
+        "limb_skin": 1.9329896907216497,
+        "limb_bone": 5.154639175257732,
+        "limb_other": 1.288659793814433,
+        "limb_adipose": 1.9329896907216497
+      },
+      "whole_body_mL_min": 212.30670103092785,
+      "protected_set_mL_min": 157.32388316151204,
+      "limb_demand_mL_min": 54.98281786941581
+    },
+    "stronger_reduction": {
+      "organ_mL_min": {
+        "brain": 28.865979381443303,
+        "heart": 6.2371134020618575,
+        "kidneys": 9.765177548682704,
+        "liver": 22.909507445589924,
+        "limb_muscle": 44.67353951890035,
+        "respiratory_muscle": 5,
+        "gut": 7.5,
+        "lungs": 3,
+        "remaining": 40.17869415807561,
+        "limb_skin": 1.9329896907216497,
+        "limb_bone": 5.154639175257732,
+        "limb_other": 1.288659793814433,
+        "limb_adipose": 1.9329896907216497
+      },
+      "whole_body_mL_min": 178.4392898052692,
+      "protected_set_mL_min": 123.4564719358534,
+      "limb_demand_mL_min": 54.98281786941581
+    }
+  },
+  "muscle_bound_store_mL_per_kg": 5.645007407407407,
+  "limb_bound_store_mL": 135.48017777777778,
+  "respiratory_bound_store_mL": 2.8225037037037035,
+  "checks": "mass balance; disjoint energy allocation; positive demands; scenario coverage"
+}

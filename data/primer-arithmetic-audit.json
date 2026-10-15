@@ -1,0 +1,20 @@
+{
+  "classification": "D conditional on historical assumptions; not validated design",
+  "h_over_r": 0.2727048436363636,
+  "feedback_gain": 0.053025941818181814,
+  "flow_fixed_point_mL_min": 739.1965956744303,
+  "radius_cm": 1.8696882334074567,
+  "wall_cm": 0.5098730373401293,
+  "two_thin_shells_mass_g": 47.035914809316495,
+  "exact_to_thin_shell_mass_ratio_same_dimensions": 1.2974941542172744,
+  "two_exact_shells_mass_g_same_dimensions": 61.02882450334988,
+  "flow_iterates_mL_min": [
+    700,
+    737.1181592727273,
+    739.0863846267209,
+    739.1907516298269
+  ],
+  "error_after_two_updates_mL_min": 0.11021104770941292,
+  "one_path_hydraulic_power_W_if_head_70_mmHg": 0.11497668064672066,
+  "beats_70_years_if_100000_per_day": 2556750000.0
+}
