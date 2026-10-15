@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-06",
+  "duration_s": 8,
+  "reopen_s": 4,
+  "reopen_ramp_s": 2,
+  "withdraw_s": 6,
+  "isolate_s": 7,
+  "acceptance": {
+    "trajectory_scaled_pct": 0.5,
+    "event_ms": 1,
+    "relative_blood_drift": 1e-08,
+    "septal_mmHg": 1e-08
+  },
+  "cases": [
+    {
+      "name": "handover",
+      "architecture": "B1",
+      "restart": 4
+    },
+    {
+      "name": "delay",
+      "architecture": "B1",
+      "delay": 2,
+      "restart": 4
+    },
+    {
+      "name": "right_weak",
+      "architecture": "B1",
+      "right_capacity": 20
+    },
+    {
+      "name": "left_weak",
+      "architecture": "B1",
+      "left_capacity": 20
+    },
+    {
+      "name": "depletion",
+      "architecture": "B1",
+      "deplete": "PU",
+      "right_capacity": 0
+    },
+    {
+      "name": "E1",
+      "architecture": "E1"
+    },
+    {
+      "name": "E2",
+      "architecture": "E2"
+    },
+    {
+      "name": "BIO",
+      "architecture": "BIO"
+    },
+    {
+      "name": "BIO_handover",
+      "architecture": "BIO",
+      "restart": 4
+    }
+  ],
+  "solvers": [
+    {
+      "label": "nominal",
+      "method": "Radau",
+      "rtol": 1e-07,
+      "max_step": 0.001
+    },
+    {
+      "label": "refined",
+      "method": "Radau",
+      "rtol": 1e-08,
+      "max_step": 0.0005
+    },
+    {
+      "label": "BDF",
+      "method": "BDF",
+      "rtol": 1e-07,
+      "max_step": 0.001
+    }
+  ]
+}

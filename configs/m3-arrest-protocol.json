@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-06",
+  "variant": "F0 native arrest without support",
+  "post_arrest_duration_s": 10,
+  "seed": "verified pressure-regional baseline final state; hash checked",
+  "comparison": "Same phase, full post-arrest trajectories; per-coordinate max absolute error / max(1 in native unit, reference peak magnitude) <0.005; matched valve sequence and times <1ms. Domain endpoints compared separately. These scales are engineering verification choices, not physiology.",
+  "cases": [
+    {
+      "name": "diastolic-nominal",
+      "phase_s": 0.0,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "diastolic-refined",
+      "phase_s": 0.0,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "diastolic-BDF",
+      "phase_s": 0.0,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "rising-nominal",
+      "phase_s": 0.1875,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "rising-refined",
+      "phase_s": 0.1875,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "rising-BDF",
+      "phase_s": 0.1875,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "peak_activation-nominal",
+      "phase_s": 0.375,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "peak_activation-refined",
+      "phase_s": 0.375,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "peak_activation-BDF",
+      "phase_s": 0.375,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "before_AV_close-nominal",
+      "phase_s": 0.3839231202154028,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "before_AV_close-refined",
+      "phase_s": 0.3839231202154028,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "before_AV_close-BDF",
+      "phase_s": 0.3839231202154028,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "after_AV_close-nominal",
+      "phase_s": 0.38394312021540283,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "after_AV_close-refined",
+      "phase_s": 0.38394312021540283,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "after_AV_close-BDF",
+      "phase_s": 0.38394312021540283,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    }
+  ]
+}

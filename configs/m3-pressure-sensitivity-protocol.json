@@ -1,0 +1,91 @@
+{
+  "version": "2026-10-06-pressure-sensitivity-v1",
+  "variant": "One-factor coupled pressure sensitivities; nominal reference stored separately",
+  "project_config": "configs/m3-evidence-regional.yaml",
+  "pressure_aware": true,
+  "warmup_phase_intervals": 100,
+  "consecutive_periodic_comparisons": 3,
+  "measurement_cycles": 10,
+  "sample_step_s": 0.001,
+  "comparison_metric_limit_pct": 0.5,
+  "comparison_event_time_limit_ms": 1.0,
+  "cases": [
+    {
+      "name": "Pc5",
+      "solver": {},
+      "closure": {
+        "ICP_mmHg": 5,
+        "tone_offset_mmHg": 0
+      }
+    },
+    {
+      "name": "Pc10",
+      "solver": {},
+      "closure": {
+        "ICP_mmHg": 10,
+        "tone_offset_mmHg": 0
+      }
+    },
+    {
+      "name": "Pc15",
+      "solver": {},
+      "closure": {
+        "ICP_mmHg": 15,
+        "tone_offset_mmHg": 0
+      }
+    },
+    {
+      "name": "Pc25",
+      "solver": {},
+      "closure": {
+        "ICP_mmHg": 5,
+        "tone_offset_mmHg": 20
+      }
+    },
+    {
+      "name": "Pc30",
+      "solver": {},
+      "closure": {
+        "ICP_mmHg": 10,
+        "tone_offset_mmHg": 20
+      }
+    },
+    {
+      "name": "Pc35",
+      "solver": {},
+      "closure": {
+        "ICP_mmHg": 15,
+        "tone_offset_mmHg": 20
+      }
+    },
+    {
+      "name": "R0.5",
+      "solver": {},
+      "closure": {
+        "brain_resistance_multiplier": 0.5
+      }
+    },
+    {
+      "name": "R1.5",
+      "solver": {},
+      "closure": {
+        "brain_resistance_multiplier": 1.5
+      }
+    },
+    {
+      "name": "kappa0",
+      "solver": {},
+      "closure": {
+        "kappa": 0
+      }
+    },
+    {
+      "name": "kappa1",
+      "solver": {},
+      "closure": {
+        "kappa": 1
+      }
+    }
+  ],
+  "comparison_scope": "Physiological variants are not required to match nominal. Each must independently pass periodicity, domain, conservation and algebraic checks. No full factorial sweep."
+}

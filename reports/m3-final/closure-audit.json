@@ -1,0 +1,164 @@
+{
+  "status": "closed_with_accepted_source_limitation",
+  "engineering_checks_passed": true,
+  "original_M3_gate_passed": false,
+  "checks": {
+    "regional": true,
+    "evidence_regional": true,
+    "pressure_regional": true,
+    "pressure_sensitivity": true,
+    "arrest": true,
+    "selective": true,
+    "whole_network": true,
+    "pump_energy": true,
+    "combined_circuits": true,
+    "storage_sensitivity": true,
+    "six_baseline_screens": true,
+    "source_convergence_and_repeat": true,
+    "journal_thoracic_screen": false,
+    "independent_reconstruction": true,
+    "tests": true,
+    "frozen_M2": true
+  },
+  "test_count": 102,
+  "thoracic_decrease_pct": 19.078449150421516,
+  "journal_target_pct": 9,
+  "journal_tolerance_percentage_points": 5,
+  "max_independent_metric_difference_pct": 0.003205961834864544,
+  "agreed_closure_gate_passed": true,
+  "exception": {
+    "id": "R-M3-01",
+    "approved": true,
+    "date": "2026-10-07",
+    "authority": "User accepted the proposed disposition in this project chat: I think that is fine.",
+    "scope": "Close M3 as a numerically verified reconstruction with an explicit journal thoracic-pressure reproduction limitation.",
+    "preserved": "Original 9 +/- 5 percentage-point screen remains failed; no frozen parameters or targets change; no exact journal replication or physiological validation claim.",
+    "reopen_when": "Original experiment data become available, a source-equation error is identified, or downstream conclusions depend on the disputed response."
+  },
+  "static_audits": {
+    "audit_m2_freeze.py": {
+      "status": "passed static freeze checks; no ODE or physiology validation",
+      "waterfall_pressure_combinations_checked": 216,
+      "brain_R_mmHg_s_mL": 6.593406593406594,
+      "brain_critical_pressure_A_mmHg": 20,
+      "total_physical_blood_mL": 5250.0,
+      "auxiliary_initial_volumes_mL": {
+        "aLV": 23.6703,
+        "aRV": 22.68255
+      },
+      "expanded_regional_edge_count": 23,
+      "checks": [
+        "waterfall antisymmetry, resistor limit, closure and dissipativity",
+        "cerebral anchor",
+        "kidney/coronary conductance preservation",
+        "auxiliary blood allocation",
+        "normalized driver width",
+        "post-trigger graph paths and incidence",
+        "pressure policy"
+      ],
+      "not_done": [
+        "ODE",
+        "periodic warm-up",
+        "organ adequacy",
+        "recovery",
+        "pump sizing"
+      ],
+      "snapshot_files_verified": 9
+    },
+    "audit_m2_specification.py": {
+      "status": "passed static specification checks only",
+      "source_parameter_rows": 53,
+      "physical_volume_mL": 5250,
+      "limb_pool_volume_mL": 600,
+      "source_coordinate_volume_mL": 1500,
+      "regional_fraction_sum": 1,
+      "septal_checks": [
+        {
+          "activation": 0,
+          "septal_coordinate_mL": 3.1196931584737726,
+          "residual_mmHg": -1.1102230246251565e-15
+        },
+        {
+          "activation": 0.5,
+          "septal_coordinate_mL": 5.980233239999411,
+          "residual_mmHg": 1.4210854715202004e-14
+        },
+        {
+          "activation": 1,
+          "septal_coordinate_mL": 6.07240596796556,
+          "residual_mmHg": 7.105427357601002e-15
+        }
+      ],
+      "checks": [
+        "pinned hashes",
+        "volume accounting",
+        "positive resistances",
+        "anchor flow reconstruction",
+        "portal/pool continuity",
+        "complete native return paths",
+        "incidence conservation",
+        "passive/active septal roots",
+        "periodic driver beyond 14 beats",
+        "unique source rows"
+      ],
+      "not_done": [
+        "ODE integration",
+        "waveform reproduction",
+        "physiological validation",
+        "support sizing"
+      ]
+    },
+    "audit_m2_design.py": {
+      "status": "passed static arithmetic only; no ODE, pump sizing or viability result",
+      "classification": "D conditional on A branch allocation and fixed boundary pressures",
+      "AO_to_VC_R_mmHg_s_mL": {
+        "open": 1.0606060606060606,
+        "limbs_closed": 1.2962962962962965,
+        "percent_increase": 22.222222222222253
+      },
+      "AO_to_VC_Q_L_min": {
+        "open": 5.5440000000000005,
+        "limbs_closed": 4.536
+      },
+      "lung_nutritive_Q_L_min": 0.056,
+      "total_AO_outflow_L_min": {
+        "open": 5.6000000000000005,
+        "limbs_closed": 4.592
+      },
+      "whole_outflow_operating_point_R_percent_increase": 21.95121951219514,
+      "brain": {
+        "anchor_Q_L_min": 0.728,
+        "anchor_R_mmHg_s_mL": 8.076923076923077,
+        "R_to_preserve_baseline_flow_comparator_only_mmHg_s_mL": 6.428571428571429,
+        "fixed_R_flow_ratio_at_target_MAP": 0.7959183673469388
+      },
+      "kidney_each_R_mmHg_s_mL_equal_split": 10.5,
+      "scaled_wall_law_max_error_mmHg": 1.4210854715202004e-14,
+      "not_established": [
+        "organ functional minima",
+        "minimum viable SBP/DBP",
+        "required auxiliary output",
+        "physical septal tissue volume",
+        "biological pump size",
+        "recoverable support duration"
+      ]
+    }
+  },
+  "evidence_sha256": {
+    "reports\\m3-regional\\verification.json": "85e7a890c440100236ebaca3b605c813e0dcb4cb98c85a7f462754f2fdd15280",
+    "reports\\m3-evidence-regional\\verification.json": "1875d78f113b9fef40a26b13215ef2931c0b248569127d2a47b7ac31f168bec7",
+    "reports\\m3-pressure-regional\\verification.json": "5160772bfe2e9b6c329f7018416302e1171a70c3480ee43383408b897d2a17c2",
+    "reports\\m3-pressure-sensitivity\\summary.json": "4f1b1cb66f75d0cbf26c62a2864d139c36e2863e583f4c548ed6178d0a835861",
+    "reports\\m3-arrest\\verification.json": "e5de6819d96a428b76f85cf0a1ce8123475d6b8e2c0958eab2371f339cef8422",
+    "reports\\m3-selective\\verification.json": "53b0153ab7e7f259a38f7eed407a55c0dad9cba6b2b12b0c84e37b629a96a76b",
+    "reports\\m3-whole-network\\verification.json": "8c1d88751dd4b8ddab4eed2313a91545e49e01e961b7f9393f5bbc9abb897cc7",
+    "reports\\m3-pump-energy\\metrics.json": "5b0ca809f7fdd7a1f8e085539bc67d0056d078ada5912cadb93cfef9819033d6",
+    "reports\\m3-circuits\\verification.json": "20bacfe440f9472169dd0c057e588002c2fd9a3a2183a6b5fcecce84057000d2",
+    "reports\\m3-storage-sensitivity\\verification.json": "1383e0d97b54dfbf923003376b1c8e70947dd7d9fddb427d90edc3a151e9d156",
+    "reports\\m3-final-tests.xml": "85d8f6e0c193c7932684099973823ccbc5bfa4134ac61a40a620feff00e6224b",
+    "reports\\m3-sweeps\\evaluation.json": "e35d5997bac66c1bb0e1fef2236961974bbabb16bc06f91dd69b05ed0d50d6d8",
+    "reports\\m3-source-audit\\comparison.json": "7f1d340a0a25b1335f7faf113bcfe6b297cd2037e01889c820ec802bfab587ca",
+    "scripts\\audit_m3_closure.py": "ae2c15856b336b62c7a9b9f1b3d68cf27eb362f6f79ffc5d5c50af27ed59470e",
+    "configs\\m3-closure-decision.json": "ca135dac3958a469046963214951f776c6d10c57296849c48fe45ed626170d70"
+  }
+}

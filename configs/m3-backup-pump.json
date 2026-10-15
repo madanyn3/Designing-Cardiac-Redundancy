@@ -1,0 +1,4 @@
+{
+  "right": {"resistance_mmHg_s_mL": 0.1, "capacity_mL_s": 120.0},
+  "left": {"resistance_mmHg_s_mL": 0.1, "capacity_mL_s": 120.0}
+}

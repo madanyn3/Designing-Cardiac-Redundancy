@@ -1,0 +1,157 @@
+{
+  "schema": "M2 specification v0.1",
+  "status": "Provisional OCR transcription of thesis Tables 5.1/5.2; not frozen or visually verified",
+  "source": "https://ir.canterbury.ac.nz/bitstreams/fdab391f-f441-4288-a7c0-ca22d8624287/download",
+  "units": {
+    "time": "s",
+    "volume": "mL",
+    "pressure": "mmHg",
+    "flow": "mL/s"
+  },
+  "source_parameters": {
+    "environment": {},
+    "heart_parameters": {
+      "R_mt": 0.04575376264495435,
+      "R_av": 0.02062669627436467,
+      "R_tc": 0.007500616827041697,
+      "R_pv": 0.007500616827041697,
+      "R_pul": 0.07050579817419196,
+      "R_sys": 1.2751048605970885,
+      "L_tc": 9.750801875154207e-05,
+      "L_pv": 0.00015001233654083395,
+      "L_mt": 9.750801875154207e-05,
+      "L_av": 0.00037503084135208484,
+      "V_tot": 5.5,
+      "P_th": -4.0
+    },
+    "driver_function": {
+      "A": 1.0,
+      "B": 80.0,
+      "C": 0.375,
+      "period": 0.75
+    },
+    "pericardium": {
+      "P_0_pcd": 0.5002911423636812,
+      "V_0_pcd": 200.0,
+      "lambda_pcd": 0.03
+    },
+    "left_ventricle": {
+      "V_lv": 94.6812
+    },
+    "lvf_calculator": {
+      "E_es_lvf": 0.7500616827041697,
+      "V_d_lvf": 0.0,
+      "P_0_lvf": 0.07500616827041698,
+      "lambda_lvf": 0.033,
+      "V_0_lvf": 0.0
+    },
+    "right_ventricle": {
+      "V_rv": 90.7302
+    },
+    "rvf_calculator": {
+      "E_es_rvf": 0.40503330866025167,
+      "V_d_rvf": 0.0,
+      "P_0_rvf": 0.07500616827041698,
+      "lambda_rvf": 0.023,
+      "V_0_rvf": 0.0
+    },
+    "septum": {
+      "E_es_spt": 48.754009375771034,
+      "V_d_spt": 2.0,
+      "P_0_spt": 1.1100912904021711,
+      "lambda_spt": 0.435,
+      "V_0_spt": 2.0,
+      "one": 1.0
+    },
+    "pulmonary_artery": {
+      "E_es_pa": 0.5400444115470022,
+      "V_pa": 43.0123,
+      "V_d_pa": 0.0
+    },
+    "pulmonary_vein": {
+      "E_es_pu": 0.014251171971379225,
+      "V_pu": 808.4579,
+      "V_d_pu": 0.0
+    },
+    "aorta": {
+      "E_es_ao": 0.7350604490500864,
+      "V_ao": 133.3381,
+      "V_d_ao": 0.0
+    },
+    "vena_cava": {
+      "E_es_vc": 0.009750801875154208,
+      "V_vc": 329.7803,
+      "V_d_vc": 0.0
+    },
+    "flow": {
+      "Q_mt": 245.5813,
+      "Q_av": 0.0,
+      "Q_tc": 190.0661,
+      "Q_pv": 0.0
+    }
+  },
+  "excluded_source_fields": [
+    "heart_parameters.V_tot"
+  ],
+  "pressure_unit_override": "mmHg for every kPa-labelled source pressure/resistance/elastance/inertance; numbers unchanged",
+  "initial_volumes_mL": {
+    "LV": 94.6812,
+    "RV": 90.7302,
+    "PA": 43.0123,
+    "PU": 808.4579,
+    "AO": 133.3381,
+    "VC": 329.7803
+  },
+  "circulating_coordinate_sum_mL": 1500.0,
+  "volume_interpretation": "stressed-volume hydraulic reproduction only; not total-body oxygen inventory",
+  "driver": {
+    "period_s": 0.75,
+    "A": 1,
+    "B_per_s2": 80,
+    "C_s": 0.27,
+    "phase": "tau=t-floor(t/T)*T",
+    "repeat_indefinitely": true
+  },
+  "initial_valve_flows_mL_s": {
+    "MT": 245.5813,
+    "AV": 0,
+    "TC": 190.0661,
+    "PV": 0
+  },
+  "valve_closure": "event-driven Q=0 with adverse gradient; open on positive forward gradient",
+  "pressure_external_mmHg": {
+    "AO": 0,
+    "VC": 0,
+    "PA": -4,
+    "PU": -4,
+    "pericardium": -4
+  },
+  "arrest": {
+    "at_s": 0,
+    "state": "after periodic baseline restart",
+    "active_driver_multiplier": 0,
+    "apply_to": [
+      "LV_free_wall",
+      "RV_free_wall",
+      "septum"
+    ],
+    "preserve_volumes_and_inertial_flows": true
+  },
+  "solver_targets": {
+    "relative_tolerance": 1e-07,
+    "absolute_volume_tolerance_mL": 1e-07,
+    "absolute_flow_tolerance_mL_s": 1e-06,
+    "maximum_step_s": 0.001,
+    "septal_residual_tolerance_mmHg": 1e-08,
+    "warmup_max_cycles": 200,
+    "periodic_state_relative_tolerance": 1e-05,
+    "mass_drift_relative_limit": 1e-08
+  },
+  "transcription_notes": [
+    "PDF pages 89/90 (printed 74/75); LV E reads 100, unverified visually",
+    "A=1 B=80 C=.27 from thesis Eq 2.4; period .75s from journal's explicit 80 bpm",
+    "Initial allocation inherited only for warm-up; stressed inventory remains 1500 mL",
+    "All three thoracic offsets retained: thesis Eqs 2.19/2.20 explicitly include Pth",
+    "SI conversion uses scipy.constants.mmHg; no parameter fitted to the 9 percent result"
+  ]
+}

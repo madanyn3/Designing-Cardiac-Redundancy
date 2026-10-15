@@ -1,0 +1,325 @@
+{
+  "date": "2026-10-06",
+  "status": "exploratory numerical fixtures; not measured anatomy or recovery bounds",
+  "storage_fraction_basis": "0.1/0.2/0.3 sensitivity choices partition existing V and U; no added blood. Proximal arterial/microvascular vs distal venous storage is idealized.",
+  "resistance_fraction_basis": "0.1 inlet and 0.9 exchange preserve original series resistance at reference AO100/pool5; engineering fixture",
+  "controls_basis": "conductance multipliers, not imposed flow fractions; leakage 0.02 is ideal uncertainty case, not measured collateral flow",
+  "comparison": "same-case post-arrest trajectory scaled absolute difference <0.005 using max(1 native unit, nominal coordinate peak); matched valve times and domain exit times <1ms; failed/domain exits explicit",
+  "cases": [
+    {
+      "name": "open-nominal",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 1,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 0,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "open-refined",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 1,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 0,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "open-BDF",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 1,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 0,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "restricted-nominal",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0.25,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "restricted-refined",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0.25,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "restricted-BDF",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0.25,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "excluded-nominal",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "excluded-refined",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "excluded-BDF",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "trapped-nominal",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 0,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "trapped-refined",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 0,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "trapped-BDF",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 0,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "leakage-nominal",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0.02
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "leakage-refined",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0.02
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "leakage-BDF",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0.02
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "abrupt_reopen-nominal",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 0,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "abrupt_reopen-refined",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 0,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "abrupt_reopen-BDF",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 0,
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "fraction-0.1",
+      "fraction": 0.1,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "fraction-0.3",
+      "fraction": 0.3,
+      "controls": {
+        "inlet": 0,
+        "outlet": 1,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "venous_obstruction",
+      "fraction": 0.2,
+      "controls": {
+        "inlet": 1,
+        "outlet": 0,
+        "collateral": 0
+      },
+      "reopen_ramp_s": 2,
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    }
+  ]
+}

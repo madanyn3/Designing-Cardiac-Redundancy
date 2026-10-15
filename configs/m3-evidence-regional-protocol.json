@@ -1,0 +1,36 @@
+{
+  "version": "2026-10-05-evidence-regional-v1",
+  "variant": "Referenced regional estimates and five portal beds; fixed-R comparator; unresolved partitions explicit",
+  "warmup_phase_intervals": 100,
+  "consecutive_periodic_comparisons": 3,
+  "measurement_cycles": 10,
+  "sample_step_s": 0.001,
+  "comparison_metric_limit_pct": 0.5,
+  "comparison_event_time_limit_ms": 1.0,
+  "cases": [
+    {
+      "name": "baseline",
+      "solver": {}
+    },
+    {
+      "name": "refined",
+      "solver": {
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      },
+      "sample_step_s": 0.0005
+    },
+    {
+      "name": "BDF",
+      "solver": {
+        "method": "BDF"
+      }
+    },
+    {
+      "name": "redistributed",
+      "solver": {},
+      "initial_VC_to_PU_mL": 50
+    }
+  ],
+  "project_config": "configs/m3-evidence-regional.yaml"
+}

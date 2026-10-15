@@ -1,0 +1,9 @@
+{
+  "id": "R-M3-01",
+  "approved": true,
+  "date": "2026-10-07",
+  "authority": "User accepted the proposed disposition in this project chat: I think that is fine.",
+  "scope": "Close M3 as a numerically verified reconstruction with an explicit journal thoracic-pressure reproduction limitation.",
+  "preserved": "Original 9 +/- 5 percentage-point screen remains failed; no frozen parameters or targets change; no exact journal replication or physiological validation claim.",
+  "reopen_when": "Original experiment data become available, a source-equation error is identified, or downstream conclusions depend on the disputed response."
+}

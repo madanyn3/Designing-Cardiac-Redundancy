@@ -1,0 +1,29 @@
+{
+  "version": "2026-10-04-v1",
+  "classification": "A exploration and numerical verification; not physiological parameter bounds",
+  "warmup_phase_intervals": 100,
+  "consecutive_periodic_comparisons": 3,
+  "measurement_cycles": 10,
+  "sample_step_s": 0.001,
+  "cases": [
+    {"name": "baseline", "knobs": {}},
+    {"name": "systemic_R_half", "knobs": {"systemic_resistance_factor": 0.5}},
+    {"name": "systemic_R_double", "knobs": {"systemic_resistance_factor": 2}},
+    {"name": "pulmonary_R_half", "knobs": {"pulmonary_resistance_factor": 0.5}},
+    {"name": "pulmonary_R_double", "knobs": {"pulmonary_resistance_factor": 2}},
+    {"name": "LV_contractility_half", "knobs": {"lv_elastance_factor": 0.5}},
+    {"name": "LV_contractility_150pct", "knobs": {"lv_elastance_factor": 1.5}},
+    {"name": "RV_contractility_half", "knobs": {"rv_elastance_factor": 0.5}},
+    {"name": "aortic_compliance_half", "knobs": {"aortic_compliance_factor": 0.5}},
+    {"name": "aortic_compliance_double", "knobs": {"aortic_compliance_factor": 2}},
+    {"name": "rate_60", "knobs": {"heart_rate_bpm": 60}},
+    {"name": "rate_100", "knobs": {"heart_rate_bpm": 100}},
+    {"name": "thoracic_zero", "knobs": {"thoracic_pressure_mmHg": 0}},
+    {"name": "initial_transfer_50", "knobs": {"initial_VC_to_PU_mL": 50}},
+    {"name": "initial_transfer_minus50", "knobs": {"initial_VC_to_PU_mL": -50}},
+    {"name": "baseline_refined", "knobs": {}, "solver": {"rtol": 1e-8, "max_step": 0.0005}, "sample_step_s": 0.0005},
+    {"name": "baseline_BDF", "knobs": {}, "solver": {"method": "BDF"}},
+    {"name": "baseline_repeat", "knobs": {}},
+    {"name": "baseline_output_refined", "knobs": {}, "sample_step_s": 0.00025}
+  ]
+}

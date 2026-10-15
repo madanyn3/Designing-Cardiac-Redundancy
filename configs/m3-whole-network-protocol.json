@@ -1,0 +1,289 @@
+{
+  "date": "2026-10-06",
+  "active_supply_edges": [
+    "brain",
+    "lungs",
+    "respiratory_muscle",
+    "liver_arterial"
+  ],
+  "preservation_supply_edges": [
+    "coronary_left",
+    "coronary_right",
+    "kidney_protected",
+    "kidney_other",
+    "stomach_oesophagus",
+    "small_intestine",
+    "large_intestine",
+    "pancreas",
+    "spleen",
+    "limb_muscle",
+    "limb_skin",
+    "limb_adipose",
+    "limb_bone",
+    "limb_other",
+    "remaining"
+  ],
+  "dependency_edges": [
+    "pulmonary_exchange",
+    "hepatic_outflow"
+  ],
+  "accounting": "All native tissues and all 5250 mL of blood; role never deletes demand or storage. Most non-limb tissue edges remain zero-storage.",
+  "scope": "Quarter/zero conductance are numerical stress fixtures, not preservation prescriptions. Native heart remains explicitly in preservation set. Zero-preservation case is a relaxed hydraulic comparator with recovery unassessed.",
+  "cases": [
+    {
+      "name": "all_open-nominal",
+      "factors": {},
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "all_open-refined",
+      "factors": {},
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "all_open-BDF",
+      "factors": {},
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "preservation_quarter-nominal",
+      "factors": {
+        "coronary_left": 0.25,
+        "coronary_right": 0.25,
+        "kidney_protected": 0.25,
+        "kidney_other": 0.25,
+        "stomach_oesophagus": 0.25,
+        "small_intestine": 0.25,
+        "large_intestine": 0.25,
+        "pancreas": 0.25,
+        "spleen": 0.25,
+        "limb_muscle": 0.25,
+        "limb_skin": 0.25,
+        "limb_adipose": 0.25,
+        "limb_bone": 0.25,
+        "limb_other": 0.25,
+        "remaining": 0.25
+      },
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "preservation_quarter-refined",
+      "factors": {
+        "coronary_left": 0.25,
+        "coronary_right": 0.25,
+        "kidney_protected": 0.25,
+        "kidney_other": 0.25,
+        "stomach_oesophagus": 0.25,
+        "small_intestine": 0.25,
+        "large_intestine": 0.25,
+        "pancreas": 0.25,
+        "spleen": 0.25,
+        "limb_muscle": 0.25,
+        "limb_skin": 0.25,
+        "limb_adipose": 0.25,
+        "limb_bone": 0.25,
+        "limb_other": 0.25,
+        "remaining": 0.25
+      },
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "preservation_quarter-BDF",
+      "factors": {
+        "coronary_left": 0.25,
+        "coronary_right": 0.25,
+        "kidney_protected": 0.25,
+        "kidney_other": 0.25,
+        "stomach_oesophagus": 0.25,
+        "small_intestine": 0.25,
+        "large_intestine": 0.25,
+        "pancreas": 0.25,
+        "spleen": 0.25,
+        "limb_muscle": 0.25,
+        "limb_skin": 0.25,
+        "limb_adipose": 0.25,
+        "limb_bone": 0.25,
+        "limb_other": 0.25,
+        "remaining": 0.25
+      },
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "preservation_zero-nominal",
+      "factors": {
+        "coronary_left": 0,
+        "coronary_right": 0,
+        "kidney_protected": 0,
+        "kidney_other": 0,
+        "stomach_oesophagus": 0,
+        "small_intestine": 0,
+        "large_intestine": 0,
+        "pancreas": 0,
+        "spleen": 0,
+        "limb_muscle": 0,
+        "limb_skin": 0,
+        "limb_adipose": 0,
+        "limb_bone": 0,
+        "limb_other": 0,
+        "remaining": 0
+      },
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "preservation_zero-refined",
+      "factors": {
+        "coronary_left": 0,
+        "coronary_right": 0,
+        "kidney_protected": 0,
+        "kidney_other": 0,
+        "stomach_oesophagus": 0,
+        "small_intestine": 0,
+        "large_intestine": 0,
+        "pancreas": 0,
+        "spleen": 0,
+        "limb_muscle": 0,
+        "limb_skin": 0,
+        "limb_adipose": 0,
+        "limb_bone": 0,
+        "limb_other": 0,
+        "remaining": 0
+      },
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "preservation_zero-BDF",
+      "factors": {
+        "coronary_left": 0,
+        "coronary_right": 0,
+        "kidney_protected": 0,
+        "kidney_other": 0,
+        "stomach_oesophagus": 0,
+        "small_intestine": 0,
+        "large_intestine": 0,
+        "pancreas": 0,
+        "spleen": 0,
+        "limb_muscle": 0,
+        "limb_skin": 0,
+        "limb_adipose": 0,
+        "limb_bone": 0,
+        "limb_other": 0,
+        "remaining": 0
+      },
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "portal_zero-nominal",
+      "factors": {
+        "stomach_oesophagus": 0,
+        "small_intestine": 0,
+        "large_intestine": 0,
+        "pancreas": 0,
+        "spleen": 0
+      },
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "portal_zero-refined",
+      "factors": {
+        "stomach_oesophagus": 0,
+        "small_intestine": 0,
+        "large_intestine": 0,
+        "pancreas": 0,
+        "spleen": 0
+      },
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "portal_zero-BDF",
+      "factors": {
+        "stomach_oesophagus": 0,
+        "small_intestine": 0,
+        "large_intestine": 0,
+        "pancreas": 0,
+        "spleen": 0
+      },
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "one_kidney_zero-nominal",
+      "factors": {
+        "kidney_other": 0
+      },
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    },
+    {
+      "name": "one_kidney_zero-refined",
+      "factors": {
+        "kidney_other": 0
+      },
+      "solver": {
+        "method": "Radau",
+        "rtol": 1e-08,
+        "max_step": 0.0005
+      }
+    },
+    {
+      "name": "one_kidney_zero-BDF",
+      "factors": {
+        "kidney_other": 0
+      },
+      "solver": {
+        "method": "BDF",
+        "rtol": 1e-07,
+        "max_step": 0.001
+      }
+    }
+  ]
+}

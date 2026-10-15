@@ -1,0 +1,66 @@
+{
+  "status": "research candidates only; incomplete distribution; no ODE run",
+  "denominator_note": "5600 mL/min is the existing project anchor, not a matched study CO",
+  "candidates": [
+    {
+      "branch": "limb_muscle",
+      "mass_kg": 24.0,
+      "density_kg_m3": 1085.0,
+      "perfusion_s_inverse": 0.000538,
+      "volume_ml": 22119.815668202766,
+      "flow_ml_min": 714.0276497695852,
+      "fraction_at_5600_ml_min": 0.1275049374588545,
+      "source": "https://doi.org/10.1007/s11517-014-1229-8",
+      "status": "candidate model-coefficient transfer; assumed M1 mass"
+    },
+    {
+      "branch": "limb_skin",
+      "mass_kg": 1.5,
+      "density_kg_m3": 1085.0,
+      "perfusion_s_inverse": 0.00105,
+      "volume_ml": 1382.4884792626729,
+      "flow_ml_min": 87.09677419354838,
+      "fraction_at_5600_ml_min": 0.01555299539170507,
+      "source": "https://doi.org/10.1007/s11517-014-1229-8",
+      "status": "candidate model-coefficient transfer; assumed M1 mass"
+    },
+    {
+      "branch": "limb_adipose",
+      "mass_kg": 4,
+      "perfusion_ml_min_100g": 3.53,
+      "flow_ml_min": 141.2,
+      "fraction_at_5600_ml_min": 0.025214285714285713,
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3287351/",
+      "status": "abdominal-to-limb transfer candidate, not limb measurement"
+    },
+    {
+      "branch": "respiratory_muscle",
+      "mass_kg": 0.5,
+      "density_kg_m3": 1085,
+      "volume_ml": 460.8294930875576,
+      "perfusion_ml_min_100ml": 9.9,
+      "flow_ml_min": 45.6221198156682,
+      "fraction_at_5600_ml_min": 0.00814680710994075,
+      "source": "https://doi.org/10.1152/japplphysiol.01160.2007",
+      "status": "local intercostal-to-respiratory-pool surrogate; not diaphragm measurement"
+    }
+  ],
+  "limb_bone": {
+    "perfusion_ml_min_100ml": [
+      5.5,
+      6.5
+    ],
+    "flow_ml_min_per_litre": [
+      55,
+      65
+    ],
+    "source": "https://doi.org/10.1186/1749-799X-3-36",
+    "status": "requires matching bone-plus-marrow volume; do not substitute 4 kg as 4 L"
+  },
+  "unresolved": [
+    "limb_other composition/perfusion",
+    "bulk skeletal volume",
+    "whole-body disjoint reconciliation",
+    "respiratory anatomical transfer"
+  ]
+}
