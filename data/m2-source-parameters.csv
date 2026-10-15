@@ -1,0 +1,54 @@
+component,symbol,value,source_unit,adopted_unit,treatment,m1_family
+heart_parameters,R_mt,0.0158,kPa_second_per_mL,mmHg_second_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G013
+heart_parameters,R_av,0.018,kPa_second_per_mL,mmHg_second_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G013
+heart_parameters,R_tc,0.0237,kPa_second_per_mL,mmHg_second_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G013
+heart_parameters,R_pv,0.0055,kPa_second_per_mL,mmHg_second_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G013
+heart_parameters,R_pul,0.1552,kPa_second_per_mL,mmHg_second_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G013
+heart_parameters,R_sys,1.0889,kPa_second_per_mL,mmHg_second_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G013
+heart_parameters,L_tc,8.0093e-05,kPa_second2_per_mL,mmHg_second2_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G015
+heart_parameters,L_pv,0.00014868,kPa_second2_per_mL,mmHg_second2_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G015
+heart_parameters,L_mt,7.6968e-05,kPa_second2_per_mL,mmHg_second2_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G015
+heart_parameters,L_av,0.00012189,kPa_second2_per_mL,mmHg_second2_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G015
+heart_parameters,V_tot,5.5,mL,mL,unused inconsistent metadata; exclude,G002 (rejected metadata; not total blood volume)
+heart_parameters,P_th,-4.0,kPa,mmHg,mmHg verified against CVSX revie_2012; source numeric retained,G016
+driver_function,A,1.0,dimensionless,dimensionless,source numeric retained,G017
+driver_function,B,80.0,per_second2,per_second2,source numeric retained,G017
+driver_function,C,0.375,second,second,source numeric retained,G017
+driver_function,period,0.75,second,second,source numeric retained,G017
+pericardium,P_0_pcd,0.5003,kPa,mmHg,mmHg verified against CVSX revie_2012; source numeric retained,G016
+pericardium,V_0_pcd,200.0,mL,mL,source numeric retained,G016
+pericardium,lambda_pcd,0.03,per_mL,per_mL,source numeric retained,G016
+left_ventricle,V_lv,94.6812,mL,mL,source numeric retained,G012
+lvf_calculator,E_es_lvf,2.8798,kPa_per_mL,mmHg_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G017
+lvf_calculator,V_d_lvf,0.0,mL,mL,source numeric retained,G016
+lvf_calculator,P_0_lvf,0.1203,kPa,mmHg,mmHg verified against CVSX revie_2012; source numeric retained,G016
+lvf_calculator,lambda_lvf,0.033,per_mL,per_mL,source numeric retained,G016
+lvf_calculator,V_0_lvf,0.0,mL,mL,source numeric retained,G016
+right_ventricle,V_rv,90.7302,mL,mL,source numeric retained,G012
+rvf_calculator,E_es_rvf,0.585,kPa_per_mL,mmHg_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G017
+rvf_calculator,V_d_rvf,0.0,mL,mL,source numeric retained,G016
+rvf_calculator,P_0_rvf,0.2157,kPa,mmHg,mmHg verified against CVSX revie_2012; source numeric retained,G016
+rvf_calculator,lambda_rvf,0.023,per_mL,per_mL,source numeric retained,G016
+rvf_calculator,V_0_rvf,0.0,mL,mL,source numeric retained,G016
+septum,E_es_spt,48.754,kPa_per_mL,mmHg_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G017
+septum,V_d_spt,2.0,mL,mL,source numeric retained,G016
+septum,P_0_spt,1.1101,kPa,mmHg,mmHg verified against CVSX revie_2012; source numeric retained,G016
+septum,lambda_spt,0.435,per_mL,per_mL,source numeric retained,G016
+septum,V_0_spt,2.0,mL,mL,source numeric retained,G016
+septum,one,1.0,dimensionless,dimensionless,source numeric retained,G016
+pulmonary_artery,E_es_pa,0.369,kPa_per_mL,mmHg_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G014
+pulmonary_artery,V_pa,43.0123,mL,mL,source numeric retained,G012
+pulmonary_artery,V_d_pa,0.0,mL,mL,source numeric retained,G016
+pulmonary_vein,E_es_pu,0.0073,kPa_per_mL,mmHg_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G014
+pulmonary_vein,V_pu,808.4579,mL,mL,source numeric retained,G012
+pulmonary_vein,V_d_pu,0.0,mL,mL,source numeric retained,G016
+aorta,E_es_ao,0.6913,kPa_per_mL,mmHg_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G014
+aorta,V_ao,133.3381,mL,mL,source numeric retained,G012
+aorta,V_d_ao,0.0,mL,mL,source numeric retained,G016
+vena_cava,E_es_vc,0.0059,kPa_per_mL,mmHg_per_mL,mmHg verified against CVSX revie_2012; source numeric retained,G014
+vena_cava,V_vc,329.7803,mL,mL,source numeric retained,G012
+vena_cava,V_d_vc,0.0,mL,mL,source numeric retained,G016
+flow,Q_mt,245.5813,mL_per_second,mL_per_second,source numeric retained,G016
+flow,Q_av,0.0,mL_per_second,mL_per_second,source numeric retained,G016
+flow,Q_tc,190.0661,mL_per_second,mL_per_second,source numeric retained,G016
+flow,Q_pv,0.0,mL_per_second,mL_per_second,source numeric retained,G016

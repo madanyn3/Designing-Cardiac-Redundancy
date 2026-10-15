@@ -1,0 +1,663 @@
+{
+  "classification": "D conditional on M1 A inputs; protected-set demand only",
+  "scope": "Native tissues only; auxiliary self-demand and unresolved respiratory dependencies are additional",
+  "exclusion": "Unprotected tissue demand is retained, not set to zero",
+  "kidney_split": "A: half of the existing paired demand for each kidney",
+  "horizons_min": [
+    1,
+    5,
+    15,
+    30,
+    60
+  ],
+  "exploratory_horizons_min": [
+    120
+  ],
+  "scenarios": {
+    "unsuppressed": {
+      "whole_native_demand_mL_O2_min": 255.84765177548687,
+      "stages": [
+        {
+          "stage": "L0",
+          "label": "Brain + native-lung/respiratory-muscle proxy",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle"
+          ],
+          "added_demand_mL_O2_min": 56.10996563573884,
+          "protected_demand_mL_O2_min": 56.10996563573884,
+          "unprotected_demand_mL_O2_min": 199.73768613974804
+        },
+        {
+          "stage": "L1",
+          "label": "+ native myocardium",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart"
+          ],
+          "added_demand_mL_O2_min": 20.79037800687286,
+          "protected_demand_mL_O2_min": 76.9003436426117,
+          "unprotected_demand_mL_O2_min": 178.94730813287515
+        },
+        {
+          "stage": "L2",
+          "label": "+ kidney A",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A"
+          ],
+          "added_demand_mL_O2_min": 9.765177548682704,
+          "protected_demand_mL_O2_min": 86.6655211912944,
+          "unprotected_demand_mL_O2_min": 169.18213058419246
+        },
+        {
+          "stage": "L3",
+          "label": "+ liver",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver"
+          ],
+          "added_demand_mL_O2_min": 45.81901489117985,
+          "protected_demand_mL_O2_min": 132.48453608247425,
+          "unprotected_demand_mL_O2_min": 123.36311569301262
+        },
+        {
+          "stage": "L4",
+          "label": "+ gut",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut"
+          ],
+          "added_demand_mL_O2_min": 15,
+          "protected_demand_mL_O2_min": 147.48453608247425,
+          "unprotected_demand_mL_O2_min": 108.36311569301262
+        },
+        {
+          "stage": "L5",
+          "label": "+ kidney B",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B"
+          ],
+          "added_demand_mL_O2_min": 9.765177548682704,
+          "protected_demand_mL_O2_min": 157.24971363115696,
+          "unprotected_demand_mL_O2_min": 98.5979381443299
+        },
+        {
+          "stage": "L6",
+          "label": "+ remaining-body pool",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining"
+          ],
+          "added_demand_mL_O2_min": 40.17869415807561,
+          "protected_demand_mL_O2_min": 197.42840778923255,
+          "unprotected_demand_mL_O2_min": 58.419243986254315
+        },
+        {
+          "stage": "L7",
+          "label": "+ limb skin",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin"
+          ],
+          "added_demand_mL_O2_min": 2.577319587628866,
+          "protected_demand_mL_O2_min": 200.00572737686142,
+          "unprotected_demand_mL_O2_min": 55.84192439862545
+        },
+        {
+          "stage": "L8",
+          "label": "+ limb bone",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone"
+          ],
+          "added_demand_mL_O2_min": 6.872852233676976,
+          "protected_demand_mL_O2_min": 206.8785796105384,
+          "unprotected_demand_mL_O2_min": 48.96907216494847
+        },
+        {
+          "stage": "L9",
+          "label": "+ other limb tissue",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other"
+          ],
+          "added_demand_mL_O2_min": 1.718213058419244,
+          "protected_demand_mL_O2_min": 208.59679266895765,
+          "unprotected_demand_mL_O2_min": 47.25085910652922
+        },
+        {
+          "stage": "L10",
+          "label": "+ limb adipose",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other",
+            "limb_adipose"
+          ],
+          "added_demand_mL_O2_min": 2.577319587628866,
+          "protected_demand_mL_O2_min": 211.1741122565865,
+          "unprotected_demand_mL_O2_min": 44.673539518900355
+        },
+        {
+          "stage": "L11",
+          "label": "+ limb skeletal muscle",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other",
+            "limb_adipose",
+            "limb_muscle"
+          ],
+          "added_demand_mL_O2_min": 44.67353951890035,
+          "protected_demand_mL_O2_min": 255.84765177548687,
+          "unprotected_demand_mL_O2_min": 0.0
+        }
+      ]
+    },
+    "modest_reduction": {
+      "whole_native_demand_mL_O2_min": 212.30670103092785,
+      "stages": [
+        {
+          "stage": "L0",
+          "label": "Brain + native-lung/respiratory-muscle proxy",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle"
+          ],
+          "added_demand_mL_O2_min": 46.48797250859107,
+          "protected_demand_mL_O2_min": 46.48797250859107,
+          "unprotected_demand_mL_O2_min": 165.81872852233678
+        },
+        {
+          "stage": "L1",
+          "label": "+ native myocardium",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart"
+          ],
+          "added_demand_mL_O2_min": 10.39518900343643,
+          "protected_demand_mL_O2_min": 56.8831615120275,
+          "unprotected_demand_mL_O2_min": 155.42353951890036
+        },
+        {
+          "stage": "L2",
+          "label": "+ kidney A",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A"
+          ],
+          "added_demand_mL_O2_min": 7.323883161512028,
+          "protected_demand_mL_O2_min": 64.20704467353953,
+          "unprotected_demand_mL_O2_min": 148.0996563573883
+        },
+        {
+          "stage": "L3",
+          "label": "+ liver",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver"
+          ],
+          "added_demand_mL_O2_min": 34.364261168384886,
+          "protected_demand_mL_O2_min": 98.57130584192441,
+          "unprotected_demand_mL_O2_min": 113.73539518900344
+        },
+        {
+          "stage": "L4",
+          "label": "+ gut",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut"
+          ],
+          "added_demand_mL_O2_min": 11.25,
+          "protected_demand_mL_O2_min": 109.82130584192441,
+          "unprotected_demand_mL_O2_min": 102.48539518900344
+        },
+        {
+          "stage": "L5",
+          "label": "+ kidney B",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B"
+          ],
+          "added_demand_mL_O2_min": 7.323883161512028,
+          "protected_demand_mL_O2_min": 117.14518900343644,
+          "unprotected_demand_mL_O2_min": 95.16151202749141
+        },
+        {
+          "stage": "L6",
+          "label": "+ remaining-body pool",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining"
+          ],
+          "added_demand_mL_O2_min": 40.17869415807561,
+          "protected_demand_mL_O2_min": 157.32388316151204,
+          "unprotected_demand_mL_O2_min": 54.98281786941581
+        },
+        {
+          "stage": "L7",
+          "label": "+ limb skin",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin"
+          ],
+          "added_demand_mL_O2_min": 1.9329896907216497,
+          "protected_demand_mL_O2_min": 159.2568728522337,
+          "unprotected_demand_mL_O2_min": 53.049828178694156
+        },
+        {
+          "stage": "L8",
+          "label": "+ limb bone",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone"
+          ],
+          "added_demand_mL_O2_min": 5.154639175257732,
+          "protected_demand_mL_O2_min": 164.41151202749143,
+          "unprotected_demand_mL_O2_min": 47.89518900343643
+        },
+        {
+          "stage": "L9",
+          "label": "+ other limb tissue",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other"
+          ],
+          "added_demand_mL_O2_min": 1.288659793814433,
+          "protected_demand_mL_O2_min": 165.70017182130587,
+          "unprotected_demand_mL_O2_min": 46.60652920962198
+        },
+        {
+          "stage": "L10",
+          "label": "+ limb adipose",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other",
+            "limb_adipose"
+          ],
+          "added_demand_mL_O2_min": 1.9329896907216497,
+          "protected_demand_mL_O2_min": 167.63316151202753,
+          "unprotected_demand_mL_O2_min": 44.67353951890033
+        },
+        {
+          "stage": "L11",
+          "label": "+ limb skeletal muscle",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other",
+            "limb_adipose",
+            "limb_muscle"
+          ],
+          "added_demand_mL_O2_min": 44.67353951890035,
+          "protected_demand_mL_O2_min": 212.30670103092785,
+          "unprotected_demand_mL_O2_min": 0.0
+        }
+      ]
+    },
+    "stronger_reduction": {
+      "whole_native_demand_mL_O2_min": 178.4392898052692,
+      "stages": [
+        {
+          "stage": "L0",
+          "label": "Brain + native-lung/respiratory-muscle proxy",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle"
+          ],
+          "added_demand_mL_O2_min": 36.8659793814433,
+          "protected_demand_mL_O2_min": 36.8659793814433,
+          "unprotected_demand_mL_O2_min": 141.5733104238259
+        },
+        {
+          "stage": "L1",
+          "label": "+ native myocardium",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart"
+          ],
+          "added_demand_mL_O2_min": 6.2371134020618575,
+          "protected_demand_mL_O2_min": 43.10309278350516,
+          "unprotected_demand_mL_O2_min": 135.33619702176404
+        },
+        {
+          "stage": "L2",
+          "label": "+ kidney A",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A"
+          ],
+          "added_demand_mL_O2_min": 4.882588774341352,
+          "protected_demand_mL_O2_min": 47.98568155784651,
+          "unprotected_demand_mL_O2_min": 130.4536082474227
+        },
+        {
+          "stage": "L3",
+          "label": "+ liver",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver"
+          ],
+          "added_demand_mL_O2_min": 22.909507445589924,
+          "protected_demand_mL_O2_min": 70.89518900343644,
+          "unprotected_demand_mL_O2_min": 107.54410080183276
+        },
+        {
+          "stage": "L4",
+          "label": "+ gut",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut"
+          ],
+          "added_demand_mL_O2_min": 7.5,
+          "protected_demand_mL_O2_min": 78.39518900343644,
+          "unprotected_demand_mL_O2_min": 100.04410080183276
+        },
+        {
+          "stage": "L5",
+          "label": "+ kidney B",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B"
+          ],
+          "added_demand_mL_O2_min": 4.882588774341352,
+          "protected_demand_mL_O2_min": 83.27777777777779,
+          "unprotected_demand_mL_O2_min": 95.16151202749141
+        },
+        {
+          "stage": "L6",
+          "label": "+ remaining-body pool",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining"
+          ],
+          "added_demand_mL_O2_min": 40.17869415807561,
+          "protected_demand_mL_O2_min": 123.4564719358534,
+          "unprotected_demand_mL_O2_min": 54.9828178694158
+        },
+        {
+          "stage": "L7",
+          "label": "+ limb skin",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin"
+          ],
+          "added_demand_mL_O2_min": 1.9329896907216497,
+          "protected_demand_mL_O2_min": 125.38946162657504,
+          "unprotected_demand_mL_O2_min": 53.049828178694156
+        },
+        {
+          "stage": "L8",
+          "label": "+ limb bone",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone"
+          ],
+          "added_demand_mL_O2_min": 5.154639175257732,
+          "protected_demand_mL_O2_min": 130.54410080183277,
+          "unprotected_demand_mL_O2_min": 47.89518900343643
+        },
+        {
+          "stage": "L9",
+          "label": "+ other limb tissue",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other"
+          ],
+          "added_demand_mL_O2_min": 1.288659793814433,
+          "protected_demand_mL_O2_min": 131.83276059564722,
+          "unprotected_demand_mL_O2_min": 46.60652920962198
+        },
+        {
+          "stage": "L10",
+          "label": "+ limb adipose",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other",
+            "limb_adipose"
+          ],
+          "added_demand_mL_O2_min": 1.9329896907216497,
+          "protected_demand_mL_O2_min": 133.76575028636887,
+          "unprotected_demand_mL_O2_min": 44.67353951890033
+        },
+        {
+          "stage": "L11",
+          "label": "+ limb skeletal muscle",
+          "protected_pools": [
+            "brain",
+            "lungs",
+            "respiratory_muscle",
+            "heart",
+            "kidney_A",
+            "liver",
+            "gut",
+            "kidney_B",
+            "remaining",
+            "limb_skin",
+            "limb_bone",
+            "limb_other",
+            "limb_adipose",
+            "limb_muscle"
+          ],
+          "added_demand_mL_O2_min": 44.67353951890035,
+          "protected_demand_mL_O2_min": 178.4392898052692,
+          "unprotected_demand_mL_O2_min": 0.0
+        }
+      ]
+    }
+  }
+}

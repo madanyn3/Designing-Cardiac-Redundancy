@@ -1,0 +1,85 @@
+{
+  "schema": "M2 hydraulic specification overlay v1.0",
+  "date": "2026-10-03",
+  "status": "adopted exploratory A specification; no simulation or physiology validation",
+  "parent": "project-extension.yaml",
+  "source_parent": "baseline.yaml",
+  "pressure_and_demand_contract": "auxiliary-heart-design.yaml",
+  "brain": {
+    "mode": "signed_waterfall",
+    "ICP_mmHg": 10,
+    "ICP_cases_mmHg": [5, 10, 15],
+    "tone_offset_mmHg": 10,
+    "tone_offset_cases_mmHg": [0, 10, 20],
+    "resistance_anchor_AO_mmHg": 100,
+    "resistance_anchor_VC_mmHg": 2,
+    "resistance_multiplier_cases": [0.5, 1, 1.5],
+    "comparator": "original signed AO-VC resistor",
+    "autoregulation": "none; resistance multipliers fixed per run, not feedback",
+    "regional_coverage": "aggregate distribution assumption only"
+  },
+  "coronary": {
+    "mode": "signed_waterfall_compression_sensitivity",
+    "left_conductance_fraction": 0.7,
+    "right_conductance_fraction": 0.3,
+    "compression_kappa": 0.5,
+    "compression_kappa_cases": [0, 0.5, 1],
+    "auxiliary_conductance_scale": "alpha times original native total conductance; A fixture only",
+    "limitations": "no intramyocardial capacitance, active displacement flow, transmural layers or viability threshold"
+  },
+  "kidneys": {
+    "replace_pair_with": ["kidney_protected", "kidney_other"],
+    "baseline_weights": [0.5, 0.5],
+    "protected_inlet_conductance_fraction": 0.75,
+    "protected_fraction_cases": [0.5, 0.75, 1],
+    "other_inlet_conductance_fraction": 0.5,
+    "other_fraction_cases": [0, 0.25, 0.5, 1],
+    "meaning": "fixed conductance factors after event; actual flow ratios are outputs",
+    "demand_split": "equal share of M1 kidney-pair demand in each chosen scenario; flow does not derate demand"
+  },
+  "domain": {
+    "physical_volume_must_be_positive": true,
+    "vascular_transmural_pressure_floor_mmHg": 0,
+    "support_inlet_transmural_pressure_floor_mmHg": 0,
+    "boundary_action": "terminate as model-domain limit, not injury or infeasibility proof; no silent clipping",
+    "ventricles": "positive physical cavity volumes; negative geometric wall coordinates allowed"
+  },
+  "auxiliary_fixture": {
+    "alpha": 0.25,
+    "period_s": 0.75,
+    "driver_center_fraction": 0.5,
+    "driver_dimensionless_width": 45,
+    "initial_volume_rule": "aLV=alpha*source.initial.LV; aRV=alpha*source.initial.RV",
+    "donors": {"aLV": "PU", "aRV": "VC"},
+    "donor_unstressed_offsets": "unchanged; physical blood transferred once before warm-up",
+    "prearrest": "four auxiliary valves forcibly isolated; activation zero; auxiliary coronary bed open",
+    "initial_valve_flows_mL_s": [0, 0, 0, 0],
+    "trigger_delay_s": 0,
+    "activation_ramp_s": 1,
+    "pressure_volume_scaling": "Vd and V0 times alpha; E and lambda divided by alpha; P0 unchanged; own pericardium",
+    "valve_scaling": "source R and L divided by alpha",
+    "meaning": "non-optimized hydraulic test fixture, not proposed anatomical size; stasis/prearrest maintenance unresolved biologically"
+  },
+  "abstract_pump_fixture": {
+    "left_head_mmHg": 100,
+    "right_head_mmHg": 20,
+    "venous_to_arterial_head_mmHg": 100,
+    "Rp_mmHg_s_mL": 0.1,
+    "Qmax_mL_s": 120,
+    "trigger_delay_s": 0,
+    "head_ramp_s": 1,
+    "meaning": "A hydraulic fixture for B1/S1/E1/E2 interface checks only; head and flow remain M5 search variables"
+  },
+  "limbs": {
+    "selective_fixture_inlet_fraction": 0,
+    "returns": "open; retain stored blood and demand",
+    "partial_cases": [0, 0.25, 0.5, 1]
+  },
+  "deferred": {
+    "M3": "ODE/event implementation, periodic initialization and source/project numerical validation",
+    "M4": "O2/CO2 gas laws, extraction, stores, ventilation, respiratory work and suppression transitions",
+    "M5": "pump search bounds, oxygen self-demand, efficiency, actual feasible size and performance",
+    "M6": "detection and native-restoration controller",
+    "limitations": "regional brain sufficiency, clinical minima, tissue injury/recovery and anatomical muscle mass not predicted"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "status": "passed static freeze checks; no ODE or physiology validation",
+  "waterfall_pressure_combinations_checked": 216,
+  "brain_R_mmHg_s_mL": 6.593406593406594,
+  "brain_critical_pressure_A_mmHg": 20,
+  "total_physical_blood_mL": 5250.0,
+  "auxiliary_initial_volumes_mL": {
+    "aLV": 23.6703,
+    "aRV": 22.68255
+  },
+  "expanded_regional_edge_count": 23,
+  "checks": [
+    "waterfall antisymmetry, resistor limit, closure and dissipativity",
+    "cerebral anchor",
+    "kidney/coronary conductance preservation",
+    "auxiliary blood allocation",
+    "normalized driver width",
+    "post-trigger graph paths and incidence",
+    "pressure policy"
+  ],
+  "not_done": [
+    "ODE",
+    "periodic warm-up",
+    "organ adequacy",
+    "recovery",
+    "pump sizing"
+  ],
+  "snapshot_files_verified": 9
+}

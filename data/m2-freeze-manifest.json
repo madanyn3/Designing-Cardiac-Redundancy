@@ -1,0 +1,15 @@
+{
+  "version": "M2 v1.0",
+  "date": "2026-10-03",
+  "sha256": {
+    "configs/baseline.yaml": "98cdb449400a9a3a21c5f609fe3dd6ec4be7a79c4bb9cff98b1d11812debcac9",
+    "configs/project-extension.yaml": "7f56ec44eea32837fcf0ee9dfc20172ab1c7f8cf0c51ff4a9e57cec74622a01e",
+    "configs/auxiliary-heart-design.yaml": "9b5c635912eb896eb8f74d61748a0dc8225b17d4c963d2dd878b5e4cf2ee712c",
+    "configs/m2-frozen-overlay.yaml": "839ef13833bc32487d484943466650cdadb9b17ca46157dbea6bb84374d4f277",
+    "docs/model-specification.md": "b583db2994ba8c0324b02af70b292942391e7c63a4d4090f0af9b1ceaf21772a",
+    "docs/m2-frozen-specification.md": "773d9d9b101df7ccf6fe4a47fd1e695cc9203336e535cf8336ed0579965c8582",
+    "docs/verification-plan.md": "da7c59e9171e2583769bc8e943773c869cb768d9075401a6de60bbbc04b1d51b",
+    "docs/m2-circuits.md": "f12d52ae7a4f98ee14b7a45540c2d743e96515f14a22cc780f931f28a37eca32",
+    "docs/m2-pressure-requirements.md": "5b86282343367de65e37d090680c23cc1ce15bba8230364f7da50693a105b769"
+  }
+}

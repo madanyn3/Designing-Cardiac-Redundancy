@@ -1,0 +1,21 @@
+{
+  "retrieved": "2026-10-02",
+  "selected_CellML_url": "https://models.cellml.org/exposure/f629920d520a0ea9f51dbde8754470da/smith_chase_nokes_shaw_wake_2004.cellml",
+  "CellML_license": "CC BY 3.0; attribution in original metadata and model-page HTML",
+  "CVSX_commit": "6e7d6a224e7c6afda4227c46b6c450a973fd5d2a",
+  "CVSX_license": "GPL-3.0; unmodified reference files only; LICENSE.md retained",
+  "CVSX_repository": "https://github.com/slishak/cvsx",
+  "local_files": {
+    "references\\m2\\smith2004-model-page.html": "e7f88eac6c881236e8fae0c8550628efa783daaecc91740f96a65615dcb15da1",
+    "references\\m2\\smith2004-new.cellml": "8cca17e89404daeef858fb3db67a16ce4200b7c2712ae6c1ccac83c68f813e60",
+    "references\\m2\\smith2004.cellml": "1bfe80c534647eff20a564f3fd7d207243349ff02ff723f8f884a65d95588861",
+    "references\\m2\\cvsx\\cardiac_drivers.py": "56ff48b89d643bede7c1c9113177c7068b3e0ac7bd249c194c2165e5d9c64155",
+    "references\\m2\\cvsx\\commit.txt": "7a29231431c4b300bfbc0c36c7ed4f8d9b59b79e3cfea6067aec1924230fc8b9",
+    "references\\m2\\cvsx\\components.py": "eddd3f39a13073b2d4cf810b5d5aae1181bce77a2d725af2519d8ee93d0d2ac7",
+    "references\\m2\\cvsx\\generate_paper_plots.py": "bcfe2dd091287dc538f0269cba29a720bf6dd3cd81cdfa73aabe952f2b3de339",
+    "references\\m2\\cvsx\\LICENSE.md": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "references\\m2\\cvsx\\models.py": "120a3a2d24d319540d62a3d5019f0ddf3c49888b297c64e33a9bc76a42d303ed",
+    "references\\m2\\cvsx\\parameters.py": "3177d92b109d4faa071052f7f99164092ae48ddc71e2c8ac089dbcf1187c1f51"
+  },
+  "paper_access": "Smith 36-page manuscript inspected through web PDF text; direct local download 403; screenshots unavailable. Lishak indexed primary Methods and author code; Lorusso PDF text inspected. No PDF created."
+}

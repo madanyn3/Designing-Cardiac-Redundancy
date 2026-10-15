@@ -1,0 +1,43 @@
+{
+  "status": "passed static specification checks only",
+  "source_parameter_rows": 53,
+  "physical_volume_mL": 5250,
+  "limb_pool_volume_mL": 600,
+  "source_coordinate_volume_mL": 1500,
+  "regional_fraction_sum": 1,
+  "septal_checks": [
+    {
+      "activation": 0,
+      "septal_coordinate_mL": 3.1196931584737726,
+      "residual_mmHg": -1.1102230246251565e-15
+    },
+    {
+      "activation": 0.5,
+      "septal_coordinate_mL": 5.980233239999411,
+      "residual_mmHg": 1.4210854715202004e-14
+    },
+    {
+      "activation": 1,
+      "septal_coordinate_mL": 6.07240596796556,
+      "residual_mmHg": 7.105427357601002e-15
+    }
+  ],
+  "checks": [
+    "pinned hashes",
+    "volume accounting",
+    "positive resistances",
+    "anchor flow reconstruction",
+    "portal/pool continuity",
+    "complete native return paths",
+    "incidence conservation",
+    "passive/active septal roots",
+    "periodic driver beyond 14 beats",
+    "unique source rows"
+  ],
+  "not_done": [
+    "ODE integration",
+    "waveform reproduction",
+    "physiological validation",
+    "support sizing"
+  ]
+}

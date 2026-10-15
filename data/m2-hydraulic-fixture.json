@@ -1,0 +1,226 @@
+{
+  "status": "materialized pre-warmup biological hydraulic fixture; not simulated",
+  "initial_physical_volumes_mL": {
+    "LV": 94.6812,
+    "RV": 90.7302,
+    "PA": 143.0123,
+    "PU": 1284.7875999999999,
+    "AO": 283.3381,
+    "VC": 2707.09775,
+    "B_limb_muscle": 400.0,
+    "B_limb_skin": 66.66666666666667,
+    "B_limb_bone": 66.66666666666667,
+    "B_limb_other": 33.333333333333336,
+    "B_limb_adipose": 33.333333333333336,
+    "aLV": 23.6703,
+    "aRV": 22.68255
+  },
+  "regional_edges": [
+    {
+      "name": "brain",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.13,
+      "target_flow_mL_s": 12.133333333333333,
+      "R_mmHg_s_mL": 6.593406593406594,
+      "class": "A allocation and D resistance; not measured organ resistance",
+      "law": "signed_waterfall; Pc=ICP+tone_offset"
+    },
+    {
+      "name": "liver_arterial",
+      "from": "AO",
+      "to": "H",
+      "baseline_fraction": 0.07,
+      "target_flow_mL_s": 6.533333333333333,
+      "R_mmHg_s_mL": 13.46938775510204,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "gut",
+      "from": "AO",
+      "to": "H",
+      "baseline_fraction": 0.18,
+      "target_flow_mL_s": 16.799999999999997,
+      "R_mmHg_s_mL": 5.238095238095239,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "lungs",
+      "from": "AO",
+      "to": "PU",
+      "baseline_fraction": 0.01,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 102.85714285714286,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "respiratory_muscle",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.02,
+      "target_flow_mL_s": 1.8666666666666667,
+      "R_mmHg_s_mL": 52.5,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "limb_muscle",
+      "from": "AO",
+      "to": "B_limb_muscle",
+      "baseline_fraction": 0.12,
+      "target_flow_mL_s": 11.2,
+      "R_mmHg_s_mL": 8.482142857142858,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "limb_skin",
+      "from": "AO",
+      "to": "B_limb_skin",
+      "baseline_fraction": 0.02,
+      "target_flow_mL_s": 1.8666666666666667,
+      "R_mmHg_s_mL": 50.89285714285714,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "limb_bone",
+      "from": "AO",
+      "to": "B_limb_bone",
+      "baseline_fraction": 0.02,
+      "target_flow_mL_s": 1.8666666666666667,
+      "R_mmHg_s_mL": 50.89285714285714,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "limb_other",
+      "from": "AO",
+      "to": "B_limb_other",
+      "baseline_fraction": 0.01,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 101.78571428571428,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "limb_adipose",
+      "from": "AO",
+      "to": "B_limb_adipose",
+      "baseline_fraction": 0.01,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 101.78571428571428,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "remaining",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.16,
+      "target_flow_mL_s": 14.933333333333334,
+      "R_mmHg_s_mL": 6.5625,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "hepatic_outflow",
+      "from": "H",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 23.333333333333332,
+      "R_mmHg_s_mL": 0.4285714285714286,
+      "class": "D serial hepatic outflow; do not add to systemic throughput"
+    },
+    {
+      "name": "limb_muscle_return",
+      "from": "B_limb_muscle",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 11.2,
+      "R_mmHg_s_mL": 0.26785714285714285,
+      "class": "D from assumed pool pressure; return separate from inlet control"
+    },
+    {
+      "name": "limb_skin_return",
+      "from": "B_limb_skin",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 1.8666666666666667,
+      "R_mmHg_s_mL": 1.6071428571428572,
+      "class": "D from assumed pool pressure; return separate from inlet control"
+    },
+    {
+      "name": "limb_bone_return",
+      "from": "B_limb_bone",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 1.8666666666666667,
+      "R_mmHg_s_mL": 1.6071428571428572,
+      "class": "D from assumed pool pressure; return separate from inlet control"
+    },
+    {
+      "name": "limb_other_return",
+      "from": "B_limb_other",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 3.2142857142857144,
+      "class": "D from assumed pool pressure; return separate from inlet control"
+    },
+    {
+      "name": "limb_adipose_return",
+      "from": "B_limb_adipose",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 3.2142857142857144,
+      "class": "D from assumed pool pressure; return separate from inlet control"
+    },
+    {
+      "name": "kidney_protected",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.1,
+      "target_flow_mL_s": 9.333333333333334,
+      "R_mmHg_s_mL": 10.5,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "kidney_other",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.1,
+      "target_flow_mL_s": 9.333333333333334,
+      "R_mmHg_s_mL": 10.5,
+      "class": "A allocation and D resistance; not measured organ resistance"
+    },
+    {
+      "name": "native_coronary_L",
+      "from": "AO",
+      "to": "VC",
+      "R_mmHg_s_mL": 30.000000000000004,
+      "law": "signed_waterfall_compression_sensitivity",
+      "classification": "A; benchmark conductance, not fixed achieved flow"
+    },
+    {
+      "name": "auxiliary_coronary_L",
+      "from": "AO",
+      "to": "VC",
+      "R_mmHg_s_mL": 120.00000000000001,
+      "law": "signed_waterfall_compression_sensitivity",
+      "classification": "A; benchmark conductance, not fixed achieved flow"
+    },
+    {
+      "name": "native_coronary_R",
+      "from": "AO",
+      "to": "VC",
+      "R_mmHg_s_mL": 70.0,
+      "law": "signed_waterfall_compression_sensitivity",
+      "classification": "A; benchmark conductance, not fixed achieved flow"
+    },
+    {
+      "name": "auxiliary_coronary_R",
+      "from": "AO",
+      "to": "VC",
+      "R_mmHg_s_mL": 280.0,
+      "law": "signed_waterfall_compression_sensitivity",
+      "classification": "A; benchmark conductance, not fixed achieved flow"
+    }
+  ],
+  "overlay": "configs/m2-frozen-overlay.yaml",
+  "note": "Auxiliary coronary beds included; abstract fixtures omit auxiliary chambers and their coronary beds. Controls apply at trigger."
+}

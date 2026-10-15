@@ -1,0 +1,35 @@
+{
+  "status": "passed static arithmetic only; no ODE, pump sizing or viability result",
+  "classification": "D conditional on A branch allocation and fixed boundary pressures",
+  "AO_to_VC_R_mmHg_s_mL": {
+    "open": 1.0606060606060606,
+    "limbs_closed": 1.2962962962962965,
+    "percent_increase": 22.222222222222253
+  },
+  "AO_to_VC_Q_L_min": {
+    "open": 5.5440000000000005,
+    "limbs_closed": 4.536
+  },
+  "lung_nutritive_Q_L_min": 0.056,
+  "total_AO_outflow_L_min": {
+    "open": 5.6000000000000005,
+    "limbs_closed": 4.592
+  },
+  "whole_outflow_operating_point_R_percent_increase": 21.95121951219514,
+  "brain": {
+    "anchor_Q_L_min": 0.728,
+    "anchor_R_mmHg_s_mL": 8.076923076923077,
+    "R_to_preserve_baseline_flow_comparator_only_mmHg_s_mL": 6.428571428571429,
+    "fixed_R_flow_ratio_at_target_MAP": 0.7959183673469388
+  },
+  "kidney_each_R_mmHg_s_mL_equal_split": 10.5,
+  "scaled_wall_law_max_error_mmHg": 1.4210854715202004e-14,
+  "not_established": [
+    "organ functional minima",
+    "minimum viable SBP/DBP",
+    "required auxiliary output",
+    "physical septal tissue volume",
+    "biological pump size",
+    "recoverable support duration"
+  ]
+}
