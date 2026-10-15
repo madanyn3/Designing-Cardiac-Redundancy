@@ -1,0 +1,14 @@
+{
+  "scope": "Boundary-matched mechanical energy reference only; no hardware/materials search or independent mechanical circulation run",
+  "mechanical_efficiency_sensitivities": [
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "overhead_W": 0.0,
+  "overhead_status": "Optimistic zero-overhead reference, not measured",
+  "oxygenator": false,
+  "mechanical_energy_source": "Explicit external/stored energy, separate from hepatic glycogen",
+  "trajectory_source": "M5 historical joint grid; amended one-lung/one-kidney design not represented"
+}

@@ -1,0 +1,41 @@
+{
+  "status": "exploratory assumption configuration",
+  "reference": {
+    "left_scale": 0.25,
+    "right_scale": 0.25,
+    "septal_scale": 0.25,
+    "pericardial_scale": 0.25,
+    "period_s": 0.75,
+    "left_contractility": 1.0,
+    "right_contractility": 1.0,
+    "septal_contractility": 1.0
+  },
+  "bounds": {
+    "each_scale": [
+      0.1,
+      1.0
+    ],
+    "period_s": [
+      0.4,
+      1.5
+    ],
+    "each_contractility": [
+      0.5,
+      2.0
+    ]
+  },
+  "interpretation": "Dimensionless wall-coordinate scales and contractility multipliers; not tissue mass or empirical physiological maxima. Coronary conductance follows the corresponding side scale. Additional auxiliary oxygen demand remains an independent assumed 10 mL/min for screening.",
+  "cases": {
+    "reference": {},
+    "faster": {
+      "period_s": 0.5
+    },
+    "stronger_left": {
+      "left_contractility": 1.5
+    },
+    "asymmetric": {
+      "left_scale": 0.3,
+      "right_scale": 0.2
+    }
+  }
+}

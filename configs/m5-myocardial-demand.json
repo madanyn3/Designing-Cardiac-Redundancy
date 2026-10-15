@@ -1,0 +1,38 @@
+{
+  "classification": "A sensitivity closure; not empirical auxiliary-heart calibration or PVA",
+  "reference": {
+    "maintenance_fraction": 0.15,
+    "activation_fraction": 0.25,
+    "work_fraction": 0.6,
+    "mass_ratio": 0.25,
+    "work_cost_multiplier": 1.0,
+    "contractility_exponent": 1.0
+  },
+  "sensitivities": {
+    "low_cost": {
+      "mass_ratio": 0.1,
+      "work_cost_multiplier": 0.75
+    },
+    "high_cost": {
+      "mass_ratio": 0.5,
+      "work_cost_multiplier": 1.5
+    },
+    "activation_heavy": {
+      "maintenance_fraction": 0.15,
+      "activation_fraction": 0.45,
+      "work_fraction": 0.4
+    }
+  },
+  "normal_rate_bpm": 80,
+  "auxiliary_store_capacity_mL": [
+    0.5833333333333334,
+    0.25
+  ],
+  "notes": [
+    "Mass ratio is an independent hypothetical tissue allocation, never inferred from cavity scale.",
+    "Fractions partition the M1 normal-heart demand once; no extra 10 mL/min is added.",
+    "Positive transmural work averaged over the whole 8 s is an offline workload proxy, not PVA or a causal controller.",
+    "Auxiliary oxygen-store capacities stay at their old absolute values across demand sensitivities.",
+    "Native-heart and all other preservation demands remain unchanged."
+  ]
+}

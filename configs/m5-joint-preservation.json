@@ -1,0 +1,27 @@
+{
+  "classification": "Exploratory joint grid, not an optimized or validated preservation prescription",
+  "demand_case": "preservation_25",
+  "duration_s": 8,
+  "cases": [
+    {
+      "name": "reference_g25",
+      "pump": "reference",
+      "preservation_conductance": 0.25
+    },
+    {
+      "name": "reference_g10",
+      "pump": "reference",
+      "preservation_conductance": 0.1
+    },
+    {
+      "name": "faster_g25",
+      "pump": "faster",
+      "preservation_conductance": 0.25
+    },
+    {
+      "name": "faster_g10",
+      "pump": "faster",
+      "preservation_conductance": 0.1
+    }
+  ]
+}

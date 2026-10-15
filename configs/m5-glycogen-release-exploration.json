@@ -1,0 +1,12 @@
+{
+  "classification": "Configurable mobilisation capacity; reference value is not a physiological maximum",
+  "source_case": "bio_immediate",
+  "release_cap_mmol_min": 0.21,
+  "liver_function_fraction": 0.5,
+  "notes": [
+    "Effective mobilisation cap equals release_cap_mmol_min times liver_function_fraction.",
+    "Requested release, remaining glycogen and hepatic flow/export capacity can further limit actual release.",
+    "Changing mobilisation capacity does not add glycogen or change organ demand, coronary conductance or local buffering.",
+    "The default reproduces the historical capacity setting; higher settings are exploratory assumptions."
+  ]
+}

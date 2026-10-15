@@ -1,0 +1,20 @@
+{
+  "classification": "T5.1 exploratory constitutive settings and characterization grid; not inferred design requirements",
+  "right": {"resistance_mmHg_s_mL": 0.1, "capacity_mL_s": 120.0},
+  "left": {"resistance_mmHg_s_mL": 0.1, "capacity_mL_s": 120.0},
+  "right_gate": {"closed_below_mmHg": 0.0, "full_above_mmHg": 4.0, "external_pressure_mmHg": 0.0},
+  "left_gate": {"closed_below_mmHg": 0.0, "full_above_mmHg": 4.0, "external_pressure_mmHg": 0.0},
+  "grid": {
+    "inlet_mmHg": [-4, -2, 0, 2, 4, 8],
+    "outlet_mmHg": [10, 25, 65, 90, 120],
+    "head_mmHg": [0, 20, 60, 100, 140],
+    "capacity_mL_s": [10, 20, 40, 80, 120]
+  },
+  "notes": [
+    "0/4 mmHg gate thresholds are A search fixtures, not safe human pressure limits.",
+    "External pressure is explicit; gauge inlet pressure is not automatically transmural preload.",
+    "Resistance and reference capacity inherit M3 fixture values, not physiological maxima.",
+    "Right/left balance must be evaluated with the full circuit, including the nutritive lung return.",
+    "Pressure-flow points do not identify chamber mass, efficiency or glucose-supported duration."
+  ]
+}

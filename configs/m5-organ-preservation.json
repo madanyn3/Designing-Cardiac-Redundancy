@@ -1,0 +1,457 @@
+{
+  "classification": "Exploratory demand assumptions, not established viable minima",
+  "active_fractions_source": "M1 stronger_reduction: brain 0.6, liver 0.5, lungs and respiratory muscle 1.0. Native heart 0.3.",
+  "preservation_fractions_source": "User-authorized design variables: 0.10, 0.25, 0.50 sensitivities, not literature-derived minima",
+  "liver_export": "Separate assumed functional fraction 0.5; not inferred from oxygen demand",
+  "hydraulics": "Saved reference BIO: preservation supply conductances 0.25, active supply unchanged. Demand sweep only; changing conductance requires a new hydraulic trajectory and workload-derived auxiliary demand.",
+  "cases": [
+    {
+      "name": "preservation_10",
+      "source": "BIO_reference_reference",
+      "profile": {
+        "brain": {
+          "role": "active",
+          "fraction": 0.6,
+          "ramp_s": 0.0
+        },
+        "coronary_left": {
+          "role": "preservation",
+          "fraction": 0.3,
+          "ramp_s": 0.0
+        },
+        "coronary_right": {
+          "role": "preservation",
+          "fraction": 0.3,
+          "ramp_s": 0.0
+        },
+        "kidney_protected": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "kidney_other": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "hepatic_outflow": {
+          "role": "active",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "limb_muscle_exchange": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "respiratory_muscle": {
+          "role": "active",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "stomach_oesophagus": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "small_intestine": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "large_intestine": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "lungs": {
+          "role": "active",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "pancreas": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "spleen": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "remaining": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "limb_skin_exchange": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "limb_bone_exchange": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "limb_other_exchange": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "limb_adipose_exchange": {
+          "role": "preservation",
+          "fraction": 0.1,
+          "ramp_s": 0.0
+        },
+        "aux_coronary_left": {
+          "role": "pump",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "aux_coronary_right": {
+          "role": "pump",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        }
+      },
+      "liver_function_fraction": 0.5
+    },
+    {
+      "name": "preservation_25",
+      "source": "BIO_reference_reference",
+      "profile": {
+        "brain": {
+          "role": "active",
+          "fraction": 0.6,
+          "ramp_s": 0.0
+        },
+        "coronary_left": {
+          "role": "preservation",
+          "fraction": 0.3,
+          "ramp_s": 0.0
+        },
+        "coronary_right": {
+          "role": "preservation",
+          "fraction": 0.3,
+          "ramp_s": 0.0
+        },
+        "kidney_protected": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "kidney_other": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "hepatic_outflow": {
+          "role": "active",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "limb_muscle_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "respiratory_muscle": {
+          "role": "active",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "stomach_oesophagus": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "small_intestine": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "large_intestine": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "lungs": {
+          "role": "active",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "pancreas": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "spleen": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "remaining": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "limb_skin_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "limb_bone_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "limb_other_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "limb_adipose_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 0.0
+        },
+        "aux_coronary_left": {
+          "role": "pump",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "aux_coronary_right": {
+          "role": "pump",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        }
+      },
+      "liver_function_fraction": 0.5
+    },
+    {
+      "name": "preservation_50",
+      "source": "BIO_reference_reference",
+      "profile": {
+        "brain": {
+          "role": "active",
+          "fraction": 0.6,
+          "ramp_s": 0.0
+        },
+        "coronary_left": {
+          "role": "preservation",
+          "fraction": 0.3,
+          "ramp_s": 0.0
+        },
+        "coronary_right": {
+          "role": "preservation",
+          "fraction": 0.3,
+          "ramp_s": 0.0
+        },
+        "kidney_protected": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "kidney_other": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "hepatic_outflow": {
+          "role": "active",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "limb_muscle_exchange": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "respiratory_muscle": {
+          "role": "active",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "stomach_oesophagus": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "small_intestine": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "large_intestine": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "lungs": {
+          "role": "active",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "pancreas": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "spleen": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "remaining": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "limb_skin_exchange": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "limb_bone_exchange": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "limb_other_exchange": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "limb_adipose_exchange": {
+          "role": "preservation",
+          "fraction": 0.5,
+          "ramp_s": 0.0
+        },
+        "aux_coronary_left": {
+          "role": "pump",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "aux_coronary_right": {
+          "role": "pump",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        }
+      },
+      "liver_function_fraction": 0.5
+    },
+    {
+      "name": "preservation_25_ramp5",
+      "source": "BIO_reference_reference",
+      "profile": {
+        "brain": {
+          "role": "active",
+          "fraction": 0.6,
+          "ramp_s": 5.0
+        },
+        "coronary_left": {
+          "role": "preservation",
+          "fraction": 0.3,
+          "ramp_s": 5.0
+        },
+        "coronary_right": {
+          "role": "preservation",
+          "fraction": 0.3,
+          "ramp_s": 5.0
+        },
+        "kidney_protected": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "kidney_other": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "hepatic_outflow": {
+          "role": "active",
+          "fraction": 0.5,
+          "ramp_s": 5.0
+        },
+        "limb_muscle_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "respiratory_muscle": {
+          "role": "active",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "stomach_oesophagus": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "small_intestine": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "large_intestine": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "lungs": {
+          "role": "active",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "pancreas": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "spleen": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "remaining": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "limb_skin_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "limb_bone_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "limb_other_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "limb_adipose_exchange": {
+          "role": "preservation",
+          "fraction": 0.25,
+          "ramp_s": 5.0
+        },
+        "aux_coronary_left": {
+          "role": "pump",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        },
+        "aux_coronary_right": {
+          "role": "pump",
+          "fraction": 1.0,
+          "ramp_s": 0.0
+        }
+      },
+      "liver_function_fraction": 0.5
+    }
+  ]
+}

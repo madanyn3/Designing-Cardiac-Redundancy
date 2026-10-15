@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-10",
+  "classification": "M1 literature-informed assumption transfer, not human arrest minimum",
+  "cases": [
+    {
+      "name": "reference_native30_step",
+      "source": "BIO_reference_reference",
+      "native_fraction": 0.3,
+      "native_ramp_s": 0
+    },
+    {
+      "name": "reference_native50_step",
+      "source": "BIO_reference_reference",
+      "native_fraction": 0.5,
+      "native_ramp_s": 0
+    },
+    {
+      "name": "reference_native30_ramp5",
+      "source": "BIO_reference_reference",
+      "native_fraction": 0.3,
+      "native_ramp_s": 5
+    },
+    {
+      "name": "faster_native30_step",
+      "source": "BIO_faster_reference",
+      "native_fraction": 0.3,
+      "native_ramp_s": 0
+    },
+    {
+      "name": "asymmetric_native30_step",
+      "source": "BIO_asymmetric_reference",
+      "native_fraction": 0.3,
+      "native_ramp_s": 0
+    },
+    {
+      "name": "highcost_native30_step",
+      "source": "BIO_reference_high_cost",
+      "native_fraction": 0.3,
+      "native_ramp_s": 0
+    }
+  ],
+  "unchanged": "All hydraulics, other organ demands, and absolute oxygen stores; no cooling or cardioplegia imposed",
+  "energy_equivalent_kcal_per_L": [
+    4.7,
+    4.85,
+    5.05
+  ],
+  "references": [
+    "https://pubmed.ncbi.nlm.nih.gov/464672/",
+    "https://pubmed.ncbi.nlm.nih.gov/7408123/",
+    "https://pubmed.ncbi.nlm.nih.gov/3177672/"
+  ]
+}

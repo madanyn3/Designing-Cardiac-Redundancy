@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-09",
+  "scope": "T5.1 hydraulic characterization; no metabolic feasibility or recoverable-duration claim",
+  "duration_s": 12,
+  "sample_step_s": 0.005,
+  "heads_mmHg": {"right": 20, "left": 100},
+  "activation_ramp_s": 1,
+  "preservation_conductance_factor": 0.25,
+  "native_restart": false,
+  "regional_reopening": false,
+  "pressure_screen_mmHg": {"mean": 65, "maximum": 90, "minimum": 50},
+  "solvers": [
+    {"label": "nominal", "method": "Radau", "rtol": 1e-7, "max_step": 0.01},
+    {"label": "refined", "method": "Radau", "rtol": 1e-9, "max_step": 0.005}
+  ],
+  "cases": [
+    {"name": "ungated", "gated": false, "right_capacity": 120, "left_capacity": 120},
+    {"name": "gauge_gate", "gated": true, "left_external_mmHg": 0, "right_capacity": 120, "left_capacity": 120},
+    {"name": "transmural_gate", "gated": true, "left_external_mmHg": -4, "right_capacity": 120, "left_capacity": 120},
+    {"name": "right_weak", "gated": true, "left_external_mmHg": -4, "right_capacity": 20, "left_capacity": 120},
+    {"name": "left_weak", "gated": true, "left_external_mmHg": -4, "right_capacity": 120, "left_capacity": 20},
+    {"name": "both_small", "gated": true, "left_external_mmHg": -4, "right_capacity": 20, "left_capacity": 20},
+    {"name": "depleted_ungated", "gated": false, "right_capacity": 0, "left_capacity": 120, "PU_margin_mL": 0.1},
+    {"name": "depleted_gated", "gated": true, "left_external_mmHg": -4, "right_capacity": 0, "left_capacity": 120, "PU_margin_mL": 0.1},
+    {"name": "transmural_60", "gated": true, "left_external_mmHg": -4, "right_capacity": 120, "left_capacity": 120, "duration_s": 60},
+    {"name": "right_weak_60", "gated": true, "left_external_mmHg": -4, "right_capacity": 20, "left_capacity": 120, "duration_s": 60}
+  ],
+  "assumptions": [
+    "Inlet gate 0/4 mmHg thresholds remain constitutive assumptions, not measured safe limits.",
+    "Transmural comparator uses VC external pressure 0 and PU -4 mmHg from the frozen source convention.",
+    "All organ demands and recovery obligations remain; quarter conductance is not a preservation minimum.",
+    "Depletion is a synthetic volume-conserving transfer from PU to VC, not a physiological subject initialization."
+  ]
+}

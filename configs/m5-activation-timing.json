@@ -1,0 +1,26 @@
+{
+  "classification": "Prescribed timing sensitivities motivated by biological evidence, not measured auxiliary-heart startup",
+  "cases": {
+    "zero_latency_control": {
+      "detection_s": 0,
+      "signal_s": 0,
+      "recruitment_s": 0,
+      "ramp_s": 1
+    },
+    "neural_hypothesis": {
+      "detection_s": 0.25,
+      "signal_s": 0.05,
+      "recruitment_s": 0.2,
+      "ramp_s": 1
+    },
+    "slow_hypothesis": {
+      "detection_s": 1,
+      "signal_s": 0.5,
+      "recruitment_s": 0.5,
+      "ramp_s": 3
+    }
+  },
+  "effective_support": "Must be measured from hydraulic and per-organ delivery outputs; latency plus ramp is not effective support time",
+  "activation_energy_J": null,
+  "activation_energy_status": "Unquantified; null is unknown, not zero"
+}

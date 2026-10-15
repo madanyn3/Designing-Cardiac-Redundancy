@@ -1,0 +1,37 @@
+{
+  "classification": "A matched hypothetical two-lung allocation; no validated human preservation minima",
+  "duration_s": 8,
+  "preservation_conductance": 0.25,
+  "lung_allocation": {
+    "supported_share": 0.5,
+    "supported_perfusion": 1.0,
+    "preserved_perfusion": 0.1,
+    "supported_nutrition": 1.0,
+    "preserved_nutrition": 0.25,
+    "supported_ventilation": 1.0,
+    "preserved_ventilation": 0.0
+  },
+  "liver_function_fraction": 0.5,
+  "cases": [
+    {
+      "name": "bio_immediate",
+      "device": "BIO",
+      "timing": "zero_latency_control"
+    },
+    {
+      "name": "mechanical_immediate",
+      "device": "mechanical",
+      "timing": "zero_latency_control"
+    },
+    {
+      "name": "bio_neural_delay",
+      "device": "BIO",
+      "timing": "neural_hypothesis"
+    },
+    {
+      "name": "bio_slow_delay",
+      "device": "BIO",
+      "timing": "slow_hypothesis"
+    }
+  ]
+}
