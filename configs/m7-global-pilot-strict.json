@@ -1,0 +1,67 @@
+[
+  {
+    "name": "pilot_strict_hydraulic_nominal",
+    "block": "hydraulic",
+    "signs": null,
+    "policy": "observed",
+    "knobs": {
+      "glycogen_mmol_L_liver": 229,
+      "release_cap_mmol_min": 0.21,
+      "extraction_limit": 0.5,
+      "mass_ratio": 0.25,
+      "work_cost_multiplier": 1,
+      "preservation_fraction": 0.25,
+      "preservation_conductance": 0.25,
+      "contractility": 1,
+      "coronary_conductance": 1
+    },
+    "hydraulic_source": "reports/m7-factorial/hydraulic_nominal",
+    "reference_result": "reports/m7-factorial/hydraulic_nominal/result.json"
+  },
+  {
+    "name": "pilot_strict_metabolic_LHH",
+    "block": "metabolic",
+    "signs": [
+      -1,
+      1,
+      1
+    ],
+    "policy": "observed",
+    "knobs": {
+      "glycogen_mmol_L_liver": 229,
+      "release_cap_mmol_min": 0.21,
+      "extraction_limit": 0.25,
+      "mass_ratio": 0.5,
+      "work_cost_multiplier": 1.5,
+      "preservation_fraction": 0.25,
+      "preservation_conductance": 0.25,
+      "contractility": 1,
+      "coronary_conductance": 1
+    },
+    "hydraulic_source": "reports/m6-coupled/observed_arrest",
+    "reference_result": "reports/m7-factorial/metabolic_LHH/result.json"
+  },
+  {
+    "name": "pilot_strict_hydraulic_HHL",
+    "block": "hydraulic",
+    "signs": [
+      1,
+      1,
+      -1
+    ],
+    "policy": "observed",
+    "knobs": {
+      "glycogen_mmol_L_liver": 229,
+      "release_cap_mmol_min": 0.21,
+      "extraction_limit": 0.5,
+      "mass_ratio": 0.25,
+      "work_cost_multiplier": 1,
+      "preservation_fraction": 0.25,
+      "preservation_conductance": 0.5,
+      "contractility": 1.25,
+      "coronary_conductance": 0.5
+    },
+    "hydraulic_source": "reports/m7-factorial/hydraulic_HHL",
+    "reference_result": "reports/m7-factorial/hydraulic_HHL/result.json"
+  }
+]

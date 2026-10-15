@@ -1,0 +1,416 @@
+{
+  "version": 1,
+  "method": "Complete two-level 3-factor factorials; deterministic finite-domain decomposition, not population Sobol estimates",
+  "seed": null,
+  "horizon_s": 10,
+  "factors": {
+    "metabolic": [
+      {
+        "id": "extraction_limit",
+        "low": 0.25,
+        "high": 0.75,
+        "nominal": 0.5
+      },
+      {
+        "id": "mass_ratio",
+        "low": 0.1,
+        "high": 0.5,
+        "nominal": 0.25
+      },
+      {
+        "id": "work_cost_multiplier",
+        "low": 0.75,
+        "high": 1.5,
+        "nominal": 1
+      }
+    ],
+    "hydraulic": [
+      {
+        "id": "preservation_conductance",
+        "low": 0.1,
+        "high": 0.5,
+        "nominal": 0.25
+      },
+      {
+        "id": "contractility",
+        "low": 0.75,
+        "high": 1.25,
+        "nominal": 1
+      },
+      {
+        "id": "coronary_conductance",
+        "low": 0.5,
+        "high": 2,
+        "nominal": 1
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "hydraulic_nominal",
+      "block": "hydraulic",
+      "signs": null,
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "metabolic_LLL",
+      "block": "metabolic",
+      "signs": [
+        -1,
+        -1,
+        -1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "metabolic_LLH",
+      "block": "metabolic",
+      "signs": [
+        -1,
+        -1,
+        1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "metabolic_LHL",
+      "block": "metabolic",
+      "signs": [
+        -1,
+        1,
+        -1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "metabolic_LHH",
+      "block": "metabolic",
+      "signs": [
+        -1,
+        1,
+        1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "metabolic_HLL",
+      "block": "metabolic",
+      "signs": [
+        1,
+        -1,
+        -1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "metabolic_HLH",
+      "block": "metabolic",
+      "signs": [
+        1,
+        -1,
+        1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "metabolic_HHL",
+      "block": "metabolic",
+      "signs": [
+        1,
+        1,
+        -1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "metabolic_HHH",
+      "block": "metabolic",
+      "signs": [
+        1,
+        1,
+        1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.25,
+        "contractility": 1,
+        "coronary_conductance": 1
+      }
+    },
+    {
+      "name": "hydraulic_LLL",
+      "block": "hydraulic",
+      "signs": [
+        -1,
+        -1,
+        -1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.75,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "hydraulic_LLH",
+      "block": "hydraulic",
+      "signs": [
+        -1,
+        -1,
+        1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.75,
+        "coronary_conductance": 2
+      }
+    },
+    {
+      "name": "hydraulic_LHL",
+      "block": "hydraulic",
+      "signs": [
+        -1,
+        1,
+        -1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "hydraulic_LHH",
+      "block": "hydraulic",
+      "signs": [
+        -1,
+        1,
+        1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.25,
+        "coronary_conductance": 2
+      }
+    },
+    {
+      "name": "hydraulic_HLL",
+      "block": "hydraulic",
+      "signs": [
+        1,
+        -1,
+        -1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "hydraulic_HLH",
+      "block": "hydraulic",
+      "signs": [
+        1,
+        -1,
+        1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 2
+      }
+    },
+    {
+      "name": "hydraulic_HHL",
+      "block": "hydraulic",
+      "signs": [
+        1,
+        1,
+        -1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "hydraulic_HHH",
+      "block": "hydraulic",
+      "signs": [
+        1,
+        1,
+        1
+      ],
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5,
+        "mass_ratio": 0.25,
+        "work_cost_multiplier": 1,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 2
+      }
+    }
+  ],
+  "provenance": "All new hydraulic endpoints are exploratory A ranges around M6; metabolic endpoints carried from the frozen M7 screen.",
+  "dependencies": [
+    "Left/right/septal contractility move together",
+    "Coronary multiplier applies to both auxiliary branches only",
+    "Preservation demand and preservation conductance are independent scenario controls",
+    "Myocardial activation demand scales with changed contractility; work demand uses new hydraulic work"
+  ],
+  "limitations": [
+    "No joint variation across the two blocks",
+    "Two-level decomposition is exact only on eight vertices, not a converged continuous-domain integral",
+    "Numerical pairs are not statistical replicates",
+    "No recoverable duration inference"
+  ]
+}

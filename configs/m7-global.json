@@ -1,0 +1,3543 @@
+{
+  "version": 1,
+  "method": "Morris elementary effects on four-level grid",
+  "levels": 4,
+  "delta": 0.6666666666666666,
+  "seed": 7202,
+  "bootstrap_seed": 7203,
+  "resamples": 5000,
+  "horizon_s": 10,
+  "factors": [
+    {
+      "id": "extraction_limit",
+      "low": 0.25,
+      "high": 0.75,
+      "nominal": 0.5
+    },
+    {
+      "id": "mass_ratio",
+      "low": 0.1,
+      "high": 0.5,
+      "nominal": 0.25
+    },
+    {
+      "id": "work_cost_multiplier",
+      "low": 0.75,
+      "high": 1.5,
+      "nominal": 1
+    },
+    {
+      "id": "preservation_conductance",
+      "low": 0.1,
+      "high": 0.5,
+      "nominal": 0.25
+    },
+    {
+      "id": "contractility",
+      "low": 0.75,
+      "high": 1.25,
+      "nominal": 1
+    },
+    {
+      "id": "coronary_conductance",
+      "low": 0.5,
+      "high": 2,
+      "nominal": 1
+    }
+  ],
+  "stages": [
+    4,
+    8,
+    12,
+    16
+  ],
+  "initial_target": 8,
+  "cases": [
+    {
+      "name": "t00_p0",
+      "trajectory": 0,
+      "point": 0,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h000"
+    },
+    {
+      "name": "t00_p1",
+      "trajectory": 0,
+      "point": 1,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t00_p2",
+      "trajectory": 0,
+      "point": 2,
+      "normalized": [
+        0.6666666666666666,
+        0.33333333333333337,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t00_p3",
+      "trajectory": 0,
+      "point": 3,
+      "normalized": [
+        0.6666666666666666,
+        0.33333333333333337,
+        0.6666666666666666,
+        1.0,
+        0.33333333333333337,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t00_p4",
+      "trajectory": 0,
+      "point": 4,
+      "normalized": [
+        0.6666666666666666,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        0.33333333333333337,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t00_p5",
+      "trajectory": 0,
+      "point": 5,
+      "normalized": [
+        0.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        0.33333333333333337,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t00_p6",
+      "trajectory": 0,
+      "point": 6,
+      "normalized": [
+        0.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        0.33333333333333337,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h002"
+    },
+    {
+      "name": "t01_p0",
+      "trajectory": 1,
+      "point": 0,
+      "normalized": [
+        0.0,
+        0.3333333333333333,
+        1.0,
+        0.6666666666666666,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h003"
+    },
+    {
+      "name": "t01_p1",
+      "trajectory": 1,
+      "point": 1,
+      "normalized": [
+        0.0,
+        0.3333333333333333,
+        1.0,
+        0.0,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h004"
+    },
+    {
+      "name": "t01_p2",
+      "trajectory": 1,
+      "point": 2,
+      "normalized": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h004"
+    },
+    {
+      "name": "t01_p3",
+      "trajectory": 1,
+      "point": 3,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h004"
+    },
+    {
+      "name": "t01_p4",
+      "trajectory": 1,
+      "point": 4,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h004"
+    },
+    {
+      "name": "t01_p5",
+      "trajectory": 1,
+      "point": 5,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_LHL"
+    },
+    {
+      "name": "t01_p6",
+      "trajectory": 1,
+      "point": 6,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.33333333333333337,
+        0.0,
+        0.33333333333333337,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h005"
+    },
+    {
+      "name": "t02_p0",
+      "trajectory": 2,
+      "point": 0,
+      "normalized": [
+        0.3333333333333333,
+        1.0,
+        0.0,
+        0.3333333333333333,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h006"
+    },
+    {
+      "name": "t02_p1",
+      "trajectory": 2,
+      "point": 1,
+      "normalized": [
+        0.3333333333333333,
+        0.33333333333333337,
+        0.0,
+        0.3333333333333333,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h006"
+    },
+    {
+      "name": "t02_p2",
+      "trajectory": 2,
+      "point": 2,
+      "normalized": [
+        0.3333333333333333,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h007"
+    },
+    {
+      "name": "t02_p3",
+      "trajectory": 2,
+      "point": 3,
+      "normalized": [
+        1.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h007"
+    },
+    {
+      "name": "t02_p4",
+      "trajectory": 2,
+      "point": 4,
+      "normalized": [
+        1.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t02_p5",
+      "trajectory": 2,
+      "point": 5,
+      "normalized": [
+        1.0,
+        0.33333333333333337,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t02_p6",
+      "trajectory": 2,
+      "point": 6,
+      "normalized": [
+        1.0,
+        0.33333333333333337,
+        0.6666666666666666,
+        1.0,
+        0.33333333333333337,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t03_p0",
+      "trajectory": 3,
+      "point": 0,
+      "normalized": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h008"
+    },
+    {
+      "name": "t03_p1",
+      "trajectory": 3,
+      "point": 1,
+      "normalized": [
+        0.0,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h009"
+    },
+    {
+      "name": "t03_p2",
+      "trajectory": 3,
+      "point": 2,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h009"
+    },
+    {
+      "name": "t03_p3",
+      "trajectory": 3,
+      "point": 3,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h010"
+    },
+    {
+      "name": "t03_p4",
+      "trajectory": 3,
+      "point": 4,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.33333333333333337,
+        0.6666666666666666,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h010"
+    },
+    {
+      "name": "t03_p5",
+      "trajectory": 3,
+      "point": 5,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.33333333333333337,
+        0.6666666666666666,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h011"
+    },
+    {
+      "name": "t03_p6",
+      "trajectory": 3,
+      "point": 6,
+      "normalized": [
+        0.6666666666666666,
+        0.33333333333333337,
+        0.33333333333333337,
+        0.6666666666666666,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h011"
+    },
+    {
+      "name": "t04_p0",
+      "trajectory": 4,
+      "point": 0,
+      "normalized": [
+        0.0,
+        0.6666666666666666,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h005"
+    },
+    {
+      "name": "t04_p1",
+      "trajectory": 4,
+      "point": 1,
+      "normalized": [
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h005"
+    },
+    {
+      "name": "t04_p2",
+      "trajectory": 4,
+      "point": 2,
+      "normalized": [
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h012"
+    },
+    {
+      "name": "t04_p3",
+      "trajectory": 4,
+      "point": 3,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h012"
+    },
+    {
+      "name": "t04_p4",
+      "trajectory": 4,
+      "point": 4,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        0.6666666666666666,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h013"
+    },
+    {
+      "name": "t04_p5",
+      "trajectory": 4,
+      "point": 5,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h013"
+    },
+    {
+      "name": "t04_p6",
+      "trajectory": 4,
+      "point": 6,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h003"
+    },
+    {
+      "name": "t05_p0",
+      "trajectory": 5,
+      "point": 0,
+      "normalized": [
+        0.6666666666666666,
+        0.6666666666666666,
+        0.0,
+        1.0,
+        0.6666666666666666,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h014"
+    },
+    {
+      "name": "t05_p1",
+      "trajectory": 5,
+      "point": 1,
+      "normalized": [
+        0.6666666666666666,
+        0.6666666666666666,
+        0.0,
+        1.0,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h015"
+    },
+    {
+      "name": "t05_p2",
+      "trajectory": 5,
+      "point": 2,
+      "normalized": [
+        0.0,
+        0.6666666666666666,
+        0.0,
+        1.0,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h015"
+    },
+    {
+      "name": "t05_p3",
+      "trajectory": 5,
+      "point": 3,
+      "normalized": [
+        0.0,
+        0.6666666666666666,
+        0.0,
+        1.0,
+        0.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h016"
+    },
+    {
+      "name": "t05_p4",
+      "trajectory": 5,
+      "point": 4,
+      "normalized": [
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.33333333333333337,
+        0.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333336,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h017"
+    },
+    {
+      "name": "t05_p5",
+      "trajectory": 5,
+      "point": 5,
+      "normalized": [
+        0.0,
+        0.0,
+        0.0,
+        0.33333333333333337,
+        0.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333336,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h017"
+    },
+    {
+      "name": "t05_p6",
+      "trajectory": 5,
+      "point": 6,
+      "normalized": [
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.33333333333333337,
+        0.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333336,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h017"
+    },
+    {
+      "name": "t06_p0",
+      "trajectory": 6,
+      "point": 0,
+      "normalized": [
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.0,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h018"
+    },
+    {
+      "name": "t06_p1",
+      "trajectory": 6,
+      "point": 1,
+      "normalized": [
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333,
+        1.0,
+        0.0,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h019"
+    },
+    {
+      "name": "t06_p2",
+      "trajectory": 6,
+      "point": 2,
+      "normalized": [
+        0.33333333333333337,
+        0.6666666666666666,
+        0.3333333333333333,
+        1.0,
+        0.0,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h019"
+    },
+    {
+      "name": "t06_p3",
+      "trajectory": 6,
+      "point": 3,
+      "normalized": [
+        0.33333333333333337,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.0,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h019"
+    },
+    {
+      "name": "t06_p4",
+      "trajectory": 6,
+      "point": 4,
+      "normalized": [
+        0.33333333333333337,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HLH"
+    },
+    {
+      "name": "t06_p5",
+      "trajectory": 6,
+      "point": 5,
+      "normalized": [
+        0.33333333333333337,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HLH"
+    },
+    {
+      "name": "t06_p6",
+      "trajectory": 6,
+      "point": 6,
+      "normalized": [
+        0.33333333333333337,
+        0.0,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h020"
+    },
+    {
+      "name": "t07_p0",
+      "trajectory": 7,
+      "point": 0,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h021"
+    },
+    {
+      "name": "t07_p1",
+      "trajectory": 7,
+      "point": 1,
+      "normalized": [
+        0.0,
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h021"
+    },
+    {
+      "name": "t07_p2",
+      "trajectory": 7,
+      "point": 2,
+      "normalized": [
+        0.0,
+        1.0,
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h021"
+    },
+    {
+      "name": "t07_p3",
+      "trajectory": 7,
+      "point": 3,
+      "normalized": [
+        0.0,
+        1.0,
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h022"
+    },
+    {
+      "name": "t07_p4",
+      "trajectory": 7,
+      "point": 4,
+      "normalized": [
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h020"
+    },
+    {
+      "name": "t07_p5",
+      "trajectory": 7,
+      "point": 5,
+      "normalized": [
+        0.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h020"
+    },
+    {
+      "name": "t07_p6",
+      "trajectory": 7,
+      "point": 6,
+      "normalized": [
+        0.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HLH"
+    },
+    {
+      "name": "t08_p0",
+      "trajectory": 8,
+      "point": 0,
+      "normalized": [
+        0.3333333333333333,
+        1.0,
+        1.0,
+        0.3333333333333333,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h006"
+    },
+    {
+      "name": "t08_p1",
+      "trajectory": 8,
+      "point": 1,
+      "normalized": [
+        0.3333333333333333,
+        0.33333333333333337,
+        1.0,
+        0.3333333333333333,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h006"
+    },
+    {
+      "name": "t08_p2",
+      "trajectory": 8,
+      "point": 2,
+      "normalized": [
+        0.3333333333333333,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        1.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h007"
+    },
+    {
+      "name": "t08_p3",
+      "trajectory": 8,
+      "point": 3,
+      "normalized": [
+        0.3333333333333333,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t08_p4",
+      "trajectory": 8,
+      "point": 4,
+      "normalized": [
+        0.3333333333333333,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        0.33333333333333337,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t08_p5",
+      "trajectory": 8,
+      "point": 5,
+      "normalized": [
+        1.0,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        0.33333333333333337,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t08_p6",
+      "trajectory": 8,
+      "point": 6,
+      "normalized": [
+        1.0,
+        0.33333333333333337,
+        0.33333333333333337,
+        1.0,
+        0.33333333333333337,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t09_p0",
+      "trajectory": 9,
+      "point": 0,
+      "normalized": [
+        0.3333333333333333,
+        1.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h008"
+    },
+    {
+      "name": "t09_p1",
+      "trajectory": 9,
+      "point": 1,
+      "normalized": [
+        0.3333333333333333,
+        1.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_LLH"
+    },
+    {
+      "name": "t09_p2",
+      "trajectory": 9,
+      "point": 2,
+      "normalized": [
+        0.3333333333333333,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_LLH"
+    },
+    {
+      "name": "t09_p3",
+      "trajectory": 9,
+      "point": 3,
+      "normalized": [
+        0.3333333333333333,
+        1.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h023"
+    },
+    {
+      "name": "t09_p4",
+      "trajectory": 9,
+      "point": 4,
+      "normalized": [
+        0.3333333333333333,
+        0.33333333333333337,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h023"
+    },
+    {
+      "name": "t09_p5",
+      "trajectory": 9,
+      "point": 5,
+      "normalized": [
+        0.3333333333333333,
+        0.33333333333333337,
+        0.0,
+        0.6666666666666666,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h011"
+    },
+    {
+      "name": "t09_p6",
+      "trajectory": 9,
+      "point": 6,
+      "normalized": [
+        1.0,
+        0.33333333333333337,
+        0.0,
+        0.6666666666666666,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h011"
+    },
+    {
+      "name": "t10_p0",
+      "trajectory": 10,
+      "point": 0,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h021"
+    },
+    {
+      "name": "t10_p1",
+      "trajectory": 10,
+      "point": 1,
+      "normalized": [
+        0.6666666666666666,
+        1.0,
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h021"
+    },
+    {
+      "name": "t10_p2",
+      "trajectory": 10,
+      "point": 2,
+      "normalized": [
+        0.0,
+        1.0,
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h021"
+    },
+    {
+      "name": "t10_p3",
+      "trajectory": 10,
+      "point": 3,
+      "normalized": [
+        0.0,
+        1.0,
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h022"
+    },
+    {
+      "name": "t10_p4",
+      "trajectory": 10,
+      "point": 4,
+      "normalized": [
+        0.0,
+        0.33333333333333337,
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h022"
+    },
+    {
+      "name": "t10_p5",
+      "trajectory": 10,
+      "point": 5,
+      "normalized": [
+        0.0,
+        0.33333333333333337,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h024"
+    },
+    {
+      "name": "t10_p6",
+      "trajectory": 10,
+      "point": 6,
+      "normalized": [
+        0.0,
+        0.33333333333333337,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HLH"
+    },
+    {
+      "name": "t11_p0",
+      "trajectory": 11,
+      "point": 0,
+      "normalized": [
+        1.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.3333333333333333,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h025"
+    },
+    {
+      "name": "t11_p1",
+      "trajectory": 11,
+      "point": 1,
+      "normalized": [
+        1.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h026"
+    },
+    {
+      "name": "t11_p2",
+      "trajectory": 11,
+      "point": 2,
+      "normalized": [
+        1.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHH"
+    },
+    {
+      "name": "t11_p3",
+      "trajectory": 11,
+      "point": 3,
+      "normalized": [
+        1.0,
+        1.0,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHH"
+    },
+    {
+      "name": "t11_p4",
+      "trajectory": 11,
+      "point": 4,
+      "normalized": [
+        0.33333333333333337,
+        1.0,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHH"
+    },
+    {
+      "name": "t11_p5",
+      "trajectory": 11,
+      "point": 5,
+      "normalized": [
+        0.33333333333333337,
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 2.0
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHH"
+    },
+    {
+      "name": "t11_p6",
+      "trajectory": 11,
+      "point": 6,
+      "normalized": [
+        0.33333333333333337,
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        0.33333333333333337
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 1.0
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h027"
+    },
+    {
+      "name": "t12_p0",
+      "trajectory": 12,
+      "point": 0,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        1.0,
+        1.0,
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h002"
+    },
+    {
+      "name": "t12_p1",
+      "trajectory": 12,
+      "point": 1,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        1.0,
+        1.0,
+        0.3333333333333333,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t12_p2",
+      "trajectory": 12,
+      "point": 2,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.33333333333333337,
+        1.0,
+        0.3333333333333333,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t12_p3",
+      "trajectory": 12,
+      "point": 3,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t12_p4",
+      "trajectory": 12,
+      "point": 4,
+      "normalized": [
+        0.0,
+        0.0,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t12_p5",
+      "trajectory": 12,
+      "point": 5,
+      "normalized": [
+        0.0,
+        0.6666666666666666,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t12_p6",
+      "trajectory": 12,
+      "point": 6,
+      "normalized": [
+        0.0,
+        0.6666666666666666,
+        0.33333333333333337,
+        0.33333333333333337,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333336,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h000"
+    },
+    {
+      "name": "t13_p0",
+      "trajectory": 13,
+      "point": 0,
+      "normalized": [
+        0.6666666666666666,
+        0.6666666666666666,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h028"
+    },
+    {
+      "name": "t13_p1",
+      "trajectory": 13,
+      "point": 1,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h028"
+    },
+    {
+      "name": "t13_p2",
+      "trajectory": 13,
+      "point": 2,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h002"
+    },
+    {
+      "name": "t13_p3",
+      "trajectory": 13,
+      "point": 3,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t13_p4",
+      "trajectory": 13,
+      "point": 4,
+      "normalized": [
+        0.0,
+        0.0,
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h001"
+    },
+    {
+      "name": "t13_p5",
+      "trajectory": 13,
+      "point": 5,
+      "normalized": [
+        0.0,
+        0.0,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t13_p6",
+      "trajectory": 13,
+      "point": 6,
+      "normalized": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HHL"
+    },
+    {
+      "name": "t14_p0",
+      "trajectory": 14,
+      "point": 0,
+      "normalized": [
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h017"
+    },
+    {
+      "name": "t14_p1",
+      "trajectory": 14,
+      "point": 1,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h017"
+    },
+    {
+      "name": "t14_p2",
+      "trajectory": 14,
+      "point": 2,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        1.0,
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h017"
+    },
+    {
+      "name": "t14_p3",
+      "trajectory": 14,
+      "point": 3,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        1.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h029"
+    },
+    {
+      "name": "t14_p4",
+      "trajectory": 14,
+      "point": 4,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h015"
+    },
+    {
+      "name": "t14_p5",
+      "trajectory": 14,
+      "point": 5,
+      "normalized": [
+        0.6666666666666666,
+        0.0,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h014"
+    },
+    {
+      "name": "t14_p6",
+      "trajectory": 14,
+      "point": 6,
+      "normalized": [
+        0.6666666666666666,
+        0.6666666666666666,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h014"
+    },
+    {
+      "name": "t15_p0",
+      "trajectory": 15,
+      "point": 0,
+      "normalized": [
+        1.0,
+        1.0,
+        1.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h029"
+    },
+    {
+      "name": "t15_p1",
+      "trajectory": 15,
+      "point": 1,
+      "normalized": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h015"
+    },
+    {
+      "name": "t15_p2",
+      "trajectory": 15,
+      "point": 2,
+      "normalized": [
+        0.33333333333333337,
+        1.0,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h015"
+    },
+    {
+      "name": "t15_p3",
+      "trajectory": 15,
+      "point": 3,
+      "normalized": [
+        0.33333333333333337,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h015"
+    },
+    {
+      "name": "t15_p4",
+      "trajectory": 15,
+      "point": 4,
+      "normalized": [
+        0.33333333333333337,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        0.0,
+        0.6666666666666666
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      },
+      "hydraulic_source": "reports/m7-global/hydraulics/h016"
+    },
+    {
+      "name": "t15_p5",
+      "trajectory": 15,
+      "point": 5,
+      "normalized": [
+        0.33333333333333337,
+        0.33333333333333337,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HLL"
+    },
+    {
+      "name": "t15_p6",
+      "trajectory": 15,
+      "point": 6,
+      "normalized": [
+        0.33333333333333337,
+        0.33333333333333337,
+        0.33333333333333337,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "policy": "observed",
+      "block": "joint",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 0.5
+      },
+      "hydraulic_source": "reports/m7-factorial/hydraulic_HLL"
+    }
+  ],
+  "hydraulics": [
+    {
+      "name": "h000",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "h001",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "h002",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h003",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h004",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h005",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.9166666666666667,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "h006",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h007",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h008",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      }
+    },
+    {
+      "name": "h009",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      }
+    },
+    {
+      "name": "h010",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      }
+    },
+    {
+      "name": "h011",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      }
+    },
+    {
+      "name": "h012",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "h013",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.3666666666666667,
+        "contractility": 1.25,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "h014",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 0.5
+      }
+    },
+    {
+      "name": "h015",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h016",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h017",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333336,
+        "contractility": 0.75,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h018",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      }
+    },
+    {
+      "name": "h019",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.0,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.75,
+        "coronary_conductance": 1.0
+      }
+    },
+    {
+      "name": "h020",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      }
+    },
+    {
+      "name": "h021",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.0
+      }
+    },
+    {
+      "name": "h022",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      }
+    },
+    {
+      "name": "h023",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.41666666666666663,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.1,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 2.0
+      }
+    },
+    {
+      "name": "h024",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.25,
+        "mass_ratio": 0.23333333333333336,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.75,
+        "coronary_conductance": 2.0
+      }
+    },
+    {
+      "name": "h025",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 2.0
+      }
+    },
+    {
+      "name": "h026",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.75,
+        "mass_ratio": 0.23333333333333334,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 2.0
+      }
+    },
+    {
+      "name": "h027",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.4166666666666667,
+        "mass_ratio": 0.5,
+        "work_cost_multiplier": 0.75,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.5,
+        "contractility": 1.25,
+        "coronary_conductance": 1.0
+      }
+    },
+    {
+      "name": "h028",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.3666666666666667,
+        "work_cost_multiplier": 1.25,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 0.9166666666666666,
+        "coronary_conductance": 1.5
+      }
+    },
+    {
+      "name": "h029",
+      "policy": "observed",
+      "knobs": {
+        "glycogen_mmol_L_liver": 229,
+        "release_cap_mmol_min": 0.21,
+        "extraction_limit": 0.5833333333333333,
+        "mass_ratio": 0.1,
+        "work_cost_multiplier": 1.5,
+        "preservation_fraction": 0.25,
+        "preservation_conductance": 0.23333333333333334,
+        "contractility": 1.0833333333333333,
+        "coronary_conductance": 1.5
+      }
+    }
+  ],
+  "acceptance": {
+    "pilot_deficit_absolute_mL": 1e-05,
+    "pilot_deficit_relative": 0.001,
+    "top_two_relative_change": 0.3,
+    "numerical_effect_fraction": 0.01
+  },
+  "scope": "Six-factor bounded ten-second model; independent scenario coordinates, not a population distribution",
+  "adaptation": "Evaluate 4 versus 8 trajectories; add 4 then 4 if primary top-two sets or magnitudes remain unstable. At maximum 16 retain unresolved rankings explicitly; no forced convergence claim.",
+  "workers": 6,
+  "metabolic_solver": "Original M6/M7 paired settings; one strict retry retained if verification fails"
+}

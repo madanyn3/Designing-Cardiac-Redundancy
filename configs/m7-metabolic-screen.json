@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "distribution": null,
+  "source_case": "observed_arrest",
+  "horizon_s": 10,
+  "method": "deterministic paired endpoint OAT; no probability interpretation",
+  "factors": [
+    {
+      "id": "glycogen_mmol_L_liver",
+      "nominal": 229,
+      "low": 160,
+      "high": 274,
+      "unit": "mmol/L liver",
+      "basis": "Observed sample range, n=18 overnight-fasted volunteers; not population limits.",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/8505893/"
+    },
+    {
+      "id": "release_cap_mmol_min",
+      "nominal": 0.21,
+      "low": 0.105,
+      "high": 0.84,
+      "unit": "mmol/min",
+      "basis": "Assumed 0.5\u20134 times fasting-derived reference; cap is not measured maximum.",
+      "source": "https://doi.org/10.1172/JCI115997"
+    },
+    {
+      "id": "extraction_limit",
+      "nominal": 0.5,
+      "low": 0.25,
+      "high": 0.75,
+      "unit": "fraction",
+      "basis": "Exploratory instantaneous extraction closure; no measured bounds.",
+      "source": "configs/m4-fuel-reference.json"
+    },
+    {
+      "id": "mass_ratio",
+      "nominal": 0.25,
+      "low": 0.1,
+      "high": 0.5,
+      "unit": "ratio",
+      "basis": "Exploratory myocardial demand mass, independent of fixed hydraulic geometry.",
+      "source": "configs/m5-myocardial-demand.json"
+    },
+    {
+      "id": "work_cost_multiplier",
+      "nominal": 1,
+      "low": 0.75,
+      "high": 1.5,
+      "unit": "ratio",
+      "basis": "Exploratory work-to-oxygen cost; not calibrated PVA.",
+      "source": "configs/m5-myocardial-demand.json"
+    },
+    {
+      "id": "preservation_fraction",
+      "nominal": 0.25,
+      "low": 0.1,
+      "high": 0.5,
+      "unit": "fraction",
+      "basis": "Exploratory nonmandatory-organ target; not recovery threshold.",
+      "source": "configs/m5-organ-preservation.json"
+    }
+  ]
+}
