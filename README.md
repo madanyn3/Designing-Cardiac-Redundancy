@@ -1,6 +1,6 @@
 # Designing Cardiac Redundancy in Humans
 
-**Latest status (2026-10-15):** T7.1 and [T7.2 bounded global sensitivity](docs/m7-t72-closure.md) are closed at their declared scopes: **274 tests**, 84 joint global cases and explicit ranking uncertainty. [Sensitivity report](reports/m7-global/report.md). M7 continues with T7.3 identifiability, then structural alternatives and evidence priorities. M8 optimization follows; preprint writing remains parked. Earlier checkpoints below are historical.
+**Latest status (2026-10-16):** [M7 is closed at bounded assessment scope](docs/m7-closure.md), with **291 passing regression tests**. [T7.4/T7.5 closure](docs/m7-t74-t75-closure.md) adds conservative regulation comparisons and finite-reserve diagnostics; [evidence priorities](docs/m7-evidence-priorities.md) are finalized. No viable biological pump or repair window is established; supply-limited contraction and full tissue buffering remain limitations. M8 is next, and preprint writing remains parked. Earlier checkpoints below are historical.
 
 **M5 interpretation correction (2026-10-14):** The recorded auxiliary unmet oxygen-equivalent demand is glucose-limited in these runs, not demonstrated oxygen-delivery failure. Pressure failure remains unchanged. [Diagnosis and corrective experiments](docs/m5-failure-diagnosis.md).
 
@@ -13,6 +13,8 @@ A computational feasibility study of hypothetical auxiliary circulation after lo
 The central question is: **Under what physiological assumptions could an auxiliary pump maintain organ oxygen delivery, and which constraints make this impossible?**
 
 ## Start here
+
+- [Detailed M5–M7 report](docs/m5-m7-report.md): auxiliary-heart design and energy, selected-organ support, glycogen accounting, activation/handover, sensitivity, identifiability, structural uncertainty and the M8 handoff. Companion to the M0–M4 report; distinguishes verified implementation from unresolved biological feasibility.
 
 - [Detailed M0–M4 report](docs/m0-m4-report.md): problem definition, evidence, assumptions, equations, milestone findings and remaining work. [Combined respiratory verification](reports/m4-respiratory/report.md), [normal oxygen reference](reports/m4-baseline/report.md).
 
