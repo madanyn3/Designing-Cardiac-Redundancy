@@ -1,0 +1,102 @@
+{
+  "scope": "equal-cavity-scale pressure screen under the frozen T8.1 protocol",
+  "activation_policy": "fixed",
+  "protocol_version": 1,
+  "thresholds_mmHg": {
+    "mean": 65.0,
+    "maximum": 90.0,
+    "minimum": 50.0
+  },
+  "records": [
+    {
+      "scale": 0.6,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.0,
+      "status": "satisfied",
+      "violating_sustained_windows": 0,
+      "first_satisfied_sustained_window_s": 2.0,
+      "numerical_status": "valid",
+      "MAP_mmHg": 86.71511816084848,
+      "aux_left_L_min": 3.5012937451012536,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        6.679869152482383,
+        1.4364746059882447
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.6,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 1.0,
+      "status": "satisfied",
+      "violating_sustained_windows": 0,
+      "first_satisfied_sustained_window_s": 2.0,
+      "numerical_status": "valid",
+      "MAP_mmHg": 87.55612885038497,
+      "aux_left_L_min": 3.491584745775301,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        6.7041319416373,
+        1.4337983178989913
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.5,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 77.92246131215134,
+      "aux_left_L_min": 3.088538457645502,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        5.481287516843857,
+        1.1870860100914313
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 12.707775178790655,
+        "minimum": 0.0
+      }
+    }
+  ]
+}

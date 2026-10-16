@@ -1,0 +1,220 @@
+{
+  "scope": "equal-cavity-scale pressure screen under the frozen T8.1 protocol",
+  "activation_policy": "fixed",
+  "protocol_version": 1,
+  "thresholds_mmHg": {
+    "mean": 65.0,
+    "maximum": 90.0,
+    "minimum": 50.0
+  },
+  "records": [
+    {
+      "scale": 0.4,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 68.132099903902,
+      "aux_left_L_min": 2.6213552409641614,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        4.271125389379536,
+        0.9329574913938514
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 92.32531421693814,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.4,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 59.152779700973795,
+      "aux_left_L_min": 1.9788699927655249,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        3.26577266839817,
+        0.7274295732631884
+      ],
+      "violating_window_s": {
+        "mean": 6.0,
+        "maximum": 8.0,
+        "minimum": 1.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 26.867485407581185,
+        "maximum": 144.6334248593031,
+        "minimum": 0.12976434808147275
+      }
+    },
+    {
+      "scale": 0.4,
+      "period_s": 1.25,
+      "rate_bpm": 48.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 51.39667050600498,
+      "aux_left_L_min": 2.098645225816271,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        2.50294382182949,
+        0.569491068763018
+      ],
+      "violating_window_s": {
+        "mean": 7.0,
+        "maximum": 8.0,
+        "minimum": 6.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 73.20319888776635,
+        "maximum": 198.14819618729229,
+        "minimum": 34.270087773864766
+      }
+    },
+    {
+      "scale": 0.4,
+      "period_s": 1.5,
+      "rate_bpm": 40.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 44.015094331850975,
+      "aux_left_L_min": 1.5220337877300762,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        1.9200224949820317,
+        0.444525526348325
+      ],
+      "violating_window_s": {
+        "mean": 8.0,
+        "maximum": 8.0,
+        "minimum": 7.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 112.74471245253007,
+        "maximum": 246.22943726955017,
+        "minimum": 63.3944305466711
+      }
+    },
+    {
+      "scale": 0.5,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "status": "violated",
+      "violating_sustained_windows": 7,
+      "first_satisfied_sustained_window_s": 2.0,
+      "numerical_status": "valid",
+      "MAP_mmHg": 78.24740924928322,
+      "aux_left_L_min": 3.08524584118157,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        5.490142857268256,
+        1.186272279814357
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 7.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 10.508373350458285,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.5,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 68.08182002581964,
+      "aux_left_L_min": 2.3439526704120737,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        4.221446805601452,
+        0.9321432780434025
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 71.77709478484387,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.5,
+      "period_s": 1.25,
+      "rate_bpm": 48.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 59.191411773595874,
+      "aux_left_L_min": 2.504099049927656,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        3.2504799694126794,
+        0.7371212315446111
+      ],
+      "violating_window_s": {
+        "mean": 6.0,
+        "maximum": 8.0,
+        "minimum": 3.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 25.779864722700815,
+        "maximum": 130.36745913977944,
+        "minimum": 4.393658918976364
+      }
+    },
+    {
+      "scale": 0.5,
+      "period_s": 1.5,
+      "rate_bpm": 40.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 50.64621276080831,
+      "aux_left_L_min": 1.7469558202600077,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        2.4724992532118084,
+        0.5763720593074445
+      ],
+      "violating_window_s": {
+        "mean": 7.0,
+        "maximum": 8.0,
+        "minimum": 6.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 69.06999212406689,
+        "maximum": 186.7881172248441,
+        "minimum": 32.25357385201769
+      }
+    }
+  ]
+}

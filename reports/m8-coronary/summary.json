@@ -1,0 +1,128 @@
+{
+  "scope": "equal-cavity-scale pressure screen under the frozen T8.1 protocol",
+  "activation_policy": "fixed",
+  "protocol_version": 1,
+  "thresholds_mmHg": {
+    "mean": 65.0,
+    "maximum": 90.0,
+    "minimum": 50.0
+  },
+  "records": [
+    {
+      "scale": 0.5,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "coronary_conductance": 2.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 76.702568077159,
+      "aux_left_L_min": 3.0996992168832302,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        5.440233093746845,
+        1.1905643879787697
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 21.333485479297593,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.5,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "coronary_conductance": 1.5,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 77.46715028119478,
+      "aux_left_L_min": 3.0925802404241285,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        5.465051687992427,
+        1.1884343908720574
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 15.914479192085196,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.6,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "coronary_conductance": 2.0,
+      "status": "satisfied",
+      "violating_sustained_windows": 0,
+      "first_satisfied_sustained_window_s": 2.0,
+      "numerical_status": "valid",
+      "MAP_mmHg": 85.12566865837161,
+      "aux_left_L_min": 3.518263353745777,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        6.623498800905645,
+        1.4420889417890883
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.4,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "coronary_conductance": 2.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 67.01111570340233,
+      "aux_left_L_min": 2.629571377122686,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        4.237667841048244,
+        0.9353535607601704
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 100.58501799543696,
+        "minimum": 0.0
+      }
+    }
+  ]
+}

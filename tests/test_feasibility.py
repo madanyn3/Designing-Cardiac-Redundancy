@@ -1,9 +1,29 @@
 import numpy as np
 import pytest
+from pathlib import Path
+import json
 from cardiac_redundancy.feasibility import (FeasibilityPolicy, PRESSURE_SCREEN_MMHG,
-    numerical_status, oxygen_endpoint, pressure_endpoint, verdict)
+    UNRESOLVED_REQUIREMENTS, numerical_status, oxygen_endpoint, pressure_endpoint, verdict)
 
 POLICY = FeasibilityPolicy()
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_unresolved_requirements_match_the_declared_policy_file():
+    declared = json.loads((ROOT/'configs/m4-constraint-policy.json').read_text(
+        encoding='utf-8'))['unresolved_requirements']
+    assert list(UNRESOLVED_REQUIREMENTS) == declared
+    assert POLICY.unresolved_requirements == UNRESOLVED_REQUIREMENTS
+
+
+def test_a_clean_numeric_result_cannot_be_reported_as_a_pass():
+    t, p = ao(95.)
+    time, g = groups(0.)
+    out = verdict(POLICY, 'valid', pressure_endpoint(POLICY, t, p),
+                  oxygen_endpoint(POLICY, time, g, 255.848))
+    assert out['status'] == 'indeterminate'
+    assert out['binding_constraints'] == []
+    assert len(out['unresolved_requirements']) == len(UNRESOLVED_REQUIREMENTS)
 
 
 def ao(level, duration=10., step=.01, startup_level=None, allowance=2.):
@@ -101,6 +121,20 @@ def test_sustained_oxygen_shortfall_binds_but_startup_shortfall_is_separate():
     assert out['startup_unmet_mL'] == pytest.approx(.0395, rel=1e-9)
 
 
+def test_a_window_counts_once_however_many_metrics_it_violates():
+    t, p = ao(40.)
+    out = pressure_endpoint(POLICY, t, p)
+    assert out['violating_sustained_windows'] == out['sustained_windows'] == 8
+    assert sum(w['interval'] == 'startup' for w in out['windows']) == 2
+    assert out['first_satisfied_sustained_window_s'] is None
+    t = np.arange(0., 10.001, .01)
+    p = np.where(t < 5., 40., 75.+20.*np.sin(2*np.pi*t/.75))
+    out = pressure_endpoint(POLICY, t, p)
+    assert out['violating_sustained_windows'] == 3
+    assert out['first_satisfied_sustained_window_s'] == pytest.approx(5.)
+    assert out['sustained_exposure']['minimum']['violating_window_duration_s'] == pytest.approx(3.)
+
+
 def test_verdict_names_every_binding_constraint():
     t, p = ao(70.)
     time, g = groups(.02)
@@ -120,8 +154,9 @@ def test_unresolved_requirements_prevent_a_clean_pass():
                   oxygen_endpoint(policy, time, g, 255.848))
     assert out['status'] == 'indeterminate'
     assert out['unresolved_requirements'] == ['regional organ pressure minima']
-    clean = verdict(POLICY, 'valid', pressure_endpoint(POLICY, t, p),
-                    oxygen_endpoint(POLICY, time, g, 255.848))
+    bare = FeasibilityPolicy(unresolved_requirements=())
+    clean = verdict(bare, 'valid', pressure_endpoint(bare, t, p),
+                    oxygen_endpoint(bare, time, g, 255.848))
     assert clean['status'] == 'satisfied_within_declared_model'
     assert 'not support duration, survival or recovery' in clean['meaning']
 

@@ -1,10 +1,49 @@
 {
-  "version": 1,
+  "version": 2,
   "task": "T8.1",
   "frozen_on": "2026-10-16",
+  "amendments": [
+    {
+      "version": 2,
+      "change": "auxiliary myocardial oxygen store sized by the shared store_seconds=5 rule at the design demand, replacing the absolute pair in configs/m5-myocardial-demand.json",
+      "reason": "the frozen pair is five seconds of a 7.0/3.0 mL/min demand, i.e. the same rule evaluated once at the reference fixture. Held fixed, a larger pump carries a smaller pump's store and the run aborts on \"Oxygen capacity exceeded\" as soon as supply exceeds demand",
+      "reruns": "none required: scales 0.4 and 0.6 returned identical deficits, so the constant only blocked evaluation. It also confirms the deficit is glucose-limited, not oxygen-store-limited"
+    },
+    {
+      "version": 2,
+      "change": "the nine unresolved requirements from configs/m4-constraint-policy.json are attached to every FeasibilityPolicy",
+      "reason": "the default was empty, so a clean numeric run would have been labelled satisfied_within_declared_model instead of indeterminate",
+      "reruns": "none: no verdict had been issued before the fix"
+    },
+    {
+      "version": 2,
+      "change": "compression_kappa declared as a model-form scenario axis with cases 0/0.5/1",
+      "reason": "it is the most influential quantity found in the self-supply constraint and had never been varied by any runner, despite M2 declaring the cases and the uncertainty registry assigning them to T7.4",
+      "reruns": "self-supply results obtained at kappa 0.5 are now conditional on that case and are reported as such"
+    },
+    {
+      "version": 2,
+      "change": "search method: boundary tracing with bisection as primary, differential evolution demoted to neighbourhood verification",
+      "reason": "the objective proved monotone in scale and rate, placing the optimum on the constraint boundary; a global population search would spend thousands of evaluations rediscovering that structure",
+      "reruns": "none: no search had been run"
+    },
+    {
+      "version": 2,
+      "change": "pressure_endpoint additionally returns per-window records, a union violation count and the first fully satisfied window",
+      "reason": "a per-metric count was mistaken for the overall total when reporting",
+      "reruns": "none: reporting only, no screen arithmetic changed"
+    }
+  ],
+  "pending_amendments": [
+    {
+      "change": "cycle-aligned pressure evaluation",
+      "reason": "docs/m2-pressure-requirements.md asks for the integral mean, maximum and minimum over each auxiliary activation cycle, reserving the fixed 1 s window for irregular or nonpulsatile runs. The frozen policy uses 1 s windows throughout, which mixes 1.33 cycles at the reference period and will mix differently once period_s varies",
+      "status": "must be settled before the main runs; it changes screen arithmetic and would require rerunning every pressure verdict"
+    }
+  ],
   "classification": "frozen search and evaluation protocol; declared assumptions, not measured limits, and no clinical or survival claim",
   "code": {
-    "commit": "f198c8d0b369dbb6db0ea39404d9d70c5b15462a",
+    "commit": "7955b942459256b9ff712314684f5348b1c14758",
     "branch": "main",
     "dirty": true,
     "python": "3.13.12",
@@ -286,6 +325,19 @@
       "liver_function_fraction": 1.0
     }
   },
+  "model_form": {
+    "compression_kappa": {
+      "reference": 0.5,
+      "cases": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "acts_on": "fraction of auxiliary chamber transmural pressure applied as the closing pressure of its own coronary bed (vascular waterfall)",
+      "provenance": "configs/m2-frozen-overlay.yaml compression_kappa_cases; declared in M2 and assigned to T7.4 by docs/uncertainty-plan.md, never exercised by any runner before T8.2",
+      "measured_effect": "at scale 0.6, conductance 1.0, reference physiology: auxiliary unmet 0.000000 mL at kappa 0, 0.002351 at kappa 0.5, 0.300505 at kappa 1"
+    }
+  },
   "operating_cases": {
     "no_support": {
       "policy": "none",
@@ -342,7 +394,17 @@
     "startup_allowance_s": 2.0,
     "oxygen_tolerance_mL_s": 1e-08,
     "horizon_s": 10.0,
-    "unresolved_requirements": []
+    "unresolved_requirements": [
+      "regional organ pressure minima",
+      "whole-brain regional distribution and function",
+      "recovery-linked oxygen-deficit thresholds for every tissue",
+      "endogenous suppression mechanism and reversibility",
+      "respiratory drive, airway, ventilation-demand coupling and CO2 clearance",
+      "tissue oxygen accessibility and microvascular exchange",
+      "glycogen/glucose stock and delivery limits",
+      "blood compatibility, endothelial injury and reperfusion injury",
+      "biological auxiliary self-demand calibration where applicable"
+    ]
   },
   "constraints": {
     "pressure": "joint mean/maximum/minimum AO screen over complete 1 s windows",
@@ -428,13 +490,18 @@
     "tolerance_policy": "tolerances are frozen here; they are not loosened to afford more evaluations, which was tried and rejected in the M7 pilot"
   },
   "search": {
-    "method": "constrained differential evolution (scipy.optimize)",
+    "objective": "minimize total auxiliary oxygen demand (mL O2/min) computed from the design and its own hydraulic work; chamber work reported alongside",
+    "formulation": "robust constrained minimization: the design vector excludes every scenario and model-form factor, and the screens must hold across the declared cases, with the worst case reported",
+    "primary": "boundary tracing with bisection, justified by three measured structural properties: the objective rises monotonically in cavity scale and rate, so the optimum lies on the pressure-feasibility boundary rather than inside it; coronary conductance is nearly free energetically (11.624 to 11.589 mL O2/min from 1.0 to 2.0) and only relaxes self-supply, so its optimal value is the least that satisfies the constraint; and the constraints nearly separate, since conductance and kappa move MAP by under 2 mmHg",
+    "monotonicity_premise": "bisection assumes pressure feasibility is monotone in cavity scale at fixed rate. Observed at 80/min (0.25, 0.4 fail; 0.6, 0.8, 1.0 pass) and 150/min (0.3, 0.4 fail; 0.5 pass). The premise is declared and must be checked by evaluating points either side of every located boundary, not assumed silently",
+    "secondary_objective": "minimum coronary conductance, traced by the epsilon-constraint method rather than folded into a weighted sum",
+    "verification": "constrained differential evolution (scipy.optimize) in the neighbourhood of the located optimum, plus a matched-budget space-filling sample; required, not optional, since a structural argument cannot be allowed to verify itself",
     "seeds": [
       8101,
       8102,
       8103
     ],
-    "baseline": "matched-budget space-filling sample; required, not optional, since a search without it cannot be shown to beat sampling",
+    "fallbacks": "mesh adaptive direct search, or Bayesian optimization with a separate feasibility classifier, if the monotonicity premise fails",
     "polish": false,
     "polish_reason": "objective is discontinuous at domain exits and screen boundaries",
     "claim": "best found within the tested bounds and budget; not a global optimum"
@@ -479,7 +546,7 @@
     "configs/m6-coupled-protocol.json": "6b14ef8c2cc2184196feb8203310ede907afff4924e702b5a36c55fb82dc85cd",
     "data/m1-demand-budget.json": "ad161a012ec67645ce0791be533428460f59304c18a793b5bee6ff4a9ae498da",
     "src/cardiac_redundancy/design.py": "65d52471db8ecae107a9fac6c692ac962672c61275305847330c9b8ea4facbf0",
-    "src/cardiac_redundancy/feasibility.py": "2692615e7f94c90d532551f244d1629ccd63955497014d8066997f6e5a57c74e",
+    "src/cardiac_redundancy/feasibility.py": "58b4aec598663262a53e911b21bb43de81c48c0ea7d0fb8936589093f51a165f",
     "reports/m5-joint-preservation/reference_g25/fine-refined.npz": "9a55562e4091ff3a6c373ca8d1e8882621828c17443572ddbb3b993f5f5b2ab8",
     "reports/m4-baseline/native-cycle.npz": "7a582cfea218bf4961910eb361897003c330a2a17d3b5c5db9ce78aea52f33de",
     "reports/m4-baseline/store-5-refined.npz": "fe9f7f359f78cd8b00a8b6b7080d240a4e4d18a1475c87bf851106768e19431e",

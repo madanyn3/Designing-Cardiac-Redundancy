@@ -1,0 +1,100 @@
+{
+  "scope": "equal-cavity-scale pressure screen under the frozen T8.1 protocol",
+  "activation_policy": "fixed",
+  "protocol_version": 1,
+  "thresholds_mmHg": {
+    "mean": 65.0,
+    "maximum": 90.0,
+    "minimum": 50.0
+  },
+  "records": [
+    {
+      "scale": 0.4,
+      "status": "violated",
+      "numerical_status": "valid",
+      "MAP_mmHg": 68.132099903902,
+      "aux_left_L_min": 2.6213552409641614,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        4.271125389379536,
+        0.9329574913938514
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 92.32531421693814,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.6,
+      "status": "satisfied",
+      "numerical_status": "valid",
+      "MAP_mmHg": 87.11771743303632,
+      "aux_left_L_min": 3.496592664250458,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        6.691310803073688,
+        1.43519691454531
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.8,
+      "status": "satisfied",
+      "numerical_status": "valid",
+      "MAP_mmHg": 101.8047182026861,
+      "aux_left_L_min": 4.192839069529347,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        8.97518369636435,
+        1.9085125925198363
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 1.0,
+      "status": "satisfied",
+      "numerical_status": "valid",
+      "MAP_mmHg": 113.28690268680882,
+      "aux_left_L_min": 4.7537343767034645,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        11.04476615432178,
+        2.3417756380453856
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      }
+    }
+  ]
+}

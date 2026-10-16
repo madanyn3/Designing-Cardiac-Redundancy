@@ -1,0 +1,125 @@
+{
+  "status": "verified",
+  "name": "scale0.8",
+  "design": {
+    "left_scale": 0.8,
+    "right_scale": 0.8,
+    "septal_scale": 0.8,
+    "pericardial_scale": 0.8,
+    "period_s": 0.75,
+    "left_contractility": 1.0,
+    "right_contractility": 1.0,
+    "septal_contractility": 1.0,
+    "coronary_conductance": 1.0,
+    "preservation_conductance": 0.25
+  },
+  "scenario": {
+    "extraction_limit": 0.5,
+    "mass_coupling": 1.0,
+    "work_cost_multiplier": 1.0,
+    "preservation_fraction": 0.25,
+    "glycogen_mmol_L_liver": 229.0,
+    "release_cap_mmol_min": 0.21,
+    "liver_function_fraction": 0.5
+  },
+  "runtime_s": 277.51071299999603,
+  "coupled_mass_ratio": 0.8,
+  "rate_bpm": 80.0,
+  "coupled_auxiliary_store_mL": [
+    0.8928178017038978,
+    0.39916800443471234
+  ],
+  "store_seconds": 5.0,
+  "auxiliary_demand_mL_min": {
+    "left": 10.713813620446775,
+    "right": 4.790016053216548
+  },
+  "auxiliary_demand_components": {
+    "left": {
+      "maintenance_mL_min": 1.7463917525773203,
+      "activation_mL_min": 2.9106529209622005,
+      "work_mL_min": 6.056768946907255,
+      "total_mL_min": 10.713813620446775
+    },
+    "right": {
+      "maintenance_mL_min": 0.7484536082474229,
+      "activation_mL_min": 1.2474226804123716,
+      "work_mL_min": 2.794139764556754,
+      "total_mL_min": 4.790016053216548
+    }
+  },
+  "chamber_work_J": [
+    8.97518369636435,
+    1.9085125925198363
+  ],
+  "groups": {
+    "active": {
+      "organs": [
+        "brain",
+        "coronary_left",
+        "coronary_right",
+        "kidney_protected",
+        "hepatic_outflow",
+        "respiratory_muscle",
+        "lung_supported"
+      ],
+      "requested_mL": 11.15898243604429,
+      "unmet_total_mL": 0.0,
+      "unmet_startup_mL": 0.0,
+      "unmet_sustained_mL": 0.0,
+      "sustained_status": "satisfied",
+      "first_sustained_bracket_s": null,
+      "peak_unmet_mL_s": 0.0
+    },
+    "preservation": {
+      "organs": [
+        "kidney_other",
+        "limb_muscle_exchange",
+        "stomach_oesophagus",
+        "small_intestine",
+        "large_intestine",
+        "lung_preserved",
+        "pancreas",
+        "spleen",
+        "remaining",
+        "limb_skin_exchange",
+        "limb_bone_exchange",
+        "limb_other_exchange",
+        "limb_adipose_exchange"
+      ],
+      "requested_mL": 5.202629820542191,
+      "unmet_total_mL": 0.0,
+      "unmet_startup_mL": 0.0,
+      "unmet_sustained_mL": 0.0,
+      "sustained_status": "satisfied",
+      "first_sustained_bracket_s": null,
+      "peak_unmet_mL_s": 0.0
+    },
+    "pump": {
+      "organs": [
+        "aux_coronary_left",
+        "aux_coronary_right"
+      ],
+      "requested_mL": 2.5146703522543117,
+      "unmet_total_mL": 0.0006038661213680988,
+      "unmet_startup_mL": 0.0005990077694764367,
+      "unmet_sustained_mL": 4.858351891662179e-06,
+      "sustained_status": "violated",
+      "first_sustained_bracket_s": [
+        2.265,
+        2.27
+      ],
+      "peak_unmet_mL_s": 0.03153318059200813
+    }
+  },
+  "unmet_oxygen_mL": 0.0005843082693923018,
+  "glycogen_remaining_mmol": 329.7424999999876,
+  "released_mmol": 0.017499999999999797,
+  "minimum_plasma_equivalent_mmol_L": 4.955705078297499,
+  "first_auxiliary_shortfall_bracket_s": [
+    1.4954545454545454,
+    1.5
+  ],
+  "prescribed_driver_status": "unsupported_under_declared_demand",
+  "scope": "coupled replay over saved hydraulics; instantaneous substrate use and prescribed contraction remain limitations"
+}

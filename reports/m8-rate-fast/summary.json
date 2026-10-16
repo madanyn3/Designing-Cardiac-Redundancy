@@ -1,0 +1,180 @@
+{
+  "scope": "equal-cavity-scale pressure screen under the frozen T8.1 protocol",
+  "activation_policy": "fixed",
+  "protocol_version": 1,
+  "thresholds_mmHg": {
+    "mean": 65.0,
+    "maximum": 90.0,
+    "minimum": 50.0
+  },
+  "records": [
+    {
+      "scale": 0.4,
+      "period_s": 0.4,
+      "rate_bpm": 150.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "status": "violated",
+      "violating_sustained_windows": 7,
+      "first_satisfied_sustained_window_s": 2.0,
+      "numerical_status": "valid",
+      "MAP_mmHg": 82.3232229132908,
+      "aux_left_L_min": 2.8776773747628415,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        6.435813779416084,
+        1.373354557568645
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 7.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 10.121161748518162,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.4,
+      "period_s": 0.5,
+      "rate_bpm": 120.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 78.4935857387074,
+      "aux_left_L_min": 2.7308941896451895,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        5.651277098587987,
+        1.2456518513811725
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 33.58114165219099,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.4,
+      "period_s": 0.6,
+      "rate_bpm": 100.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 74.77877063982169,
+      "aux_left_L_min": 2.318191797065963,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        5.044896456202257,
+        1.117551538784715
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 56.55900708507434,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.5,
+      "period_s": 0.4,
+      "rate_bpm": 150.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "status": "satisfied",
+      "violating_sustained_windows": 0,
+      "first_satisfied_sustained_window_s": 2.0,
+      "numerical_status": "valid",
+      "MAP_mmHg": 94.65746725605476,
+      "aux_left_L_min": 3.377898275923693,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        8.260885824331158,
+        1.7528702118849186
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.5,
+      "period_s": 0.5,
+      "rate_bpm": 120.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "status": "satisfied",
+      "violating_sustained_windows": 0,
+      "first_satisfied_sustained_window_s": 2.0,
+      "numerical_status": "valid",
+      "MAP_mmHg": 90.16255236841116,
+      "aux_left_L_min": 3.204345690868776,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        7.247354142833643,
+        1.5823745357710355
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      }
+    },
+    {
+      "scale": 0.3,
+      "period_s": 0.4,
+      "rate_bpm": 150.0,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "status": "violated",
+      "violating_sustained_windows": 8,
+      "first_satisfied_sustained_window_s": null,
+      "numerical_status": "valid",
+      "MAP_mmHg": 68.12281215093284,
+      "aux_left_L_min": 2.309277444854695,
+      "release_s": 0.5,
+      "chamber_work_J": [
+        4.613831072183592,
+        0.9958787197457194
+      ],
+      "violating_window_s": {
+        "mean": 0.0,
+        "maximum": 8.0,
+        "minimum": 0.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 116.0718559914587,
+        "minimum": 0.0
+      }
+    }
+  ]
+}

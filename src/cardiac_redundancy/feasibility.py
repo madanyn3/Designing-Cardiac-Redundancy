@@ -32,6 +32,24 @@ from .constraints import (combined_status, first_sampled_violation, oxygen_scree
 PRESSURE_SCREEN_MMHG = dict(mean=65., maximum=90., minimum=50.)
 
 
+#: Requirements the model does not evaluate, from configs/m4-constraint-policy.json.
+#: Carried on every policy so no run can report an unqualified pass while they
+#: stand: combined_status downgrades a clean numeric result to 'indeterminate'.
+#: Pass an empty tuple only to inspect the screens in isolation, never to
+#: report a verdict.
+UNRESOLVED_REQUIREMENTS = (
+    'regional organ pressure minima',
+    'whole-brain regional distribution and function',
+    'recovery-linked oxygen-deficit thresholds for every tissue',
+    'endogenous suppression mechanism and reversibility',
+    'respiratory drive, airway, ventilation-demand coupling and CO2 clearance',
+    'tissue oxygen accessibility and microvascular exchange',
+    'glycogen/glucose stock and delivery limits',
+    'blood compatibility, endothelial injury and reperfusion injury',
+    'biological auxiliary self-demand calibration where applicable',
+)
+
+
 @dataclass(frozen=True)
 class FeasibilityPolicy:
     """Frozen evaluation policy. Freeze under T8.1 before any main run."""
@@ -40,7 +58,7 @@ class FeasibilityPolicy:
     startup_allowance_s: float = 2.
     oxygen_tolerance_mL_s: float = 1e-8
     horizon_s: float = 10.
-    unresolved_requirements: tuple = ()
+    unresolved_requirements: tuple = UNRESOLVED_REQUIREMENTS
 
     def __post_init__(self):
         if set(self.thresholds_mmHg) != {'mean', 'maximum', 'minimum'}:
@@ -96,6 +114,13 @@ def pressure_endpoint(policy, time_s, ao_mmHg, release_s=None):
                 window_s=policy.window_s, startup_allowance_s=policy.startup_allowance_s,
                 release_s=None if release_s is None else float(release_s),
                 startup_windows=len(startup), sustained_windows=len(sustained),
+                # A window counts once however many metrics it violates, so a
+                # per-metric count is never mistaken for the overall total.
+                violating_sustained_windows=len(violating),
+                first_satisfied_sustained_window_s=next(
+                    (r['start_s'] for r in sustained if 'violated' not in r['status'].values()), None),
+                windows=[dict(r, interval='startup') for r in startup]
+                        +[dict(r, interval='sustained') for r in sustained],
                 startup_shortfall_mmHg_s=shortfall,
                 first_violating_sustained_window=violating[0] if violating else None,
                 sustained_exposure=({k: dict(

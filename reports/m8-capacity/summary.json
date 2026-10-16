@@ -1,0 +1,121 @@
+{
+  "scope": "equal-cavity-scale pressure screen under the frozen T8.1 protocol",
+  "protocol_version": 1,
+  "thresholds_mmHg": {
+    "mean": 65.0,
+    "maximum": 90.0,
+    "minimum": 50.0
+  },
+  "records": [
+    {
+      "scale": 0.25,
+      "status": "violated",
+      "numerical_status": "valid",
+      "MAP_mmHg": 49.00706925523821,
+      "aux_left_L_min": 1.8050553159806118,
+      "release_s": 2.6,
+      "chamber_work_J": [
+        1.7453793562312845,
+        0.42282012269270286
+      ],
+      "violating_window_s": {
+        "mean": 8.0,
+        "maximum": 8.0,
+        "minimum": 8.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 138.23146624054345,
+        "maximum": 291.49115025697745,
+        "minimum": 64.88724899930506
+      }
+    },
+    {
+      "scale": 0.4,
+      "status": "violated",
+      "numerical_status": "valid",
+      "MAP_mmHg": 66.85682797967667,
+      "aux_left_L_min": 2.621467510146065,
+      "release_s": 2.55,
+      "chamber_work_J": [
+        3.053046351752889,
+        0.7195099876375483
+      ],
+      "violating_window_s": {
+        "mean": 6.0,
+        "maximum": 8.0,
+        "minimum": 3.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 42.34080891459204,
+        "maximum": 171.78898794581016,
+        "minimum": 17.254145538018463
+      }
+    },
+    {
+      "scale": 0.6,
+      "status": "violated",
+      "numerical_status": "valid",
+      "MAP_mmHg": 85.65124644216004,
+      "aux_left_L_min": 3.4993350481436165,
+      "release_s": 2.55,
+      "chamber_work_J": [
+        4.823138292162381,
+        1.11458597459715
+      ],
+      "violating_window_s": {
+        "mean": 2.0,
+        "maximum": 4.0,
+        "minimum": 2.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 23.66615354965265,
+        "maximum": 55.80313723607145,
+        "minimum": 13.71047151841487
+      }
+    },
+    {
+      "scale": 0.8,
+      "status": "violated",
+      "numerical_status": "valid",
+      "MAP_mmHg": 100.62426596665014,
+      "aux_left_L_min": 4.1964055031675045,
+      "release_s": 2.5,
+      "chamber_work_J": [
+        6.519072628227343,
+        1.4918628277021047
+      ],
+      "violating_window_s": {
+        "mean": 1.0,
+        "maximum": 2.0,
+        "minimum": 2.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 16.749226867108973,
+        "maximum": 32.74823810123563,
+        "minimum": 10.653966520912554
+      }
+    },
+    {
+      "scale": 1.0,
+      "status": "violated",
+      "numerical_status": "valid",
+      "MAP_mmHg": 112.16945871983165,
+      "aux_left_L_min": 4.757144125531466,
+      "release_s": 2.5,
+      "chamber_work_J": [
+        8.058568239840765,
+        1.8373900130714962
+      ],
+      "violating_window_s": {
+        "mean": 1.0,
+        "maximum": 1.0,
+        "minimum": 1.0
+      },
+      "shortfall_mmHg_s": {
+        "mean": 16.642737035630688,
+        "maximum": 24.53504084241996,
+        "minimum": 10.439063547154284
+      }
+    }
+  ]
+}

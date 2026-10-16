@@ -43,6 +43,22 @@ SCENARIOS = dict(
                     preservation_fraction=.1, glycogen_mmol_L_liver=400.,
                     release_cap_mmol_min=.4, liver_function_fraction=1.))
 
+#: Model-form alternatives that cross every physiology scenario. These are not
+#: design controls: a search may not choose them, because choosing them would
+#: pick a favourable physiology instead of meeting the requirement. A candidate
+#: must satisfy the screens across the declared cases, and where it cannot, the
+#: result is reported as conditional on the case.
+MODEL_FORM = dict(
+    compression_kappa=dict(
+        reference=.5, cases=[0., .5, 1.],
+        acts_on='fraction of auxiliary chamber transmural pressure applied as the '
+                'closing pressure of its own coronary bed (vascular waterfall)',
+        provenance='configs/m2-frozen-overlay.yaml compression_kappa_cases; declared in M2 '
+                   'and assigned to T7.4 by docs/uncertainty-plan.md, never exercised by any '
+                   'runner before T8.2',
+        measured_effect='at scale 0.6, conductance 1.0, reference physiology: auxiliary unmet '
+                        '0.000000 mL at kappa 0, 0.002351 at kappa 0.5, 0.300505 at kappa 1'))
+
 #: T8.2 operating cases, each a prescribed circumstance rather than a design
 #: choice. Keys match the existing M6/M7 runner case flags.
 OPERATING_CASES = dict(
@@ -117,7 +133,49 @@ def main():
     timing = json.loads((ROOT / 'reports/m8-protocol/timing/single-evaluation.json').read_text(encoding='utf-8'))
     bounds_ok = {k: list(v[0]) for k, v in BOUNDS.items()}
     protocol = dict(
-        version=1, task='T8.1', frozen_on='2026-10-16',
+        version=2, task='T8.1', frozen_on='2026-10-16',
+        amendments=[
+            dict(version=2, change='auxiliary myocardial oxygen store sized by the shared '
+                 'store_seconds=5 rule at the design demand, replacing the absolute pair in '
+                 'configs/m5-myocardial-demand.json',
+                 reason='the frozen pair is five seconds of a 7.0/3.0 mL/min demand, i.e. the '
+                        'same rule evaluated once at the reference fixture. Held fixed, a larger '
+                        'pump carries a smaller pump\'s store and the run aborts on "Oxygen '
+                        'capacity exceeded" as soon as supply exceeds demand',
+                 reruns='none required: scales 0.4 and 0.6 returned identical deficits, so the '
+                        'constant only blocked evaluation. It also confirms the deficit is '
+                        'glucose-limited, not oxygen-store-limited'),
+            dict(version=2, change='the nine unresolved requirements from '
+                 'configs/m4-constraint-policy.json are attached to every FeasibilityPolicy',
+                 reason='the default was empty, so a clean numeric run would have been labelled '
+                        'satisfied_within_declared_model instead of indeterminate',
+                 reruns='none: no verdict had been issued before the fix'),
+            dict(version=2, change='compression_kappa declared as a model-form scenario axis '
+                 'with cases 0/0.5/1',
+                 reason='it is the most influential quantity found in the self-supply constraint '
+                        'and had never been varied by any runner, despite M2 declaring the cases '
+                        'and the uncertainty registry assigning them to T7.4',
+                 reruns='self-supply results obtained at kappa 0.5 are now conditional on that '
+                        'case and are reported as such'),
+            dict(version=2, change='search method: boundary tracing with bisection as primary, '
+                 'differential evolution demoted to neighbourhood verification',
+                 reason='the objective proved monotone in scale and rate, placing the optimum on '
+                        'the constraint boundary; a global population search would spend '
+                        'thousands of evaluations rediscovering that structure',
+                 reruns='none: no search had been run'),
+            dict(version=2, change='pressure_endpoint additionally returns per-window records, a '
+                 'union violation count and the first fully satisfied window',
+                 reason='a per-metric count was mistaken for the overall total when reporting',
+                 reruns='none: reporting only, no screen arithmetic changed')],
+        pending_amendments=[
+            dict(change='cycle-aligned pressure evaluation',
+                 reason='docs/m2-pressure-requirements.md asks for the integral mean, maximum and '
+                        'minimum over each auxiliary activation cycle, reserving the fixed '
+                        '1 s window for irregular or nonpulsatile runs. The frozen policy uses '
+                        '1 s windows throughout, which mixes 1.33 cycles at the reference period '
+                        'and will mix differently once period_s varies',
+                 status='must be settled before the main runs; it changes screen arithmetic and '
+                        'would require rerunning every pressure verdict')],
         classification='frozen search and evaluation protocol; declared assumptions, not '
                        'measured limits, and no clinical or survival claim',
         code=dict(commit=git('rev-parse', 'HEAD'), branch=git('rev-parse', '--abbrev-ref', 'HEAD'),
@@ -135,7 +193,7 @@ def main():
                        'relabelling the screen to obtain a pass']),
         registry=registry(), declared_bounds=bounds_ok,
         reference_design=asdict(DesignPoint()), reference_scenario=asdict(ScenarioPoint()),
-        scenarios=SCENARIOS, operating_cases=OPERATING_CASES,
+        scenarios=SCENARIOS, model_form=MODEL_FORM, operating_cases=OPERATING_CASES,
         evaluation_policy=asdict(FeasibilityPolicy()),
         constraints=dict(
             pressure='joint mean/maximum/minimum AO screen over complete 1 s windows',
@@ -152,12 +210,36 @@ def main():
                    'transmural work', 'auxiliary oxygen demand and unmet ledger',
                    'glycogen and glucose remaining', 'cavity scale as a capacity proxy'],
         numerical=NUMERICAL,
-        search=dict(method='constrained differential evolution (scipy.optimize)',
-                    seeds=[8101, 8102, 8103], baseline='matched-budget space-filling sample; '
-                    'required, not optional, since a search without it cannot be shown to beat sampling',
-                    polish=False, polish_reason='objective is discontinuous at domain exits and '
-                                               'screen boundaries',
-                    claim='best found within the tested bounds and budget; not a global optimum'),
+        search=dict(
+            objective='minimize total auxiliary oxygen demand (mL O2/min) computed from the '
+                      'design and its own hydraulic work; chamber work reported alongside',
+            formulation='robust constrained minimization: the design vector excludes every '
+                        'scenario and model-form factor, and the screens must hold across the '
+                        'declared cases, with the worst case reported',
+            primary='boundary tracing with bisection, justified by three measured structural '
+                    'properties: the objective rises monotonically in cavity scale and rate, so '
+                    'the optimum lies on the pressure-feasibility boundary rather than inside '
+                    'it; coronary conductance is nearly free energetically (11.624 to 11.589 '
+                    'mL O2/min from 1.0 to 2.0) and only relaxes self-supply, so its optimal '
+                    'value is the least that satisfies the constraint; and the constraints '
+                    'nearly separate, since conductance and kappa move MAP by under 2 mmHg',
+            monotonicity_premise='bisection assumes pressure feasibility is monotone in cavity '
+                                 'scale at fixed rate. Observed at 80/min (0.25, 0.4 fail; 0.6, '
+                                 '0.8, 1.0 pass) and 150/min (0.3, 0.4 fail; 0.5 pass). The '
+                                 'premise is declared and must be checked by evaluating points '
+                                 'either side of every located boundary, not assumed silently',
+            secondary_objective='minimum coronary conductance, traced by the epsilon-constraint '
+                                'method rather than folded into a weighted sum',
+            verification='constrained differential evolution (scipy.optimize) in the '
+                         'neighbourhood of the located optimum, plus a matched-budget '
+                         'space-filling sample; required, not optional, since a structural '
+                         'argument cannot be allowed to verify itself',
+            seeds=[8101, 8102, 8103],
+            fallbacks='mesh adaptive direct search, or Bayesian optimization with a separate '
+                      'feasibility classifier, if the monotonicity premise fails',
+            polish=False, polish_reason='objective is discontinuous at domain exits and '
+                                        'screen boundaries',
+            claim='best found within the tested bounds and budget; not a global optimum'),
         budget=budget(timing['evaluation_s'], timing['hydraulic_s']),
         inherited_limitations=['R-M3-01 source thoracic-pressure response',
             'L-M4-F01 no tissue glucose buffer; substrate use is instantaneous',
