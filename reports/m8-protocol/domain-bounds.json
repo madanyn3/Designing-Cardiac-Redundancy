@@ -1,0 +1,311 @@
+{
+  "scope": "initial-state inventory and model-domain screen at equal cavity scales",
+  "reference_state": "reports/m5-joint-preservation/reference_g25/fine-refined.npz",
+  "total_inventory_mL": 5250.000000012124,
+  "declared_parameter_bounds": {
+    "scale": [
+      0.1,
+      1.0
+    ],
+    "period_s": [
+      0.4,
+      1.5
+    ],
+    "contractility": [
+      0.5,
+      2.0
+    ]
+  },
+  "admissible_scale_range": [
+    0.1,
+    1.0
+  ],
+  "interpretation": "an inventory/domain bound on the declared initial state; admissibility here is not adequacy and not an anatomical limit",
+  "records": [
+    {
+      "scale": 0.1,
+      "admissible": true,
+      "cavity_mL": [
+        9.46812,
+        9.07302
+      ],
+      "inventory_error_mL": 9.094947017729282e-13,
+      "donor_margins_mL": {
+        "PU": 771.2604839626572,
+        "VC": 259.47711376410734
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.15,
+      "admissible": true,
+      "cavity_mL": [
+        14.20218,
+        13.60953
+      ],
+      "inventory_error_mL": 9.094947017729282e-13,
+      "donor_margins_mL": {
+        "PU": 766.5264239626572,
+        "VC": 254.94060376410698
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.2,
+      "admissible": true,
+      "cavity_mL": [
+        18.93624,
+        18.14604
+      ],
+      "inventory_error_mL": 9.094947017729282e-13,
+      "donor_margins_mL": {
+        "PU": 761.7923639626572,
+        "VC": 250.40409376410707
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.25,
+      "admissible": true,
+      "cavity_mL": [
+        23.6703,
+        22.68255
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 757.0583039626572,
+        "VC": 245.86758376410717
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.3,
+      "admissible": true,
+      "cavity_mL": [
+        28.40436,
+        27.21906
+      ],
+      "inventory_error_mL": 9.094947017729282e-13,
+      "donor_margins_mL": {
+        "PU": 752.3242439626572,
+        "VC": 241.33107376410726
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.35,
+      "admissible": true,
+      "cavity_mL": [
+        33.138419999999996,
+        31.755569999999995
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 747.5901839626572,
+        "VC": 236.79456376410735
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.4,
+      "admissible": true,
+      "cavity_mL": [
+        37.87248,
+        36.29208
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 742.8561239626572,
+        "VC": 232.258053764107
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.45,
+      "admissible": true,
+      "cavity_mL": [
+        42.60654,
+        40.82859
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 738.1220639626572,
+        "VC": 227.72154376410708
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.5,
+      "admissible": true,
+      "cavity_mL": [
+        47.3406,
+        45.3651
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 733.3880039626572,
+        "VC": 223.18503376410717
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.55,
+      "admissible": true,
+      "cavity_mL": [
+        52.07466000000001,
+        49.901610000000005
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 728.6539439626572,
+        "VC": 218.64852376410727
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.6,
+      "admissible": true,
+      "cavity_mL": [
+        56.80872,
+        54.43812
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 723.9198839626572,
+        "VC": 214.11201376410736
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.65,
+      "admissible": true,
+      "cavity_mL": [
+        61.54278000000001,
+        58.97463
+      ],
+      "inventory_error_mL": 9.094947017729282e-13,
+      "donor_margins_mL": {
+        "PU": 719.1858239626572,
+        "VC": 209.575503764107
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.7,
+      "admissible": true,
+      "cavity_mL": [
+        66.27683999999999,
+        63.51113999999999
+      ],
+      "inventory_error_mL": 9.094947017729282e-13,
+      "donor_margins_mL": {
+        "PU": 714.4517639626572,
+        "VC": 205.0389937641071
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.75,
+      "admissible": true,
+      "cavity_mL": [
+        71.0109,
+        68.04765
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 709.7177039626572,
+        "VC": 200.50248376410718
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.8,
+      "admissible": true,
+      "cavity_mL": [
+        75.74496,
+        72.58416
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 704.9836439626572,
+        "VC": 195.96597376410728
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.85,
+      "admissible": true,
+      "cavity_mL": [
+        80.47902,
+        77.12066999999999
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 700.2495839626572,
+        "VC": 191.42946376410737
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.9,
+      "admissible": true,
+      "cavity_mL": [
+        85.21308,
+        81.65718
+      ],
+      "inventory_error_mL": 9.094947017729282e-13,
+      "donor_margins_mL": {
+        "PU": 695.5155239626572,
+        "VC": 186.892953764107
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 0.95,
+      "admissible": true,
+      "cavity_mL": [
+        89.94714,
+        86.19368999999999
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 690.7814639626572,
+        "VC": 182.3564437641071
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    },
+    {
+      "scale": 1.0,
+      "admissible": true,
+      "cavity_mL": [
+        94.6812,
+        90.7302
+      ],
+      "inventory_error_mL": 0.0,
+      "donor_margins_mL": {
+        "PU": 686.0474039626572,
+        "VC": 177.8199337641072
+      },
+      "tightest": "A_limb_other",
+      "tightest_margin_mL": 1.5375728268954596
+    }
+  ]
+}

@@ -1,0 +1,489 @@
+{
+  "version": 1,
+  "task": "T8.1",
+  "frozen_on": "2026-10-16",
+  "classification": "frozen search and evaluation protocol; declared assumptions, not measured limits, and no clinical or survival claim",
+  "code": {
+    "commit": "f198c8d0b369dbb6db0ea39404d9d70c5b15462a",
+    "branch": "main",
+    "dirty": true,
+    "python": "3.13.12",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1"
+  },
+  "objective": {
+    "primary": "maximize the sustained-interval margin against the declared pressure screen, then minimize auxiliary capacity and energy among candidates that satisfy it",
+    "aggregation": "a candidate is reported on its worst declared scenario, not its mean",
+    "censoring": "a run with no violation through the horizon is reported as \"no modeled violation observed through H\", never as indefinite support",
+    "tie_breaking": [
+      "smaller cavity scale",
+      "lower chamber work",
+      "lower auxiliary demand"
+    ],
+    "forbidden": [
+      "choosing scenario factors to lower the requirement",
+      "crediting reduced consumption after unmet demand as efficiency",
+      "relabelling the screen to obtain a pass"
+    ]
+  },
+  "registry": {
+    "design_controls": {
+      "coronary_conductance": {
+        "bounds": [
+          0.5,
+          2.0
+        ],
+        "provenance": "M7 global factor bounds; anatomical/design hypothesis",
+        "reference": 1.0
+      },
+      "left_contractility": {
+        "bounds": [
+          0.5,
+          2.0
+        ],
+        "provenance": "BiologicalParameters validator",
+        "reference": 1.0
+      },
+      "left_scale": {
+        "bounds": [
+          0.1,
+          1.0
+        ],
+        "provenance": "BiologicalParameters validator; capacity proxy, not anatomical mass",
+        "reference": 0.25
+      },
+      "pericardial_scale": {
+        "bounds": [
+          0.1,
+          1.0
+        ],
+        "provenance": "BiologicalParameters validator",
+        "reference": 0.25
+      },
+      "period_s": {
+        "bounds": [
+          0.4,
+          1.5
+        ],
+        "provenance": "BiologicalParameters validator; 40-150 beats/min",
+        "reference": 0.75
+      },
+      "preservation_conductance": {
+        "bounds": [
+          0.1,
+          0.5
+        ],
+        "provenance": "M7 global factor bounds; vascular allocation control",
+        "reference": 0.25
+      },
+      "right_contractility": {
+        "bounds": [
+          0.5,
+          2.0
+        ],
+        "provenance": "BiologicalParameters validator",
+        "reference": 1.0
+      },
+      "right_scale": {
+        "bounds": [
+          0.1,
+          1.0
+        ],
+        "provenance": "BiologicalParameters validator; capacity proxy, not anatomical mass",
+        "reference": 0.25
+      },
+      "septal_contractility": {
+        "bounds": [
+          0.5,
+          2.0
+        ],
+        "provenance": "BiologicalParameters validator",
+        "reference": 1.0
+      },
+      "septal_scale": {
+        "bounds": [
+          0.1,
+          1.0
+        ],
+        "provenance": "BiologicalParameters validator",
+        "reference": 0.25
+      }
+    },
+    "scenario_factors": {
+      "extraction_limit": {
+        "bounds": [
+          0.25,
+          0.75
+        ],
+        "provenance": "M7 global factor bounds; leading deficit effect",
+        "reference": 0.5
+      },
+      "glycogen_mmol_L_liver": {
+        "bounds": [
+          150.0,
+          400.0
+        ],
+        "provenance": "M1 inventory range around the 229 reference",
+        "reference": 229.0
+      },
+      "liver_function_fraction": {
+        "bounds": [
+          0.25,
+          1.0
+        ],
+        "provenance": "M5/M7 runs used 0.5; export capability is uncertain",
+        "reference": 0.5
+      },
+      "mass_coupling": {
+        "bounds": [
+          0.8,
+          1.6
+        ],
+        "provenance": "declared uncertainty on specific myocardial mass per cavity scale",
+        "reference": 1.0
+      },
+      "preservation_fraction": {
+        "bounds": [
+          0.1,
+          0.5
+        ],
+        "provenance": "M7 global sampled range; speculative suppressed state",
+        "reference": 0.25
+      },
+      "release_cap_mmol_min": {
+        "bounds": [
+          0.1,
+          0.4
+        ],
+        "provenance": "M1 release knob around the 0.21 reference",
+        "reference": 0.21
+      },
+      "work_cost_multiplier": {
+        "bounds": [
+          0.75,
+          1.5
+        ],
+        "provenance": "M7 global factor bounds",
+        "reference": 1.0
+      }
+    },
+    "couplings": {
+      "mass_ratio": "cavity_scale * mass_coupling; charged in auxiliary oxygen demand",
+      "activation_cost": "scales with rate_bpm = 60/period_s in side_demand",
+      "coronary_capacity": "auxiliary coronary resistance already divides by cavity scale in BiologicalPumpModel.flows; coronary_conductance multiplies it"
+    },
+    "interpretation": "search assumptions and declared scenarios; not measured limits"
+  },
+  "declared_bounds": {
+    "left_scale": [
+      0.1,
+      1.0
+    ],
+    "right_scale": [
+      0.1,
+      1.0
+    ],
+    "septal_scale": [
+      0.1,
+      1.0
+    ],
+    "pericardial_scale": [
+      0.1,
+      1.0
+    ],
+    "period_s": [
+      0.4,
+      1.5
+    ],
+    "left_contractility": [
+      0.5,
+      2.0
+    ],
+    "right_contractility": [
+      0.5,
+      2.0
+    ],
+    "septal_contractility": [
+      0.5,
+      2.0
+    ],
+    "coronary_conductance": [
+      0.5,
+      2.0
+    ],
+    "preservation_conductance": [
+      0.1,
+      0.5
+    ],
+    "extraction_limit": [
+      0.25,
+      0.75
+    ],
+    "mass_coupling": [
+      0.8,
+      1.6
+    ],
+    "work_cost_multiplier": [
+      0.75,
+      1.5
+    ],
+    "preservation_fraction": [
+      0.1,
+      0.5
+    ],
+    "glycogen_mmol_L_liver": [
+      150.0,
+      400.0
+    ],
+    "release_cap_mmol_min": [
+      0.1,
+      0.4
+    ],
+    "liver_function_fraction": [
+      0.25,
+      1.0
+    ]
+  },
+  "reference_design": {
+    "left_scale": 0.25,
+    "right_scale": 0.25,
+    "septal_scale": 0.25,
+    "pericardial_scale": 0.25,
+    "period_s": 0.75,
+    "left_contractility": 1.0,
+    "right_contractility": 1.0,
+    "septal_contractility": 1.0,
+    "coronary_conductance": 1.0,
+    "preservation_conductance": 0.25
+  },
+  "reference_scenario": {
+    "extraction_limit": 0.5,
+    "mass_coupling": 1.0,
+    "work_cost_multiplier": 1.0,
+    "preservation_fraction": 0.25,
+    "glycogen_mmol_L_liver": 229.0,
+    "release_cap_mmol_min": 0.21,
+    "liver_function_fraction": 0.5
+  },
+  "scenarios": {
+    "reference": {},
+    "adverse": {
+      "extraction_limit": 0.25,
+      "mass_coupling": 1.6,
+      "work_cost_multiplier": 1.5,
+      "preservation_fraction": 0.5,
+      "glycogen_mmol_L_liver": 150.0,
+      "release_cap_mmol_min": 0.1,
+      "liver_function_fraction": 0.25
+    },
+    "favourable": {
+      "extraction_limit": 0.75,
+      "mass_coupling": 0.8,
+      "work_cost_multiplier": 0.75,
+      "preservation_fraction": 0.1,
+      "glycogen_mmol_L_liver": 400.0,
+      "release_cap_mmol_min": 0.4,
+      "liver_function_fraction": 1.0
+    }
+  },
+  "operating_cases": {
+    "no_support": {
+      "policy": "none",
+      "meaning": "native pumping loss with no auxiliary release"
+    },
+    "support_no_suppression": {
+      "policy": "observed",
+      "preservation_override": 1.0,
+      "meaning": "auxiliary support with organ demand left at baseline"
+    },
+    "support_with_suppression": {
+      "policy": "observed",
+      "meaning": "auxiliary support with the declared suppressed-demand scenario"
+    },
+    "oracle_activation": {
+      "policy": "fixed",
+      "release_s": 0.5,
+      "meaning": "prescribed release at the activation-timing latency; an upper reference"
+    },
+    "delayed_activation": {
+      "policy": "observed",
+      "meaning": "observed detection latency",
+      "note": "the observed policy released at 2.6 s in the reference run"
+    },
+    "ventilation_degraded": {
+      "policy": "observed",
+      "apnea": 4.0,
+      "meaning": "gas-exchange loss during support"
+    },
+    "partial_recovery": {
+      "policy": "observed",
+      "restart": 6.0,
+      "reopen": 6.0,
+      "meaning": "native restart with regional reopening and handover"
+    },
+    "shared_failure": {
+      "policy": "observed",
+      "sensor_loss": 3.0,
+      "meaning": "sensing loss during support; command is latched"
+    },
+    "low_preload": {
+      "policy": "observed",
+      "deplete_PU": true,
+      "meaning": "reduced donor-pool filling"
+    }
+  },
+  "evaluation_policy": {
+    "thresholds_mmHg": {
+      "mean": 65.0,
+      "maximum": 90.0,
+      "minimum": 50.0
+    },
+    "window_s": 1.0,
+    "startup_allowance_s": 2.0,
+    "oxygen_tolerance_mL_s": 1e-08,
+    "horizon_s": 10.0,
+    "unresolved_requirements": []
+  },
+  "constraints": {
+    "pressure": "joint mean/maximum/minimum AO screen over complete 1 s windows",
+    "oxygen_active": "no sustained unmet demand beyond numerical tolerance in the active group",
+    "oxygen_preservation": "same screen on the preserved group",
+    "auxiliary_self_supply": "same screen on the pump group; the auxiliary heart must supply its own myocardium",
+    "model_domain": "positive cavity volumes and nonnegative vascular margins throughout",
+    "inventory": "total blood volume conserved to the declared tolerance",
+    "unassessed": [
+      "regional organ pressure minima",
+      "whole-brain regional distribution and function",
+      "recovery-linked oxygen-deficit thresholds for every tissue",
+      "endogenous suppression mechanism and reversibility",
+      "respiratory drive, airway, ventilation-demand coupling and CO2 clearance",
+      "tissue oxygen accessibility and microvascular exchange",
+      "glycogen/glucose stock and delivery limits",
+      "blood compatibility, endothelial injury and reperfusion injury",
+      "biological auxiliary self-demand calibration where applicable"
+    ]
+  },
+  "endpoints": [
+    "first constraint violation bracket",
+    "startup shortfall exposure",
+    "sustained-interval status per constraint",
+    "chamber work and positive transmural work",
+    "auxiliary oxygen demand and unmet ledger",
+    "glycogen and glucose remaining",
+    "cavity scale as a capacity proxy"
+  ],
+  "numerical": {
+    "hydraulic": {
+      "solver": "Radau",
+      "pairs": [
+        {
+          "label": "nominal",
+          "rtol": 1e-07,
+          "max_step_s": 0.01
+        },
+        {
+          "label": "refined",
+          "rtol": 1e-09,
+          "max_step_s": 0.005
+        }
+      ],
+      "sample_step_s": 0.005,
+      "paired_scaled_error_limit": 0.005,
+      "conservation_limits": {
+        "blood_error_mL": 1e-05,
+        "state_jump_mL": 1e-10,
+        "root_residual_mmHg": 1e-08,
+        "PV_quadrature_error_J": 0.05
+      }
+    },
+    "metabolic": {
+      "solver": "RK45",
+      "pairs": [
+        {
+          "label": "nominal",
+          "rtol": 1e-09,
+          "max_step_s": 0.005
+        },
+        {
+          "label": "refined",
+          "rtol": 1e-11,
+          "max_step_s": 0.0025
+        }
+      ],
+      "paired_state_limits": {
+        "oxygen_mL": 0.002,
+        "glucose_mmol": 1e-05
+      },
+      "balance_limits": {
+        "oxygen_mL": 1e-06,
+        "glucose_mmol": 1e-08
+      }
+    },
+    "controller": {
+      "sample_period_s": 0.05,
+      "filter_window_s": 0.75,
+      "max_sample_gap_s": 0.1
+    },
+    "failed_run_policy": "a domain exit or failed paired check is recorded with its cause and excluded from optimality claims; it is never counted as a pass, and never silently resampled",
+    "tolerance_policy": "tolerances are frozen here; they are not loosened to afford more evaluations, which was tried and rejected in the M7 pilot"
+  },
+  "search": {
+    "method": "constrained differential evolution (scipy.optimize)",
+    "seeds": [
+      8101,
+      8102,
+      8103
+    ],
+    "baseline": "matched-budget space-filling sample; required, not optional, since a search without it cannot be shown to beat sampling",
+    "polish": false,
+    "polish_reason": "objective is discontinuous at domain exits and screen boundaries",
+    "claim": "best found within the tested bounds and budget; not a global optimum"
+  },
+  "budget": {
+    "measured_single_evaluation_s": 277.0792817000038,
+    "measured_hydraulic_s": 110.7383986999921,
+    "workers": 12,
+    "stage1": {
+      "what": "pressure feasibility search on the hydraulic stage",
+      "evaluations": 3000,
+      "wall_hours": 7.69
+    },
+    "stage2": {
+      "what": "coupled evaluation of pressure-passing candidates across scenarios",
+      "evaluations": 600,
+      "wall_hours": 3.85
+    },
+    "justification": "staging is sound only because the pipeline is one-way; if supply-limited contraction is ever implemented the stages must be merged again"
+  },
+  "inherited_limitations": [
+    "R-M3-01 source thoracic-pressure response",
+    "L-M4-F01 no tissue glucose buffer; substrate use is instantaneous",
+    "prescribed BIO contraction: unmet demand never reduces pumping",
+    "supply-limited contraction and full tissue buffering unimplemented",
+    "regional pressure minima, CO2/pH, injury, reperfusion and thrombosis unassessed",
+    "cavity scale is a capacity proxy, not a determined anatomical mass"
+  ],
+  "inputs": {
+    "configs/baseline.yaml": "98cdb449400a9a3a21c5f609fe3dd6ec4be7a79c4bb9cff98b1d11812debcac9",
+    "configs/m3-evidence-regional.yaml": "ea306d442ebedcf5fe425fb3b801bcebe801e2e7e76f5c3c17fa8b4b38c2df1b",
+    "configs/m2-frozen-overlay.yaml": "839ef13833bc32487d484943466650cdadb9b17ca46157dbea6bb84374d4f277",
+    "configs/auxiliary-heart-design.yaml": "9b5c635912eb896eb8f74d61748a0dc8225b17d4c963d2dd878b5e4cf2ee712c",
+    "configs/m4-constraint-policy.json": "6fb4fa2bde15daf4a5de5856441178f1969b5d18d6f4599551484a79f6cac925",
+    "configs/m4-oxygen-reference.json": "c6f3af3862362168ff72ef342cf749cffc831b13a20c2122ade6186c3dd98098",
+    "configs/m4-fuel-reference.json": "79627650508f736aac66c9ae46c24a75b7b67a8139e11610b042a883812b61de",
+    "configs/m4-organ-mapping.json": "9b791f8c29ad0a5fa3cee25b3ae1a91c00f7fa66eb64222b8517678387af6965",
+    "configs/m5-myocardial-demand.json": "374f8f0921c7a7a261897f3a0d94a4870aef8d0d6ae9ecadc05e6bb1d7d80848",
+    "configs/m5-final-comparison.json": "19dad77953ca9cb4b4d8a3b840a3c897c3dc978fff567dacd7ddf3daef12ef7e",
+    "configs/m5-organ-preservation.json": "a4727afd12b6ca955c0a200db10eaf267680bee54cb94f30c57dadf6ec8a72b6",
+    "configs/m6-controller.json": "5125683cb82f3fc79a2e571513bcac5ab64404bcb1e41071bc80fca99402164c",
+    "configs/m6-coupled-protocol.json": "6b14ef8c2cc2184196feb8203310ede907afff4924e702b5a36c55fb82dc85cd",
+    "data/m1-demand-budget.json": "ad161a012ec67645ce0791be533428460f59304c18a793b5bee6ff4a9ae498da",
+    "src/cardiac_redundancy/design.py": "65d52471db8ecae107a9fac6c692ac962672c61275305847330c9b8ea4facbf0",
+    "src/cardiac_redundancy/feasibility.py": "2692615e7f94c90d532551f244d1629ccd63955497014d8066997f6e5a57c74e",
+    "reports/m5-joint-preservation/reference_g25/fine-refined.npz": "9a55562e4091ff3a6c373ca8d1e8882621828c17443572ddbb3b993f5f5b2ab8",
+    "reports/m4-baseline/native-cycle.npz": "7a582cfea218bf4961910eb361897003c330a2a17d3b5c5db9ce78aea52f33de",
+    "reports/m4-baseline/store-5-refined.npz": "fe9f7f359f78cd8b00a8b6b7080d240a4e4d18a1475c87bf851106768e19431e",
+    "reports/m5-normal-comparison/verification.json": "b561de903cf0441c293431e887c53faf05976482493d90b92c494e40c0e59425"
+  },
+  "amendment_policy": "bump version, record what changed and why, and rerun every analysis that depended on the previous version"
+}

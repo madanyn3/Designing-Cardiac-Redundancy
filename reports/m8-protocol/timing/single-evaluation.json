@@ -1,0 +1,28 @@
+{
+  "scope": "single-evaluation wall time on the frozen M7 global pipeline",
+  "case": {
+    "name": "reference",
+    "policy": "observed",
+    "knobs": {
+      "extraction_limit": 0.5,
+      "mass_ratio": 0.25,
+      "work_cost_multiplier": 1.0,
+      "preservation_fraction": 0.25,
+      "preservation_conductance": 0.25,
+      "contractility": 1.0,
+      "coronary_conductance": 1.0,
+      "glycogen_mmol_L_liver": 229.0,
+      "release_cap_mmol_min": 0.21
+    },
+    "hydraulic_source": "reports\\m8-protocol\\timing\\hydraulics\\reference"
+  },
+  "hydraulic_s": 110.7383986999921,
+  "metabolic_s": 166.34088300001167,
+  "evaluation_s": 277.0792817000038,
+  "includes": "paired nominal and refined settings for both stages",
+  "machine": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 26 Model 96 Stepping 0, AuthenticAMD",
+    "python": "3.13.12"
+  }
+}
