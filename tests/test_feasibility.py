@@ -3,7 +3,8 @@ import pytest
 from pathlib import Path
 import json
 from cardiac_redundancy.feasibility import (FeasibilityPolicy, PRESSURE_SCREEN_MMHG,
-    UNRESOLVED_REQUIREMENTS, numerical_status, oxygen_endpoint, pressure_endpoint, verdict)
+    UNRESOLVED_REQUIREMENTS, numerical_status, oxygen_endpoint, pressure_endpoint,
+    pressure_margin, verdict)
 
 POLICY = FeasibilityPolicy()
 ROOT = Path(__file__).resolve().parents[1]
@@ -180,3 +181,35 @@ def test_unvalidated_policy_objects_are_refused():
         oxygen_endpoint(POLICY, *groups(0.)[::-1], 255.848)
     with pytest.raises(ValueError):
         oxygen_endpoint(POLICY, groups(0.)[0], {}, 255.848)
+
+
+def test_margin_sign_agrees_with_the_screen_verdict():
+    """A root-find on the margin must locate the boundary the screen reports."""
+    for level in (40., 60., 70., 80., 95., 110.):
+        t = np.arange(0., 10.001, .01)
+        p = level+20.*np.sin(2*np.pi*t/.75)
+        out = pressure_endpoint(POLICY, t, p)
+        margin = pressure_margin(out)
+        assert (margin >= 0) == (out['status'] == 'satisfied'), (level, margin, out['status'])
+
+
+def test_margin_is_the_worst_metric_not_the_mean():
+    t = np.arange(0., 10.001, .01)
+    p = 75.+20.*np.sin(2*np.pi*t/.75)          # MAP 75, SBP 95, DBP 55
+    out = pressure_endpoint(POLICY, t, p)
+    # DBP has 5 mmHg of room, MAP has 10, SBP has 5; the worst governs.
+    assert pressure_margin(out) == pytest.approx(min(75.-65., 95.-90., 55.-50.), abs=.3)
+
+
+def test_margin_is_monotone_in_pressure_level():
+    margins = []
+    for level in (60., 70., 80., 90.):
+        t = np.arange(0., 10.001, .01)
+        margins.append(pressure_margin(pressure_endpoint(POLICY, t, level+20.*np.sin(2*np.pi*t/.75))))
+    assert margins == sorted(margins)
+
+
+def test_margin_is_none_without_a_complete_sustained_window():
+    t = np.arange(0., 2.51, .01)
+    policy = FeasibilityPolicy(startup_allowance_s=2., horizon_s=2.5)
+    assert pressure_margin(pressure_endpoint(policy, t, np.full_like(t, 95.))) is None

@@ -132,6 +132,26 @@ def pressure_endpoint(policy, time_s, ao_mmHg, release_s=None):
                                'not regional pressure adequacy and not demonstrated viability')
 
 
+def pressure_margin(endpoint):
+    """Signed mmHg margin of the worst sustained window against the screen.
+
+    The minimum over sustained windows and over the three metrics of
+    (value - threshold). Nonnegative exactly when the screen is satisfied, so
+    a root-find on this quantity locates the same boundary the boolean verdict
+    reports, in a quarter of the evaluations a bisection on the boolean needs.
+
+    It is a continuous but only piecewise-smooth function: the window and
+    metric attaining the minimum switch along the boundary, so a safeguarded
+    bracketing method is required and a raw secant or Newton step is not.
+    Returns None when no complete sustained window exists to judge.
+    """
+    sustained = [w for w in endpoint.get('windows', ()) if w['interval'] == 'sustained']
+    if not sustained:
+        return None
+    thresholds = endpoint['thresholds_mmHg']
+    return min(w['metrics_mmHg'][k]-thresholds[k] for w in sustained for k in thresholds)
+
+
 def oxygen_endpoint(policy, time_s, groups, baseline_mL_min):
     """Per-group demand-satisfaction screens, including auxiliary self-supply.
 

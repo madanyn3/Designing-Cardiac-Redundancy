@@ -28,11 +28,19 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src')); sys.path.insert(0, str(ROOT / 'scripts'))
 import run_m8_hydraulics as hyd
 import run_m8_metabolism as met
+from scipy.optimize import brentq
 from cardiac_redundancy.design import DesignPoint, ScenarioPoint
+from cardiac_redundancy.feasibility import pressure_margin
 
 OUT = 'reports/m8-optimize'
 PROTOCOL = json.loads((ROOT / 'configs/m8-protocol.json').read_text(encoding='utf-8'))
-PERIODS = [.4, .5, .6, .75, 1.]
+PERIODS = [.4, .5, .6, .75, 1., 1.25, 1.5]
+#: Steps added above the pressure boundary in phase B. Raising coronary
+#: conductance diverts flow from the aorta and costs 1-2 mmHg of pressure
+#: (87.1 to 85.1 at scale 0.6), which a design sitting exactly on the boundary
+#: cannot afford. The ladder buys that margin back with cavity scale.
+SCALE_LADDER = [0., .03, .06, .10, .15]
+EPSILONS = [1., 1.25, 1.5, 1.75, 2.]
 SCALE_BOUNDS = tuple(PROTOCOL['declared_bounds']['left_scale'])
 CORONARY_BOUNDS = tuple(PROTOCOL['declared_bounds']['coronary_conductance'])
 SCALE_TOLERANCE = .01
@@ -87,6 +95,59 @@ def feasible(record):
     return record['pressure']['status'] == 'satisfied' and record['numerical_status'] == 'valid'
 
 
+def margin_of(record):
+    """Signed mmHg margin, or a large negative value for an unusable run.
+
+    A numerical failure or domain exit is not a pressure result, so it is
+    pushed below the boundary rather than being allowed to look like a near
+    miss that a root-find could step toward.
+    """
+    if record['numerical_status'] != 'valid':
+        return -1e3
+    m = pressure_margin(record['pressure'])
+    return -1e3 if m is None else m
+
+
+def boundary_by_root_find(period, kappa, bracket, tolerance=SCALE_TOLERANCE):
+    """Locate the pressure boundary in cavity scale by safeguarded root-find.
+
+    Solves margin(scale) = 0 with Brent's method, which uses the magnitude of
+    the margin instead of only its sign and so needs roughly half the
+    evaluations a bisection on the boolean verdict does. Brent keeps the
+    bracket, which matters because the margin is only piecewise smooth: the
+    window and metric attaining the worst margin switch along the boundary.
+    """
+    trace = {}
+
+    def f(scale):
+        scale = round(float(scale), 3)
+        if scale not in trace:
+            record = hydraulics(design(scale, period), kappa)
+            trace[scale] = (margin_of(record), summarise(record))
+        return trace[scale][0]
+
+    lo, hi = bracket
+    if f(lo) > 0 or f(hi) < 0:
+        return dict(period_s=period, rate_bpm=60/period, boundary=None,
+                    reason='bracket does not straddle the boundary: margins %.3f at %.3f and '
+                           '%.3f at %.3f' % (f(lo), lo, f(hi), hi),
+                    trace=[v[1] for v in trace.values()])
+    root = brentq(f, lo, hi, xtol=tolerance)
+    # Confirm with the boolean verdict, and check the point below still fails.
+    at = round(float(root)+tolerance, 3); below = round(float(root)-tolerance, 3)
+    f(at); f(below)
+    boundary = trace[at][1]; failing = trace[below][1]
+    return dict(period_s=period, rate_bpm=60/period,
+                boundary=boundary if boundary['pressure_status'] == 'satisfied' else None,
+                failing_point_below=failing, root_scale=float(root),
+                evaluations=len(trace),
+                monotonicity=('checked: the point below the boundary fails'
+                              if failing['pressure_status'] != 'satisfied'
+                              else 'FAILED: the point below the boundary also passes'),
+                margin_at_boundary_mmHg=trace[at][0],
+                trace=[v[1] for v in trace.values()])
+
+
 def least_feasible_scale(period, kappa=.5):
     """Bisect cavity scale for the least value passing the pressure screen."""
     lo, hi = SCALE_BOUNDS
@@ -109,49 +170,122 @@ def least_feasible_scale(period, kappa=.5):
                 monotonicity='checked: the point below the boundary fails', trace=trace)
 
 
+def pair_status(scale, period, coronary, kappa):
+    """Both constraints at one (scale, conductance) point, plus the objective.
+
+    Pressure and self-supply are reported separately because conductance moves
+    them in opposite directions: it feeds the pump's own myocardium while
+    diverting flow from the aorta that drives it.
+    """
+    d = design(scale, period, coronary)
+    record = hydraulics(d, kappa)
+    row = dict(scale=scale, period_s=period, rate_bpm=60/period, coronary_conductance=coronary,
+               compression_kappa=kappa, pressure=record['pressure']['status'],
+               numerical=record['numerical_status'],
+               MAP_mmHg=record['runs'][-1]['final_MAP_mmHg'],
+               chamber_work_J=sum(record['runs'][-1]['chamber_work_J']),
+               auxiliary_demand_mL_min=objective(record))
+    if not feasible(record):
+        row.update(self_supply='not evaluated: pressure screen failed', feasible=False)
+        return row
+    name = name_of(d, kappa)
+    cached = ROOT / OUT / name / 'm8-coupled.json'
+    if cached.is_file():
+        result = json.loads(cached.read_text(encoding='utf-8'))
+    else:
+        result = met.evaluate(d, ScenarioPoint(), name, Path(OUT) / name, out=OUT)
+    if result.get('status') != 'verified':
+        row.update(self_supply=result.get('status'), feasible=False)
+        return row
+    pump = result['groups']['pump']
+    row.update(self_supply=pump['sustained_status'],
+               sustained_unmet_mL=pump['unmet_sustained_mL'],
+               startup_unmet_mL=pump['unmet_startup_mL'],
+               feasible=pump['sustained_status'] == 'satisfied')
+    return row
+
+
 def least_coronary_conductance(scale, period, kappa):
-    """Bisect coronary conductance for the least value meeting self-supply."""
+    """Bisect conductance for the least value meeting self-supply at this scale.
+
+    Self-supply is assumed monotone improving in conductance, which the
+    endpoints test. A point that gains self-supply but loses the pressure
+    screen is recorded as infeasible, not as a solution.
+    """
     lo, hi = CORONARY_BOUNDS
     trace = []
 
-    def supplied(value):
-        d = design(scale, period, value)
-        record = hydraulics(d, kappa)
-        if not feasible(record):
-            trace.append(dict(coronary=value, pressure=record['pressure']['status'],
-                              self_supply='not evaluated: pressure screen failed'))
-            return None
-        name = name_of(d, kappa)
-        coupled = ROOT / OUT / name / 'm8-coupled.json'
-        if coupled.is_file():
-            result = json.loads(coupled.read_text(encoding='utf-8'))
-        else:
-            result = met.evaluate(d, ScenarioPoint(), name, Path(OUT) / name, out=OUT)
-        if result.get('status') != 'verified':
-            trace.append(dict(coronary=value, self_supply=result.get('status')))
-            return None
-        pump = result['groups']['pump']
-        trace.append(dict(coronary=value, pressure='satisfied',
-                          self_supply=pump['sustained_status'],
-                          sustained_unmet_mL=pump['unmet_sustained_mL'],
-                          auxiliary_demand_mL_min=sum(result['auxiliary_demand_mL_min'].values())))
-        return pump['sustained_status'] == 'satisfied'
+    def check(value):
+        row = pair_status(scale, period, value, kappa)
+        trace.append(row)
+        return row
 
-    if supplied(hi) is not True:
-        return dict(scale=scale, period_s=period, compression_kappa=kappa, minimum=None,
-                    reason='self-supply unmet at the upper conductance bound', trace=trace)
-    if supplied(lo) is True:
-        return dict(scale=scale, period_s=period, compression_kappa=kappa, minimum=lo,
-                    note='the lower bound already satisfies self-supply', trace=trace)
+    top = check(hi)
+    if not top['feasible']:
+        return dict(scale=scale, period_s=period, rate_bpm=60/period, compression_kappa=kappa,
+                    minimum=None, best=None, trace=trace,
+                    reason=('self-supply unmet at the upper conductance bound'
+                            if top['self_supply'] != 'satisfied'
+                            else 'pressure screen lost before self-supply was met'))
+    bottom = check(lo)
+    if bottom['feasible']:
+        return dict(scale=scale, period_s=period, rate_bpm=60/period, compression_kappa=kappa,
+                    minimum=lo, best=bottom, trace=trace,
+                    note='the lower conductance bound already satisfies both constraints')
+    best = top
     while hi-lo > CORONARY_TOLERANCE:
         mid = round((lo+hi)/2, 3)
-        ok = supplied(mid)
-        if ok is True: hi = mid
-        elif ok is False: lo = mid
-        else: return dict(scale=scale, period_s=period, compression_kappa=kappa, minimum=None,
-                          reason='evaluation failed inside the bracket', bracket=[lo, hi], trace=trace)
-    return dict(scale=scale, period_s=period, compression_kappa=kappa, minimum=hi,
-                bracket=[lo, hi], trace=trace)
+        row = check(mid)
+        if row['feasible']: hi, best = mid, row
+        else: lo = mid
+    return dict(scale=scale, period_s=period, rate_bpm=60/period, compression_kappa=kappa,
+                minimum=hi, best=best, bracket=[lo, hi], trace=trace)
+
+
+def _ladder_one(args):
+    scale, period, kappa = args
+    return least_coronary_conductance(scale, period, kappa)
+
+
+def phase_b(kappa=.5, rates=None, workers=8):
+    """Joint (scale, conductance) search along the pressure boundary.
+
+    For each rate, phase A's boundary scale is the cheapest scale that can
+    satisfy pressure at nominal conductance. Self-supply may need more
+    conductance than that scale can afford, so the ladder steps scale upward
+    until a conductance exists that satisfies both, and the cheapest feasible
+    pair over the whole grid is reported.
+    """
+    start = time.perf_counter()
+    phase = json.loads((ROOT / OUT / f'phase-a-kappa{kappa:g}.json').read_text(encoding='utf-8'))
+    lines = {l['rate_bpm']: l for l in phase['lines'] if l.get('boundary')}
+    chosen = sorted(lines) if rates is None else [r for r in rates if r in lines]
+    jobs = [(round(lines[r]['boundary']['scale']+step, 3), 60/r, kappa)
+            for r in chosen for step in SCALE_LADDER
+            if lines[r]['boundary']['scale']+step <= SCALE_BOUNDS[1]]
+    with ProcessPoolExecutor(max_workers=workers) as pool:
+        results = list(pool.map(_ladder_one, jobs))
+    feasible_pairs = [r['best'] for r in results if r.get('best')]
+    ranked = sorted(feasible_pairs, key=lambda r: r['auxiliary_demand_mL_min'])
+    frontier = []
+    for eps in EPSILONS:
+        within = [r for r in feasible_pairs if r['coronary_conductance'] <= eps+1e-9]
+        frontier.append(dict(max_conductance=eps,
+            cheapest=min(within, key=lambda r: r['auxiliary_demand_mL_min']) if within else None))
+    result = dict(phase='B', compression_kappa=kappa, protocol_version=PROTOCOL['version'],
+        scope='joint cavity-scale and coronary-conductance search along the pressure boundary; '
+              'reference physiology scenario, oracle activation, ten-second horizon',
+        objective='total auxiliary oxygen demand (mL O2/min)',
+        conductance_caveat='the 0.5-2.0 bracket is a declared assumption with no measured basis; '
+                           'docs/uncertainty-plan.md states that using it as a design control '
+                           'requires a verified interface, which does not exist',
+        scale_ladder=SCALE_LADDER, conductance_tolerance=CORONARY_TOLERANCE,
+        wall_s=time.perf_counter()-start, rates=chosen,
+        best=ranked[0] if ranked else None, feasible_pairs=ranked,
+        epsilon_frontier=frontier, lines=results)
+    (ROOT / OUT / f'phase-b-kappa{kappa:g}.json').write_text(
+        json.dumps(result, indent=2, allow_nan=False)+'\n', encoding='utf-8')
+    return result
 
 
 def phase_a(kappa=.5, workers=5):
@@ -182,7 +316,27 @@ def _trace_one(args):
 
 
 if __name__ == '__main__':
-    kappa = float(sys.argv[1]) if len(sys.argv) > 1 else .5
+    phase = sys.argv[1] if len(sys.argv) > 1 else 'a'
+    kappa = float(sys.argv[2]) if len(sys.argv) > 2 else .5
+    if phase == 'b':
+        rates = [float(x) for x in sys.argv[3:]] or None
+        r = phase_b(kappa, rates)
+        print(f"phase B done in {r['wall_s']/60:.1f} min, kappa {kappa:g}", flush=True)
+        for row in r['feasible_pairs']:
+            print('  rate %5.1f/min scale %.3f conductance %.3f  demand %7.3f mL O2/min  '
+                  'MAP %6.2f  unmet %.6f' % (row['rate_bpm'], row['scale'],
+                  row['coronary_conductance'], row['auxiliary_demand_mL_min'],
+                  row['MAP_mmHg'], row.get('sustained_unmet_mL', 0.)), flush=True)
+        for line in r['lines']:
+            if not line.get('best'):
+                print('  rate %5.1f/min scale %.3f infeasible: %s'
+                      % (line['rate_bpm'], line['scale'], line.get('reason', '')), flush=True)
+        for e in r['epsilon_frontier']:
+            c = e['cheapest']
+            print('  conductance <= %.2f : %s' % (e['max_conductance'],
+                  'none feasible' if not c else 'scale %.3f at %.0f/min, %.3f mL O2/min'
+                  % (c['scale'], c['rate_bpm'], c['auxiliary_demand_mL_min'])), flush=True)
+        sys.exit(0)
     r = phase_a(kappa)
     print(f"phase A done in {r['wall_s']/60:.1f} min, kappa {kappa:g}", flush=True)
     for row in r['ranking']:
