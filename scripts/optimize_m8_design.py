@@ -53,26 +53,32 @@ def design(scale, period, coronary=1.):
                        coronary_conductance=coronary)
 
 
-def name_of(d, kappa, release_s=.5):
+def name_of(d, kappa, release_s=.5, duration_s=None):
     base = ('scale%g-period%g-coron%g-kappa%g'
             % (d.left_scale, d.period_s, d.coronary_conductance, kappa))
-    return base if release_s == .5 else base+('-rel%g' % release_s)
+    if release_s != .5: base += '-rel%g' % release_s
+    # The horizon changes the trajectory, so it belongs in the identity. Runs
+    # made at the original ten-second horizon keep their unsuffixed names.
+    if duration_s is not None and abs(duration_s-10.) > 1e-9: base += '-h%g' % duration_s
+    return base
 
 
-def hydraulics(d, kappa, policy='fixed', release_s=.5):
+def hydraulics(d, kappa, policy='fixed', release_s=.5, duration_s=None):
     """Evaluate, or reuse an identical evaluation saved earlier.
 
     The cache key must carry every setting that changes the trajectory, the
     release time included: keying on the design alone would silently return a
     0.5 s-release run for a 2.5 s-release request.
     """
-    name = name_of(d, kappa, release_s)
+    duration_s = duration_s or PROTOCOL['evaluation_policy']['horizon_s']
+    name = name_of(d, kappa, release_s, duration_s)
     cached = ROOT / OUT / name / 'hydraulics.json'
     if cached.is_file():
         record = json.loads(cached.read_text(encoding='utf-8'))
         record['cached'] = True
         return record
-    return hyd.evaluate(d, name, OUT, policy=policy, kappa=kappa, release_s=release_s)
+    return hyd.evaluate(d, name, OUT, duration_s=duration_s, policy=policy, kappa=kappa,
+                        release_s=release_s)
 
 
 def objective(record, scenario=ScenarioPoint()):

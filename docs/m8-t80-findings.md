@@ -264,7 +264,60 @@ declared glucose floor -- and is not yet a result. Transport lags
 (`release_time_s`, `blood_target_time_s` of 60 s) and startup transients all
 shorten it. It must be verified against a coupled long-horizon replay.
 
-## 11. What is not established
+## 11. Protocol v3 and v4: what the screen definition was doing
+
+Three changes, two of policy and one a defect fix, substantially altered where the
+pressure boundary sits. The findings in sections 7-10 are unaffected, because they
+are measurements rather than verdicts.
+
+**The systolic threshold was a disguised mean-pressure requirement.** For this
+waveform the systolic-to-mean ratio is 1.065 to 1.160, so enforcing SBP >= 90
+amounted to enforcing MAP of 78 to 85. Dividing 90 by those ratios reproduces the
+v2 boundary MAPs exactly (77.6, 80.3, 84.5). Enforcing MAP >= 65 instead, which is
+what adult post-arrest guidance states, lowers the required mean by 13 to 20 mmHg
+and shrinks the minimum cavity by about 28 per cent.
+
+**It also penalised fast beating.** Peak pressure is a per-beat quantity, so the
+systolic-to-mean ratio falls as rate rises. Removing systolic enforcement helped
+fast rates most (demand fell 34 per cent at 150 beats/min against 26 per cent at
+60), which moved the optimum from 60 to a flat 80-100 beats/min basin.
+
+**Cycle alignment matters most at slow rates.** At 40 beats/min the period is
+1.5 s, so a fixed 1 s window is shorter than one cycle and can sample mostly the
+low-pressure phase. Measured: the non-aligned final-2 s mean reads 62.42 mmHg
+against a last-cycle mean of 65.13, a 2.7 mmHg penalty, while at 60 beats/min
+where 2 s is exactly two cycles the two agree to 0.02 mmHg. That penalty is why
+40 beats/min was infeasible at every scale under v2 and feasible at 0.705 under v3.
+
+### The horizon was too short, by about one per cent of cavity scale
+
+Cycle-mean pressure declines toward a steady state after activation, so the
+binding cycle is always the last one evaluated. At scale 0.375 and 80 beats/min:
+
+| Cycle | 1 | 11 | 21 | 24 | 51 | 77 |
+|---|---|---|---|---|---|---|
+| Mean AO (mmHg) | 73.70 | 65.29 | 64.95 | 64.95 | 64.98 | 65.00 |
+
+The tenth cycle reads 65.42 and passes; the design settles at 65.00 and dips to
+64.95 for cycles 21 to 60, so a 60 s run reports 61 of 77 cycles violating.
+Settling took 24 cycles, which is 36 s at the slowest declared rate, so v4 raises
+the horizon to 40 s and reports a plateau check on the final five cycle means.
+
+The effect size is small and worth stating plainly. The pressure-scale slope is
+about 101 mmHg per unit cavity scale, so a 0.45 mmHg shortfall moves the located
+boundary by roughly 0.005 in scale, about one per cent. This is a
+verdict-labelling correction at the margin, not a change of design conclusion.
+
+### What v3 cost
+
+Phase B under v3 found no jointly feasible design at nominal coronary conductance:
+the cheapest needs 1.25 at scale 0.496 and 60 beats/min, or 1.75 at scale 0.405 and
+80 beats/min. Under v2 the optimum needed 0.969, below nominal. The smaller cavity
+that MAP-primary buys is partly paid back to the coronary constraint, because the
+coronary bed scales with cavity size. That reintroduces dependence on the 0.5-2.0
+conductance bracket, which has no measured basis and which the v2 result had escaped.
+
+## 12. What is not established
 
 - **The envelope is bounded, not open.** Feasibility holds at reference and
   favourable physiology with kappa <= 0.5; adverse physiology and kappa 1 lie
@@ -299,7 +352,7 @@ shorten it. It must be verified against a coupled long-horizon replay.
   2.5 at 150 /min. Rate is now a live design variable, so this inconsistency
   touches every comparison across rates in §2.
 
-## 12. Cost model correction
+## 13. Cost model correction
 
 The protocol's measured single-evaluation cost (277 s) was taken at the
 reference design under observed activation. Phase A measured **2.88 min per

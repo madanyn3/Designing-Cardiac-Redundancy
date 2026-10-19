@@ -15,11 +15,25 @@ def test_registry_and_bounds_match_the_validators():
     assert PROTOCOL['declared_bounds'] == {k: list(v[0]) for k, v in BOUNDS.items()}
 
 
-def test_evaluation_policy_matches_the_frozen_defaults():
-    frozen = dict(asdict(FeasibilityPolicy()))
-    frozen['unresolved_requirements'] = list(frozen['unresolved_requirements'])
-    assert PROTOCOL['evaluation_policy'] == frozen
-    assert PROTOCOL['evaluation_policy']['thresholds_mmHg'] == PRESSURE_SCREEN_MMHG
+def test_declared_policy_is_constructible_and_states_the_v3_choices():
+    declared = dict(PROTOCOL['evaluation_policy'])
+    declared['unresolved_requirements'] = tuple(declared['unresolved_requirements'])
+    policy = FeasibilityPolicy(**declared)
+    assert policy.thresholds_mmHg == PRESSURE_SCREEN_MMHG
+    # v3 deliberately departs from the stricter dataclass defaults, and says so.
+    assert policy.window_mode == 'cycle' and policy.criterion == 'map_primary'
+    assert FeasibilityPolicy().window_mode == 'fixed'
+    assert FeasibilityPolicy().criterion == 'strict_triple'
+
+
+def test_v3_amendments_record_the_evidence_and_the_withdrawal():
+    changes = PROTOCOL['amendments_v3']
+    assert len(changes) == 3
+    criterion = next(c for c in changes if 'map_primary' in c['change'])
+    assert any('10.1161/CIR.0000000000001375' in s for s in criterion['sources'])
+    assert 'withdrawn' in criterion['withdrawn_claim']
+    assert any('cycle-aligned' in c['change'] for c in changes)
+    assert PROTOCOL['primary_endpoint'].startswith('supported duration')
 
 
 def test_reference_points_are_the_verified_fixture():

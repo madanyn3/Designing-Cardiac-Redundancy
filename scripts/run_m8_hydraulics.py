@@ -41,7 +41,7 @@ def build(design):
 
 
 def integrate(design, label, rtol, max_step, duration_s, policy='observed', kappa=None,
-              release_s=.5):
+              release_s=.5, case=None):
     """One hydraulic trajectory at one numerical setting.
 
     `kappa` overrides the coronary compression factor declared in
@@ -51,11 +51,19 @@ def integrate(design, label, rtol, max_step, duration_s, policy='observed', kapp
     transmural pressure closes its own coronary bed.
     """
     cfg = read('configs/m6-coupled-protocol.json'); cc = read('configs/m6-controller.json')
+    case = dict(case or {})
     m = build(design)
     if kappa is not None:
         m.native.base.closure_settings['kappa'] = float(kappa)
     y = rescaled_initial_state(m, np.load(STATE)['states'][:, 0])
-    m.apply_support_controls(0, design.preservation_conductance)
+    # A declared operating case may override the suppression the design would
+    # otherwise apply; the design itself is never re-tuned per case.
+    m.apply_support_controls(0, case.get('preservation_override', design.preservation_conductance))
+    if case.get('deplete_PU'):
+        delta = m.domain_margins(y)['PU']-1.
+        y[5] -= delta; y[3] += delta
+    if case.get('inlet_multiplier'):
+        m.valve_R[4] *= case['inlet_multiplier']
     if min(m.domain_margins(y).values()) <= 0:
         raise RuntimeError('Initial state outside the model domain')
     controller = SupportController(ControllerParameters(**cc['parameters']))
@@ -68,22 +76,39 @@ def integrate(design, label, rtol, max_step, duration_s, policy='observed', kapp
     # A prescribed release at `release_s` stands for a detection-plus-
     # recruitment latency. 0.5 s is the ActivationTiming sum and an oracle;
     # the M6 controller's observed policy releases near 2.5 s.
+    # policy 'none' is the no-support control: the auxiliary pump is never
+    # released, so the circulation is nonpulsatile throughout.
     release = float(release_s) if policy == 'fixed' else None
     if release is not None: m.aux_envelope.set(release, 1, 1)
     ticks = np.round(np.arange(0, duration_s+.0001, cfg['sample_period_s']), 8)
+    regional_names = list(m.native.regional_factors)
     for tick, end in zip(ticks[:-1], ticks[1:]):
         tick = float(tick); end = float(end)
+        for key, target, ramp in (('restart', 1, 1), ('rearrest', 0, 0)):
+            if case.get(key) == tick: m.native_envelope.set(tick, target, ramp)
+        if case.get('reopen') == tick:
+            # Reopen systemic regional paths, retaining the declared one-lung
+            # allocation so pulmonary capacity is not silently restored.
+            names = [n for n in regional_names if n not in ('lungs', 'pulmonary_exchange')]
+            m.native.set_regional_controls(time=tick, ramp_s=2, factors=dict.fromkeys(names, 1.))
         p, _ = m.pressures(tick, y)
         obs = sensor.update(tick, p['AO'], y[19]*.06)
-        if policy == 'observed':
+        if policy == 'observed':  # 'none' leaves the pump unreleased
+
             before = len(controller.events)
-            controller.update(tick, *obs, sensor_valid=True,
+            controller.update(tick, *obs,
+                              sensor_valid=not ('sensor_loss' in case and tick >= case['sensor_loss']),
                               model_valid=min(m.domain_margins(y).values()) > 0,
                               adequate_for_recovery=False)
             for event in controller.events[before:]:
                 if event['after'] == 'ACTIVATE':
                     release = controller.release_s
                     m.aux_envelope.set(controller.ramp_start, 1, controller.p.ramp_s)
+                if event['after'] == 'FAULT':
+                    # Cancel any pending future activation before holding.
+                    held = m.aux_envelope.value(tick)
+                    m.aux_envelope.events = [e for e in m.aux_envelope.events if e[0] <= tick]
+                    m.aux_envelope.set(tick, held, 0); release = None
         bounds = sorted(set([tick, end]+([release] if release is not None and tick <= release <= end else [])))
         for start, stop in zip(bounds[:-1], bounds[1:]):
             if release is not None and m.trigger is None and abs(start-release) < 1e-9:
@@ -124,14 +149,19 @@ def integrate(design, label, rtol, max_step, duration_s, policy='observed', kapp
 
 
 def evaluate(design, name, out, duration_s=None, policy='observed', save=True, kappa=None,
-             release_s=.5):
+             release_s=.5, case=None):
     """Paired hydraulic evaluation plus the frozen pressure verdict."""
     duration_s = duration_s or PROTOCOL['evaluation_policy']['horizon_s']
-    feasibility = FeasibilityPolicy(horizon_s=duration_s)
+    # Build the policy from the frozen protocol so the declared window mode and
+    # enforced criterion apply, rather than the stricter dataclass defaults.
+    declared = dict(PROTOCOL['evaluation_policy'])
+    declared['unresolved_requirements'] = tuple(declared['unresolved_requirements'])
+    declared['horizon_s'] = duration_s
+    feasibility = FeasibilityPolicy(**declared)
     runs = []; arrays = []
     for pair in PROTOCOL['numerical']['hydraulic']['pairs']:
         record, data = integrate(design, pair['label'], pair['rtol'], pair['max_step_s'],
-                                 duration_s, policy, kappa, release_s)
+                                 duration_s, policy, kappa, release_s, case)
         runs.append(record); arrays.append(data)
     t, ao, v, p, q, amps = arrays[-1]
     tb = arrays[0][0]
@@ -142,8 +172,10 @@ def evaluate(design, name, out, duration_s=None, policy='observed', save=True, k
     numerical = numerical_status(runs[-1]['termination'], errors,
                                  PROTOCOL['numerical']['hydraulic']['paired_scaled_error_limit'])
     if any(r['failed_checks'] for r in runs): numerical = 'numerical_failure'
-    pressure = pressure_endpoint(feasibility, t, ao, release_s=runs[-1]['release_s'])
+    pressure = pressure_endpoint(feasibility, t, ao, release_s=runs[-1]['release_s'],
+                                 period_s=design.period_s)
     result = dict(status='screened', name=name, design=vars(design), policy=policy,
+                  case=dict(case or {}),
                   compression_kappa=0.5 if kappa is None else float(kappa),
                   prescribed_release_s=None if policy != 'fixed' else float(release_s),
                   duration_s=duration_s, numerical_status=numerical, scaled_errors=errors,

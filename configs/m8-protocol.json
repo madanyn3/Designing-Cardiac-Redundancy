@@ -1,7 +1,7 @@
 {
-  "version": 2,
+  "version": 4,
   "task": "T8.1",
-  "frozen_on": "2026-10-16",
+  "frozen_on": "2026-10-19",
   "amendments": [
     {
       "version": 2,
@@ -34,16 +34,64 @@
       "reruns": "none: reporting only, no screen arithmetic changed"
     }
   ],
+  "amendments_v3": [
+    {
+      "version": 3,
+      "change": "pressure windows are cycle-aligned once the auxiliary pump is released, one activation period per window, with the declared 1 s window kept for the nonpulsatile pre-release interval",
+      "reason": "docs/m2-pressure-requirements.md asks for the integral mean, maximum and minimum over each auxiliary activation cycle and reserves the fixed window for irregular or nonpulsatile runs. A single 1 s grid mixes 1.33 cycles at 80 beats/min and 2.5 at 150, so every comparison across rates was measuring different things",
+      "reruns": "Phase A and Phase B must be re-run; the located optimum and the U-shape in rate both depend on cross-rate comparisons"
+    },
+    {
+      "version": 3,
+      "change": "the enforced criterion is map_primary (mean AO pressure against 65 mmHg); the strict triple is still evaluated and reported for every run under status_by_criterion",
+      "reason": "AHA 2025 Part 11 states a minimum MAP of 65 mmHg for adults after arrest and no adult systolic target, and four randomized trials found no benefit from higher MAP targets. SBP 90 and DBP 50 derive from one perioperative observational cohort using radial measurement and a five-minute exposure definition, a different population and site. The systolic threshold was binding both the minimum cavity scale and the whole activation-latency budget, so which criterion is enforced had to be settled on the evidence and declared before the runs, not after",
+      "withdrawn_claim": "an earlier draft stated that AHA 2025 removed a previous systolic target; that could not be confirmed from the sources and is withdrawn. What is supported is that the adult guidance is expressed as a MAP target and states no systolic one",
+      "sources": [
+        "AHA 2025 Part 11 Post-Cardiac Arrest Care, doi 10.1161/CIR.0000000000001375",
+        "Adult Post-Cardiac Arrest Care Algorithm, AHA 2025",
+        "Ahuja 2020 PMID 31939844 (origin of SBP 90 / DBP 50)",
+        "Kjaergaard 2022 BOX trial PMID 36027564 (MAP 63 vs 77)"
+      ],
+      "reruns": "all pressure verdicts are recomputed; both criteria are reported so no earlier result is discarded"
+    },
+    {
+      "version": 3,
+      "change": "supported duration is the primary endpoint",
+      "reason": "the research question is how long vital-organ perfusion can be sustained, not whether one instant satisfies a screen. The screens become the condition under which a duration is counted",
+      "reruns": "none: duration is computed from demands the existing runs already report, and the analytic bound requires long-horizon verification"
+    }
+  ],
+  "amendments_v4": [
+    {
+      "version": 4,
+      "change": "screen horizon raised from 10 s to 40 s, with a plateau check on the final five cycle means (0.05 mmHg spread) reported for every run",
+      "reason": "cycle-mean aortic pressure declines toward a steady state after activation, so a horizon ending mid-transient credits a value the design does not maintain. Measured at scale 0.375 and 80 beats/min: the tenth cycle reads 65.42 mmHg and passes, while the design settles at 65.00 and dips to 64.95 around cycles 21 to 60. Settling took 24 cycles, which is 36 s at the slowest declared rate, so 40 s covers the rate range",
+      "effect_size": "the pressure-scale slope is about 101 mmHg per unit cavity scale, so a 0.45 mmHg steady-state shortfall moves the located boundary by roughly 0.005 in scale, about 1 per cent. This is a verdict-labelling correction at the margin, not a change of design conclusion",
+      "cost": "about 12 min per evaluation against 3 min at the ten-second horizon",
+      "reruns": "Phase A and Phase B boundary locations; the duration endpoint, the kappa results, the coronary-bed scaling, the arterial volume-debt mechanism and the latency slopes are all screen-independent and unaffected"
+    },
+    {
+      "version": 4,
+      "change": "the hydraulic cache key carries the horizon",
+      "reason": "without it a ten-second trajectory would silently answer a forty-second request, the same class of defect as the earlier release-time key",
+      "reruns": "none"
+    }
+  ],
   "pending_amendments": [
     {
-      "change": "cycle-aligned pressure evaluation",
-      "reason": "docs/m2-pressure-requirements.md asks for the integral mean, maximum and minimum over each auxiliary activation cycle, reserving the fixed 1 s window for irregular or nonpulsatile runs. The frozen policy uses 1 s windows throughout, which mixes 1.33 cycles at the reference period and will mix differently once period_s varies",
-      "status": "must be settled before the main runs; it changes screen arithmetic and would require rerunning every pressure verdict"
+      "change": "a declared lower limit on blood glucose, or duration reported as a curve against that limit",
+      "reason": "the model declares no glucose floor, so duration means time to complete exhaustion of the circulating pool: 33.6 min at the measured drain. Against a 3.0 mmol/L plasma floor the same run gives 13.4 min. The headline moves by a factor of three on a parameter never declared",
+      "status": "must be settled before any duration is reported as a result"
+    },
+    {
+      "change": "long-horizon verification of the analytic duration bound",
+      "reason": "the 39.8 min reference figure assumes constant demand, hepatic export already at its cap and no glucose floor; transport lags and startup transients all shorten it",
+      "status": "required before any duration is reported as a result"
     }
   ],
   "classification": "frozen search and evaluation protocol; declared assumptions, not measured limits, and no clinical or survival claim",
   "code": {
-    "commit": "7955b942459256b9ff712314684f5348b1c14758",
+    "commit": "c7660bcffa2421de35486afc7aa7979104f958f0",
     "branch": "main",
     "dirty": true,
     "python": "3.13.12",
@@ -393,7 +441,7 @@
     "window_s": 1.0,
     "startup_allowance_s": 2.0,
     "oxygen_tolerance_mL_s": 1e-08,
-    "horizon_s": 10.0,
+    "horizon_s": 40.0,
     "unresolved_requirements": [
       "regional organ pressure minima",
       "whole-brain regional distribution and function",
@@ -404,6 +452,19 @@
       "glycogen/glucose stock and delivery limits",
       "blood compatibility, endothelial injury and reperfusion injury",
       "biological auxiliary self-demand calibration where applicable"
+    ],
+    "window_mode": "cycle",
+    "criterion": "map_primary",
+    "plateau_tolerance_mmHg": 0.05
+  },
+  "criteria": {
+    "strict_triple": [
+      "mean",
+      "maximum",
+      "minimum"
+    ],
+    "map_primary": [
+      "mean"
     ]
   },
   "constraints": {
@@ -425,7 +486,9 @@
       "biological auxiliary self-demand calibration where applicable"
     ]
   },
+  "primary_endpoint": "supported duration in minutes, with the declared screens as the condition under which the interval is counted",
   "endpoints": [
+    "supported duration (minutes)",
     "first constraint violation bracket",
     "startup shortfall exposure",
     "sustained-interval status per constraint",
@@ -546,7 +609,7 @@
     "configs/m6-coupled-protocol.json": "6b14ef8c2cc2184196feb8203310ede907afff4924e702b5a36c55fb82dc85cd",
     "data/m1-demand-budget.json": "ad161a012ec67645ce0791be533428460f59304c18a793b5bee6ff4a9ae498da",
     "src/cardiac_redundancy/design.py": "65d52471db8ecae107a9fac6c692ac962672c61275305847330c9b8ea4facbf0",
-    "src/cardiac_redundancy/feasibility.py": "58b4aec598663262a53e911b21bb43de81c48c0ea7d0fb8936589093f51a165f",
+    "src/cardiac_redundancy/feasibility.py": "721191a3141d0444feb583111929d3406eada3431f5666b306ab11b7abb21bad",
     "reports/m5-joint-preservation/reference_g25/fine-refined.npz": "9a55562e4091ff3a6c373ca8d1e8882621828c17443572ddbb3b993f5f5b2ab8",
     "reports/m4-baseline/native-cycle.npz": "7a582cfea218bf4961910eb361897003c330a2a17d3b5c5db9ce78aea52f33de",
     "reports/m4-baseline/store-5-refined.npz": "fe9f7f359f78cd8b00a8b6b7080d240a4e4d18a1475c87bf851106768e19431e",

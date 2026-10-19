@@ -81,17 +81,21 @@ def group_ledgers(result, source):
     return out
 
 
-def evaluate(design, scenario, name, hydraulic_dir, out='reports/m8-coupled'):
+def evaluate(design, scenario, name, hydraulic_dir, out='reports/m8-coupled', extra_case=None):
     met.OUT = ROOT / out
     hydraulics = read(Path(hydraulic_dir) / 'hydraulics.json')
     if hydraulics['runs'][-1]['termination'] is not None:
         return dict(status='hydraulic_domain_limit', name=name)
     assumptions, sides = auxiliary_demand(design, scenario, hydraulics)
+    # extra_case carries declared operating-case flags the replay understands
+    # (apnea splits the integration at gas-exchange loss; demand_restore ramps
+    # suppressed organ demand back up). They are circumstances, not controls.
     case = dict(name=name, device='BIO', architecture='BIO', sides=sides,
                 liver_function_fraction=scenario.liver_function_fraction,
                 hydraulic_source=str(hydraulic_dir),
                 knobs=dict(extraction_limit=scenario.extraction_limit,
-                           preservation_fraction=scenario.preservation_fraction))
+                           preservation_fraction=scenario.preservation_fraction),
+                **{k: v for k, v in (extra_case or {}).items()})
     pars = FuelParameters(**{**read('configs/m4-fuel-reference.json')['parameters'],
         'glycogen_mmol_L_liver': scenario.glycogen_mmol_L_liver,
         'release_cap_mmol_min': scenario.release_cap_mmol_min})
@@ -118,13 +122,21 @@ def evaluate(design, scenario, name, hydraulic_dir, out='reports/m8-coupled'):
             # result, so retry once at the runner's declared tighter settings
             # before recording a domain limit. A design is never credited with a
             # pass it obtained by failing to integrate.
-            if 'capacity exceeded' not in str(exc) and 'domain' not in str(exc).lower():
+            # Three failure texts are numerical rather than physiological: a
+            # store overshooting its capacity check, a domain exit, and a
+            # paired refinement difference just over tolerance. All three are
+            # retried once at the runner's tighter settings and otherwise
+            # recorded with their cause, never counted as a pass.
+            retryable = ('capacity exceeded', 'domain', 'refinement failed', 'accounting')
+            if not any(k in str(exc).lower() for k in retryable):
                 raise
             try:
                 result = met.short(dict(case, numerical_refinement=True), pars)
                 result['numerical_refinement'] = 'retried at tighter settings after '+repr(str(exc))
             except RuntimeError as retry_exc:
-                return dict(status='model_domain_limit', name=name, design=vars(design),
+                status = ('numerical_failure' if 'refinement' in str(retry_exc).lower()
+                          else 'model_domain_limit')
+                return dict(status=status, name=name, design=vars(design),
                             scenario=vars(scenario), cause=str(retry_exc),
                             first_attempt=str(exc), runtime_s=time.perf_counter()-start,
                             scope='recorded as a model-domain limit, not a physiological verdict')
@@ -133,6 +145,7 @@ def evaluate(design, scenario, name, hydraulic_dir, out='reports/m8-coupled'):
     record = result['records'][-1]
     summary = dict(status='verified', name=name, design=vars(design), scenario=vars(scenario),
         runtime_s=time.perf_counter()-start,
+        operating_flags={k: v for k, v in (extra_case or {}).items()},
         coupled_mass_ratio=mass_ratio(design, scenario), rate_bpm=design.rate_bpm,
         coupled_auxiliary_store_mL=store, store_seconds=STORE_SECONDS,
         auxiliary_demand_mL_min={s: v['total_mL_min'] for s, v in sides.items()},
@@ -141,6 +154,7 @@ def evaluate(design, scenario, name, hydraulic_dir, out='reports/m8-coupled'):
         groups=group_ledgers(result, Path(out) / name),
         unmet_oxygen_mL=record['unmet_oxygen_mL'],
         glycogen_remaining_mmol=record['glycogen_remaining_mmol'],
+        glucose_remaining_mmol=record['glucose_remaining_mmol'],
         released_mmol=record['released_mmol'],
         minimum_plasma_equivalent_mmol_L=record['minimum_plasma_equivalent_mmol_L'],
         first_auxiliary_shortfall_bracket_s=record['first_sampled_auxiliary_shortfall_bracket_s'],

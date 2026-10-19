@@ -1,0 +1,65 @@
+{
+  "scope": "long-horizon check of the analytic substrate bound at the T8.0 optimum",
+  "design": {
+    "left_scale": 0.651,
+    "right_scale": 0.651,
+    "septal_scale": 0.651,
+    "pericardial_scale": 0.651,
+    "period_s": 1.0,
+    "left_contractility": 1.0,
+    "right_contractility": 1.0,
+    "septal_contractility": 1.0,
+    "coronary_conductance": 0.969,
+    "preservation_conductance": 0.25
+  },
+  "duration_s": 60.0,
+  "compression_kappa": 0.5,
+  "hydraulic_s": 0.017037900048308074,
+  "metabolic_s": 0.0003147000097669661,
+  "pressure_status": "unassessed",
+  "status_by_criterion": {
+    "strict_triple": "unassessed",
+    "map_primary": "unassessed"
+  },
+  "sustained_windows": 57,
+  "violating_sustained_windows": 0,
+  "groups": {
+    "active": {
+      "sustained_status": "satisfied",
+      "unmet_sustained_mL": 0.0
+    },
+    "preservation": {
+      "sustained_status": "satisfied",
+      "unmet_sustained_mL": 0.0
+    },
+    "pump": {
+      "sustained_status": "satisfied",
+      "unmet_sustained_mL": 0.0
+    }
+  },
+  "mean_demand_mL_O2_min": 108.61640267129651,
+  "measured_glucose_demand_mmol_min": 0.8076529748616676,
+  "measured_export_mmol_min": 0.10500000000001253,
+  "declared_export_cap_mmol_min": 0.21,
+  "measured_net_drain_mmol_min": 0.7026529748616551,
+  "analytic": {
+    "demand_mL_O2_min": 108.61640267129651,
+    "glucose_demand_mmol_min": 0.8076529748616676,
+    "release_cap_mmol_min": 0.21,
+    "export_covers_mL_O2_min": 28.24164,
+    "net_drain_mmol_min": 0.5976529748616677,
+    "circulating_pool_mmol": 23.648648648648646,
+    "glycogen_total_mmol": 329.76,
+    "store_limited_minutes": 1570.2857142857142,
+    "basis": "first-order: constant demand, export at cap, no glucose floor",
+    "interpretation": "interval over which the declared delivery screens can be met; not survival, recovery or injury",
+    "minutes": 39.569197583467805,
+    "limited_by": "circulating glucose pool against hepatic export cap"
+  },
+  "glucose_remaining_mmol": null,
+  "glycogen_remaining_mmol": 329.65499999994057,
+  "minimum_plasma_equivalent_mmol_L": 4.814544676963162,
+  "interpretation": "verifies the drain rate over the simulated interval; the extrapolated duration remains conditional on that rate holding as the pool falls",
+  "extrapolated_minutes_from_measured_rate": 33.65622788874524,
+  "analytic_error_fraction": -0.14943365182601095
+}

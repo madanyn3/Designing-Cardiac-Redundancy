@@ -50,6 +50,18 @@ UNRESOLVED_REQUIREMENTS = (
 )
 
 
+#: Declared evaluation criteria. The strict triple is the M2 research screen.
+#: The MAP-primary criterion enforces only the mean, because adult post-arrest
+#: haemodynamic guidance is expressed as a minimum MAP (AHA 2025 Part 11: MAP
+#: at least 65 mmHg, with four randomized trials finding no benefit from higher
+#: targets) and states no adult systolic target, while SBP 90 and DBP 50 derive
+#: from one perioperative observational cohort with radial measurement and a
+#: five-minute exposure definition. Both criteria are always reported; neither
+#: replaces the other, and selecting one after seeing which passes is
+#: forbidden by the protocol.
+CRITERIA = dict(strict_triple=('mean', 'maximum', 'minimum'), map_primary=('mean',))
+
+
 @dataclass(frozen=True)
 class FeasibilityPolicy:
     """Frozen evaluation policy. Freeze under T8.1 before any main run."""
@@ -59,6 +71,17 @@ class FeasibilityPolicy:
     oxygen_tolerance_mL_s: float = 1e-8
     horizon_s: float = 10.
     unresolved_requirements: tuple = UNRESOLVED_REQUIREMENTS
+    #: 'fixed' uses the declared 1 s window throughout. 'cycle' follows
+    #: docs/m2-pressure-requirements.md: the integral mean, maximum and minimum
+    #: over each auxiliary activation cycle once the pump is running, with the
+    #: fixed window retained for the nonpulsatile pre-release interval.
+    window_mode: str = 'fixed'
+    #: Which criterion in CRITERIA decides `status`. The others are still
+    #: computed and reported under `status_by_criterion`.
+    criterion: str = 'strict_triple'
+    #: Spread the last five sustained cycle means must fall within for the
+    #: transient to count as settled at the horizon.
+    plateau_tolerance_mmHg: float = .05
 
     def __post_init__(self):
         if set(self.thresholds_mmHg) != {'mean', 'maximum', 'minimum'}:
@@ -78,6 +101,15 @@ class FeasibilityPolicy:
             raise ValueError('Startup allowance must be a whole number of windows')
         if a >= self.horizon_s:
             raise ValueError('Startup allowance must leave a sustained interval')
+        if self.window_mode not in ('fixed', 'cycle'):
+            raise ValueError('Window mode must be fixed or cycle')
+        if self.criterion not in CRITERIA:
+            raise ValueError('Criterion must name an entry in CRITERIA')
+        if (isinstance(self.plateau_tolerance_mmHg, bool)
+                or not isinstance(self.plateau_tolerance_mmHg, (int, float))
+                or not math.isfinite(self.plateau_tolerance_mmHg)
+                or self.plateau_tolerance_mmHg <= 0):
+            raise ValueError('Positive finite plateau tolerance required')
 
 
 def numerical_status(termination, paired_errors, paired_tolerance):
@@ -90,27 +122,91 @@ def numerical_status(termination, paired_errors, paired_tolerance):
     return 'valid'
 
 
-def pressure_endpoint(policy, time_s, ao_mmHg, release_s=None):
+def _windowed(policy, t, p, release_s, period_s):
+    """Window records and any incomplete tail, honouring the window mode.
+
+    In cycle mode the pre-release interval is nonpulsatile, because the native
+    heart is arrested and the auxiliary pump has not been released, so the
+    declared fixed window is kept there and cycle-aligned windows of one
+    activation period begin at release. This follows the M2 evaluation
+    contract rather than imposing one grid on two different regimes.
+    """
+    if policy.window_mode == 'fixed' or release_s is None:
+        full = pressure_windows(t, p, policy.thresholds_mmHg, policy.window_s)
+        return full['windows'], full['incomplete_tail_s']
+    if period_s is None or not math.isfinite(period_s) or period_s <= 0:
+        raise ValueError('Cycle mode requires the auxiliary activation period')
+    windows = []
+    tail = None
+    pre = t <= release_s+1e-12
+    if pre.sum() > 1 and release_s-float(t[0]) >= policy.window_s:
+        early = pressure_windows(t[pre], p[pre], policy.thresholds_mmHg, policy.window_s)
+        windows += early['windows']
+    post = t >= release_s-1e-12
+    if post.sum() > 1:
+        late = pressure_windows(t[post], p[post], policy.thresholds_mmHg, period_s)
+        windows += late['windows']
+        tail = late['incomplete_tail_s']
+    return windows, tail
+
+
+def pressure_endpoint(policy, time_s, ao_mmHg, release_s=None, period_s=None):
     """Startup exposure and sustained screen, reported separately.
 
     Only complete windows beginning at or after the declared allowance bind
     the verdict. Startup windows are reported with their shortfall exposure so
     the pre-activation interval is never silently discarded.
+
+    Every criterion in CRITERIA is evaluated and reported; `status` follows the
+    policy's declared one.
     """
     if not isinstance(policy, FeasibilityPolicy):
         raise ValueError('Frozen feasibility policy required')
     t, p = series(time_s, ao_mmHg)
-    full = pressure_windows(t, p, policy.thresholds_mmHg, policy.window_s)
+    records, tail = _windowed(policy, t, p, release_s, period_s)
     start = float(t[0])
     startup, sustained = [], []
-    for record in full['windows']:
+    for record in records:
         (startup if record['start_s'] < start+policy.startup_allowance_s-1e-9 else sustained).append(record)
-    violating = [r for r in sustained if 'violated' in r['status'].values()]
-    status = ('violated' if violating else
-              'satisfied' if sustained and full['incomplete_tail_s'] is None else 'unassessed')
-    shortfall = {k: float(sum(max(policy.thresholds_mmHg[k]-r['metrics_mmHg'][k], 0.)*policy.window_s
+    enforced = CRITERIA[policy.criterion]
+
+    # A leftover fraction of a window at the end of a completed trajectory is a
+    # grid remainder, not an unobserved horizon: cycle-aligned windows begin at
+    # release, so a partial cycle is left over whenever the horizon is not an
+    # exact multiple of the period. A run that stopped early is caught by the
+    # numerical status instead, so voiding these would discard physiology.
+    # Anything larger than one window is still unassessed.
+    widths = [r['end_s']-r['start_s'] for r in records] or [policy.window_s]
+    remainder = 0. if tail is None else float(tail[1]-tail[0])
+    # Only cycle mode earns this allowance. In fixed mode the grid starts at the
+    # first sample, so a remainder means the trajectory itself ended mid-window,
+    # which the M4 incomplete-horizon policy requires to stay unassessed.
+    covered = tail is None or (policy.window_mode == 'cycle' and remainder <= max(widths)+1e-9)
+
+    def decide(metrics):
+        bad = [r for r in sustained if any(r['status'][k] == 'violated' for k in metrics)]
+        return ('violated' if bad else
+                'satisfied' if sustained and covered else 'unassessed'), bad
+
+    by_criterion = {name: decide(metrics)[0] for name, metrics in CRITERIA.items()}
+    status, violating = decide(enforced)
+    span = lambda r: r['end_s']-r['start_s']
+    shortfall = {k: float(sum(max(policy.thresholds_mmHg[k]-r['metrics_mmHg'][k], 0.)*span(r)
                               for r in startup)) for k in policy.thresholds_mmHg}
-    return dict(status=status, thresholds_mmHg=dict(policy.thresholds_mmHg),
+    # Whether the transient has flattened by the horizon. Cycle-mean pressure
+    # declines toward a steady state after activation, so a horizon that ends
+    # mid-transient credits a value the design does not maintain. This reports
+    # the spread of the final cycles rather than assuming settlement.
+    tail_means = [r['metrics_mmHg']['mean'] for r in sustained[-5:]]
+    spread = float(max(tail_means)-min(tail_means)) if len(tail_means) >= 2 else None
+    plateau = None if spread is None else bool(spread <= policy.plateau_tolerance_mmHg)
+    return dict(status=status, status_by_criterion=by_criterion, criterion=policy.criterion,
+                plateau_reached=plateau, plateau_spread_mmHg=spread,
+                plateau_tolerance_mmHg=policy.plateau_tolerance_mmHg,
+                final_cycle_means_mmHg=[float(v) for v in tail_means],
+                enforced_metrics=list(enforced),
+                thresholds_mmHg=dict(policy.thresholds_mmHg),
+                window_mode=policy.window_mode, cycle_period_s=period_s,
                 window_s=policy.window_s, startup_allowance_s=policy.startup_allowance_s,
                 release_s=None if release_s is None else float(release_s),
                 startup_windows=len(startup), sustained_windows=len(sustained),
@@ -124,10 +220,11 @@ def pressure_endpoint(policy, time_s, ao_mmHg, release_s=None):
                 startup_shortfall_mmHg_s=shortfall,
                 first_violating_sustained_window=violating[0] if violating else None,
                 sustained_exposure=({k: dict(
-                    violating_window_duration_s=float(sum(policy.window_s for r in sustained if r['status'][k] == 'violated')),
-                    shortfall_mmHg_s=float(sum(max(policy.thresholds_mmHg[k]-r['metrics_mmHg'][k], 0.)*policy.window_s
+                    violating_window_duration_s=float(sum(span(r) for r in sustained if r['status'][k] == 'violated')),
+                    shortfall_mmHg_s=float(sum(max(policy.thresholds_mmHg[k]-r['metrics_mmHg'][k], 0.)*span(r)
                                                for r in sustained))) for k in policy.thresholds_mmHg}),
-                incomplete_tail_s=full['incomplete_tail_s'],
+                incomplete_tail_s=tail, unassessed_remainder_s=remainder,
+                remainder_within_one_window=covered,
                 interpretation='central AO fixed-window screens with a declared startup allowance; '
                                'not regional pressure adequacy and not demonstrated viability')
 
@@ -149,7 +246,8 @@ def pressure_margin(endpoint):
     if not sustained:
         return None
     thresholds = endpoint['thresholds_mmHg']
-    return min(w['metrics_mmHg'][k]-thresholds[k] for w in sustained for k in thresholds)
+    enforced = endpoint.get('enforced_metrics') or list(thresholds)
+    return min(w['metrics_mmHg'][k]-thresholds[k] for w in sustained for k in enforced)
 
 
 def oxygen_endpoint(policy, time_s, groups, baseline_mL_min):

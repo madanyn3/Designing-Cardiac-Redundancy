@@ -15,7 +15,12 @@ import hashlib, json, platform, subprocess, sys
 ROOT = Path(__file__).resolve().parents[1]; sys.path.insert(0, str(ROOT / 'src'))
 import numpy, scipy
 from cardiac_redundancy.design import BOUNDS, DesignPoint, ScenarioPoint, registry
-from cardiac_redundancy.feasibility import FeasibilityPolicy
+from cardiac_redundancy.feasibility import CRITERIA, FeasibilityPolicy
+
+#: The policy the main runs use. The dataclass defaults stay at the stricter
+#: fixed-window strict-triple setting so code that does not read this file is
+#: never silently relaxed; the declared values here are what T8.2 onward apply.
+DECLARED_POLICY = FeasibilityPolicy(window_mode='cycle', criterion='map_primary', horizon_s=40.)
 
 OUT = ROOT / 'configs/m8-protocol.json'
 POLICY_INPUTS = ('configs/baseline.yaml', 'configs/m3-evidence-regional.yaml',
@@ -133,7 +138,7 @@ def main():
     timing = json.loads((ROOT / 'reports/m8-protocol/timing/single-evaluation.json').read_text(encoding='utf-8'))
     bounds_ok = {k: list(v[0]) for k, v in BOUNDS.items()}
     protocol = dict(
-        version=2, task='T8.1', frozen_on='2026-10-16',
+        version=4, task='T8.1', frozen_on='2026-10-19',
         amendments=[
             dict(version=2, change='auxiliary myocardial oxygen store sized by the shared '
                  'store_seconds=5 rule at the design demand, replacing the absolute pair in '
@@ -167,15 +172,78 @@ def main():
                  'union violation count and the first fully satisfied window',
                  reason='a per-metric count was mistaken for the overall total when reporting',
                  reruns='none: reporting only, no screen arithmetic changed')],
+        amendments_v3=[
+            dict(version=3, change='pressure windows are cycle-aligned once the auxiliary pump '
+                 'is released, one activation period per window, with the declared 1 s window '
+                 'kept for the nonpulsatile pre-release interval',
+                 reason='docs/m2-pressure-requirements.md asks for the integral mean, maximum '
+                        'and minimum over each auxiliary activation cycle and reserves the fixed '
+                        'window for irregular or nonpulsatile runs. A single 1 s grid mixes 1.33 '
+                        'cycles at 80 beats/min and 2.5 at 150, so every comparison across rates '
+                        'was measuring different things',
+                 reruns='Phase A and Phase B must be re-run; the located optimum and the '
+                        'U-shape in rate both depend on cross-rate comparisons'),
+            dict(version=3, change='the enforced criterion is map_primary (mean AO pressure '
+                 'against 65 mmHg); the strict triple is still evaluated and reported for every '
+                 'run under status_by_criterion',
+                 reason='AHA 2025 Part 11 states a minimum MAP of 65 mmHg for adults after '
+                        'arrest and no adult systolic target, and four randomized trials found '
+                        'no benefit from higher MAP targets. SBP 90 and DBP 50 derive from one '
+                        'perioperative observational cohort using radial measurement and a '
+                        'five-minute exposure definition, a different population and site. The '
+                        'systolic threshold was binding both the minimum cavity scale and the '
+                        'whole activation-latency budget, so which criterion is enforced had to '
+                        'be settled on the evidence and declared before the runs, not after',
+                 withdrawn_claim='an earlier draft stated that AHA 2025 removed a previous '
+                                 'systolic target; that could not be confirmed from the sources '
+                                 'and is withdrawn. What is supported is that the adult guidance '
+                                 'is expressed as a MAP target and states no systolic one',
+                 sources=['AHA 2025 Part 11 Post-Cardiac Arrest Care, doi 10.1161/CIR.0000000000001375',
+                          'Adult Post-Cardiac Arrest Care Algorithm, AHA 2025',
+                          'Ahuja 2020 PMID 31939844 (origin of SBP 90 / DBP 50)',
+                          'Kjaergaard 2022 BOX trial PMID 36027564 (MAP 63 vs 77)'],
+                 reruns='all pressure verdicts are recomputed; both criteria are reported so no '
+                        'earlier result is discarded'),
+            dict(version=3, change='supported duration is the primary endpoint',
+                 reason='the research question is how long vital-organ perfusion can be '
+                        'sustained, not whether one instant satisfies a screen. The screens '
+                        'become the condition under which a duration is counted',
+                 reruns='none: duration is computed from demands the existing runs already '
+                        'report, and the analytic bound requires long-horizon verification')],
+        amendments_v4=[
+            dict(version=4, change='screen horizon raised from 10 s to 40 s, with a plateau '
+                 'check on the final five cycle means (0.05 mmHg spread) reported for every run',
+                 reason='cycle-mean aortic pressure declines toward a steady state after '
+                        'activation, so a horizon ending mid-transient credits a value the design '
+                        'does not maintain. Measured at scale 0.375 and 80 beats/min: the tenth '
+                        'cycle reads 65.42 mmHg and passes, while the design settles at 65.00 and '
+                        'dips to 64.95 around cycles 21 to 60. Settling took 24 cycles, which is '
+                        '36 s at the slowest declared rate, so 40 s covers the rate range',
+                 effect_size='the pressure-scale slope is about 101 mmHg per unit cavity scale, '
+                             'so a 0.45 mmHg steady-state shortfall moves the located boundary by '
+                             'roughly 0.005 in scale, about 1 per cent. This is a verdict-labelling '
+                             'correction at the margin, not a change of design conclusion',
+                 cost='about 12 min per evaluation against 3 min at the ten-second horizon',
+                 reruns='Phase A and Phase B boundary locations; the duration endpoint, the kappa '
+                        'results, the coronary-bed scaling, the arterial volume-debt mechanism and '
+                        'the latency slopes are all screen-independent and unaffected'),
+            dict(version=4, change='the hydraulic cache key carries the horizon',
+                 reason='without it a ten-second trajectory would silently answer a forty-second '
+                        'request, the same class of defect as the earlier release-time key',
+                 reruns='none')],
         pending_amendments=[
-            dict(change='cycle-aligned pressure evaluation',
-                 reason='docs/m2-pressure-requirements.md asks for the integral mean, maximum and '
-                        'minimum over each auxiliary activation cycle, reserving the fixed '
-                        '1 s window for irregular or nonpulsatile runs. The frozen policy uses '
-                        '1 s windows throughout, which mixes 1.33 cycles at the reference period '
-                        'and will mix differently once period_s varies',
-                 status='must be settled before the main runs; it changes screen arithmetic and '
-                        'would require rerunning every pressure verdict')],
+            dict(change='a declared lower limit on blood glucose, or duration reported as a '
+                 'curve against that limit',
+                 reason='the model declares no glucose floor, so duration means time to complete '
+                        'exhaustion of the circulating pool: 33.6 min at the measured drain. '
+                        'Against a 3.0 mmol/L plasma floor the same run gives 13.4 min. The '
+                        'headline moves by a factor of three on a parameter never declared',
+                 status='must be settled before any duration is reported as a result'),
+            dict(change='long-horizon verification of the analytic duration bound',
+                 reason='the 39.8 min reference figure assumes constant demand, hepatic export '
+                        'already at its cap and no glucose floor; transport lags and startup '
+                        'transients all shorten it',
+                 status='required before any duration is reported as a result')],
         classification='frozen search and evaluation protocol; declared assumptions, not '
                        'measured limits, and no clinical or survival claim',
         code=dict(commit=git('rev-parse', 'HEAD'), branch=git('rev-parse', '--abbrev-ref', 'HEAD'),
@@ -194,7 +262,8 @@ def main():
         registry=registry(), declared_bounds=bounds_ok,
         reference_design=asdict(DesignPoint()), reference_scenario=asdict(ScenarioPoint()),
         scenarios=SCENARIOS, model_form=MODEL_FORM, operating_cases=OPERATING_CASES,
-        evaluation_policy=asdict(FeasibilityPolicy()),
+        evaluation_policy=asdict(DECLARED_POLICY),
+        criteria={k: list(v) for k, v in CRITERIA.items()},
         constraints=dict(
             pressure='joint mean/maximum/minimum AO screen over complete 1 s windows',
             oxygen_active='no sustained unmet demand beyond numerical tolerance in the active group',
@@ -205,7 +274,9 @@ def main():
             inventory='total blood volume conserved to the declared tolerance',
             unassessed=json.loads((ROOT / 'configs/m4-constraint-policy.json').read_text(
                 encoding='utf-8'))['unresolved_requirements']),
-        endpoints=['first constraint violation bracket', 'startup shortfall exposure',
+        primary_endpoint='supported duration in minutes, with the declared screens as the '
+                         'condition under which the interval is counted',
+        endpoints=['supported duration (minutes)', 'first constraint violation bracket', 'startup shortfall exposure',
                    'sustained-interval status per constraint', 'chamber work and positive '
                    'transmural work', 'auxiliary oxygen demand and unmet ledger',
                    'glycogen and glucose remaining', 'cavity scale as a capacity proxy'],
