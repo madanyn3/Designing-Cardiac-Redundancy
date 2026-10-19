@@ -2,7 +2,8 @@ import json
 from dataclasses import replace
 from pathlib import Path
 import pytest
-from cardiac_redundancy.duration import SubstrateBudget, duration_sensitivity, supported_duration
+from cardiac_redundancy.duration import (REFERENCE_FLOORS_MMOL_L, SubstrateBudget,
+    duration_curve, duration_sensitivity, supported_duration)
 from cardiac_redundancy.fuel import O2_ML_STPD_PER_MMOL_GLUCOSE
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -102,3 +103,41 @@ def test_invalid_budgets_rejected(kwargs):
 def test_unvalidated_budget_refused():
     with pytest.raises(ValueError):
         supported_duration(109.5, dict(release_cap_mmol_min=.21))
+
+
+def test_default_floor_preserves_the_model_behaviour():
+    """A zero floor must reproduce the exhaustion figure the model itself gives."""
+    assert SubstrateBudget().glucose_floor_mmol_L == 0.
+    r = supported_duration(109.5)
+    assert r['minutes'] == pytest.approx(39.1, abs=.2)
+    assert r['circulating_pool_mmol'] == pytest.approx(r['total_pool_mmol'], rel=1e-12)
+
+
+def test_a_floor_shortens_duration_proportionally():
+    r = supported_duration(108.2, SubstrateBudget(glucose_floor_mmol_L=3.))
+    assert r['minutes'] == pytest.approx(15.9, abs=.2)
+    # 3.0 of 5.0 mmol/L withheld leaves two fifths of the pool usable.
+    assert r['minutes'] == pytest.approx(r['minutes_to_exhaustion']*.4, rel=1e-9)
+    assert '3 mmol/L floor' in r['limited_by']
+
+
+def test_duration_curve_is_monotone_and_anchored():
+    c = duration_curve(108.2)
+    minutes = [row['minutes'] for row in c['rows']]
+    assert minutes == sorted(minutes, reverse=True)
+    assert [row['glucose_floor_mmol_L'] for row in c['rows']] == list(REFERENCE_FLOORS_MMOL_L)
+    assert '3.0 mmol/L' in c['anchor'] and 'ADA/EASD' in c['anchor']
+    assert c['rows'][0]['minutes'] == pytest.approx(39.8, abs=.2)
+    assert c['rows'][3]['minutes'] == pytest.approx(15.9, abs=.2)
+
+
+def test_curve_skips_floors_at_or_above_the_initial_concentration():
+    c = duration_curve(108.2, SubstrateBudget(plasma_glucose_mmol_L=2.4))
+    assert [row['glucose_floor_mmol_L'] for row in c['rows']] == [0., 2.0]
+
+
+def test_a_floor_at_or_above_the_initial_concentration_is_rejected():
+    with pytest.raises(ValueError):
+        SubstrateBudget(glucose_floor_mmol_L=5.)
+    with pytest.raises(ValueError):
+        SubstrateBudget(glucose_floor_mmol_L=6.)
