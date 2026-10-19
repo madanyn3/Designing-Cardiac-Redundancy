@@ -108,7 +108,7 @@ These sum to exactly **−1** for any D and R, since the numerators differ by th
 denominator. Measured by finite difference at a 10% step: −1.03 and +0.15.
 
 The ratio of the levers is (D/K)/R = 0.8046/0.105 = **7.7**: a given fractional
-reduction in demand buys 3.8 times what the same fractional gain in export does.
+reduction in demand buys 7.7 times what the same fractional gain in export does.
 The pool empties because of demand, not for want of refilling. An earlier
 expectation that export would dominate was wrong, and the measurement corrected it.
 
