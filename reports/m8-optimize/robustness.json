@@ -1,0 +1,476 @@
+{
+  "scope": "scenario robustness of reference-feasible designs; design held fixed",
+  "scenarios": [
+    "adverse",
+    "favourable"
+  ],
+  "rows": [
+    {
+      "folder": "scale0.651-period1-coron0.969-kappa0.5",
+      "scenario": "adverse",
+      "status": "verified",
+      "scale": 0.651,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 0.969,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 15.84285769006335,
+      "coupled_mass_ratio": 1.0416,
+      "groups": {
+        "active": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.0054169331646815675
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "pump": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.33169972168659845
+        }
+      },
+      "feasible": false
+    },
+    {
+      "folder": "scale0.651-period1-coron0.969-kappa0.5",
+      "scenario": "favourable",
+      "status": "verified",
+      "scale": 0.651,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 0.969,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 7.921428845031675,
+      "coupled_mass_ratio": 0.5208,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        },
+        "pump": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        }
+      },
+      "feasible": true
+    },
+    {
+      "folder": "scale0.552-period0.75-coron1.203-kappa0.5",
+      "scenario": "adverse",
+      "status": "verified",
+      "scale": 0.552,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.203,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 16.452164704411583,
+      "coupled_mass_ratio": 0.8832000000000001,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "pump": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.2880234318175706
+        }
+      },
+      "feasible": false
+    },
+    {
+      "folder": "scale0.552-period0.75-coron1.203-kappa0.5",
+      "scenario": "favourable",
+      "status": "verified",
+      "scale": 0.552,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.203,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 8.226082352205792,
+      "coupled_mass_ratio": 0.44160000000000005,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        },
+        "pump": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        }
+      },
+      "feasible": true
+    },
+    {
+      "folder": "scale0.681-period1-coron0.969-kappa0.5",
+      "scenario": "adverse",
+      "status": "verified",
+      "scale": 0.681,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 0.969,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 16.592068901040903,
+      "coupled_mass_ratio": 1.0896000000000001,
+      "groups": {
+        "active": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.0027136587973087233
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "pump": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.3190520482185447
+        }
+      },
+      "feasible": false
+    },
+    {
+      "folder": "scale0.681-period1-coron0.969-kappa0.5",
+      "scenario": "favourable",
+      "status": "verified",
+      "scale": 0.681,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 0.969,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 8.296034450520452,
+      "coupled_mass_ratio": 0.5448000000000001,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        },
+        "pump": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        }
+      },
+      "feasible": true
+    },
+    {
+      "folder": "scale0.582-period0.75-coron1.203-kappa0.5",
+      "scenario": "adverse",
+      "status": "verified",
+      "scale": 0.582,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.203,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 17.373821113800275,
+      "coupled_mass_ratio": 0.9312,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "pump": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.2792277649113658
+        }
+      },
+      "feasible": false
+    },
+    {
+      "folder": "scale0.582-period0.75-coron1.203-kappa0.5",
+      "scenario": "favourable",
+      "status": "verified",
+      "scale": 0.582,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.203,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 8.686910556900138,
+      "coupled_mass_ratio": 0.4656,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        },
+        "pump": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        }
+      },
+      "feasible": true
+    },
+    {
+      "folder": "scale0.721-period1-coron0.922-kappa0.5",
+      "scenario": "adverse",
+      "status": "verified",
+      "scale": 0.721,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 0.922,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 17.587186740478103,
+      "coupled_mass_ratio": 1.1536,
+      "groups": {
+        "active": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.0005566003014044264
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "pump": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.36329715841596155
+        }
+      },
+      "feasible": false
+    },
+    {
+      "folder": "scale0.721-period1-coron0.922-kappa0.5",
+      "scenario": "favourable",
+      "status": "verified",
+      "scale": 0.721,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 0.922,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 8.793593370239051,
+      "coupled_mass_ratio": 0.5768,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        },
+        "pump": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        }
+      },
+      "feasible": true
+    },
+    {
+      "folder": "scale0.622-period0.75-coron1.156-kappa0.5",
+      "scenario": "adverse",
+      "status": "verified",
+      "scale": 0.622,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.156,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 18.597308005268108,
+      "coupled_mass_ratio": 0.9952000000000001,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "pump": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.3026107857620893
+        }
+      },
+      "feasible": false
+    },
+    {
+      "folder": "scale0.622-period0.75-coron1.156-kappa0.5",
+      "scenario": "favourable",
+      "status": "verified",
+      "scale": 0.622,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.156,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 9.298654002634054,
+      "coupled_mass_ratio": 0.49760000000000004,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        },
+        "pump": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        }
+      },
+      "feasible": true
+    },
+    {
+      "folder": "scale0.771-period1-coron0.875-kappa0.5",
+      "scenario": "adverse",
+      "status": "verified",
+      "scale": 0.771,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 0.875,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 18.820930866759156,
+      "coupled_mass_ratio": 1.2336,
+      "groups": {
+        "active": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 6.730892500448138e-06
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "pump": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.416011654901867
+        }
+      },
+      "feasible": false
+    },
+    {
+      "folder": "scale0.771-period1-coron0.875-kappa0.5",
+      "scenario": "favourable",
+      "status": "verified",
+      "scale": 0.771,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 0.875,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 9.410465433379578,
+      "coupled_mass_ratio": 0.6168,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        },
+        "pump": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        }
+      },
+      "feasible": true
+    },
+    {
+      "folder": "scale0.672-period0.75-coron1.109-kappa0.5",
+      "scenario": "adverse",
+      "status": "verified",
+      "scale": 0.672,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.109,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 20.115631403806088,
+      "coupled_mass_ratio": 1.0752000000000002,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "pump": {
+          "sustained_status": "violated",
+          "unmet_sustained_mL": 0.32772863636316557
+        }
+      },
+      "feasible": false
+    },
+    {
+      "folder": "scale0.672-period0.75-coron1.109-kappa0.5",
+      "scenario": "favourable",
+      "status": "verified",
+      "scale": 0.672,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.109,
+      "compression_kappa": 0.5,
+      "auxiliary_demand_mL_min": 10.057815701903044,
+      "coupled_mass_ratio": 0.5376000000000001,
+      "groups": {
+        "active": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        },
+        "preservation": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 1.1102230246251565e-16
+        },
+        "pump": {
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 0.0
+        }
+      },
+      "feasible": true
+    }
+  ],
+  "survivors": [
+    {
+      "scale": 0.651,
+      "rate_bpm": 60.0,
+      "scenario": "favourable",
+      "auxiliary_demand_mL_min": 7.921428845031675
+    },
+    {
+      "scale": 0.552,
+      "rate_bpm": 80.0,
+      "scenario": "favourable",
+      "auxiliary_demand_mL_min": 8.226082352205792
+    },
+    {
+      "scale": 0.681,
+      "rate_bpm": 60.0,
+      "scenario": "favourable",
+      "auxiliary_demand_mL_min": 8.296034450520452
+    },
+    {
+      "scale": 0.582,
+      "rate_bpm": 80.0,
+      "scenario": "favourable",
+      "auxiliary_demand_mL_min": 8.686910556900138
+    },
+    {
+      "scale": 0.721,
+      "rate_bpm": 60.0,
+      "scenario": "favourable",
+      "auxiliary_demand_mL_min": 8.793593370239051
+    },
+    {
+      "scale": 0.622,
+      "rate_bpm": 80.0,
+      "scenario": "favourable",
+      "auxiliary_demand_mL_min": 9.298654002634054
+    },
+    {
+      "scale": 0.771,
+      "rate_bpm": 60.0,
+      "scenario": "favourable",
+      "auxiliary_demand_mL_min": 9.410465433379578
+    },
+    {
+      "scale": 0.672,
+      "rate_bpm": 80.0,
+      "scenario": "favourable",
+      "auxiliary_demand_mL_min": 10.057815701903044
+    }
+  ],
+  "interpretation": "fractions of tested scenarios, never probabilities"
+}

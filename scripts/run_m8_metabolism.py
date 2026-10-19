@@ -110,7 +110,24 @@ def evaluate(design, scenario, name, hydraulic_dir, out='reports/m8-coupled'):
     start = time.perf_counter()
     met.read = coupled_read
     try:
-        result = met.short(case, pars)
+        try:
+            result = met.short(case, pars)
+        except RuntimeError as exc:
+            # An organ oxygen store overshooting its capacity by more than the
+            # 1e-7 mL check is a stiff-constraint overshoot, not a physiological
+            # result, so retry once at the runner's declared tighter settings
+            # before recording a domain limit. A design is never credited with a
+            # pass it obtained by failing to integrate.
+            if 'capacity exceeded' not in str(exc) and 'domain' not in str(exc).lower():
+                raise
+            try:
+                result = met.short(dict(case, numerical_refinement=True), pars)
+                result['numerical_refinement'] = 'retried at tighter settings after '+repr(str(exc))
+            except RuntimeError as retry_exc:
+                return dict(status='model_domain_limit', name=name, design=vars(design),
+                            scenario=vars(scenario), cause=str(retry_exc),
+                            first_attempt=str(exc), runtime_s=time.perf_counter()-start,
+                            scope='recorded as a model-domain limit, not a physiological verdict')
     finally:
         met.read = original
     record = result['records'][-1]

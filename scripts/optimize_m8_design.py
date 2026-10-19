@@ -53,20 +53,26 @@ def design(scale, period, coronary=1.):
                        coronary_conductance=coronary)
 
 
-def name_of(d, kappa):
-    return ('scale%g-period%g-coron%g-kappa%g'
+def name_of(d, kappa, release_s=.5):
+    base = ('scale%g-period%g-coron%g-kappa%g'
             % (d.left_scale, d.period_s, d.coronary_conductance, kappa))
+    return base if release_s == .5 else base+('-rel%g' % release_s)
 
 
-def hydraulics(d, kappa, policy='fixed'):
-    """Evaluate, or reuse an identical evaluation saved earlier."""
-    name = name_of(d, kappa)
+def hydraulics(d, kappa, policy='fixed', release_s=.5):
+    """Evaluate, or reuse an identical evaluation saved earlier.
+
+    The cache key must carry every setting that changes the trajectory, the
+    release time included: keying on the design alone would silently return a
+    0.5 s-release run for a 2.5 s-release request.
+    """
+    name = name_of(d, kappa, release_s)
     cached = ROOT / OUT / name / 'hydraulics.json'
     if cached.is_file():
         record = json.loads(cached.read_text(encoding='utf-8'))
         record['cached'] = True
         return record
-    return hyd.evaluate(d, name, OUT, policy=policy, kappa=kappa)
+    return hyd.evaluate(d, name, OUT, policy=policy, kappa=kappa, release_s=release_s)
 
 
 def objective(record, scenario=ScenarioPoint()):
@@ -247,7 +253,7 @@ def _ladder_one(args):
     return least_coronary_conductance(scale, period, kappa)
 
 
-def phase_b(kappa=.5, rates=None, workers=8):
+def phase_b(kappa=.5, rates=None, workers=8, boundary_source=.5):
     """Joint (scale, conductance) search along the pressure boundary.
 
     For each rate, phase A's boundary scale is the cheapest scale that can
@@ -257,7 +263,14 @@ def phase_b(kappa=.5, rates=None, workers=8):
     pair over the whole grid is reported.
     """
     start = time.perf_counter()
-    phase = json.loads((ROOT / OUT / f'phase-a-kappa{kappa:g}.json').read_text(encoding='utf-8'))
+    # Kappa moves MAP by under 1 mmHg (86.7/87.1/87.6 at kappa 0/0.5/1, scale
+    # 0.6), so the pressure boundary traced at one kappa is reused as the
+    # ladder's starting point at another. The ladder re-evaluates pressure at
+    # every rung, so a reused boundary cannot smuggle in a pressure pass.
+    source = ROOT / OUT / f'phase-a-kappa{kappa:g}.json'
+    if not source.is_file():
+        source = ROOT / OUT / f'phase-a-kappa{boundary_source:g}.json'
+    phase = json.loads(source.read_text(encoding='utf-8'))
     lines = {l['rate_bpm']: l for l in phase['lines'] if l.get('boundary')}
     chosen = sorted(lines) if rates is None else [r for r in rates if r in lines]
     jobs = [(round(lines[r]['boundary']['scale']+step, 3), 60/r, kappa)
@@ -279,6 +292,7 @@ def phase_b(kappa=.5, rates=None, workers=8):
         conductance_caveat='the 0.5-2.0 bracket is a declared assumption with no measured basis; '
                            'docs/uncertainty-plan.md states that using it as a design control '
                            'requires a verified interface, which does not exist',
+        boundary_source=str(source.name),
         scale_ladder=SCALE_LADDER, conductance_tolerance=CORONARY_TOLERANCE,
         wall_s=time.perf_counter()-start, rates=chosen,
         best=ranked[0] if ranked else None, feasible_pairs=ranked,

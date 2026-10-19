@@ -1,0 +1,314 @@
+{
+  "phase": "B",
+  "compression_kappa": 1.0,
+  "protocol_version": 2,
+  "scope": "joint cavity-scale and coronary-conductance search along the pressure boundary; reference physiology scenario, oracle activation, ten-second horizon",
+  "objective": "total auxiliary oxygen demand (mL O2/min)",
+  "conductance_caveat": "the 0.5-2.0 bracket is a declared assumption with no measured basis; docs/uncertainty-plan.md states that using it as a design control requires a verified interface, which does not exist",
+  "boundary_source": "phase-a-kappa0.5.json",
+  "scale_ladder": [
+    0.0,
+    0.03,
+    0.06,
+    0.1,
+    0.15
+  ],
+  "conductance_tolerance": 0.05,
+  "wall_s": 363.8492758999928,
+  "rates": [
+    60.0,
+    80.0
+  ],
+  "best": null,
+  "feasible_pairs": [],
+  "epsilon_frontier": [
+    {
+      "max_conductance": 1.0,
+      "cheapest": null
+    },
+    {
+      "max_conductance": 1.25,
+      "cheapest": null
+    },
+    {
+      "max_conductance": 1.5,
+      "cheapest": null
+    },
+    {
+      "max_conductance": 1.75,
+      "cheapest": null
+    },
+    {
+      "max_conductance": 2.0,
+      "cheapest": null
+    }
+  ],
+  "lines": [
+    {
+      "scale": 0.621,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.621,
+          "period_s": 1.0,
+          "rate_bpm": 60.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "violated",
+          "numerical": "valid",
+          "MAP_mmHg": 76.46666819452689,
+          "chamber_work_J": 6.511747273138278,
+          "auxiliary_demand_mL_min": 9.746689566127213,
+          "self_supply": "not evaluated: pressure screen failed",
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.651,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.651,
+          "period_s": 1.0,
+          "rate_bpm": 60.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "satisfied",
+          "numerical": "valid",
+          "MAP_mmHg": 78.53275629609007,
+          "chamber_work_J": 6.849635191434189,
+          "auxiliary_demand_mL_min": 10.231969482466903,
+          "self_supply": "violated",
+          "sustained_unmet_mL": 0.24343234490779117,
+          "startup_unmet_mL": 0.03629796323834606,
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.681,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.681,
+          "period_s": 1.0,
+          "rate_bpm": 60.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "satisfied",
+          "numerical": "valid",
+          "MAP_mmHg": 80.52486418210775,
+          "chamber_work_J": 7.184899323217519,
+          "auxiliary_demand_mL_min": 10.714978625920859,
+          "self_supply": "violated",
+          "sustained_unmet_mL": 0.25279986799494303,
+          "startup_unmet_mL": 0.03796167005646958,
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.721,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.721,
+          "period_s": 1.0,
+          "rate_bpm": 60.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "satisfied",
+          "numerical": "valid",
+          "MAP_mmHg": 83.07110167233859,
+          "chamber_work_J": 7.628266372279569,
+          "auxiliary_demand_mL_min": 11.35572321723027,
+          "self_supply": "violated",
+          "sustained_unmet_mL": 0.26529926874871296,
+          "startup_unmet_mL": 0.04016359119582946,
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.771,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.771,
+          "period_s": 1.0,
+          "rate_bpm": 60.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "satisfied",
+          "numerical": "valid",
+          "MAP_mmHg": 86.08669048285518,
+          "chamber_work_J": 8.17301521079181,
+          "auxiliary_demand_mL_min": 12.148818099396753,
+          "self_supply": "violated",
+          "sustained_unmet_mL": 0.28060657141672785,
+          "startup_unmet_mL": 0.04287749865667735,
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.522,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.522,
+          "period_s": 0.75,
+          "rate_bpm": 80.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "violated",
+          "numerical": "valid",
+          "MAP_mmHg": 79.30119771135867,
+          "chamber_work_J": 6.965380269668457,
+          "auxiliary_demand_mL_min": 10.047486668027016,
+          "self_supply": "not evaluated: pressure screen failed",
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.552,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.552,
+          "period_s": 0.75,
+          "rate_bpm": 80.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "satisfied",
+          "numerical": "valid",
+          "MAP_mmHg": 81.91217462238632,
+          "chamber_work_J": 7.39934999254113,
+          "auxiliary_demand_mL_min": 10.647405470272915,
+          "self_supply": "violated",
+          "sustained_unmet_mL": 0.2555645529402277,
+          "startup_unmet_mL": 0.030482599455350447,
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.582,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.582,
+          "period_s": 0.75,
+          "rate_bpm": 80.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "satisfied",
+          "numerical": "valid",
+          "MAP_mmHg": 84.4187684811395,
+          "chamber_work_J": 7.8295240053193425,
+          "auxiliary_demand_mL_min": 11.244230169736417,
+          "self_supply": "violated",
+          "sustained_unmet_mL": 0.2674022453476135,
+          "startup_unmet_mL": 0.032139496495654764,
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.622,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.622,
+          "period_s": 0.75,
+          "rate_bpm": 80.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "satisfied",
+          "numerical": "valid",
+          "MAP_mmHg": 87.60676901680856,
+          "chamber_work_J": 8.395805490038107,
+          "auxiliary_demand_mL_min": 12.034119904516396,
+          "self_supply": "violated",
+          "sustained_unmet_mL": 0.282500304054329,
+          "startup_unmet_mL": 0.034320704699839374,
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    },
+    {
+      "scale": 0.672,
+      "period_s": 0.75,
+      "rate_bpm": 80.0,
+      "compression_kappa": 1.0,
+      "minimum": null,
+      "best": null,
+      "trace": [
+        {
+          "scale": 0.672,
+          "period_s": 0.75,
+          "rate_bpm": 80.0,
+          "coronary_conductance": 2.0,
+          "compression_kappa": 1.0,
+          "pressure": "satisfied",
+          "numerical": "valid",
+          "MAP_mmHg": 91.3588502309677,
+          "chamber_work_J": 9.094771736350792,
+          "auxiliary_demand_mL_min": 13.013870097469784,
+          "self_supply": "violated",
+          "sustained_unmet_mL": 0.3009066495857593,
+          "startup_unmet_mL": 0.03702692148682456,
+          "feasible": false
+        }
+      ],
+      "reason": "self-supply unmet at the upper conductance bound"
+    }
+  ]
+}

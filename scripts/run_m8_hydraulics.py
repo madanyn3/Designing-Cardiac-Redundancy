@@ -40,7 +40,8 @@ def build(design):
         biological=design.biological())
 
 
-def integrate(design, label, rtol, max_step, duration_s, policy='observed', kappa=None):
+def integrate(design, label, rtol, max_step, duration_s, policy='observed', kappa=None,
+              release_s=.5):
     """One hydraulic trajectory at one numerical setting.
 
     `kappa` overrides the coronary compression factor declared in
@@ -64,7 +65,10 @@ def integrate(design, label, rtol, max_step, duration_s, policy='observed', kapp
         sensor.update(float(t), initial_pressure, 5.213513)
     ts = []; ys = []; ps = []; qs = []; amps = []; powers = []
     termination = None; root = 0.; jumps = 0.
-    release = .5 if policy == 'fixed' else None
+    # A prescribed release at `release_s` stands for a detection-plus-
+    # recruitment latency. 0.5 s is the ActivationTiming sum and an oracle;
+    # the M6 controller's observed policy releases near 2.5 s.
+    release = float(release_s) if policy == 'fixed' else None
     if release is not None: m.aux_envelope.set(release, 1, 1)
     ticks = np.round(np.arange(0, duration_s+.0001, cfg['sample_period_s']), 8)
     for tick, end in zip(ticks[:-1], ticks[1:]):
@@ -119,14 +123,15 @@ def integrate(design, label, rtol, max_step, duration_s, policy='observed', kapp
                     np.trapezoid(np.maximum(power[:, :, 1], 0), t, axis=0)]), (t, p[:, 2], v, p, q, np.array(amps))
 
 
-def evaluate(design, name, out, duration_s=None, policy='observed', save=True, kappa=None):
+def evaluate(design, name, out, duration_s=None, policy='observed', save=True, kappa=None,
+             release_s=.5):
     """Paired hydraulic evaluation plus the frozen pressure verdict."""
     duration_s = duration_s or PROTOCOL['evaluation_policy']['horizon_s']
     feasibility = FeasibilityPolicy(horizon_s=duration_s)
     runs = []; arrays = []
     for pair in PROTOCOL['numerical']['hydraulic']['pairs']:
         record, data = integrate(design, pair['label'], pair['rtol'], pair['max_step_s'],
-                                 duration_s, policy, kappa)
+                                 duration_s, policy, kappa, release_s)
         runs.append(record); arrays.append(data)
     t, ao, v, p, q, amps = arrays[-1]
     tb = arrays[0][0]
@@ -140,6 +145,7 @@ def evaluate(design, name, out, duration_s=None, policy='observed', save=True, k
     pressure = pressure_endpoint(feasibility, t, ao, release_s=runs[-1]['release_s'])
     result = dict(status='screened', name=name, design=vars(design), policy=policy,
                   compression_kappa=0.5 if kappa is None else float(kappa),
+                  prescribed_release_s=None if policy != 'fixed' else float(release_s),
                   duration_s=duration_s, numerical_status=numerical, scaled_errors=errors,
                   pressure=pressure, runs=runs,
                   scope='hydraulic stage only; decides the pressure screen, not feasibility')
