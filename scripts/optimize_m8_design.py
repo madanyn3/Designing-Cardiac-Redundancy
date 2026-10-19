@@ -335,9 +335,66 @@ def _trace_one(args):
     return least_feasible_scale(*args)
 
 
+def _boundary_at(args):
+    """Root-find the boundary at one rate, module level so workers can import it.
+
+    A function defined inside a -c string cannot be re-imported by spawned
+    Windows workers, which breaks the pool; keeping it here avoids that.
+    """
+    rate, kappa, lo, hi = args
+    return boundary_by_root_find(60./rate, kappa, (lo, hi))
+
+
+def phase_a_at_horizon(rates, kappa=.5, bracket=(.30, .70), workers=3):
+    """Re-locate the pressure boundary at the protocol's current horizon.
+
+    Used after the v4 horizon change: the boundary is where the *settled* cycle
+    mean meets the screen, so every line is reported with its plateau flag and
+    a run that has not flattened is visible rather than silently accepted.
+    """
+    start = time.perf_counter()
+    with ProcessPoolExecutor(max_workers=workers) as pool:
+        lines = list(pool.map(_boundary_at, [(r, kappa, *bracket) for r in rates]))
+    horizon = PROTOCOL['evaluation_policy']['horizon_s']
+    for line in lines:
+        b = line.get('boundary')
+        if not b: continue
+        name = name_of(design(b['scale'], line['period_s']), kappa, .5, horizon)
+        record = json.loads((ROOT / OUT / name / 'hydraulics.json').read_text(encoding='utf-8'))
+        line['plateau_reached'] = record['pressure']['plateau_reached']
+        line['plateau_spread_mmHg'] = record['pressure']['plateau_spread_mmHg']
+        line['final_cycle_means_mmHg'] = record['pressure']['final_cycle_means_mmHg']
+    feasible_lines = [l for l in lines if l.get('boundary')]
+    ranked = sorted(feasible_lines, key=lambda l: l['boundary']['auxiliary_demand_mL_min'])
+    result = dict(phase='A', horizon_s=horizon, compression_kappa=kappa,
+                  protocol_version=PROTOCOL['version'], scope='pressure boundary at the settled '
+                  'horizon; plateau flag reported per line', bracket=list(bracket),
+                  wall_s=time.perf_counter()-start, lines=lines,
+                  cheapest=ranked[0] if ranked else None)
+    (ROOT / OUT / f'phase-a-{horizon:g}s-kappa{kappa:g}.json').write_text(
+        json.dumps(result, indent=2, allow_nan=False)+'\n', encoding='utf-8')
+    return result
+
+
 if __name__ == '__main__':
     phase = sys.argv[1] if len(sys.argv) > 1 else 'a'
     kappa = float(sys.argv[2]) if len(sys.argv) > 2 else .5
+    if phase == 'horizon':
+        rates = [float(x) for x in sys.argv[3:]] or [60., 80., 100.]
+        r = phase_a_at_horizon(rates, kappa)
+        print(f"boundaries at the {r['horizon_s']:g} s horizon, {r['wall_s']/60:.1f} min", flush=True)
+        for line in r['lines']:
+            b = line.get('boundary')
+            if not b:
+                print('  %5.1f/min  no boundary: %s' % (line['rate_bpm'],
+                      str(line.get('reason'))[:70]), flush=True); continue
+            print('  %5.1f/min  scale %.3f  demand %7.3f mL O2/min  margin %+.3f mmHg  '
+                  'plateau %s (spread %.3f)  evals %d' % (
+                      line['rate_bpm'], b['scale'], b['auxiliary_demand_mL_min'],
+                      line['margin_at_boundary_mmHg'], line.get('plateau_reached'),
+                      line.get('plateau_spread_mmHg') or 0., line.get('evaluations', 0)), flush=True)
+            print('      %s' % line.get('monotonicity'), flush=True)
+        sys.exit(0)
     if phase == 'b':
         rates = [float(x) for x in sys.argv[3:]] or None
         r = phase_b(kappa, rates)

@@ -235,34 +235,72 @@ in [`src/cardiac_redundancy/duration.py`](../src/cardiac_redundancy/duration.py)
 Oxidative demand must be met by glucose; hepatic export is capped by a **rate**,
 not by the store; the difference is drawn from the circulating pool.
 
-| Scenario | Total demand | Net drain | **Supported duration** |
-|---|---|---|---|
-| Favourable | 87.2 mL O2/min | 0.248 mmol/min | **95.3 min** |
-| Reference | 108.2 | 0.594 | **39.8 min** |
-| Adverse | 144.8 | 0.977 | **24.2 min** |
+| Scenario | Total demand | Effective export | **Duration, no floor** | **At a 3.0 mmol/L floor** |
+|---|---|---|---|---|
+| Favourable | 87.2 mL O2/min | 0.400 mmol/min | **95.2 min** | 38.1 min |
+| Reference | 108.2 | 0.105 | **33.8 min** | **13.5 min** |
+| Adverse | 144.8 | 0.025 | **22.5 min** | 9.0 min |
+
+Effective export is the declared cap times `liver_function_fraction`, which every
+M5, M7 and M8 run sets to 0.5. An earlier version of this section applied the cap
+without that fraction and overstated every duration by about 18 per cent.
 
 The design trade runs as expected -- a larger pump costs duration:
 
 | Design | Demand | Duration (reference) |
 |---|---|---|
-| scale 0.4 | 105.6 | 41.1 min |
-| scale 0.651 | 109.5 | 39.1 min |
-| scale 1.0 | 116.8 | 35.9 min |
+| scale 0.4 | 105.6 | 34.8 min |
+| scale 0.651 | 109.5 | 33.3 min |
+| scale 1.0 | 116.8 | 31.0 min |
 
 **The export rate binds, not the store.** The liver holds 329.8 mmol, which at
-the 0.21 mmol/min cap would last 1,570 min; export covers only 28.2 mL O2-eq/min
-against 108 demanded, so the 23.7 mmol circulating pool sets the clock.
+the effective 0.105 mmol/min export would last 3,141 min; export covers only
+14.1 mL O2-eq/min against 108 demanded, so the 23.7 mmol circulating pool sets
+the clock.
 
-Measured elasticities: **demand -1.19, export +0.36.** Demand dominates because
-the glucose draw is roughly four times the export cap, so the pool is emptied by
-demand rather than refilled by export. The pump is 10-16% of total demand, so
+Measured elasticities: **demand -1.03, export +0.15.** Demand dominates because
+the glucose draw is roughly eight times the effective export, so the pool is
+emptied by demand rather than refilled by export. Four limits appear in the
+release law and the binding one was identified by measurement: mobilisation
+capacity times liver function (0.105), not the glycogen store (19,786) and not
+hepatic delivery (0.539 at a measured 539 mL/min hepatic outflow, five times
+clear). The circulation therefore delivers far more hepatic flow than export can
+use, which is a second reason the design cannot buy duration. The pump is 10-16% of total demand, so
 suppression depth governs duration while the pump's share moves it
 proportionally.
 
+### The glucose-only assumption dominates everything else
+
+The model charges **all** oxidative demand to glucose. Resting metabolism runs
+near a respiratory quotient of 0.8, so roughly a third of energy comes from
+carbohydrate and the rest from fat, and the model has no fatty-acid or ketone
+pathway. Charging a fraction f of demand to glucose instead:
+
+| f | 1.00 (model) | 0.70 | 0.50 | 0.30 | below 0.131 |
+|---|---|---|---|---|---|
+| Duration | 33.8 min | 52 min | 80 min | 173 min | no substrate limit |
+
+Below a glucose fraction of 0.131 hepatic export alone covers demand and the
+circulating pool never drains. For scale: at this demand the 329.8 mmol glycogen
+store is about 244 kcal, or 8 hours, while 15 kg of adipose is about 135,000 kcal,
+or roughly 184 days. That is why humans sustain long fasts, and the model
+represents none of it.
+
+Separately, measured whole-body glucose production in fasted humans is around
+2 mg/kg/min, about 7.4 times the model's effective export, because the 0.21 figure
+is fasting **net glycogenolysis** and excludes gluconeogenesis.
+
+Both biases run the same way, so **33.8 min is a severe underestimate as a
+physiological statement**. Its defensible reading is narrow: time to exhaust
+circulating glucose if every joule of oxidative demand must come from glucose and
+hepatic export is capped at half of fasting net glycogenolysis. M8 reports the
+glucose-only arm as its primary result and repeats the tasks under a declared
+mixed-fuel alternative, in the manner T7.4 used for structural alternatives.
+
 This is a **first-order bound** -- constant demand, export at its cap, no
-declared glucose floor -- and is not yet a result. Transport lags
-(`release_time_s`, `blood_target_time_s` of 60 s) and startup transients all
-shorten it. It must be verified against a coupled long-horizon replay.
+declared glucose floor by default. The 60 s coupled replay measured an export of
+0.105 mmol/min, exactly the effective cap, and a drain giving 33.7 min against
+the analytic 33.8, so the analytic and simulated values agree.
 
 ## 11. Protocol v3 and v4: what the screen definition was doing
 

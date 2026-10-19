@@ -57,6 +57,18 @@ class SubstrateBudget:
     #: reproduces the model's own behaviour (duration to exhaustion); 3.0 is
     #: the evidence-anchored reference. Declared, never tuned to a result.
     glucose_floor_mmol_L: float = 0.
+    #: Hepatic export is capped at release_cap TIMES this fraction, as in
+    #: GlucoseTransport.evaluate. Every M5, M7 and M8 run has used 0.5, so the
+    #: effective cap is 0.105 mmol/min, not 0.21.
+    liver_function_fraction: float = .5
+    #: Share of oxidative demand charged to glucose. The model charges all of
+    #: it, which is why this defaults to 1.0, but resting metabolism runs near
+    #: a respiratory quotient of 0.8, so roughly a third of energy comes from
+    #: carbohydrate and the rest from fat. The model has no fatty-acid or
+    #: ketone pathway, so this is reported as a declared axis rather than
+    #: implemented: below about 0.13 hepatic export alone covers demand and
+    #: the circulating pool never drains at all.
+    glucose_fraction: float = 1.
 
     def __post_init__(self):
         for name, value in vars(self).items():
@@ -70,12 +82,21 @@ class SubstrateBudget:
             raise ValueError('Accessible fraction must lie in [0, 1]')
         if self.glucose_floor_mmol_L >= self.plasma_glucose_mmol_L:
             raise ValueError('Glucose floor must lie below the initial plasma concentration')
+        if not 0 <= self.liver_function_fraction <= 1:
+            raise ValueError('Liver function fraction must lie in [0, 1]')
+        if not 0 < self.glucose_fraction <= 1:
+            raise ValueError('Glucose fraction must lie in (0, 1]')
 
     @property
     def circulating_pool_mmol(self):
         """Whole-blood glucose above the declared floor, from plasma-equivalent."""
         usable = self.plasma_glucose_mmol_L-self.glucose_floor_mmol_L
         return usable/self.plasma_to_whole_blood_ratio*self.blood_volume_L*self.accessible_fraction
+
+    @property
+    def effective_export_mmol_min(self):
+        """What the release law actually permits: cap times liver function."""
+        return self.release_cap_mmol_min*self.liver_function_fraction
 
     @property
     def total_pool_mmol(self):
@@ -101,17 +122,20 @@ def supported_duration(demand_mL_O2_min, budget=SubstrateBudget()):
         raise ValueError('Finite nonnegative oxidative demand required')
     if not isinstance(budget, SubstrateBudget):
         raise ValueError('Validated substrate budget required')
-    glucose_demand = demand_mL_O2_min/O2_ML_STPD_PER_MMOL_GLUCOSE
-    drain = glucose_demand-budget.release_cap_mmol_min
+    glucose_demand = budget.glucose_fraction*demand_mL_O2_min/O2_ML_STPD_PER_MMOL_GLUCOSE
+    export = budget.effective_export_mmol_min
+    drain = glucose_demand-export
     pool = budget.circulating_pool_mmol
     record = dict(demand_mL_O2_min=float(demand_mL_O2_min),
                   glucose_demand_mmol_min=glucose_demand,
                   release_cap_mmol_min=budget.release_cap_mmol_min,
-                  export_covers_mL_O2_min=budget.release_cap_mmol_min*O2_ML_STPD_PER_MMOL_GLUCOSE,
+                  liver_function_fraction=budget.liver_function_fraction,
+                  effective_export_mmol_min=export, glucose_fraction=budget.glucose_fraction,
+                  export_covers_mL_O2_min=export*O2_ML_STPD_PER_MMOL_GLUCOSE,
                   net_drain_mmol_min=drain, circulating_pool_mmol=pool,
                   glycogen_total_mmol=budget.glycogen_total_mmol,
-                  store_limited_minutes=(None if budget.release_cap_mmol_min == 0
-                                         else budget.glycogen_total_mmol/budget.release_cap_mmol_min),
+                  store_limited_minutes=(None if export == 0
+                                         else budget.glycogen_total_mmol/export),
                   glucose_floor_mmol_L=budget.glucose_floor_mmol_L,
                   total_pool_mmol=budget.total_pool_mmol,
                   basis='first-order: constant demand, export at cap, declared glucose floor',
