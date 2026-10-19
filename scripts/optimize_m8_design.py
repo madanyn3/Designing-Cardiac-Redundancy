@@ -200,7 +200,10 @@ def pair_status(scale, period, coronary, kappa):
     if not feasible(record):
         row.update(self_supply='not evaluated: pressure screen failed', feasible=False)
         return row
-    name = name_of(d, kappa)
+    # The coupled stage must key on the same identity the hydraulic stage used,
+    # horizon included. Keying on the design alone silently pairs a 40 s
+    # pressure verdict with a 10 s self-supply verdict from an earlier run.
+    name = name_of(d, kappa, .5, PROTOCOL['evaluation_policy']['horizon_s'])
     cached = ROOT / OUT / name / 'm8-coupled.json'
     if cached.is_file():
         result = json.loads(cached.read_text(encoding='utf-8'))

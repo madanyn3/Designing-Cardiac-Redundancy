@@ -22,14 +22,23 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src')); sys.path.insert(0, str(ROOT / 'scripts'))
 import optimize_m8_design as opt
-from cardiac_redundancy.constraints import pressure_windows
-from cardiac_redundancy.feasibility import PRESSURE_SCREEN_MMHG
+from cardiac_redundancy.feasibility import FeasibilityPolicy, pressure_endpoint
+
+PROTOCOL = json.loads((ROOT / 'configs/m8-protocol.json').read_text(encoding='utf-8'))
+
+
+def declared_policy(horizon_s):
+    """The frozen evaluation policy, so latency is judged like everything else."""
+    declared = dict(PROTOCOL['evaluation_policy'])
+    declared['unresolved_requirements'] = tuple(declared['unresolved_requirements'])
+    declared['horizon_s'] = horizon_s
+    return FeasibilityPolicy(**declared)
 
 OUT = 'reports/m8-optimize'
 RELEASES = [.5, 1., 1.5, 2., 2.5, 3.]
 
 
-def per_metric_adequacy(time_s, ao_mmHg, release_s):
+def per_metric_adequacy(endpoint, release_s):
     """First window at or after release in which each metric is satisfied.
 
     Separating the metrics matters because they are not equally supported: the
@@ -38,16 +47,17 @@ def per_metric_adequacy(time_s, ao_mmHg, release_s):
     its systolic target. A design adequate on MAP but not SBP is a different
     statement from one inadequate on all three.
     """
-    screen = pressure_windows(time_s, ao_mmHg, PRESSURE_SCREEN_MMHG, 1.)
+    windows = endpoint['windows']
     out = {}
-    for metric in PRESSURE_SCREEN_MMHG:
-        first = next((w['start_s'] for w in screen['windows']
+    for metric in endpoint['thresholds_mmHg']:
+        first = next((w['start_s'] for w in windows
                       if w['start_s'] >= release_s-1e-9 and w['status'][metric] == 'satisfied'), None)
         out[metric] = dict(first_satisfied_window_s=first,
                            settling_from_release_s=None if first is None else first-release_s)
-    joint = next((w['start_s'] for w in screen['windows']
+    enforced = endpoint['enforced_metrics']
+    joint = next((w['start_s'] for w in windows
                   if w['start_s'] >= release_s-1e-9
-                  and 'violated' not in w['status'].values()), None)
+                  and all(w['status'][k] == 'satisfied' for k in enforced)), None)
     out['joint'] = dict(first_satisfied_window_s=joint,
                         settling_from_release_s=None if joint is None else joint-release_s)
     return out
@@ -57,11 +67,8 @@ def one(job):
     scale, period, coronary, kappa, release = job
     d = opt.design(scale, period, coronary)
     record = opt.hydraulics(d, kappa, release_s=release)
-    name = opt.name_of(d, kappa, release)
-    a = np.load(ROOT / OUT / name / 'hydraulic-refined.npz')
-    t = a['time_s']; ao = a['pressures_mmHg'][:, 2]
-    adequacy = per_metric_adequacy(t, ao, release)
     pressure = record['pressure']
+    adequacy = per_metric_adequacy(pressure, release)
     return dict(scale=scale, rate_bpm=60/period, coronary_conductance=coronary,
                 compression_kappa=kappa, release_s=release,
                 pressure_status=pressure['status'],
@@ -70,12 +77,16 @@ def one(job):
                 startup_shortfall_mmHg_s=pressure['startup_shortfall_mmHg_s'],
                 sustained_shortfall_mmHg_s={k: v['shortfall_mmHg_s']
                                             for k, v in pressure['sustained_exposure'].items()},
+                status_by_criterion=pressure['status_by_criterion'],
+                plateau_reached=pressure.get('plateau_reached'),
+                horizon_s=record['duration_s'],
                 MAP_mmHg=record['runs'][-1]['final_MAP_mmHg'],
                 auxiliary_demand_mL_min=opt.objective(record), adequacy=adequacy)
 
 
 def main(workers=6):
-    designs = [(.651, 1., .969, .5), (.8, 1., .969, .5), (.651, .75, .969, .5)]
+    # The v4 boundary designs at the settled horizon, plus a larger comparator.
+    designs = [(.475, 1., 1., .5), (.387, .75, 1., .5), (.65, 1., 1., .5)]
     jobs = [(s, p, c, k, r) for (s, p, c, k) in designs for r in RELEASES]
     with ProcessPoolExecutor(max_workers=workers) as pool:
         rows = list(pool.map(one, jobs))
