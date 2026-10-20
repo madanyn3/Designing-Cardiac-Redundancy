@@ -1,0 +1,402 @@
+{
+  "schema": "M3 evidence amendment v1",
+  "status": "Arm B variant of the frozen M3 evidence network: visceral adipose disaggregated from the residual branch, totals preserved",
+  "parent": "baseline.yaml",
+  "M1_demand_file": "../data/m1-exploratory-assumptions.json",
+  "total_blood_volume_mL": 5250.0,
+  "target_blood_volume_mL": 5250,
+  "initial_physical_volumes_mL": {
+    "LV": 94.6812,
+    "RV": 90.7302,
+    "PA": 143.0123,
+    "PU": 1308.4578999999999,
+    "AO": 283.3381,
+    "VC": 2729.7803,
+    "B_limb_muscle": 400.0,
+    "B_limb_skin": 66.66666666666667,
+    "B_limb_bone": 66.66666666666667,
+    "B_limb_other": 33.333333333333336,
+    "B_limb_adipose": 33.333333333333336
+  },
+  "unstressed_offsets_mL": {
+    "LV": 0,
+    "RV": 0,
+    "AO": 150,
+    "PA": 100,
+    "PU": 500,
+    "VC": 2550.0
+  },
+  "limb_pools": {
+    "B_limb_muscle": {
+      "volume_initial_mL": 400.0,
+      "unstressed_mL": 300.0,
+      "compliance_mL_mmHg": 20.0,
+      "external_pressure_mmHg": 0,
+      "target_pressure_mmHg": 5
+    },
+    "B_limb_skin": {
+      "volume_initial_mL": 66.66666666666667,
+      "unstressed_mL": 50.0,
+      "compliance_mL_mmHg": 3.3333333333333335,
+      "external_pressure_mmHg": 0,
+      "target_pressure_mmHg": 5
+    },
+    "B_limb_bone": {
+      "volume_initial_mL": 66.66666666666667,
+      "unstressed_mL": 50.0,
+      "compliance_mL_mmHg": 3.3333333333333335,
+      "external_pressure_mmHg": 0,
+      "target_pressure_mmHg": 5
+    },
+    "B_limb_other": {
+      "volume_initial_mL": 33.333333333333336,
+      "unstressed_mL": 25.0,
+      "compliance_mL_mmHg": 1.6666666666666667,
+      "external_pressure_mmHg": 0,
+      "target_pressure_mmHg": 5
+    },
+    "B_limb_adipose": {
+      "volume_initial_mL": 33.333333333333336,
+      "unstressed_mL": 25.0,
+      "compliance_mL_mmHg": 1.6666666666666667,
+      "external_pressure_mmHg": 0,
+      "target_pressure_mmHg": 5
+    }
+  },
+  "regional_reference": {
+    "Q_systemic_L_min": 5.6,
+    "P_AO_mmHg": 100,
+    "P_VC_mmHg": 2,
+    "P_PU_mmHg": 4,
+    "P_H_mmHg": 12,
+    "meaning": "A resistance construction anchors, not solved baseline outputs"
+  },
+  "branches": [
+    {
+      "name": "brain",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.12,
+      "target_flow_mL_s": 11.2,
+      "R_mmHg_s_mL": 8.75,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "heart",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.04,
+      "target_flow_mL_s": 3.7333333333333334,
+      "R_mmHg_s_mL": 26.25,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "kidneys",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.19,
+      "target_flow_mL_s": 17.733333333333334,
+      "R_mmHg_s_mL": 5.526315789473684,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "liver_arterial",
+      "from": "AO",
+      "to": "H",
+      "baseline_fraction": 0.065,
+      "target_flow_mL_s": 6.066666666666666,
+      "R_mmHg_s_mL": 14.505494505494505,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "stomach_oesophagus",
+      "from": "AO",
+      "to": "H",
+      "baseline_fraction": 0.01,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 94.28571428571428,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "small_intestine",
+      "from": "AO",
+      "to": "H",
+      "baseline_fraction": 0.1,
+      "target_flow_mL_s": 9.333333333333334,
+      "R_mmHg_s_mL": 9.428571428571429,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "large_intestine",
+      "from": "AO",
+      "to": "H",
+      "baseline_fraction": 0.04,
+      "target_flow_mL_s": 3.7333333333333334,
+      "R_mmHg_s_mL": 23.57142857142857,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "pancreas",
+      "from": "AO",
+      "to": "H",
+      "baseline_fraction": 0.01,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 94.28571428571428,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "spleen",
+      "from": "AO",
+      "to": "H",
+      "baseline_fraction": 0.03,
+      "target_flow_mL_s": 2.8,
+      "R_mmHg_s_mL": 31.42857142857143,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "lungs",
+      "from": "AO",
+      "to": "PU",
+      "baseline_fraction": 0.025,
+      "target_flow_mL_s": 2.3333333333333335,
+      "R_mmHg_s_mL": 41.14285714285714,
+      "class": "published reference fraction transferred to project CO",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "limb_muscle",
+      "from": "AO",
+      "to": "B_limb_muscle",
+      "baseline_fraction": 0.1275049374588545,
+      "target_flow_mL_s": 11.900460829493086,
+      "R_mmHg_s_mL": 7.982884138785627,
+      "class": "candidate model-coefficient transfer; assumed M1 mass",
+      "source": "https://doi.org/10.1007/s11517-014-1229-8"
+    },
+    {
+      "name": "limb_skin",
+      "from": "AO",
+      "to": "B_limb_skin",
+      "baseline_fraction": 0.01555299539170507,
+      "target_flow_mL_s": 1.4516129032258065,
+      "R_mmHg_s_mL": 65.44444444444444,
+      "class": "candidate model-coefficient transfer; assumed M1 mass",
+      "source": "https://doi.org/10.1007/s11517-014-1229-8"
+    },
+    {
+      "name": "limb_adipose",
+      "from": "AO",
+      "to": "B_limb_adipose",
+      "baseline_fraction": 0.025214285714285713,
+      "target_flow_mL_s": 2.353333333333333,
+      "R_mmHg_s_mL": 40.36827195467423,
+      "class": "abdominal-to-limb transfer candidate, not limb measurement",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3287351/"
+    },
+    {
+      "name": "respiratory_muscle",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.00814680710994075,
+      "target_flow_mL_s": 0.76036866359447,
+      "R_mmHg_s_mL": 128.8848484848485,
+      "class": "local intercostal-to-respiratory-pool surrogate; not diaphragm measurement",
+      "source": "https://doi.org/10.1152/japplphysiol.01160.2007"
+    },
+    {
+      "name": "limb_bone",
+      "from": "AO",
+      "to": "B_limb_bone",
+      "baseline_fraction": 0.02,
+      "target_flow_mL_s": 1.8666666666666667,
+      "R_mmHg_s_mL": 50.89285714285714,
+      "class": "UNRESOLVED historical construction allocation; not evidence-qualified",
+      "source": null
+    },
+    {
+      "name": "limb_other",
+      "from": "AO",
+      "to": "B_limb_other",
+      "baseline_fraction": 0.01,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 101.78571428571428,
+      "class": "UNRESOLVED historical construction allocation; not evidence-qualified",
+      "source": null
+    },
+    {
+      "name": "remaining",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.1492952600394997,
+      "target_flow_mL_s": 13.934224270353305,
+      "R_mmHg_s_mL": 7.033043110157664,
+      "class": "derived named parent-budget complements; inherits unresolved partitions; visceral adipose disaggregated out under Arm B",
+      "source": "https://doi.org/10.1097/00004032-199508000-00003"
+    },
+    {
+      "name": "visceral_adipose",
+      "from": "AO",
+      "to": "VC",
+      "baseline_fraction": 0.014285714285714285,
+      "target_flow_mL_s": 1.3333333333333333,
+      "R_mmHg_s_mL": 73.5,
+      "class": "disaggregated from the residual branch; declared mass and flow-per-mass, not a measurement of this subject",
+      "source": "abdominal adipose blood flow 3-5 mL/100 g/min after overnight fast; demand per unit flow taken from the project limb_adipose entry"
+    },
+    {
+      "name": "hepatic_outflow",
+      "from": "H",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 23.8,
+      "R_mmHg_s_mL": 0.42016806722689076,
+      "class": "derived serial return"
+    },
+    {
+      "name": "limb_muscle_return",
+      "from": "B_limb_muscle",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 11.900460829493086,
+      "R_mmHg_s_mL": 0.2520910780669145,
+      "class": "derived using unchanged assumed 5 mmHg pool pressure"
+    },
+    {
+      "name": "limb_skin_return",
+      "from": "B_limb_skin",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 1.4516129032258065,
+      "R_mmHg_s_mL": 2.0666666666666664,
+      "class": "derived using unchanged assumed 5 mmHg pool pressure"
+    },
+    {
+      "name": "limb_adipose_return",
+      "from": "B_limb_adipose",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 2.353333333333333,
+      "R_mmHg_s_mL": 1.274787535410765,
+      "class": "derived using unchanged assumed 5 mmHg pool pressure"
+    },
+    {
+      "name": "limb_bone_return",
+      "from": "B_limb_bone",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 1.8666666666666667,
+      "R_mmHg_s_mL": 1.6071428571428572,
+      "class": "derived using unchanged assumed 5 mmHg pool pressure"
+    },
+    {
+      "name": "limb_other_return",
+      "from": "B_limb_other",
+      "to": "VC",
+      "baseline_fraction": null,
+      "target_flow_mL_s": 0.9333333333333333,
+      "R_mmHg_s_mL": 3.2142857142857144,
+      "class": "derived using unchanged assumed 5 mmHg pool pressure"
+    }
+  ],
+  "H_node": "zero-volume hepatic mixing junction; sum inflows=outflow; no portal volume state in v0.1",
+  "limb_control": {
+    "target_fractions": [
+      1,
+      0.5,
+      0.25,
+      0
+    ],
+    "reference": "each branch periodic normal baseline flow",
+    "finite_fraction_implementation": "add series inlet resistance calibrated to target mean flow; freeze after calibration; report actual ratio",
+    "zero_fraction": "close inlet exactly; return remains open allowing venous drainage; pool and tissue retained",
+    "reflow": "reopen inlet with finite ramp; never reset volume or oxygen deficit"
+  },
+  "pump_architectures": {
+    "N0": [],
+    "B1": [
+      {
+        "name": "right_support",
+        "from": "VC",
+        "to": "PA"
+      },
+      {
+        "name": "left_support",
+        "from": "PU",
+        "to": "AO"
+      }
+    ],
+    "S1": "B1 plus limb inlet controls",
+    "E1": [
+      {
+        "name": "oxygenated_support",
+        "from": "VC",
+        "to": "AO",
+        "oxygenator": true
+      }
+    ],
+    "E2": [
+      {
+        "name": "oxygenated_support",
+        "from": "VC",
+        "to": "AO",
+        "oxygenator": true
+      },
+      {
+        "name": "left_drainage",
+        "from": "PU",
+        "to": "AO",
+        "oxygenator": false
+      }
+    ]
+  },
+  "support_port_law": "Q=max(0,(P_in+H(t)-P_out)/R_p); bound by Qmax and inlet domain; R_p>0; hardware envelope M5",
+  "reservoir_warning": "A blood distribution; not measured. Adding pools changes source pressures; warm up separately.",
+  "portal_branches": [
+    "stomach_oesophagus",
+    "small_intestine",
+    "large_intestine",
+    "pancreas",
+    "spleen"
+  ],
+  "remaining_flow_components_mL_min": {
+    "nonlimb_nonrespiratory_muscle": 192.3502304147467,
+    "nonlimb_skin": 192.90322580645162,
+    "nonlimb_adipose": 138.8,
+    "nonlimb_skeleton": 168.0,
+    "other_source_tissues_less_limb_other": 224.0
+  },
+  "evidence_notes": [
+    "docs/m3-splanchnic-split.md",
+    "docs/m3-regional-flow-candidates.md"
+  ],
+  "unresolved": [
+    "limb_bone and limb_other flows",
+    "M1 sub-organ demand reconciliation",
+    "pressure/storage anchors",
+    "kidney/coronary sub-organ split",
+    "anatomical transfers"
+  ],
+  "arm_b_disaggregation": {
+    "parent": "remaining",
+    "mass_kg": 2.0,
+    "flow_mL_per_100g_min": 4.0,
+    "visceral_flow_mL_s": 1.3333333333333333,
+    "visceral_demand_mL_O2_min": 1.4602377267019073,
+    "demand_per_flow_mL_O2_min_per_mL_s": 1.0951782950264306,
+    "preserved": [
+      "total AO flow",
+      "baseline fraction sum",
+      "total oxygen demand",
+      "resistance construction R = (P_AO - P_VC) / Q"
+    ]
+  }
+}
