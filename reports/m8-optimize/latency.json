@@ -10,29 +10,29 @@
   ],
   "designs": [
     [
-      0.651,
+      0.475,
       1.0,
-      0.969,
+      1.0,
       0.5
     ],
     [
-      0.8,
-      1.0,
-      0.969,
-      0.5
-    ],
-    [
-      0.651,
+      0.387,
       0.75,
-      0.969,
+      1.0,
+      0.5
+    ],
+    [
+      0.65,
+      1.0,
+      1.0,
       0.5
     ]
   ],
   "rows": [
     {
-      "scale": 0.651,
+      "scale": 0.475,
       "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
+      "coronary_conductance": 1.0,
       "compression_kappa": 0.5,
       "release_s": 0.5,
       "pressure_status": "satisfied",
@@ -40,279 +40,45 @@
       "violating_sustained_windows": 0,
       "startup_shortfall_mmHg_s": {
         "mean": 0.0,
-        "maximum": 0.0,
+        "maximum": 4.3116683455930485,
         "minimum": 0.0
       },
       "sustained_shortfall_mmHg_s": {
         "mean": 0.0,
-        "maximum": 0.0,
+        "maximum": 490.2812353262567,
         "minimum": 0.0
       },
-      "MAP_mmHg": 79.77278976200395,
-      "auxiliary_demand_mL_min": 10.25737806485323,
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "satisfied"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 66.12441790134523,
+      "auxiliary_demand_mL_min": 7.45753075199695,
       "adequacy": {
         "mean": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 1.0,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 1,
-      "startup_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 7.3486894069275195,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 1.2966696479839328,
-        "minimum": 0.0
-      },
-      "MAP_mmHg": 79.41304549244657,
-      "auxiliary_demand_mL_min": 9.627452096630265,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 1.0,
+          "first_satisfied_window_s": 0.5,
           "settling_from_release_s": 0.0
         },
         "maximum": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 2.0
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
         },
         "minimum": {
-          "first_satisfied_window_s": 1.0,
+          "first_satisfied_window_s": 0.5,
           "settling_from_release_s": 0.0
         },
         "joint": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 2.0
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
         }
       }
     },
     {
-      "scale": 0.651,
+      "scale": 0.475,
       "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 1.5,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 3,
-      "startup_shortfall_mmHg_s": {
-        "mean": 0.2792122183936101,
-        "maximum": 14.818959606798828,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 9.898082637003895,
-        "minimum": 0.0
-      },
-      "MAP_mmHg": 78.94345566966427,
-      "auxiliary_demand_mL_min": 9.583629701040024,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 0.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 3.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 0.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 3.5
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 2.0,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 5,
-      "startup_shortfall_mmHg_s": {
-        "mean": 1.7916621506101578,
-        "maximum": 14.818959606798828,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 7.633811047352495,
-        "maximum": 40.40232623179031,
-        "minimum": 3.438569309123814
-      },
-      "MAP_mmHg": 78.36451014143167,
-      "auxiliary_demand_mL_min": 8.9547275436658,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 1.0
-        },
-        "maximum": {
-          "first_satisfied_window_s": 7.0,
-          "settling_from_release_s": 5.0
-        },
-        "minimum": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 1.0
-        },
-        "joint": {
-          "first_satisfied_window_s": 7.0,
-          "settling_from_release_s": 5.0
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 2.5,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 6,
-      "startup_shortfall_mmHg_s": {
-        "mean": 1.7916621506101578,
-        "maximum": 14.818959606798828,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 26.107888573376542,
-        "maximum": 53.9921825640717,
-        "minimum": 13.786062526294977
-      },
-      "MAP_mmHg": 77.64479657337085,
-      "auxiliary_demand_mL_min": 8.91717923310823,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 1.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 8.0,
-          "settling_from_release_s": 5.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 1.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 8.0,
-          "settling_from_release_s": 5.5
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 3.0,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 7,
-      "startup_shortfall_mmHg_s": {
-        "mean": 1.7916621506101578,
-        "maximum": 14.818959606798828,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 44.18858659121961,
-        "maximum": 102.54598043006854,
-        "minimum": 35.135545467867715
-      },
-      "MAP_mmHg": 76.76761741132624,
-      "auxiliary_demand_mL_min": 8.299533961684006,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 2.0
-        },
-        "maximum": {
-          "first_satisfied_window_s": 9.0,
-          "settling_from_release_s": 6.0
-        },
-        "minimum": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 2.0
-        },
-        "joint": {
-          "first_satisfied_window_s": 9.0,
-          "settling_from_release_s": 6.0
-        }
-      }
-    },
-    {
-      "scale": 0.8,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 0.5,
-      "pressure_status": "satisfied",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 0,
-      "startup_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 0.0,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 0.0,
-        "minimum": 0.0
-      },
-      "MAP_mmHg": 89.44401154746359,
-      "auxiliary_demand_mL_min": 12.640963186104347,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        }
-      }
-    },
-    {
-      "scale": 0.8,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
+      "coronary_conductance": 1.0,
       "compression_kappa": 0.5,
       "release_s": 1.0,
       "pressure_status": "satisfied",
@@ -320,432 +86,774 @@
       "violating_sustained_windows": 0,
       "startup_shortfall_mmHg_s": {
         "mean": 0.0,
-        "maximum": 4.418414404825128,
+        "maximum": 11.36301500280021,
         "minimum": 0.0
       },
       "sustained_shortfall_mmHg_s": {
         "mean": 0.0,
-        "maximum": 0.0,
+        "maximum": 513.1189187246266,
         "minimum": 0.0
       },
-      "MAP_mmHg": 89.05385501838396,
-      "auxiliary_demand_mL_min": 11.868412337511204,
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "satisfied"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 66.11287471440384,
+      "auxiliary_demand_mL_min": 7.342820723746392,
       "adequacy": {
         "mean": {
           "first_satisfied_window_s": 1.0,
           "settling_from_release_s": 0.0
         },
         "maximum": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 1.0
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
         },
         "minimum": {
           "first_satisfied_window_s": 1.0,
           "settling_from_release_s": 0.0
         },
         "joint": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 1.0
+          "first_satisfied_window_s": 1.0,
+          "settling_from_release_s": 0.0
         }
       }
     },
     {
-      "scale": 0.8,
+      "scale": 0.475,
       "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
+      "coronary_conductance": 1.0,
       "compression_kappa": 0.5,
       "release_s": 1.5,
-      "pressure_status": "satisfied",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 0,
-      "startup_shortfall_mmHg_s": {
-        "mean": 0.3580650309842497,
-        "maximum": 12.162912049522703,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 0.0,
-        "minimum": 0.0
-      },
-      "MAP_mmHg": 88.54578875563247,
-      "auxiliary_demand_mL_min": 11.823936029433971,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 0.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 0.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 0.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 0.5
-        }
-      }
-    },
-    {
-      "scale": 0.8,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 2.0,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 2,
-      "startup_shortfall_mmHg_s": {
-        "mean": 2.117413675278627,
-        "maximum": 15.089019547634294,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 5.952869586190879,
-        "maximum": 20.604243604927547,
-        "minimum": 3.807595822230475
-      },
-      "MAP_mmHg": 87.92164780863403,
-      "auxiliary_demand_mL_min": 11.049628764376967,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 1.0
-        },
-        "maximum": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 2.0
-        },
-        "minimum": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 1.0
-        },
-        "joint": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 2.0
-        }
-      }
-    },
-    {
-      "scale": 0.8,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 2.5,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 2,
-      "startup_shortfall_mmHg_s": {
-        "mean": 2.117413675278627,
-        "maximum": 15.089019547634294,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 22.566573778052188,
-        "maximum": 29.21341524358185,
-        "minimum": 11.773248140669068
-      },
-      "MAP_mmHg": 87.14715779347961,
-      "auxiliary_demand_mL_min": 11.009953480511838,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 1.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 1.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 1.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 1.5
-        }
-      }
-    },
-    {
-      "scale": 0.8,
-      "rate_bpm": 60.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 3.0,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 3,
-      "startup_shortfall_mmHg_s": {
-        "mean": 2.117413675278627,
-        "maximum": 15.089019547634294,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 37.13574080725754,
-        "maximum": 73.31594480363857,
-        "minimum": 33.34265357800174
-      },
-      "MAP_mmHg": 86.20447457207823,
-      "auxiliary_demand_mL_min": 10.247083767886643,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 2.0
-        },
-        "maximum": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 2.0
-        },
-        "minimum": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 2.0
-        },
-        "joint": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 2.0
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 80.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 0.5,
-      "pressure_status": "satisfied",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 0,
-      "startup_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 0.0,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 0.0,
-        "minimum": 0.0
-      },
-      "MAP_mmHg": 91.2916338889527,
-      "auxiliary_demand_mL_min": 12.632043344301827,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.5
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 80.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 1.0,
-      "pressure_status": "satisfied",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 0,
-      "startup_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 11.658489481877425,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 0.0,
-        "minimum": 0.0
-      },
-      "MAP_mmHg": 92.00776125528895,
-      "auxiliary_demand_mL_min": 12.021555868535906,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.0
-        },
-        "maximum": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 1.0
-        },
-        "minimum": {
-          "first_satisfied_window_s": 1.0,
-          "settling_from_release_s": 0.0
-        },
-        "joint": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 1.0
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 80.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 1.5,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 1,
-      "startup_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 14.818959606798828,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 0.0,
-        "maximum": 4.082239710351999,
-        "minimum": 0.0
-      },
-      "MAP_mmHg": 89.76517334087484,
-      "auxiliary_demand_mL_min": 11.409011786726102,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 0.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 1.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 2.0,
-          "settling_from_release_s": 0.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 1.5
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 80.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 2.0,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 2,
-      "startup_shortfall_mmHg_s": {
-        "mean": 1.7916621506101578,
-        "maximum": 14.818959606798828,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 9.547326900168883,
-        "maximum": 27.15990024023766,
-        "minimum": 2.261035973907944
-      },
-      "MAP_mmHg": 89.75545636130018,
-      "auxiliary_demand_mL_min": 11.370704165644739,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 1.0
-        },
-        "maximum": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 2.0
-        },
-        "minimum": {
-          "first_satisfied_window_s": 3.0,
-          "settling_from_release_s": 1.0
-        },
-        "joint": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 2.0
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 80.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 2.5,
-      "pressure_status": "violated",
-      "numerical_status": "valid",
-      "violating_sustained_windows": 3,
-      "startup_shortfall_mmHg_s": {
-        "mean": 1.7916621506101578,
-        "maximum": 14.818959606798828,
-        "minimum": 0.0
-      },
-      "sustained_shortfall_mmHg_s": {
-        "mean": 20.262966326187886,
-        "maximum": 47.392719210382374,
-        "minimum": 12.033235015423138
-      },
-      "MAP_mmHg": 90.09474620511267,
-      "auxiliary_demand_mL_min": 10.758537521508632,
-      "adequacy": {
-        "mean": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 1.5
-        },
-        "maximum": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 2.5
-        },
-        "minimum": {
-          "first_satisfied_window_s": 4.0,
-          "settling_from_release_s": 1.5
-        },
-        "joint": {
-          "first_satisfied_window_s": 5.0,
-          "settling_from_release_s": 2.5
-        }
-      }
-    },
-    {
-      "scale": 0.651,
-      "rate_bpm": 80.0,
-      "coronary_conductance": 0.969,
-      "compression_kappa": 0.5,
-      "release_s": 3.0,
       "pressure_status": "violated",
       "numerical_status": "valid",
       "violating_sustained_windows": 4,
       "startup_shortfall_mmHg_s": {
-        "mean": 1.7916621506101578,
-        "maximum": 14.818959606798828,
+        "mean": 2.538994718928471,
+        "maximum": 19.54273805164486,
         "minimum": 0.0
       },
       "sustained_shortfall_mmHg_s": {
-        "mean": 39.962671599512056,
-        "maximum": 79.52625877258197,
-        "minimum": 28.52985552218643
+        "mean": 2.8493134626442966,
+        "maximum": 515.8030925898275,
+        "minimum": 0.0
       },
-      "MAP_mmHg": 87.38185446013394,
-      "auxiliary_demand_mL_min": 10.154782750346664,
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 66.09828441160911,
+      "auxiliary_demand_mL_min": 7.33137550499697,
       "adequacy": {
         "mean": {
+          "first_satisfied_window_s": 6.5,
+          "settling_from_release_s": 5.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
+          "first_satisfied_window_s": 1.5,
+          "settling_from_release_s": 0.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 6.5,
+          "settling_from_release_s": 5.0
+        }
+      }
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 2.0,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 8,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.4363472284466567,
+        "maximum": 14.525134357880546,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 24.62635765679807,
+        "maximum": 555.7615014583051,
+        "minimum": 5.532527248613384
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 66.08201570697906,
+      "auxiliary_demand_mL_min": 7.216956970617394,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 10.0,
+          "settling_from_release_s": 8.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
           "first_satisfied_window_s": 4.0,
+          "settling_from_release_s": 2.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 10.0,
+          "settling_from_release_s": 8.0
+        }
+      }
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 2.5,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 9,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.4363472284466567,
+        "maximum": 14.525134357880546,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 41.10192145041114,
+        "maximum": 559.4634770732067,
+        "minimum": 18.78969596226986
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": false,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 66.06417811360954,
+      "auxiliary_demand_mL_min": 7.207106775851955,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 11.5,
+          "settling_from_release_s": 9.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
+          "first_satisfied_window_s": 5.5,
+          "settling_from_release_s": 3.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 11.5,
+          "settling_from_release_s": 9.0
+        }
+      }
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 3.0,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 11,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.4363472284466567,
+        "maximum": 14.525134357880546,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 74.76112408406956,
+        "maximum": 610.5523915117085,
+        "minimum": 43.19130307370969
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": false,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 66.0475058112657,
+      "auxiliary_demand_mL_min": 7.094898972052203,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 13.0,
+          "settling_from_release_s": 10.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
+          "first_satisfied_window_s": 7.0,
+          "settling_from_release_s": 4.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 13.0,
+          "settling_from_release_s": 10.0
+        }
+      }
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 0.5,
+      "pressure_status": "satisfied",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 0,
+      "startup_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 3.5119497234036388,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 568.6225261001035,
+        "minimum": 0.0
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "satisfied"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 66.28023536912426,
+      "auxiliary_demand_mL_min": 7.4896046713197055,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
+        },
+        "minimum": {
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
+        }
+      }
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 1.0,
+      "pressure_status": "satisfied",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 0,
+      "startup_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 19.81716595145465,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 583.6652005239665,
+        "minimum": 0.0
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "satisfied"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 67.03764573151818,
+      "auxiliary_demand_mL_min": 7.399594131712394,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 1.0,
+          "settling_from_release_s": 0.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
+          "first_satisfied_window_s": 1.0,
+          "settling_from_release_s": 0.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 1.0,
+          "settling_from_release_s": 0.0
+        }
+      }
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 1.5,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 2,
+      "startup_shortfall_mmHg_s": {
+        "mean": 2.75652129614123,
+        "maximum": 17.833095201998912,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 1.8502479795194322,
+        "maximum": 598.6764263732067,
+        "minimum": 0.0
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 65.73424024618994,
+      "auxiliary_demand_mL_min": 7.312342507069052,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 3.75,
+          "settling_from_release_s": 2.25
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
+          "first_satisfied_window_s": 1.5,
+          "settling_from_release_s": 0.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 3.75,
+          "settling_from_release_s": 2.25
+        }
+      }
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 2.0,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 7,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.2362681364741093,
+        "maximum": 14.359721287646082,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 21.050673972303848,
+        "maximum": 624.9592412436253,
+        "minimum": 2.8255169139676237
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 66.25294710599215,
+      "auxiliary_demand_mL_min": 7.299291274020314,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 7.25,
+          "settling_from_release_s": 5.25
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
+          "first_satisfied_window_s": 3.5,
+          "settling_from_release_s": 1.5
+        },
+        "joint": {
+          "first_satisfied_window_s": 7.25,
+          "settling_from_release_s": 5.25
+        }
+      }
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 2.5,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 9,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.2362681364741093,
+        "maximum": 14.359721287646082,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 36.31437918150747,
+        "maximum": 641.990225927535,
+        "minimum": 12.520333979844885
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 67.00269024686017,
+      "auxiliary_demand_mL_min": 7.209238286406988,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 9.25,
+          "settling_from_release_s": 6.75
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
+          "first_satisfied_window_s": 4.75,
+          "settling_from_release_s": 2.25
+        },
+        "joint": {
+          "first_satisfied_window_s": 9.25,
+          "settling_from_release_s": 6.75
+        }
+      }
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 3.0,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 11,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.2362681364741093,
+        "maximum": 14.359721287646082,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 69.0090669078622,
+        "maximum": 681.002964216329,
+        "minimum": 34.01062959902515
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 65.6952229723004,
+      "auxiliary_demand_mL_min": 7.12383586887781,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 10.5,
+          "settling_from_release_s": 7.5
+        },
+        "maximum": {
+          "first_satisfied_window_s": null,
+          "settling_from_release_s": null
+        },
+        "minimum": {
+          "first_satisfied_window_s": 6.0,
+          "settling_from_release_s": 3.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 10.5,
+          "settling_from_release_s": 7.5
+        }
+      }
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 0.5,
+      "pressure_status": "satisfied",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 0,
+      "startup_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 0.0,
+        "minimum": 0.0
+      },
+      "status_by_criterion": {
+        "strict_triple": "satisfied",
+        "map_primary": "satisfied"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 80.24276431532644,
+      "auxiliary_demand_mL_min": 10.442790058030152,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
+        },
+        "minimum": {
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 0.5,
+          "settling_from_release_s": 0.0
+        }
+      }
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 1.0,
+      "pressure_status": "satisfied",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 0,
+      "startup_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 7.402065512495511,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 1.3871186143872052,
+        "minimum": 0.0
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "satisfied"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 80.23091792607586,
+      "auxiliary_demand_mL_min": 10.28313848057376,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 1.0,
+          "settling_from_release_s": 0.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": 3.0,
+          "settling_from_release_s": 2.0
+        },
+        "minimum": {
+          "first_satisfied_window_s": 1.0,
+          "settling_from_release_s": 0.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 1.0,
+          "settling_from_release_s": 0.0
+        }
+      }
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 1.5,
+      "pressure_status": "satisfied",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 0,
+      "startup_shortfall_mmHg_s": {
+        "mean": 0.4771061036474862,
+        "maximum": 15.104928615505543,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 0.0,
+        "maximum": 10.226998677498798,
+        "minimum": 0.0
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "satisfied"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 80.2133533294946,
+      "auxiliary_demand_mL_min": 10.270239490974964,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 2.5,
           "settling_from_release_s": 1.0
         },
         "maximum": {
-          "first_satisfied_window_s": 6.0,
-          "settling_from_release_s": 3.0
+          "first_satisfied_window_s": 5.5,
+          "settling_from_release_s": 4.0
+        },
+        "minimum": {
+          "first_satisfied_window_s": 1.5,
+          "settling_from_release_s": 0.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 2.5,
+          "settling_from_release_s": 1.0
+        }
+      }
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 2.0,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 1,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.8324803558779763,
+        "maximum": 14.853031697066413,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 7.687845594994222,
+        "maximum": 40.9255594497328,
+        "minimum": 3.4838734365284623
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 80.19430941484276,
+      "auxiliary_demand_mL_min": 10.109603935789401,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 3.0,
+          "settling_from_release_s": 1.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": 7.0,
+          "settling_from_release_s": 5.0
+        },
+        "minimum": {
+          "first_satisfied_window_s": 3.0,
+          "settling_from_release_s": 1.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 3.0,
+          "settling_from_release_s": 1.0
+        }
+      }
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 2.5,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 2,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.8324803558779763,
+        "maximum": 14.853031697066413,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 16.32687416023937,
+        "maximum": 54.40932590495951,
+        "minimum": 13.89114048649082
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 80.17509595328329,
+      "auxiliary_demand_mL_min": 10.098198396459676,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 4.5,
+          "settling_from_release_s": 2.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": 8.5,
+          "settling_from_release_s": 6.0
+        },
+        "minimum": {
+          "first_satisfied_window_s": 4.5,
+          "settling_from_release_s": 2.0
+        },
+        "joint": {
+          "first_satisfied_window_s": 4.5,
+          "settling_from_release_s": 2.0
+        }
+      }
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "compression_kappa": 0.5,
+      "release_s": 3.0,
+      "pressure_status": "violated",
+      "numerical_status": "valid",
+      "violating_sustained_windows": 3,
+      "startup_shortfall_mmHg_s": {
+        "mean": 1.8324803558779763,
+        "maximum": 14.853031697066413,
+        "minimum": 0.0
+      },
+      "sustained_shortfall_mmHg_s": {
+        "mean": 44.367204108800934,
+        "maximum": 103.24601365678656,
+        "minimum": 35.28300217646188
+      },
+      "status_by_criterion": {
+        "strict_triple": "violated",
+        "map_primary": "violated"
+      },
+      "plateau_reached": true,
+      "horizon_s": 40.0,
+      "MAP_mmHg": 80.15744916507644,
+      "auxiliary_demand_mL_min": 9.940066752156165,
+      "adequacy": {
+        "mean": {
+          "first_satisfied_window_s": 5.0,
+          "settling_from_release_s": 2.0
+        },
+        "maximum": {
+          "first_satisfied_window_s": 9.0,
+          "settling_from_release_s": 6.0
         },
         "minimum": {
           "first_satisfied_window_s": 5.0,
           "settling_from_release_s": 2.0
         },
         "joint": {
-          "first_satisfied_window_s": 6.0,
-          "settling_from_release_s": 3.0
+          "first_satisfied_window_s": 5.0,
+          "settling_from_release_s": 2.0
         }
       }
     }

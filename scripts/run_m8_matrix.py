@@ -22,8 +22,9 @@ from cardiac_redundancy.duration import supported_duration
 
 OUT = 'reports/m8-matrix'
 PROTOCOL = json.loads((ROOT / 'configs/m8-protocol.json').read_text(encoding='utf-8'))
-OPTIMUM = dict(left_scale=.651, right_scale=.651, septal_scale=.651, pericardial_scale=.651,
-               period_s=1., coronary_conductance=.969)
+#: The T8.0 joint optimum at the settled 40 s horizon under protocol v4.
+OPTIMUM = dict(left_scale=.496, right_scale=.496, septal_scale=.496, pericardial_scale=.496,
+               period_s=1., coronary_conductance=1.203)
 HYDRAULIC_FLAGS = ('preservation_override', 'deplete_PU', 'restart', 'reopen', 'sensor_loss',
                    'inlet_multiplier', 'rearrest', 'withdraw', 'withdrawal_s')
 METABOLIC_FLAGS = ('apnea', 'demand_restore')

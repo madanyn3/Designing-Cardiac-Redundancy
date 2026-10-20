@@ -355,7 +355,89 @@ that MAP-primary buys is partly paid back to the coronary constraint, because th
 coronary bed scales with cavity size. That reintroduces dependence on the 0.5-2.0
 conductance bracket, which has no measured basis and which the v2 result had escaped.
 
-## 12. What is not established
+## 12. Results at the settled horizon (protocol v4)
+
+### The joint optimum, and a verification search that beat it
+
+Boundary tracing at the 40 s horizon located a joint optimum at cavity scale
+**0.496, 60 beats/min, coronary conductance 1.203**, costing **7.812 mL O2/min**.
+Eleven feasible pairs were found; all four pressure-boundary designs (0.466 at
+60/min, 0.375 at 80, 0.325 and 0.355 at 100) are infeasible on self-supply even
+at the upper conductance bound, so the optimum sits above the pressure boundary
+and the two constraints bind in different places.
+
+The protocol requires an independent check, because a structural argument cannot
+verify itself. A matched-budget scrambled Sobol sample over a neighbourhood of
+the optimum, 24 evaluations with no failures and 9 feasible, **beat it**:
+
+| | Scale | Rate | Conductance | Demand |
+|---|---|---|---|---|
+| Boundary tracing | 0.496 | 60.0 /min | 1.203 | 7.812 mL O2/min |
+| **Sobol sample** | **0.566** | **49.2 /min** | **1.027** | **7.600** |
+
+The margin is 2.7%, and the cause is specific: the Sobol sample varied the
+activation period continuously and found **49 beats/min**, a rate the traced
+search never evaluated, because Phase A traced boundaries only at the discrete
+rates 60, 80 and 100. The structural argument was sound; the implementation
+sampled the rate axis too coarsely and the optimum fell between the grid lines.
+**The best design found is the Sobol one**, and the verification requirement is
+what surfaced it.
+
+The better design carries a second advantage. It needs coronary conductance
+**1.027, essentially nominal**, where the traced optimum needed 1.203.
+
+### The conductance dependency returned under v4
+
+| Conductance ceiling | Cheapest feasible, traced |
+|---|---|
+| <= 1.00 | **none feasible** |
+| <= 1.25 and above | scale 0.496 at 60/min, 7.812 |
+
+Under v2 the optimum needed 0.969, below nominal, so the result did not depend
+on the coronary conductance assumption at all. Under v4 nothing is feasible at
+nominal conductance for the traced optimum. Faster designs need smaller cavities
+but more conductance (60/min 1.203, 80/min 1.625, 100/min 1.859), because the
+coronary bed scales with cavity size, so the smaller cavity that the MAP-primary
+criterion permits is partly paid back to the coronary constraint. The 0.5-2.0
+bracket has no measured basis and `docs/uncertainty-plan.md` states that using it
+as a design control requires a verified interface that does not exist, so this
+dependency must be stated wherever the traced optimum appears. The Sobol design
+at 1.027 very nearly escapes it.
+
+### T8.2 core matrix: one case of nine satisfies
+
+The optimum held fixed across the declared operating cases, reference physiology:
+
+| Case | Pressure | Organs | MAP | Duration | Release |
+|---|---|---|---|---|---|
+| **oracle_activation** | **satisfied** | **satisfied** | 67.70 | 34.6 min | 0.50 s |
+| support_with_suppression | violated | pump | 67.63 | 34.8 | 2.55 s |
+| delayed_activation | violated | pump | 67.63 | 34.8 | 2.55 s |
+| ventilation_degraded | violated | pump | 67.63 | 34.8 | 2.55 s |
+| partial_recovery | violated | pump | 105.08 | 34.5 | 2.55 s |
+| support_no_suppression | violated | active, pump | 46.06 | 34.9 | 1.95 s |
+| shared_failure | violated | active | 51.70 | 35.8 | 2.55 s |
+| low_preload | violated | active, pump | 65.06 | 35.0 | 2.60 s |
+
+`support_with_suppression` reaches MAP 67.63, above the enforced threshold, and
+still fails: the observed controller releases at 2.55 s and the window containing
+release lies outside the declared 2 s startup allowance. **The design is not what
+fails these cases; the detector is.**
+
+### Latency tolerance at the settled horizon
+
+| Design | Tolerable release |
+|---|---|
+| scale 0.387 at 80/min | 1.0 s |
+| scale 0.475 at 60/min | 1.0 s |
+| scale 0.650 at 60/min | **1.5 s** |
+
+A larger cavity buys latency tolerance, and every tolerable value lies below the
+M6 controller's 2.55 s. The requirement handed back to detection is therefore a
+detection-plus-recruitment budget under about 1.5 s, at a cavity well above the
+cost-optimal one.
+
+## 13. What is not established
 
 - **The envelope is bounded, not open.** Feasibility holds at reference and
   favourable physiology with kappa <= 0.5; adverse physiology and kappa 1 lie
@@ -390,7 +472,7 @@ conductance bracket, which has no measured basis and which the v2 result had esc
   2.5 at 150 /min. Rate is now a live design variable, so this inconsistency
   touches every comparison across rates in §2.
 
-## 13. Cost model correction
+## 14. Cost model correction
 
 The protocol's measured single-evaluation cost (277 s) was taken at the
 reference design under observed activation. Phase A measured **2.88 min per
