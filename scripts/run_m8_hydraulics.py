@@ -32,16 +32,22 @@ STATE = ROOT / 'reports/m5-joint-preservation/reference_g25/fine-refined.npz'
 def read(path): return json.loads((ROOT / path).read_text(encoding='utf-8'))
 
 
-def build(design):
+#: Arm A uses the frozen evidence network; Arm B uses the variant with the
+#: visceral adipose depot disaggregated out of the residual branch.
+ARM_A_NETWORK = 'configs/m3-evidence-regional.yaml'
+ARM_B_NETWORK = 'configs/m8-adipose-regional.yaml'
+
+
+def build(design, network=ARM_A_NETWORK):
     return SensitivityCirculation(
-        ROOT / 'configs/baseline.yaml', ROOT / 'configs/m3-evidence-regional.yaml',
+        ROOT / 'configs/baseline.yaml', ROOT / network,
         ROOT / 'configs/m2-frozen-overlay.yaml', arterial_fraction=.2,
         inlet_resistance_fraction=.1, coronary_conductance=design.coronary_conductance,
         biological=design.biological())
 
 
 def integrate(design, label, rtol, max_step, duration_s, policy='observed', kappa=None,
-              release_s=.5, case=None):
+              release_s=.5, case=None, network=ARM_A_NETWORK, additional_mandatory=()):
     """One hydraulic trajectory at one numerical setting.
 
     `kappa` overrides the coronary compression factor declared in
@@ -52,13 +58,14 @@ def integrate(design, label, rtol, max_step, duration_s, policy='observed', kapp
     """
     cfg = read('configs/m6-coupled-protocol.json'); cc = read('configs/m6-controller.json')
     case = dict(case or {})
-    m = build(design)
+    m = build(design, network)
     if kappa is not None:
         m.native.base.closure_settings['kappa'] = float(kappa)
     y = rescaled_initial_state(m, np.load(STATE)['states'][:, 0])
     # A declared operating case may override the suppression the design would
     # otherwise apply; the design itself is never re-tuned per case.
-    m.apply_support_controls(0, case.get('preservation_override', design.preservation_conductance))
+    m.apply_support_controls(0, case.get('preservation_override', design.preservation_conductance),
+                             additional_mandatory=additional_mandatory)
     if case.get('deplete_PU'):
         delta = m.domain_margins(y)['PU']-1.
         y[5] -= delta; y[3] += delta
@@ -144,12 +151,13 @@ def integrate(design, label, rtol, max_step, duration_s, policy='observed', kapp
                 failed_checks=failed, final_MAP_mmHg=mean(p[:, 2]),
                 aux_left_L_min=mean(q[:, m.flow_names.index('aAV')]*.06),
                 chamber_work_J=work, volume_names=m.volume_names,
+                flow_names=list(m.flow_names),
                 positive_transmural_mean_W=[float(w/(t[-1]-t[0])) for w in
                     np.trapezoid(np.maximum(power[:, :, 1], 0), t, axis=0)]), (t, p[:, 2], v, p, q, np.array(amps))
 
 
 def evaluate(design, name, out, duration_s=None, policy='observed', save=True, kappa=None,
-             release_s=.5, case=None):
+             release_s=.5, case=None, network=ARM_A_NETWORK, additional_mandatory=()):
     """Paired hydraulic evaluation plus the frozen pressure verdict."""
     duration_s = duration_s or PROTOCOL['evaluation_policy']['horizon_s']
     # Build the policy from the frozen protocol so the declared window mode and
@@ -161,7 +169,8 @@ def evaluate(design, name, out, duration_s=None, policy='observed', save=True, k
     runs = []; arrays = []
     for pair in PROTOCOL['numerical']['hydraulic']['pairs']:
         record, data = integrate(design, pair['label'], pair['rtol'], pair['max_step_s'],
-                                 duration_s, policy, kappa, release_s, case)
+                                 duration_s, policy, kappa, release_s, case, network,
+                                 additional_mandatory)
         runs.append(record); arrays.append(data)
     t, ao, v, p, q, amps = arrays[-1]
     tb = arrays[0][0]
@@ -175,7 +184,9 @@ def evaluate(design, name, out, duration_s=None, policy='observed', save=True, k
     pressure = pressure_endpoint(feasibility, t, ao, release_s=runs[-1]['release_s'],
                                  period_s=design.period_s)
     result = dict(status='screened', name=name, design=vars(design), policy=policy,
-                  case=dict(case or {}),
+                  case=dict(case or {}), network=network,
+                  additional_mandatory=list(additional_mandatory),
+                  flow_names=runs[-1].get('flow_names'),
                   compression_kappa=0.5 if kappa is None else float(kappa),
                   prescribed_release_s=None if policy != 'fixed' else float(release_s),
                   duration_s=duration_s, numerical_status=numerical, scaled_errors=errors,

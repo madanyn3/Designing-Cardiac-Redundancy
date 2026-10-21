@@ -96,3 +96,65 @@ def test_invalid_parameters_rejected(kwargs):
 def test_brain_demand_cannot_exceed_total():
     with pytest.raises(ValueError):
         fuel_split(50., 80., dict(supply_mL_O2_eq_min=0.))
+
+
+ORGANS = ['brain', 'aux_coronary_left', 'remaining', 'respiratory_muscle']
+DEMANDS = [28.866, 7.190, 8.071, 5.000]
+
+
+def test_zero_supply_reproduces_arm_a_exactly():
+    from cardiac_redundancy.fat import glucose_shares
+    g = glucose_shares(ORGANS, DEMANDS, dict(supply_mL_O2_eq_min=0.))
+    assert g['shares'] == [1., 1., 1., 1.]
+    assert g['covered_fraction'] == pytest.approx(0.)
+
+
+def test_the_obligate_organ_never_leaves_glucose():
+    from cardiac_redundancy.fat import glucose_shares
+    for supply in (0., 10., 1e4):
+        g = glucose_shares(ORGANS, DEMANDS, dict(supply_mL_O2_eq_min=supply))
+        assert g['shares'][ORGANS.index('brain')] == pytest.approx(1.)
+        assert g['obligate_organs'] == ['brain']
+
+
+def test_abundant_supply_takes_non_obligate_organs_off_glucose():
+    from cardiac_redundancy.fat import glucose_shares
+    g = glucose_shares(ORGANS, DEMANDS, dict(supply_mL_O2_eq_min=1e4))
+    assert g['covered_fraction'] == pytest.approx(1.)
+    assert g['shares'][ORGANS.index('aux_coronary_left')] == pytest.approx(0.)
+    assert g['met_by_fat_mL_O2_eq_min'] == pytest.approx(sum(DEMANDS)-28.866)
+
+
+def test_partial_supply_is_shared_proportionally():
+    from cardiac_redundancy.fat import glucose_shares
+    non_obligate = sum(DEMANDS)-28.866
+    g = glucose_shares(ORGANS, DEMANDS, dict(supply_mL_O2_eq_min=non_obligate/2))
+    assert g['covered_fraction'] == pytest.approx(.5)
+    for name in ('aux_coronary_left', 'remaining', 'respiratory_muscle'):
+        assert g['shares'][ORGANS.index(name)] == pytest.approx(.5)
+
+
+def test_the_pump_group_benefits_which_is_the_arm_b_prediction():
+    """Auxiliary self-supply binds Arm A; myocardium prefers fatty acid."""
+    from cardiac_redundancy.fat import fat_supply, glucose_shares
+    perfused = glucose_shares(ORGANS, DEMANDS, fat_supply(53.6))
+    suppressed = glucose_shares(ORGANS, DEMANDS, fat_supply(53.6*.25))
+    i = ORGANS.index('aux_coronary_left')
+    assert perfused['shares'][i] < suppressed['shares'][i] < 1.
+
+
+def test_shares_are_valid_for_fuel_oxygen_transport():
+    from cardiac_redundancy.fat import fat_supply, glucose_shares
+    g = glucose_shares(ORGANS, DEMANDS, fat_supply(53.6))
+    assert all(0. <= s <= 1. for s in g['shares'])
+    assert len(g['shares']) == len(ORGANS)
+
+
+def test_mismatched_lengths_and_bad_values_rejected():
+    from cardiac_redundancy.fat import glucose_shares
+    with pytest.raises(ValueError):
+        glucose_shares(ORGANS, DEMANDS[:2], dict(supply_mL_O2_eq_min=0.))
+    with pytest.raises(ValueError):
+        glucose_shares(ORGANS, [-1.]+DEMANDS[1:], dict(supply_mL_O2_eq_min=0.))
+    with pytest.raises(ValueError):
+        glucose_shares(ORGANS, DEMANDS, dict(supply_mL_O2_eq_min=float('nan')))

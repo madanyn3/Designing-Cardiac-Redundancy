@@ -37,7 +37,8 @@ def write(path,value):
 
 def network(case):
     cfg=read('configs/m5-final-comparison.json')
-    h=BilateralSupport(ROOT/'configs/baseline.yaml',ROOT/'configs/m3-evidence-regional.yaml',
+    # Arm B supplies its own regional network; the default is the frozen one.
+    h=BilateralSupport(ROOT/'configs/baseline.yaml',ROOT/case.get('network','configs/m3-evidence-regional.yaml'),
         ROOT/'configs/m2-frozen-overlay.yaml',device=case['device'],allocation=LungAllocation(**cfg['lung_allocation']),arterial_fraction=.2,inlet_resistance_fraction=.1)
     mapping=read('configs/m4-organ-mapping.json')['mapping']
     share=cfg['lung_allocation']['supported_share']
@@ -59,7 +60,10 @@ def short(case,p):
         parameters=OxygenParameters(**read('configs/m4-oxygen-reference.json')['parameters']),store_seconds=5)
     if case['device']=='BIO':o.store_capacity[-2:]=read('configs/m5-myocardial-demand.json')['auxiliary_store_capacity_mL']
     g=GlucoseTransport(h.volume_names,h.edges,organs,p,extraction_limit=case['knobs']['extraction_limit'])
-    model=FuelOxygenTransport(o,g);k=model.oxygen_size
+    # Arm A leaves every glucose share at one. Arm B supplies a per-organ
+    # array from its perfusion-limited fat supply; the default preserves
+    # Arm A exactly.
+    model=FuelOxygenTransport(o,g,glucose_share=case.get('glucose_share',1.));k=model.oxygen_size
     segments,paths=hydraulics(case);origin=float(segments[0]['time'][0]);vol=segments[0]['states'][:n,0]
     y0=model.initial_state(vol)
     # Transfer baseline CONTENT, not inventory, to each candidate blood volume.

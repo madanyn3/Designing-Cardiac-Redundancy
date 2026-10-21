@@ -28,6 +28,13 @@ term in this calculation.
 Nothing here models fatty-acid transport as a conserved species. It is a supply
 controller in the same style as the hepatic glucose export law, which the M4
 specification likewise describes as bookkeeping rather than hormone kinetics.
+
+`FuelOxygenTransport` already accepts a per-organ `glucose_share` and records
+`other_substrates_unassessed` whenever any share falls below one. Arm A leaves
+every share at one. Arm B sets them from a declared and measured fat supply,
+which turns that flag from an unassessed gap into an assessed one: the
+non-glucose fraction is now backed by a perfusion-limited supply rather than
+assumed available.
 """
 from dataclasses import dataclass
 import math
@@ -127,3 +134,47 @@ def fuel_split(total_demand_mL_O2_min, brain_demand_mL_O2_min, supply):
                                 if total_demand_mL_O2_min > 0 else 1.),
                 interpretation='the brain share is obligately glucose on this horizon; '
                                'ketone adaptation takes days and is a separate axis')
+
+
+#: Tissues that cannot oxidise long-chain fatty acid in this model. Red cells
+#: and renal medulla are also obligate glucose consumers physiologically, but
+#: neither is represented as a separate organ here, so the brain is the only
+#: one the model can hold to the constraint.
+OBLIGATE_GLUCOSE_ORGANS = ('brain',)
+
+
+def glucose_shares(organ_names, demands_mL_O2_min, supply,
+                   obligate=OBLIGATE_GLUCOSE_ORGANS):
+    """Per-organ fraction of oxidative demand charged to glucose.
+
+    Fat is allocated across the non-obligate organs in proportion to their
+    demand, so every one of them receives the same fractional coverage. A
+    priority ordering would be a further assumption; proportional allocation
+    makes none beyond the supply itself.
+
+    Returns the array `FuelOxygenTransport` expects, plus the accounting that
+    produced it, so a run records why each share has the value it does.
+    """
+    names = list(organ_names)
+    demands = [float(d) for d in demands_mL_O2_min]
+    if len(names) != len(demands):
+        raise ValueError('One demand per organ required')
+    if any(d < 0 or not math.isfinite(d) for d in demands):
+        raise ValueError('Finite nonnegative organ demands required')
+    available = supply['supply_mL_O2_eq_min'] if isinstance(supply, dict) else float(supply)
+    if not math.isfinite(available) or available < 0:
+        raise ValueError('Finite nonnegative fat supply required')
+    obligate = set(obligate)
+    non_obligate = sum(d for n, d in zip(names, demands) if n not in obligate)
+    covered = min(available, non_obligate)
+    fraction = (covered/non_obligate) if non_obligate > 0 else 0.
+    shares = [1. if n in obligate else 1.-fraction for n in names]
+    return dict(shares=shares, organ_names=names,
+                obligate_organs=sorted(obligate & set(names)),
+                non_obligate_demand_mL_O2_min=non_obligate,
+                fat_available_mL_O2_eq_min=available,
+                met_by_fat_mL_O2_eq_min=covered,
+                covered_fraction=fraction,
+                allocation='proportional to demand across non-obligate organs',
+                interpretation='shares are assessed against a perfusion-limited supply, '
+                               'not assumed; the obligate organs stay wholly on glucose')

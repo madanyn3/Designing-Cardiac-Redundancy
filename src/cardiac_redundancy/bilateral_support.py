@@ -48,9 +48,23 @@ reference, not a claim of realizable hardware or calibrated efficiency.
         self.incidence=np.zeros((self.volume_count+1,len(self.edges)));nodes=self.volume_names+('H',)
         for i,(_,a,b) in enumerate(self.edges):self.incidence[nodes.index(a),i]=-1;self.incidence[nodes.index(b),i]=1
 
-    def apply_support_controls(self,time,preservation=.25):
+    def apply_support_controls(self,time,preservation=.25,additional_mandatory=()):
+        """Set regional conductance factors for the supported state.
+
+        `additional_mandatory` names further branches the support policy elects
+        to perfuse at full conductance. It is a policy choice over the subject's
+        existing vasculature, not a change to any vessel: the branch resistance
+        is unchanged and only the fraction of it the circulation opens differs.
+        Arm B uses it to ask whether visceral adipose should be perfused so that
+        fatty acid can be exported. Empty by default, so Arm A is unaffected.
+        """
         if not math.isfinite(preservation) or not 0<preservation<=1:raise ValueError('Positive preservation conductance required')
         mandatory={'brain','coronary_left','coronary_right','kidney_protected','liver_arterial','respiratory_muscle'}
+        supplies_all={b.name for b in self.native.base.branches if b.donor=='AO'}
+        extra=set(additional_mandatory)
+        if not extra<=supplies_all:
+            raise ValueError('Additional mandatory branches must be supplied from AO: %s'%sorted(extra-supplies_all))
+        mandatory|=extra
         supplies={b.name for b in self.native.base.branches if b.donor=='AO'}
         factors={name:(1. if name in mandatory else preservation) for name in supplies}
         factors['lungs']=self.allocation.total('nutrition')

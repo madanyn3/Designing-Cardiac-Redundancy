@@ -210,8 +210,84 @@ def fig_duration():
            '39.6 at zero floor.')
 
 
+def _pooled_designs():
+    rows = []
+    for path in ('reports/m8-joint/joint-kappa0.5.json',
+                 'reports/m8-verification/space-filling-kappa0.5.json'):
+        f = ROOT/path
+        if f.is_file():
+            rows += json.loads(f.read_text(encoding='utf-8'))['rows']
+    return rows
+
+
+def fig_design_space():
+    """Where the search looked and what it found."""
+    rows = _pooled_designs()
+    feasible = [r for r in rows if r.get('feasible')]
+    infeasible = [r for r in rows if not r.get('feasible')]
+    if not feasible:
+        print('skipping design space: no feasible designs', flush=True); return
+    fig, ax = plt.subplots(figsize=(6.4, 4.0))
+    ax.scatter([r['rate_bpm'] for r in infeasible], [r['scale'] for r in infeasible],
+               s=26, facecolors='none', edgecolors=GRID, linewidths=1.2, zorder=2)
+    demands = [r['auxiliary_demand_mL_min'] for r in feasible]
+    sc = ax.scatter([r['rate_bpm'] for r in feasible], [r['scale'] for r in feasible],
+                    c=demands, cmap='viridis_r', s=46, edgecolors=SURFACE,
+                    linewidths=1.2, zorder=3)
+    best = min(feasible, key=lambda r: r['auxiliary_demand_mL_min'])
+    ax.scatter([best['rate_bpm']], [best['scale']], s=150, facecolors='none',
+               edgecolors=INK, linewidths=1.8, zorder=4)
+    ax.annotate('best found\n%.3f mL O₂/min' % best['auxiliary_demand_mL_min'],
+                (best['rate_bpm'], best['scale']), color=INK, fontsize=8,
+                xytext=(10, 8), textcoords='offset points')
+    bar = fig.colorbar(sc, ax=ax, pad=.02)
+    bar.set_label('auxiliary O₂ demand (mL/min)', fontsize=8.5)
+    bar.ax.tick_params(labelsize=8)
+    ax.set_xlabel('activation rate (beats/min)'); ax.set_ylabel('cavity scale')
+    ax.set_title('Feasible designs occupy a shallow valley, not a point')
+    finish(fig, 'fig-design-space',
+           'Pooled from the joint search and the matched-budget sample, 40 s horizon, '
+           'compression kappa 0.5, reference physiology, oracle activation. Open circles failed '
+           'the pressure screen or auxiliary self-supply. Colour is the objective; the valley is '
+           'flat enough that designs differing in scale, rate and coronary conductance cost within '
+           '0.2 per cent of each other.')
+
+
+def fig_conductance_frontier():
+    """What staying near nominal coronary conductance costs."""
+    rows = [r for r in _pooled_designs() if r.get('feasible')]
+    if not rows:
+        print('skipping frontier: no feasible designs', flush=True); return
+    ceilings = [1.0, 1.1, 1.25, 1.5, 1.75, 2.0]
+    best, scales = [], []
+    for eps in ceilings:
+        within = [r for r in rows if r['coronary_conductance'] <= eps+1e-9]
+        pick = min(within, key=lambda r: r['auxiliary_demand_mL_min']) if within else None
+        best.append(pick['auxiliary_demand_mL_min'] if pick else None)
+        scales.append(pick['scale'] if pick else None)
+    fig, ax = plt.subplots(figsize=(6.0, 3.6))
+    xs = [c for c, b in zip(ceilings, best) if b is not None]
+    ys = [b for b in best if b is not None]
+    ax.step(xs, ys, where='post', color=SERIES[0])
+    ax.scatter(xs, ys, color=SERIES[0], s=42, edgecolors=SURFACE, linewidths=1.5, zorder=3)
+    for c, b, sc in zip(ceilings, best, scales):
+        if b is None: continue
+        ax.annotate('scale %.3f' % sc, (c, b), color=INK2, fontsize=7.5,
+                    xytext=(4, 6), textcoords='offset points')
+    ax.set_xlabel('coronary conductance ceiling (multiple of nominal)')
+    ax.set_ylabel('cheapest feasible design (mL O₂/min)')
+    ax.set_title('A design exists at nominal conductance, at 26% more cost')
+    finish(fig, 'fig-conductance-frontier',
+           'Epsilon-constraint frontier pooled across both searches. The 0.5-2.0 conductance '
+           'bracket is a declared assumption with no measured basis, so what matters is that '
+           'feasibility does not depend on it: at or below nominal a design exists at 9.596 mL '
+           'O₂/min and cavity scale 0.749, against 7.600 at scale 0.566 once slightly above '
+           'nominal conductance is allowed. The assumption buys optimality, not feasibility.')
+
+
 if __name__ == '__main__':
-    for fn in (fig_compression, fig_kappa, fig_volume_debt, fig_latency, fig_duration):
+    for fn in (fig_compression, fig_kappa, fig_volume_debt, fig_latency, fig_duration,
+               fig_design_space, fig_conductance_frontier):
         try:
             fn()
         except Exception as exc:
