@@ -32,6 +32,9 @@ from cardiac_redundancy.fat import LipolysisParameters, fat_supply, glucose_shar
 from cardiac_redundancy.fuel import FuelParameters
 
 OUT = 'reports/m8b-coupled'
+#: The branch the depot was disaggregated out of; its baseline oxygen store
+#: splits between the two in proportion to the demand each now carries.
+PARENT_ORGAN = 'remaining'
 NETWORK = 'configs/m8-adipose-regional.yaml'
 MAPPING = 'configs/m8-adipose-organ-mapping.json'
 
@@ -79,12 +82,6 @@ def evaluate(design, scenario, policy, name, hydraulic_dir, out=OUT,
                 hydraulic_source=str(hydraulic_dir),
                 knobs=dict(extraction_limit=scenario.extraction_limit,
                            preservation_fraction=scenario.preservation_fraction))
-    organs = met.network(case)[1]
-    names = [o.name for o in organs]
-    demands = [o.demand_mL_min for o in organs]
-    shares = glucose_shares(names, demands, supply)
-    case['glucose_share'] = shares['shares']
-
     pars = FuelParameters(**{**read('configs/m4-fuel-reference.json')['parameters'],
         'glycogen_mmol_L_liver': scenario.glycogen_mmol_L_liver,
         'release_cap_mmol_min': scenario.release_cap_mmol_min})
@@ -104,6 +101,29 @@ def evaluate(design, scenario, policy, name, hydraulic_dir, out=OUT,
             profile = data['cases'][1]['profile']
             profile[ADIPOSE_BRANCH] = policy.organ_entry(scenario.preservation_fraction)
         return data
+
+    # The organ list must be read under the same patched configuration the
+    # replay will use, or the share array is sized for the other arm.
+    met.read = coupled_read
+    try:
+        organs = met.network(case)[1]
+    finally:
+        met.read = original
+    names = [o.name for o in organs]
+    demands = [o.demand_mL_min for o in organs]
+    shares = glucose_shares(names, demands, supply)
+    if len(shares['shares']) != len(organs):
+        raise ValueError('Share array does not match the organ list')
+    if ADIPOSE_BRANCH not in names:
+        raise ValueError('Arm B replay is missing the %s organ' % ADIPOSE_BRANCH)
+    case['glucose_share'] = shares['shares']
+    # The depot was disaggregated out of the residual branch, so the baseline's
+    # stored oxygen for that branch must split with the demand that moved.
+    demand_by_name = dict(zip(names, demands))
+    parent_total = demand_by_name[PARENT_ORGAN]+demand_by_name[ADIPOSE_BRANCH]
+    case['store_split'] = {
+        PARENT_ORGAN: (PARENT_ORGAN, demand_by_name[PARENT_ORGAN]/parent_total),
+        ADIPOSE_BRANCH: (PARENT_ORGAN, demand_by_name[ADIPOSE_BRANCH]/parent_total)}
 
     start = time.perf_counter()
     met.read = coupled_read

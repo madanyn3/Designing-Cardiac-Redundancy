@@ -140,8 +140,16 @@ is reported.
 
 | Boundary | Finding |
 |---|---|
-| Compression kappa | At kappa 1, **no design is feasible** at any scale or conductance in the declared range; the epsilon frontier is empty at every ceiling. At kappa 0 even scale 0.5 feeds itself. |
-| Physiology | Feasible in **2 of 3** declared scenarios. Adverse raises auxiliary demand 54–62 per cent and fails the **active** group at 60 /min, not only the pump. |
+| Compression kappa | **Both** alternatives fail, for opposite reasons. At kappa 1 self-supply fails; at kappa 0 the pressure screen fails, because less compression means more coronary runoff and MAP falls to 63.44 against the 65 threshold. Feasibility holds only in a narrow band around 0.5. |
+| Physiology | Feasible in **2 of 3** declared scenarios. Adverse raises auxiliary demand 54-62 per cent and fails the **active** group as well as the pump, in all four leading designs. |
+
+T8.4 tested the four leading designs against five stresses: 4 of 4 survive
+reference and favourable, **0 of 4 survive adverse, kappa 0 or kappa 1**. It
+also found a **ranking reversal under both adverse and favourable physiology**,
+in which the design cheapest at reference drops to third. Selecting on
+reference alone was therefore the wrong criterion, and the reversal is reported
+rather than resolved: resolving it would mean optimizing against one declared
+scenario over the others, and none has a stronger claim.
 | Detection latency | Tolerable 1.0–1.5 s against the controller's 2.55 s (§3). |
 
 Kappa is the fraction of auxiliary chamber transmural pressure applied as its

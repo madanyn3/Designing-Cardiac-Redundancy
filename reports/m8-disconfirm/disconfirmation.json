@@ -1,0 +1,735 @@
+{
+  "scope": "T8.4 disconfirmation of the leading designs",
+  "protocol_version": 4,
+  "designs": [
+    {
+      "tag": "space_filling",
+      "scale": 0.566,
+      "period_s": 1.219,
+      "rate_bpm": 49.220672682526654,
+      "coronary_conductance": 1.027,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "auxiliary_demand_mL_min": 7.60000220266894,
+      "MAP_mmHg": 63.815394635362466,
+      "outcome": "feasible"
+    },
+    {
+      "tag": "compass3:coronary_conductance+1",
+      "scale": 0.536,
+      "period_s": 1.123,
+      "rate_bpm": 53.42831700801425,
+      "coronary_conductance": 1.808,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "auxiliary_demand_mL_min": 7.600849785141813,
+      "MAP_mmHg": 66.4740785632685,
+      "sustained_unmet_mL": 0.0,
+      "outcome": "feasible"
+    },
+    {
+      "tag": "compass1:coronary_conductance+1",
+      "scale": 0.536,
+      "period_s": 1.123,
+      "rate_bpm": 53.42831700801425,
+      "coronary_conductance": 1.748,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "auxiliary_demand_mL_min": 7.602668948822778,
+      "MAP_mmHg": 66.56202418272596,
+      "sustained_unmet_mL": 0.0,
+      "outcome": "feasible"
+    },
+    {
+      "tag": "compass3:coronary_conductance-1",
+      "scale": 0.536,
+      "period_s": 1.123,
+      "rate_bpm": 53.42831700801425,
+      "coronary_conductance": 1.688,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "auxiliary_demand_mL_min": 7.604491180011163,
+      "MAP_mmHg": 66.65022394708288,
+      "sustained_unmet_mL": 0.0,
+      "outcome": "feasible"
+    }
+  ],
+  "stresses": [
+    "reference",
+    "adverse",
+    "favourable",
+    "kappa0",
+    "kappa1"
+  ],
+  "rows": [
+    {
+      "design": {
+        "left_scale": 0.566,
+        "right_scale": 0.566,
+        "septal_scale": 0.566,
+        "pericardial_scale": 0.566,
+        "period_s": 1.219,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.027,
+        "preservation_conductance": 0.25
+      },
+      "stress": "reference",
+      "scenario": "reference",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.60000220266894,
+      "outcome": "evaluated",
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "auxiliary_demand_mL_min": 7.60000220266894,
+      "sustained_unmet_mL": 0.0,
+      "MAP_mmHg": 63.815394635362466
+    },
+    {
+      "design": {
+        "left_scale": 0.566,
+        "right_scale": 0.566,
+        "septal_scale": 0.566,
+        "pericardial_scale": 0.566,
+        "period_s": 1.219,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.027,
+        "preservation_conductance": 0.25
+      },
+      "stress": "adverse",
+      "scenario": "adverse",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.60000220266894,
+      "outcome": "evaluated",
+      "feasible": false,
+      "groups": {
+        "active": {
+          "status": "violated",
+          "unmet": 0.33763574048833644
+        },
+        "preservation": {
+          "status": "satisfied",
+          "unmet": 0.0
+        },
+        "pump": {
+          "status": "violated",
+          "unmet": 0.9940060372709237
+        }
+      },
+      "MAP_mmHg": 63.815394635362466,
+      "auxiliary_demand_mL_min": 11.757512699908453,
+      "violated": [
+        "active",
+        "pump"
+      ]
+    },
+    {
+      "design": {
+        "left_scale": 0.566,
+        "right_scale": 0.566,
+        "septal_scale": 0.566,
+        "pericardial_scale": 0.566,
+        "period_s": 1.219,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.027,
+        "preservation_conductance": 0.25
+      },
+      "stress": "favourable",
+      "scenario": "favourable",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.60000220266894,
+      "outcome": "evaluated",
+      "feasible": true,
+      "groups": {
+        "active": {
+          "status": "satisfied",
+          "unmet": 0.0
+        },
+        "preservation": {
+          "status": "satisfied",
+          "unmet": 5.273559366969494e-16
+        },
+        "pump": {
+          "status": "satisfied",
+          "unmet": 0.0
+        }
+      },
+      "MAP_mmHg": 63.815394635362466,
+      "auxiliary_demand_mL_min": 5.878756349954227,
+      "violated": []
+    },
+    {
+      "design": {
+        "left_scale": 0.566,
+        "right_scale": 0.566,
+        "septal_scale": 0.566,
+        "pericardial_scale": 0.566,
+        "period_s": 1.219,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.027,
+        "preservation_conductance": 0.25
+      },
+      "stress": "kappa0",
+      "scenario": "reference",
+      "kappa": 0.0,
+      "reference_demand_mL_O2_min": 7.60000220266894,
+      "outcome": "pressure_violated",
+      "feasible": false,
+      "pressure": "violated",
+      "MAP_mmHg": 63.44129255163922
+    },
+    {
+      "design": {
+        "left_scale": 0.566,
+        "right_scale": 0.566,
+        "septal_scale": 0.566,
+        "pericardial_scale": 0.566,
+        "period_s": 1.219,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.027,
+        "preservation_conductance": 0.25
+      },
+      "stress": "kappa1",
+      "scenario": "reference",
+      "kappa": 1.0,
+      "reference_demand_mL_O2_min": 7.60000220266894,
+      "outcome": "evaluated",
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "auxiliary_demand_mL_min": 7.607764356696616,
+      "sustained_unmet_mL": 0.9405288466561215,
+      "MAP_mmHg": 64.2430928388132
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.808,
+        "preservation_conductance": 0.25
+      },
+      "stress": "reference",
+      "scenario": "reference",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.600849785141813,
+      "outcome": "evaluated",
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "auxiliary_demand_mL_min": 7.600849785141813,
+      "sustained_unmet_mL": 0.0,
+      "MAP_mmHg": 66.4740785632685
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.808,
+        "preservation_conductance": 0.25
+      },
+      "stress": "adverse",
+      "scenario": "adverse",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.600849785141813,
+      "outcome": "evaluated",
+      "feasible": false,
+      "groups": {
+        "active": {
+          "status": "violated",
+          "unmet": 0.3320720600771035
+        },
+        "preservation": {
+          "status": "satisfied",
+          "unmet": 0.0
+        },
+        "pump": {
+          "status": "violated",
+          "unmet": 0.16491753341567775
+        }
+      },
+      "MAP_mmHg": 66.4740785632685,
+      "auxiliary_demand_mL_min": 11.754487463788308,
+      "violated": [
+        "active",
+        "pump"
+      ]
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.808,
+        "preservation_conductance": 0.25
+      },
+      "stress": "favourable",
+      "scenario": "favourable",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.600849785141813,
+      "outcome": "evaluated",
+      "feasible": true,
+      "groups": {
+        "active": {
+          "status": "satisfied",
+          "unmet": 0.0
+        },
+        "preservation": {
+          "status": "satisfied",
+          "unmet": 5.273559366969494e-16
+        },
+        "pump": {
+          "status": "satisfied",
+          "unmet": 0.0
+        }
+      },
+      "MAP_mmHg": 66.4740785632685,
+      "auxiliary_demand_mL_min": 5.877243731894154,
+      "violated": []
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.808,
+        "preservation_conductance": 0.25
+      },
+      "stress": "kappa0",
+      "scenario": "reference",
+      "kappa": 0.0,
+      "reference_demand_mL_O2_min": 7.600849785141813,
+      "outcome": "pressure_violated",
+      "feasible": false,
+      "pressure": "violated",
+      "MAP_mmHg": 65.88437018192806
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.808,
+        "preservation_conductance": 0.25
+      },
+      "stress": "kappa1",
+      "scenario": "reference",
+      "kappa": 1.0,
+      "reference_demand_mL_O2_min": 7.600849785141813,
+      "outcome": "evaluated",
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "auxiliary_demand_mL_min": 7.612081789365638,
+      "sustained_unmet_mL": 0.879805561901333,
+      "MAP_mmHg": 67.10980768641399
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.748,
+        "preservation_conductance": 0.25
+      },
+      "stress": "reference",
+      "scenario": "reference",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.602668948822778,
+      "outcome": "evaluated",
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "auxiliary_demand_mL_min": 7.602668948822778,
+      "sustained_unmet_mL": 0.0,
+      "MAP_mmHg": 66.56202418272596
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.748,
+        "preservation_conductance": 0.25
+      },
+      "stress": "adverse",
+      "scenario": "adverse",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.602668948822778,
+      "outcome": "evaluated",
+      "feasible": false,
+      "groups": {
+        "active": {
+          "status": "violated",
+          "unmet": 0.329124540900134
+        },
+        "preservation": {
+          "status": "satisfied",
+          "unmet": 0.0
+        },
+        "pump": {
+          "status": "violated",
+          "unmet": 0.1874424858561869
+        }
+      },
+      "MAP_mmHg": 66.56202418272596,
+      "auxiliary_demand_mL_min": 11.757216209309757,
+      "violated": [
+        "active",
+        "pump"
+      ]
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.748,
+        "preservation_conductance": 0.25
+      },
+      "stress": "favourable",
+      "scenario": "favourable",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.602668948822778,
+      "outcome": "evaluated",
+      "feasible": true,
+      "groups": {
+        "active": {
+          "status": "satisfied",
+          "unmet": 0.0
+        },
+        "preservation": {
+          "status": "satisfied",
+          "unmet": 5.273559366969494e-16
+        },
+        "pump": {
+          "status": "satisfied",
+          "unmet": 0.0
+        }
+      },
+      "MAP_mmHg": 66.56202418272596,
+      "auxiliary_demand_mL_min": 5.878608104654878,
+      "violated": []
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.748,
+        "preservation_conductance": 0.25
+      },
+      "stress": "kappa0",
+      "scenario": "reference",
+      "kappa": 0.0,
+      "reference_demand_mL_O2_min": 7.602668948822778,
+      "outcome": "pressure_violated",
+      "feasible": false,
+      "pressure": "violated",
+      "MAP_mmHg": 65.98878178204976
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.748,
+        "preservation_conductance": 0.25
+      },
+      "stress": "kappa1",
+      "scenario": "reference",
+      "kappa": 1.0,
+      "reference_demand_mL_O2_min": 7.602668948822778,
+      "outcome": "evaluated",
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "auxiliary_demand_mL_min": 7.613615488542009,
+      "sustained_unmet_mL": 0.8823355911374522,
+      "MAP_mmHg": 67.18169675298043
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.688,
+        "preservation_conductance": 0.25
+      },
+      "stress": "reference",
+      "scenario": "reference",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.604491180011163,
+      "outcome": "evaluated",
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "auxiliary_demand_mL_min": 7.604491180011163,
+      "sustained_unmet_mL": 0.0,
+      "MAP_mmHg": 66.65022394708288
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.688,
+        "preservation_conductance": 0.25
+      },
+      "stress": "adverse",
+      "scenario": "adverse",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.604491180011163,
+      "outcome": "evaluated",
+      "feasible": false,
+      "groups": {
+        "active": {
+          "status": "violated",
+          "unmet": 0.32617932411667705
+        },
+        "preservation": {
+          "status": "satisfied",
+          "unmet": 0.0
+        },
+        "pump": {
+          "status": "violated",
+          "unmet": 0.22071182390653937
+        }
+      },
+      "MAP_mmHg": 66.65022394708288,
+      "auxiliary_demand_mL_min": 11.759949556092332,
+      "violated": [
+        "active",
+        "pump"
+      ]
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.688,
+        "preservation_conductance": 0.25
+      },
+      "stress": "favourable",
+      "scenario": "favourable",
+      "kappa": 0.5,
+      "reference_demand_mL_O2_min": 7.604491180011163,
+      "outcome": "evaluated",
+      "feasible": true,
+      "groups": {
+        "active": {
+          "status": "satisfied",
+          "unmet": 0.0
+        },
+        "preservation": {
+          "status": "satisfied",
+          "unmet": 5.273559366969494e-16
+        },
+        "pump": {
+          "status": "satisfied",
+          "unmet": 0.0
+        }
+      },
+      "MAP_mmHg": 66.65022394708288,
+      "auxiliary_demand_mL_min": 5.879974778046166,
+      "violated": []
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.688,
+        "preservation_conductance": 0.25
+      },
+      "stress": "kappa0",
+      "scenario": "reference",
+      "kappa": 0.0,
+      "reference_demand_mL_O2_min": 7.604491180011163,
+      "outcome": "pressure_violated",
+      "feasible": false,
+      "pressure": "violated",
+      "MAP_mmHg": 66.09353325759513
+    },
+    {
+      "design": {
+        "left_scale": 0.536,
+        "right_scale": 0.536,
+        "septal_scale": 0.536,
+        "pericardial_scale": 0.536,
+        "period_s": 1.123,
+        "left_contractility": 1.0,
+        "right_contractility": 1.0,
+        "septal_contractility": 1.0,
+        "coronary_conductance": 1.688,
+        "preservation_conductance": 0.25
+      },
+      "stress": "kappa1",
+      "scenario": "reference",
+      "kappa": 1.0,
+      "reference_demand_mL_O2_min": 7.604491180011163,
+      "outcome": "evaluated",
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "auxiliary_demand_mL_min": 7.61515161445616,
+      "sustained_unmet_mL": 0.885081592206699,
+      "MAP_mmHg": 67.25376821892156
+    }
+  ],
+  "survival": {
+    "reference": 4,
+    "adverse": 0,
+    "favourable": 4,
+    "kappa0": 0,
+    "kappa1": 0
+  },
+  "tested": 4,
+  "rankings": {
+    "reference": [
+      0.566,
+      0.536,
+      0.536,
+      0.536
+    ],
+    "adverse": [
+      0.536,
+      0.536,
+      0.566,
+      0.536
+    ],
+    "favourable": [
+      0.536,
+      0.536,
+      0.566,
+      0.536
+    ],
+    "kappa0": [],
+    "kappa1": [
+      0.566,
+      0.536,
+      0.536,
+      0.536
+    ]
+  },
+  "ranking_reversals": [
+    {
+      "stress": "adverse",
+      "reference_order": [
+        0.566,
+        0.536,
+        0.536,
+        0.536
+      ],
+      "stressed_order": [
+        0.536,
+        0.536,
+        0.566,
+        0.536
+      ]
+    },
+    {
+      "stress": "favourable",
+      "reference_order": [
+        0.566,
+        0.536,
+        0.536,
+        0.536
+      ],
+      "stressed_order": [
+        0.536,
+        0.536,
+        0.566,
+        0.536
+      ]
+    }
+  ],
+  "wall_s": 2885.3769616000354,
+  "interpretation": "fractions of tested cases, never probabilities; boundaries are boundaries of the sampled domain, not of the possible"
+}

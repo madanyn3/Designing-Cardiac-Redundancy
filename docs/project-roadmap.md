@@ -37,7 +37,7 @@ Use four labels throughout: **E** = source-supported evidence within its stated 
 | M5. Auxiliary pump and energy budget | Architecture comparison and sizing bounds | M4 | Closed at qualified characterization/accounting scope; 235 tests, 2026-10-14 |
 | M6. Detection, recovery, and failure modes | Controller and fault experiments | M5 | Closed at qualified control-scenario scope; 254 tests, 2026-10-15 |
 | M7. Uncertainty and identifiability | Sensitivity rankings and uncertainty bounds | M6 | Closed at bounded assessment scope; [closure](m7-closure.md) |
-| M8. Feasibility experiments | Frozen experiment suite and results | M7 | T8.1 frozen at version 2; T8.0 complete; T8.2-T8.5 open |
+| M8. Feasibility experiments | Frozen experiment suite and results | M7 | Arm A complete at protocol v4; Arm B underway |
 | M9. Scientific synthesis | Technical report and completed primer | M8 | Not started |
 | M10. Reproducible showcase | Release, figures, walkthrough, demo | M9 | Not started |
 
@@ -262,10 +262,10 @@ Execution plan: [M3 goals, sequence and M2 handoff](m3-plan.md). T3.1, T3.2 and 
 
 - [x] **T8.1 — Freeze the experiment protocol.** Save the code version, parameter provenance, scenario matrix, endpoint definitions, numerical settings, and analysis choices before the main runs. Record amendments and rerun affected analyses. Frozen at version 1: [protocol note](m8-t81-protocol.md), [`configs/m8-protocol.json`](../configs/m8-protocol.json), design/scenario registry and tested endpoint evaluator; 347 tests.
 - [x] **T8.0 — Optimize the bounded design.** Use M6 policies and M7 uncertainty/sensitivity to search pump/circulation settings across size/energy budgets. Compare analytical screening and a reproducible constrained stochastic search against a matched-budget sampling baseline; report best-found trade-offs, seed variability, boundary dependence and refined full-model verification. Do not optimize uncertain physiological demands freely or claim a global/clinical optimum. Freeze this search protocol under T8.1 before main runs. Complete: [T8.0 findings](m8-t80-findings.md). Joint optimum at cavity scale 0.651 and 60 beats/min; operating envelope bounded by compression kappa and detection latency; supported duration 24.2-95.3 min across declared scenarios. Matched-budget verification and long-horizon duration verification remain open.
-- [ ] **T8.2 — Run the core matrix.** Include no auxiliary support; auxiliary support without suppression; support with finite hypothetical suppression; ventilation/gas-exchange degradation; delayed activation; partial native recovery; and selected shared failures. Compare architectures only under explicit capability differences.
-- [ ] **T8.3 — Generate primary results.** Plot capacity versus activation-delay feasibility maps, organ oxygen-deficit time series, hydraulic/energy tradeoffs, uncertainty bands, and sensitivity rankings. Define exactly what a colored region means. Report solver failures separately from physiological constraint violations.
-- [ ] **T8.4 — Seek disconfirmation.** Search deliberately for cases where the proposed design fails and where architecture rankings reverse. Report boundaries outside the sampled domain as unknown. Separate interpolation from extrapolation.
-- [ ] **T8.5 — Answer the research questions.** State what is feasible within the model, what depends on speculative assumptions, and what cannot be decided. Report horizons with no violation as such, not as indefinite support.
+- [x] **T8.2 — Run the core matrix.** Include no auxiliary support; auxiliary support without suppression; support with finite hypothetical suppression; ventilation/gas-exchange degradation; delayed activation; partial native recovery; and selected shared failures. Compare architectures only under explicit capability differences.
+- [x] **T8.3 — Generate primary results.** Plot capacity versus activation-delay feasibility maps, organ oxygen-deficit time series, hydraulic/energy tradeoffs, uncertainty bands, and sensitivity rankings. Define exactly what a colored region means. Report solver failures separately from physiological constraint violations.
+- [x] **T8.4 — Seek disconfirmation.** Search deliberately for cases where the proposed design fails and where architecture rankings reverse. Report boundaries outside the sampled domain as unknown. Separate interpolation from extrapolation.
+- [x] **T8.5 — Answer the research questions.** State what is feasible within the model, what depends on speculative assumptions, and what cannot be decided. Report horizons with no violation as such, not as indefinite support.
 
 **Deliverables:** Frozen run manifests, result tables, final scientific figures, `reports/feasibility-results.md`.
 

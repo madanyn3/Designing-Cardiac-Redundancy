@@ -108,3 +108,65 @@ def test_the_runners_do_not_hardcode_the_regional_network():
     source = inspect.getsource(met.network)
     assert "case.get('network'" in source
     assert 'configs/m3-evidence-regional.yaml' in source     # the default survives
+
+
+def test_arm_b_initial_stores_fit_their_capacities():
+    """The defect this guards: disaggregation shrinks the parent's oxygen
+    store, but the baseline content was computed with the parent undivided, so
+    seeding it whole starts the run outside the model domain."""
+    import json as _json
+    mapping = _json.loads((ROOT/'configs/m8-adipose-organ-mapping.json').read_text(
+        encoding='utf-8'))['mapping']['remaining']
+    entry = BUDGET['remaining']
+    parent = entry*mapping['remaining']
+    depot = entry*mapping['visceral_adipose']
+    total = parent+depot
+    # The split fractions must partition the parent's baseline content.
+    assert parent/total+depot/total == pytest.approx(1., abs=1e-12)
+    # Each share must fit the capacity the five-second rule gives it.
+    for share, demand in ((parent/total, parent), (depot/total, depot)):
+        capacity = demand*5/60
+        seeded = share*(total*5/60)
+        assert seeded <= capacity+1e-12, (share, demand)
+
+
+def test_the_replay_accepts_a_store_split_and_defaults_to_none():
+    import inspect, sys
+    sys.path.insert(0, str(ROOT/'scripts'))
+    import run_m7_global_metabolism as met
+    source = inspect.getsource(met.short)
+    assert "case.get('store_split',{})" in source
+
+
+def test_coupled_identities_reduce_to_the_all_glucose_form_at_share_one():
+    """Arm A must be bit-identical: the generalized identities differ from the
+    original only by a factor that is one when every share is one."""
+    import numpy as np
+    from cardiac_redundancy.fuel import O2_ML_STPD_PER_MMOL_GLUCOSE as K
+    rng = np.random.default_rng(11)
+    m = 6
+    expected = rng.random((20, m))*3
+    consumed_o = rng.random((20, m))*2
+    consumed_g = consumed_o/K
+    unmet_g = expected/K-consumed_g
+    for share in (np.ones(m), np.full(m, .6), np.array([1., .5, 0., .25, .9, 1.])):
+        scaled_g = consumed_o*share/K
+        scaled_unmet = expected*share/K-scaled_g
+        identity = np.max(abs(scaled_g+scaled_unmet-expected*share/K))
+        stoich = np.max(abs(consumed_o*share-scaled_g*K))
+        assert identity == pytest.approx(0., abs=1e-12)
+        assert stoich == pytest.approx(0., abs=1e-12)
+    # and the share-one case matches the original all-glucose expressions
+    identity_original = np.max(abs(consumed_g+unmet_g-expected/K))
+    stoich_original = np.max(abs(consumed_o-consumed_g*K))
+    assert identity_original == pytest.approx(0., abs=1e-12)
+    assert stoich_original == pytest.approx(0., abs=1e-12)
+
+
+def test_the_replay_carries_the_share_into_its_identities():
+    import inspect, sys
+    sys.path.insert(0, str(ROOT/'scripts'))
+    import run_m7_global_metabolism as met
+    source = inspect.getsource(met.short)
+    assert "share=np.broadcast_to" in source
+    assert 'expected*share/O2_ML_STPD_PER_MMOL_GLUCOSE' in source

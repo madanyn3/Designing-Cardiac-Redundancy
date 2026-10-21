@@ -83,6 +83,14 @@ def short(case,p):
         if organ.name in ('lung_supported','lung_preserved'):
             i=baseline['organ_names'].index('lungs');fraction=h.allocation.supported_share if organ.name=='lung_supported' else 1-h.allocation.supported_share
             y0[o.base_size+3+j]=fraction*bz[16+5+2*len(baseline['organ_names'])+i]
+        elif organ.name in case.get('store_split',{}):
+            # A baseline organ that this arm disaggregates: its stored oxygen
+            # splits with its demand, exactly as the lungs do above. Without
+            # this the whole of the parent's content is seeded into a smaller
+            # store and the run starts outside the model domain.
+            source,fraction=case['store_split'][organ.name]
+            i=baseline['organ_names'].index(source)
+            y0[o.base_size+3+j]=fraction*bz[16+5+2*len(baseline['organ_names'])+i]
         elif organ.name in baseline['organ_names']:
             i=baseline['organ_names'].index(organ.name)
             y0[o.base_size+3+j]=bz[16+5+2*len(baseline['organ_names'])+i]
@@ -137,8 +145,18 @@ def short(case,p):
         go=rows[:,k:];request=np.array([v.demand_mL_min for v in organs])/60
         expected=np.array([demand_at(t,True) for t in time])
         identity_o=float(np.max(abs(rows[:,n+2:n+2+m]+rows[:,n+2+m:n+2+2*m]-expected)))
-        identity_g=float(np.max(abs(go[:,n+1:n+1+m]+go[:,n+1+m:n+1+2*m]-expected/O2_ML_STPD_PER_MMOL_GLUCOSE)))
-        stoich=float(np.max(abs(rows[:,n+2:n+2+m]-go[:,n+1:n+1+m]*O2_ML_STPD_PER_MMOL_GLUCOSE)))
+        # Both glucose identities carry the per-organ glucose share. With the
+        # default share of one they reduce exactly to the all-glucose form:
+        # glucose demand is the oxygen demand times the share over the
+        # oxidation stoichiometry, and oxygen consumed times the share equals
+        # glucose consumed times the stoichiometry. Writing the second that way
+        # rather than dividing keeps a zero share well defined, where every
+        # joule comes from another substrate.
+        share=np.broadcast_to(np.asarray(case.get('glucose_share',1.),dtype=float),(m,))
+        identity_g=float(np.max(abs(go[:,n+1:n+1+m]+go[:,n+1+m:n+1+2*m]
+                                    -expected*share/O2_ML_STPD_PER_MMOL_GLUCOSE)))
+        stoich=float(np.max(abs(rows[:,n+2:n+2+m]*share
+                                -go[:,n+1:n+1+m]*O2_ML_STPD_PER_MMOL_GLUCOSE)))
         physical_o=np.c_[rows[:,:n+1],rows[:,o.base_size+1],rows[:,o.base_size+3:k]]
         if max(error_o,identity_o,stoich)>1e-6 or max(error_g,identity_g)>1e-8 or go[:,:n+1].min() < -1e-8 or physical_o.min() < -1e-7:
             raise RuntimeError('Coupled accounting/domain check failed')
