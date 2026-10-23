@@ -8,13 +8,13 @@ and the Results material assembled here.
 | Task | Completed evidence | Qualification |
 |---|---|---|
 | T8.1 | [Frozen protocol](m8-t81-protocol.md), [`configs/m8-protocol.json`](../configs/m8-protocol.json) | Version 5 after six recorded amendments, each with its reason, effect size and required re-runs |
-| T8.0 | [Boundary trace, joint search and matched-budget verification](../reports/feasibility-results.md) | Best found within declared bounds and budget; no global optimum claimed |
+| T8.0 | [Boundary trace, joint search and matched-budget verification](../reports/feasibility-results.md) | Best found within declared bounds and budget, subject to the declared pressure margin; no global optimum claimed |
 | T8.2 | [Core matrix](../reports/m8-matrix/matrix-kappa0.5.json), nine operating cases | One case of nine satisfies every screen |
 | T8.3 | [Arm A results](../reports/feasibility-results.md), [Arm B results](../reports/feasibility-results-armb.md), seven figures | Figures regenerate from saved output |
-| T8.4 | [Arm A disconfirmation](../reports/m8-disconfirm/disconfirmation.json), [Arm B disconfirmation](../reports/m8b-disconfirm/disconfirmation.json) | Fractions of tested cases, never probabilities |
+| T8.4 | [Arm A disconfirmation](../reports/m8-disconfirm/disconfirmation.json), [Arm B disconfirmation](../reports/m8b-disconfirm/disconfirmation.json) | Fractions of tested cases, never probabilities; designs sampled across the margin-holding set, after an earlier run on the cheapest four returned two artefacts |
 | T8.5 | [Answers to the research questions](m8-t85-answers.md) | Conditional on the declared envelope throughout |
 
-460 regression tests pass.
+465 regression tests pass.
 
 ## What the milestone establishes
 
@@ -99,19 +99,37 @@ covers 12.6 per cent of non-obligate demand against a ceiling of the brain's
 Feasibility does not rest on the adipose policy — all three leading Arm B
 designs survive with the depot suppressed — only duration does.
 
-**The envelope is narrow and was mapped by deliberate disconfirmation.** Of
-four leading Arm A designs under five stresses, four survive reference and
-favourable physiology and none survives adverse, kappa 0 or kappa 1. Both
-compression alternatives fail for opposite reasons: at kappa 1 self-supply
-fails, while at kappa 0 the pressure screen fails, because less compression
-means more coronary runoff and MAP falls to 63.44. Feasibility holds only in a
-narrow band around kappa 0.5, which rests on no measurement.
+**The compression wall is one-sided, and it is the firmest negative result in
+the study.** Four Arm A designs spanning the margin-holding feasible set —
+scales 0.516 to 0.697, conductance 0.896 to 1.748 — were tested against five
+stresses. At **kappa 1 self-supply fails in 4 of 4**: the auxiliary myocardium
+cannot feed itself when its own chamber pressure is applied in full as coronary
+closing pressure, at any cavity size tested. At **kappa 0 all 4 survive**, at
+MAP 68.08 to 81.38 with self-supply satisfied. Feasibility therefore holds for
+kappa up to about 0.5 and fails above it, rather than in a narrow band around
+0.5. Kappa remains the single most valuable missing datum, because it decides
+whether the design is feasible at all, but the dependency is one-sided.
 
-**The selection criterion did not survive its own test.** The ranking by
-objective at reference inverts under both adverse and favourable physiology:
-the design chosen as cheapest drops to third in each. The reversal is reported
-rather than resolved, because resolving it would mean optimizing against one
-declared scenario over the others and none has a stronger claim.
+**Adverse physiology is the other wall.** 4 of 4 survive reference and
+favourable; **0 of 4 survive adverse**, which raises auxiliary demand 55 to
+60 per cent and fails the **active** organ group as well as the pump in every
+design.
+
+**The selection criterion survives its own test.** Ordered by objective, the
+four designs come out 0.536, 0.516, 0.672, 0.697 under reference, adverse and
+favourable physiology alike — identical in all three.
+
+**Both of those reverse an earlier run of the same script, for one reason.**
+That run tested the four cheapest designs, all holding under 0.2 mmHg of
+pressure margin, and reported 0 of 4 surviving kappa 0 and a ranking reversal
+under both scenario stresses. Neither was a property of the arm. A design
+sitting 0.005 mmHg above the threshold moves below it under any perturbation,
+and designs that close together in objective reorder on any change: the
+disconfirmation was measuring **the fragility the objective had selected for**.
+This is the methodological result of the milestone, and it generalizes beyond
+this study — when an objective is flat and a constraint is a hard threshold,
+the located optimum is the most fragile qualifying point, and testing it tells
+you about the specification rather than about the design.
 
 ## Protocol amendments, and why each was made
 
@@ -133,8 +151,12 @@ verdict-labelling correction at the margin, not a change of conclusion.
 ## Conditions carried into M9
 
 1. Report the envelope, not the point. Every headline number is conditional on
-   kappa 0.5, reference physiology, sub-second activation and the 40 s horizon,
-   and the design fails outside them.
+   kappa at or below 0.5, reference physiology, sub-second activation and the
+   40 s horizon, and the design fails outside them.
+1. Report designs with their pressure margin, never margin-free. A design
+   meeting a hard threshold by an arbitrarily small amount is not a result, and
+   the protocol's 3.0 mmHg minimum is what makes the reported designs
+   reportable.
 2. Report duration against the declared glucose floor as an axis. The model's
    native endpoint is exhaustion, which is not physiological, and the choice
    moves the answer by a factor of three.
@@ -158,6 +180,16 @@ verdict-labelling correction at the margin, not a change of conclusion.
 
 Whether any of this is survivable; whether the organ is constructible;
 whether detection within 1.5 s is achievable; regional adequacy; the value of
-compression kappa, which bounds the feasible region from both sides and is the
-single most valuable missing datum in the study; and anything outside the
+compression kappa, which decides whether the design is feasible at all and is
+the single most valuable missing datum in the study; and anything outside the
 sampled domain, since every boundary reported is a boundary of what was tested.
+
+One further thing M8 could not determine, and should be read as a limit on the
+rest: **how many of its own conclusions are artefacts of what the searches
+sampled.** Four were found and corrected during the milestone, three of them
+traced to a single cause — a flat objective against a hard threshold selects
+the most fragile qualifying design, and disconfirming that design measures the
+specification rather than the physiology. Each was caught by an independent
+cross-check rather than by the run that produced it, so the honest statement is
+that the method now has a guard against that failure, not that no instance of
+it remains.

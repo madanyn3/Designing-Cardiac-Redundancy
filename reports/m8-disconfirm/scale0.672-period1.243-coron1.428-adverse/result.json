@@ -1,0 +1,353 @@
+{
+  "status": "verified",
+  "scope": "coupled saved-hydraulic replay; no recoverable-duration inference",
+  "duration_s": 40.0,
+  "case": {
+    "name": "scale0.672-period1.243-coron1.428-adverse",
+    "device": "BIO",
+    "architecture": "BIO",
+    "sides": {
+      "left": {
+        "maintenance_mL_min": 2.3471505154639187,
+        "activation_mL_min": 2.36036857950917,
+        "work_mL_min": 4.749987607533487,
+        "total_mL_min": 9.457506702506574
+      },
+      "right": {
+        "maintenance_mL_min": 1.0059216494845364,
+        "activation_mL_min": 1.0115865340753585,
+        "work_mL_min": 2.3823401467298195,
+        "total_mL_min": 4.399848330289714
+      }
+    },
+    "liver_function_fraction": 0.25,
+    "hydraulic_source": "reports\\m8-optimize\\scale0.672-period1.243-coron1.428-kappa0.5-h40",
+    "knobs": {
+      "extraction_limit": 0.25,
+      "preservation_fraction": 0.5
+    }
+  },
+  "parameters": {
+    "liver_volume_L": 1.44,
+    "glycogen_mmol_L_liver": 150.0,
+    "accessible_fraction": 1.0,
+    "initial_plasma_glucose_mmol_L": 5.0,
+    "plasma_to_whole_blood_ratio": 1.11,
+    "release_cap_mmol_min": 0.1,
+    "release_time_s": 1.0,
+    "export_increment_mmol_L": 1.0,
+    "blood_target_time_s": 60.0,
+    "nonoxidative_mmol_min": 0.0,
+    "nonoxidative_release_time_s": 1.0
+  },
+  "profile": {
+    "brain": {
+      "role": "active",
+      "fraction": 0.6,
+      "ramp_s": 0.0
+    },
+    "coronary_left": {
+      "role": "active",
+      "fraction": 0.3,
+      "ramp_s": 0.0
+    },
+    "coronary_right": {
+      "role": "active",
+      "fraction": 0.3,
+      "ramp_s": 0.0
+    },
+    "kidney_protected": {
+      "role": "active",
+      "fraction": 0.25,
+      "ramp_s": 0.0
+    },
+    "kidney_other": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "hepatic_outflow": {
+      "role": "active",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "limb_muscle_exchange": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "respiratory_muscle": {
+      "role": "active",
+      "fraction": 1.0,
+      "ramp_s": 0.0
+    },
+    "stomach_oesophagus": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "small_intestine": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "large_intestine": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "pancreas": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "spleen": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "remaining": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "limb_skin_exchange": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "limb_bone_exchange": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "limb_other_exchange": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "limb_adipose_exchange": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    },
+    "aux_coronary_left": {
+      "role": "pump",
+      "fraction": 1.0,
+      "ramp_s": 0.0
+    },
+    "aux_coronary_right": {
+      "role": "pump",
+      "fraction": 1.0,
+      "ramp_s": 0.0
+    },
+    "lung_supported": {
+      "role": "active",
+      "fraction": 1.0,
+      "ramp_s": 0.0
+    },
+    "lung_preserved": {
+      "role": "preservation",
+      "fraction": 0.5,
+      "ramp_s": 0.0
+    }
+  },
+  "volume_names": [
+    "LV",
+    "RV",
+    "AO",
+    "VC",
+    "PA",
+    "PU",
+    "B_limb_muscle",
+    "B_limb_skin",
+    "B_limb_bone",
+    "B_limb_other",
+    "B_limb_adipose",
+    "A_limb_muscle",
+    "A_limb_skin",
+    "A_limb_adipose",
+    "A_limb_bone",
+    "A_limb_other",
+    "aLV",
+    "aRV"
+  ],
+  "organ_names": [
+    "brain",
+    "coronary_left",
+    "coronary_right",
+    "kidney_protected",
+    "kidney_other",
+    "hepatic_outflow",
+    "limb_muscle_exchange",
+    "respiratory_muscle",
+    "stomach_oesophagus",
+    "small_intestine",
+    "large_intestine",
+    "lung_supported",
+    "lung_preserved",
+    "pancreas",
+    "spleen",
+    "remaining",
+    "limb_skin_exchange",
+    "limb_bone_exchange",
+    "limb_other_exchange",
+    "limb_adipose_exchange",
+    "aux_coronary_left",
+    "aux_coronary_right"
+  ],
+  "records": [
+    {
+      "groups": {
+        "active": {
+          "target_final_mL_min": 66.95389461626576,
+          "requested_O2_mL": 44.6359297441783,
+          "unmet_O2_mL": 0.19676981495020712,
+          "first_shortfall_bracket_s": [
+            1.8136363636363637,
+            1.8181818181818183
+          ]
+        },
+        "preservation": {
+          "target_final_mL_min": 62.4315578465063,
+          "requested_O2_mL": 41.621038564337304,
+          "unmet_O2_mL": 0.0,
+          "first_shortfall_bracket_s": null
+        },
+        "pump": {
+          "target_final_mL_min": 14.040235231623555,
+          "requested_O2_mL": 9.182037436637696,
+          "unmet_O2_mL": 0.2630179298132287,
+          "first_shortfall_bracket_s": [
+            2.105,
+            2.11
+          ]
+        }
+      },
+      "first_sampled_auxiliary_shortfall_bracket_s": [
+        2.105,
+        2.11
+      ],
+      "prescribed_driver_status": "unsupported_under_declared_demand",
+      "per_organ_unmet_oxygen_mL": {
+        "brain": 0.0,
+        "coronary_left": 0.0,
+        "coronary_right": 0.0,
+        "kidney_protected": 0.0,
+        "kidney_other": 0.0,
+        "hepatic_outflow": 0.0,
+        "limb_muscle_exchange": 0.0,
+        "respiratory_muscle": 0.19676981495020712,
+        "stomach_oesophagus": 0.0,
+        "small_intestine": 0.0,
+        "large_intestine": 0.0,
+        "lung_supported": 0.0,
+        "lung_preserved": 0.0,
+        "pancreas": 0.0,
+        "spleen": 0.0,
+        "remaining": 0.0,
+        "limb_skin_exchange": 0.0,
+        "limb_bone_exchange": 0.0,
+        "limb_other_exchange": 0.0,
+        "limb_adipose_exchange": 0.0,
+        "aux_coronary_left": 0.2630179298132287,
+        "aux_coronary_right": 1.5602758695903797e-19
+      },
+      "label": "nominal",
+      "solver": "RK45",
+      "rtol": 1e-09,
+      "atol": 1.0000000000000002e-12,
+      "max_step_s": 0.005,
+      "oxygen_balance_error_mL": 2.7284841053187847e-12,
+      "glucose_balance_error_mmol": 2.4442670110147446e-11,
+      "oxygen_demand_identity_error_mL": 3.8890071163422135e-09,
+      "glucose_demand_identity_error_mmol": 2.891799028969383e-11,
+      "oxidation_stoichiometry_error_mL": 1.6999734953060397e-12,
+      "unmet_oxygen_mL": 0.4597877447634358,
+      "glycogen_remaining_mmol": 215.98333333335768,
+      "glucose_remaining_mmol": 22.959066111021162,
+      "released_mmol": 0.016666666666667013,
+      "minimum_plasma_equivalent_mmol_L": 4.714186033579787
+    },
+    {
+      "groups": {
+        "active": {
+          "target_final_mL_min": 66.95389461626576,
+          "requested_O2_mL": 44.6359297441783,
+          "unmet_O2_mL": 0.1967689986242747,
+          "first_shortfall_bracket_s": [
+            1.8136363636363637,
+            1.8181818181818183
+          ]
+        },
+        "preservation": {
+          "target_final_mL_min": 62.4315578465063,
+          "requested_O2_mL": 41.621038564337304,
+          "unmet_O2_mL": 0.0,
+          "first_shortfall_bracket_s": null
+        },
+        "pump": {
+          "target_final_mL_min": 14.040235231623555,
+          "requested_O2_mL": 9.182037436637696,
+          "unmet_O2_mL": 0.2630170387335866,
+          "first_shortfall_bracket_s": [
+            2.105,
+            2.11
+          ]
+        }
+      },
+      "first_sampled_auxiliary_shortfall_bracket_s": [
+        2.105,
+        2.11
+      ],
+      "prescribed_driver_status": "unsupported_under_declared_demand",
+      "per_organ_unmet_oxygen_mL": {
+        "brain": 0.0,
+        "coronary_left": 0.0,
+        "coronary_right": 0.0,
+        "kidney_protected": 0.0,
+        "kidney_other": 0.0,
+        "hepatic_outflow": 0.0,
+        "limb_muscle_exchange": 0.0,
+        "respiratory_muscle": 0.1967689986242747,
+        "stomach_oesophagus": 0.0,
+        "small_intestine": 0.0,
+        "large_intestine": 0.0,
+        "lung_supported": 0.0,
+        "lung_preserved": 0.0,
+        "pancreas": 0.0,
+        "spleen": 0.0,
+        "remaining": 0.0,
+        "limb_skin_exchange": 0.0,
+        "limb_bone_exchange": 0.0,
+        "limb_other_exchange": 0.0,
+        "limb_adipose_exchange": 0.0,
+        "aux_coronary_left": 0.2630170387335866,
+        "aux_coronary_right": 5.995431133323987e-20
+      },
+      "label": "refined",
+      "solver": "RK45",
+      "rtol": 1e-11,
+      "atol": 1e-14,
+      "max_step_s": 0.0025,
+      "oxygen_balance_error_mL": 4.547473508864641e-12,
+      "glucose_balance_error_mmol": 1.0786038728838321e-10,
+      "oxygen_demand_identity_error_mL": 9.896639063811108e-11,
+      "glucose_demand_identity_error_mmol": 7.402065071993036e-13,
+      "oxidation_stoichiometry_error_mL": 4.686029342337861e-12,
+      "unmet_oxygen_mL": 0.4597860373578613,
+      "glycogen_remaining_mmol": 215.98333333322535,
+      "glucose_remaining_mmol": 22.959066098305954,
+      "released_mmol": 0.016666666666666722,
+      "minimum_plasma_equivalent_mmol_L": 4.714187727449493
+    }
+  ],
+  "paired_max_oxygen_state_difference": 0.0002458307617700939,
+  "paired_max_glucose_state_difference_mmol": 4.759661671016602e-06,
+  "inputs": [
+    "reports\\m8-optimize\\scale0.672-period1.243-coron1.428-kappa0.5-h40\\hydraulic-refined.npz",
+    "reports/m4-baseline/store-5-refined.npz",
+    "reports/m4-baseline/native-cycle.npz",
+    "reports/m4-baseline/result.json"
+  ]
+}

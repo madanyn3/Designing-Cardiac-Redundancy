@@ -180,19 +180,31 @@ is reported.
 
 ## 5. Where the envelope ends
 
+T8.4 tested four designs spanning the margin-holding feasible set — scales
+0.516 to 0.697, conductance 0.896 to 1.748 — against five stresses.
+
 | Boundary | Finding |
 |---|---|
-| Compression kappa | **Both** alternatives fail, for opposite reasons. At kappa 1 self-supply fails; at kappa 0 the pressure screen fails, because less compression means more coronary runoff and MAP falls to 63.44 against the 65 threshold. Feasibility holds only in a narrow band around 0.5. |
-| Physiology | Feasible in **2 of 3** declared scenarios. Adverse raises auxiliary demand 54-62 per cent and fails the **active** group as well as the pump, in all four leading designs. |
-
-T8.4 tested the four leading designs against five stresses: 4 of 4 survive
-reference and favourable, **0 of 4 survive adverse, kappa 0 or kappa 1**. It
-also found a **ranking reversal under both adverse and favourable physiology**,
-in which the design cheapest at reference drops to third. Selecting on
-reference alone was therefore the wrong criterion, and the reversal is reported
-rather than resolved: resolving it would mean optimizing against one declared
-scenario over the others, and none has a stronger claim.
+| Compression kappa | **One-sided, not a narrow band.** At kappa 1 self-supply fails in **4 of 4** designs. At kappa 0 **4 of 4 survive**, at MAP 68.08 to 81.38 against the 65 threshold, with self-supply satisfied throughout. The wall lies above 0.5, not on both sides of it. |
+| Physiology | Feasible in **2 of 3** declared scenarios: 4 of 4 at reference and favourable, **0 of 4** at adverse. Adverse raises auxiliary demand 55 to 60 per cent and fails the **active** group as well as the pump, in every design. |
 | Detection latency | Tolerable 1.0–1.5 s against the controller's 2.55 s (§3). |
+
+**The ranking is stable.** Ordered by objective, the four designs come out
+0.536, 0.516, 0.672, 0.697 under reference, adverse *and* favourable
+physiology — identical in all three. Selecting on reference is therefore a
+defensible criterion among margin-holding designs.
+
+Both of those findings reverse what an earlier run of this same script
+reported, and the cause is recorded rather than smoothed over. That run tested
+the four *cheapest* designs, all holding under 0.2 mmHg of pressure margin. It
+found 0 of 4 surviving kappa 0, with MAP falling to 63.44, and a ranking
+reversal under both scenario stresses in which the cheapest design dropped to
+third. Both were properties of **fragility the objective had selected for**, not
+of the arm: a design sitting 0.005 mmHg above the threshold moves below it
+under any perturbation, and designs that close together in objective reorder on
+any change. Protocol v5 now requires disconfirmation to sample a spread of the
+feasible set, and `tests/test_m8_margin.py` fails if the selection reverts to
+the cheapest corner.
 
 Kappa is the fraction of auxiliary chamber transmural pressure applied as its
 own coronary closing pressure. Within one beat it drives coronary flow from

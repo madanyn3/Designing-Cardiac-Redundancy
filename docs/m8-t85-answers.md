@@ -117,33 +117,40 @@ costlier designs fail on self-supply alone.
 - That the coronary bed scaling with cavity size makes self-supply easier for
   larger pumps, not harder.
 - That feasibility does not depend on the coronary conductance assumption: a
-  feasible design exists at or below nominal, at 9.596 mL O₂/min and scale
-  0.749. The unjustified 0.5–2.0 bracket buys optimality, not feasibility.
+  margin-holding feasible design exists at or below nominal, at 9.596 mL O₂/min
+  and scale 0.749, holding +8.97 mmHg. Every band in the bracket is populated.
+  The unjustified 0.5–2.0 bracket buys optimality, not feasibility.
 - That the hepatic export **rate** limits duration, not the glycogen store,
   which would last 3,141 min at the effective cap against 33.8 for the pool.
+- **That the selection criterion holds.** Ordered by objective, four designs
+  spanning the margin-holding set come out identically under reference, adverse
+  and favourable physiology. Selecting on reference is defensible.
+- **That kappa 0 is benign.** All four survive it, at MAP 68.08 to 81.38 with
+  self-supply satisfied.
 
 **Does not survive:**
 
-- Feasibility at **either** compression alternative, and the two fail for
-  opposite reasons. At kappa 1 self-supply fails, as expected. At kappa 0 the
-  **pressure** screen fails: less coronary compression means more coronary flow,
-  which is more runoff from the aorta, and MAP falls to 63.44 against the
-  65 mmHg threshold. An earlier statement that kappa 0 was benign came from a
-  larger-cavity design with margin to spare; the optimized designs sit near MAP
-  66 to 67 and a fraction of a millimetre of mercury flips them. Feasibility
-  holds only in a **narrow band around kappa 0.5**, bounded by pressure below
-  and self-supply above.
-- Feasibility under adverse physiology, which raises auxiliary demand 54 to 62
+- Feasibility at **compression kappa 1**, where self-supply fails in 4 of 4
+  designs. The auxiliary myocardium cannot feed itself when its own chamber
+  pressure is applied in full as coronary closing pressure, at any cavity size
+  tested. This is the firmest negative result in the study, and the only
+  boundary both arms report identically.
+- Feasibility under adverse physiology, which raises auxiliary demand 55 to 60
   per cent and fails both the active and pump groups in all four designs.
-- **The selection criterion itself.** The order by objective at reference
-  inverts under *both* adverse and favourable physiology: the design chosen as
-  cheapest drops to third in each. Selecting on reference alone was therefore
-  the wrong criterion, which is precisely what T8.4 exists to detect. The
-  reversal is reported rather than resolved, because resolving it would mean
-  choosing a different scenario to optimize against, and no declared scenario
-  has a stronger claim than the others.
 - The duration figures under any fuel assumption other than glucose-only. This
   is the largest single bias in the analysis and is addressed in Arm B.
+- **An earlier version of this answer, in two of its claims.** It reported that
+  kappa 0 fails the pressure screen with MAP 63.44, making feasibility a narrow
+  band bounded on both sides, and that the ranking inverts under both scenario
+  stresses so selecting on reference was the wrong criterion. Re-run on designs
+  holding the declared pressure margin, neither holds: kappa 0 survives 4 of 4
+  and the ranking is identical across all three scenarios. Both earlier results
+  came from testing the four *cheapest* designs, which all held under 0.2 mmHg
+  of margin. A design 0.005 mmHg above a threshold moves below it under any
+  perturbation, and designs that close together in objective reorder on any
+  change, so the disconfirmation was measuring **the fragility the objective
+  had selected for** rather than a property of the arm. That is why protocol v5
+  declares a margin and requires a spread.
 
 **Changed during the work, on evidence rather than convenience:** the enforced
 pressure criterion became mean pressure alone, because adult post-arrest
