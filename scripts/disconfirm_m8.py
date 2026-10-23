@@ -125,6 +125,17 @@ def rankings(rows):
     return order, reversals
 
 
+def arm_b_stresses():
+    """Arm B adds one stress Arm A cannot have: withdrawing depot perfusion.
+
+    A design selected while the depot is perfused must be asked what happens if
+    that perfusion is not achieved, since the policy is a capability claim about
+    the support circulation rather than a property of the subject.
+    """
+    return STRESSES+(('depot_suppressed', dict(scenario='reference', kappa=.5,
+                                               perfused=False)),)
+
+
 def main(limit=4, workers=5):
     start = time.perf_counter()
     designs = leading_designs(limit)

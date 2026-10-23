@@ -1,0 +1,248 @@
+{
+  "scope": "Arm A envelope re-mapped across the valley at each compression case",
+  "designs": [
+    {
+      "scale": 0.443,
+      "period_s": 0.8849557522123894,
+      "coronary_conductance": 1.591
+    },
+    {
+      "scale": 0.496,
+      "period_s": 1.0,
+      "coronary_conductance": 1.203
+    },
+    {
+      "scale": 0.536,
+      "period_s": 1.1235955056179776,
+      "coronary_conductance": 1.508
+    },
+    {
+      "scale": 0.566,
+      "period_s": 1.2195121951219512,
+      "coronary_conductance": 1.027
+    },
+    {
+      "scale": 0.65,
+      "period_s": 1.0,
+      "coronary_conductance": 1.203
+    }
+  ],
+  "kappas": [
+    0.0,
+    0.5,
+    1.0
+  ],
+  "rows": [
+    {
+      "scale": 0.443,
+      "period_s": 0.8849557522123894,
+      "rate_bpm": 67.8,
+      "coronary_conductance": 1.591,
+      "kappa": 0.0,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 67.15404338357916,
+      "auxiliary_demand_mL_min": 7.619072482885994,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.443,
+      "period_s": 0.8849557522123894,
+      "rate_bpm": 67.8,
+      "coronary_conductance": 1.591,
+      "kappa": 0.5,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 67.58480066087571,
+      "auxiliary_demand_mL_min": 7.626835584318137,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.443,
+      "period_s": 0.8849557522123894,
+      "rate_bpm": 67.8,
+      "coronary_conductance": 1.591,
+      "kappa": 1.0,
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "MAP_mmHg": 68.0643681711276,
+      "auxiliary_demand_mL_min": 7.635717507974487,
+      "sustained_unmet_mL": 0.8904608054380803
+    },
+    {
+      "scale": 0.496,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.203,
+      "kappa": 0.0,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 67.31321420229452,
+      "auxiliary_demand_mL_min": 7.80474687059308,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.496,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.203,
+      "kappa": 0.5,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 67.6969301282494,
+      "auxiliary_demand_mL_min": 7.811622061090922,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.496,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.203,
+      "kappa": 1.0,
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "MAP_mmHg": 68.13268925466662,
+      "auxiliary_demand_mL_min": 7.819712184741505,
+      "sustained_unmet_mL": 0.9384729775035774
+    },
+    {
+      "scale": 0.536,
+      "period_s": 1.1235955056179776,
+      "rate_bpm": 53.4,
+      "coronary_conductance": 1.508,
+      "kappa": 0.0,
+      "feasible": false,
+      "pressure": "violated",
+      "self_supply": "not evaluated: pressure screen failed",
+      "MAP_mmHg": 66.54052430009094,
+      "auxiliary_demand_mL_min": 7.599915897441415,
+      "sustained_unmet_mL": null
+    },
+    {
+      "scale": 0.536,
+      "period_s": 1.1235955056179776,
+      "rate_bpm": 53.4,
+      "coronary_conductance": 1.508,
+      "kappa": 0.5,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 67.04662123332977,
+      "auxiliary_demand_mL_min": 7.608546453426291,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.536,
+      "period_s": 1.1235955056179776,
+      "rate_bpm": 53.4,
+      "coronary_conductance": 1.508,
+      "kappa": 1.0,
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "MAP_mmHg": 67.60072891424534,
+      "auxiliary_demand_mL_min": 7.618350594212904,
+      "sustained_unmet_mL": 0.8950315611288915
+    },
+    {
+      "scale": 0.566,
+      "period_s": 1.2195121951219512,
+      "rate_bpm": 49.2,
+      "coronary_conductance": 1.027,
+      "kappa": 0.0,
+      "feasible": false,
+      "pressure": "violated",
+      "self_supply": "not evaluated: pressure screen failed",
+      "MAP_mmHg": 63.370138419205645,
+      "auxiliary_demand_mL_min": 7.58276682669854,
+      "sustained_unmet_mL": null
+    },
+    {
+      "scale": 0.566,
+      "period_s": 1.2195121951219512,
+      "rate_bpm": 49.2,
+      "coronary_conductance": 1.027,
+      "kappa": 0.5,
+      "feasible": false,
+      "pressure": "violated",
+      "self_supply": "not evaluated: pressure screen failed",
+      "MAP_mmHg": 63.74488032146487,
+      "auxiliary_demand_mL_min": 7.589271347405036,
+      "sustained_unmet_mL": null
+    },
+    {
+      "scale": 0.566,
+      "period_s": 1.2195121951219512,
+      "rate_bpm": 49.2,
+      "coronary_conductance": 1.027,
+      "kappa": 1.0,
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "MAP_mmHg": 64.17330837160843,
+      "auxiliary_demand_mL_min": 7.596990670130217,
+      "sustained_unmet_mL": 0.9380978024006703
+    },
+    {
+      "scale": 0.65,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.203,
+      "kappa": 0.0,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 79.2664898114412,
+      "auxiliary_demand_mL_min": 10.42269304219265,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.65,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.203,
+      "kappa": 0.5,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 79.80631430704639,
+      "auxiliary_demand_mL_min": 10.4329474949297,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.65,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.203,
+      "kappa": 1.0,
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "MAP_mmHg": 80.38471306916702,
+      "auxiliary_demand_mL_min": 10.444259044894597,
+      "sustained_unmet_mL": 1.1870790911599651
+    }
+  ],
+  "survivors": {
+    "0.0": [
+      0.443,
+      0.496,
+      0.65
+    ],
+    "0.5": [
+      0.443,
+      0.496,
+      0.536,
+      0.65
+    ],
+    "1.0": []
+  },
+  "wall_s": 3154.056518699974,
+  "interpretation": "boundaries of the sampled designs, not of the possible"
+}

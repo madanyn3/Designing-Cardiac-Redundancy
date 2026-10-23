@@ -22,6 +22,14 @@ from cardiac_redundancy.feasibility import CRITERIA, FeasibilityPolicy
 #: never silently relaxed; the declared values here are what T8.2 onward apply.
 DECLARED_POLICY = FeasibilityPolicy(window_mode='cycle', criterion='map_primary', horizon_s=40.)
 
+#: Minimum pressure margin a design must hold to be reported as feasible.
+#: A hard threshold with a flat objective selects the most fragile point that
+#: technically qualifies: the located optimum held +0.005 mmHg, and a 0.04 per
+#: cent change in its activation period flipped it to violated. The margin is
+#: declared here, before the re-run, rather than chosen after seeing which
+#: designs survive.
+MINIMUM_PRESSURE_MARGIN_MMHG = 3.0
+
 OUT = ROOT / 'configs/m8-protocol.json'
 POLICY_INPUTS = ('configs/baseline.yaml', 'configs/m3-evidence-regional.yaml',
     'configs/m2-frozen-overlay.yaml', 'configs/auxiliary-heart-design.yaml',
@@ -138,7 +146,7 @@ def main():
     timing = json.loads((ROOT / 'reports/m8-protocol/timing/single-evaluation.json').read_text(encoding='utf-8'))
     bounds_ok = {k: list(v[0]) for k, v in BOUNDS.items()}
     protocol = dict(
-        version=4, task='T8.1', frozen_on='2026-10-19',
+        version=5, task='T8.1', frozen_on='2026-10-22',
         amendments=[
             dict(version=2, change='auxiliary myocardial oxygen store sized by the shared '
                  'store_seconds=5 rule at the design demand, replacing the absolute pair in '
@@ -210,6 +218,32 @@ def main():
                         'become the condition under which a duration is counted',
                  reruns='none: duration is computed from demands the existing runs already '
                         'report, and the analytic bound requires long-horizon verification')],
+        minimum_pressure_margin_mmHg=MINIMUM_PRESSURE_MARGIN_MMHG,
+        amendments_v5=[
+            dict(version=5, change='a design must hold at least %.1f mmHg of pressure margin '
+                 'to be reported as feasible' % MINIMUM_PRESSURE_MARGIN_MMHG,
+                 reason='minimizing a flat objective against a hard threshold selects the most '
+                        'fragile qualifying point. The located optimum held +0.005 mmHg, and a '
+                        '0.0005 s change in its period, 0.04 per cent, flipped it to violated '
+                        'with two bad windows. Nine of 152 feasible designs held under 0.5 mmHg '
+                        'and the cheapest were all among them, so the search concentrated on '
+                        'fragility by construction. This is a specification error rather than a '
+                        'search error',
+                 cost='a 2 mmHg margin costs 2.2 per cent more auxiliary oxygen demand and a '
+                      '3 mmHg margin 3.1 per cent; the 3 mmHg design also runs at coronary '
+                      'conductance 0.500, below nominal, so it depends on no conductance '
+                      'assumption',
+                 reruns='the reported optimum, and any disconfirmation based on it. The earlier '
+                        'disconfirmation tested the four cheapest designs, all with margins '
+                        'under 0.2 mmHg, so it measured the fragility the objective selected '
+                        'rather than a property of the arm'),
+            dict(version=5, change='disconfirmation samples a spread of the feasible set rather '
+                 'than its cheapest members',
+                 reason='two conclusions were corrected by cross-checks that found the opposite '
+                        'outside the sampled corner: that fat admits a smaller pump, and that no '
+                        'design survives compression kappa 0. Both followed from generalising '
+                        'from the cheapest corner of a flat valley',
+                 reruns='Arm A disconfirmation')],
         amendments_v4=[
             dict(version=4, change='screen horizon raised from 10 s to 40 s, with a plateau '
                  'check on the final five cycle means (0.05 mmHg spread) reported for every run',
