@@ -59,12 +59,19 @@ reportable designs are the two ends of that trade.
 
 ## 3. Detection, not the pump, is the binding constraint
 
-Holding the design fixed across nine declared operating cases, one satisfied
-every screen: prescribed activation. The most informative failure reaches
-MAP 67.63 mmHg, **above** the enforced threshold, and still fails, because the
-observed controller releases at 2.55 s and the window containing release lies
-outside the declared two-second startup allowance. The design is not what fails
-these cases.
+Holding the design fixed across nine declared operating cases, one satisfies
+every screen: prescribed activation. **Five of nine satisfy every organ screen
+including auxiliary self-supply**, and in four of those the auxiliary feeds its
+own myocardium, every organ group is satisfied, and mean pressure sits well
+above the enforced threshold — 68.69, 68.69, 68.69 and 104.35 mmHg — yet the
+case fails, because release at 2.50 s puts five windows outside the declared
+two-second startup allowance.
+
+**In those four cases nothing about the design fails.** What fails is the
+arrival time of support. An earlier version of this matrix was run at a design
+holding +2.26 mmHg, below the declared margin, where those same cases also
+failed the pump group and left room to read the design as simply inadequate.
+That reading does not survive the re-run.
 
 Measured against release time, the cost-optimal design's pressure margin runs
 +3.10, +2.94, −0.67, −9.95, −15.95 and −21.00 mmHg at 0.5, 1.0, 1.5, 2.0, 2.5

@@ -9,7 +9,7 @@ and the Results material assembled here.
 |---|---|---|
 | T8.1 | [Frozen protocol](m8-t81-protocol.md), [`configs/m8-protocol.json`](../configs/m8-protocol.json) | Version 5 after six recorded amendments, each with its reason, effect size and required re-runs |
 | T8.0 | [Boundary trace, joint search and matched-budget verification](../reports/feasibility-results.md) | Best found within declared bounds and budget, subject to the declared pressure margin; no global optimum claimed |
-| T8.2 | [Core matrix](../reports/m8-matrix/matrix-kappa0.5.json), nine operating cases | One case of nine satisfies every screen |
+| T8.2 | [Core matrix](../reports/m8-matrix/matrix-kappa0.5.json), nine operating cases | One of nine satisfies every screen; five of nine satisfy every organ screen. Re-run at the margin-constrained design after the earlier matrix was found to have run at a design below the declared margin, and after its cache key was found to omit the design |
 | T8.3 | [Arm A results](../reports/feasibility-results.md), [Arm B results](../reports/feasibility-results-armb.md), seven figures | Figures regenerate from saved output |
 | T8.4 | [Arm A disconfirmation](../reports/m8-disconfirm/disconfirmation.json), [Arm B disconfirmation](../reports/m8b-disconfirm/disconfirmation.json) | Fractions of tested cases, never probabilities; designs sampled across the margin-holding set, after an earlier run on the cheapest four returned two artefacts |
 | T8.5 | [Answers to the research questions](m8-t85-answers.md) | Conditional on the declared envelope throughout |
@@ -56,10 +56,12 @@ fixture and had to be coupled before optimization was meaningful — the
 auxiliary mass ratio, the activation rate charged in demand, and the auxiliary
 oxygen store.
 
-**Detection, not the pump, is the binding constraint, and the requirement is
-under one second.** Eight of nine operating cases fail, and the clearest reaches
-MAP 67.63, above the enforced threshold, failing only because the controller
-releases at 2.55 s against a declared 2 s allowance. Re-measured on designs
+**Detection, not the pump, is the binding constraint.** Across nine operating
+cases at the margin-constrained design, **five of nine satisfy every organ
+screen including auxiliary self-supply**, and in four of those nothing about the
+design fails at all: the auxiliary feeds its own myocardium, every organ group
+is satisfied, mean pressure sits at 68.69 to 104.35 mmHg, and the case fails
+only because release at 2.50 s puts five windows outside the declared 2 s allowance. Re-measured on designs
 holding the declared pressure margin, the budget is **0.8 to 1.6 s depending on
 which design is built**: the cost-optimal design holds its margin to 0.81 s and
 the nominal-conductance design to 1.57 s. Capacity buys latency tolerance and

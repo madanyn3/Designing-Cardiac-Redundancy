@@ -113,7 +113,11 @@ costlier designs fail on self-supply alone.
 - That cavity scale was the unexamined variable. M5 and M7 reported 0 of 84
   cases reaching the pressure screen while holding scale at the 0.25 fixture;
   inventory never constrained it, and every scale in 0.1–1.0 is admissible.
-- That detection latency binds before the pump does, re-measured on designs
+- That detection latency binds before the pump does — now established more
+  strongly, since at the margin-constrained design five of nine operating cases
+  satisfy every organ screen including self-supply, and four of those fail only
+  on the release window while holding MAP from 68.69 to 104.35 mmHg. In those
+  four, nothing about the design fails. Re-measured on designs
   holding the declared margin. The budget is **0.8 to 1.6 s depending on which
   design is built**: 0.81 s for the cost-optimal design, 1.57 s for the
   nominal-conductance one. Capacity buys latency tolerance and nearly doubles

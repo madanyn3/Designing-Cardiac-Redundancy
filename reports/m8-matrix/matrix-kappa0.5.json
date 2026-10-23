@@ -1,6 +1,5 @@
 {
-  "scope": "T8.2 core matrix: the T8.0 optimum held fixed across declared operating cases, reference physiology",
-  "design": {
+  "superseded_design": {
     "left_scale": 0.496,
     "right_scale": 0.496,
     "septal_scale": 0.496,
@@ -8,8 +7,18 @@
     "period_s": 1.0,
     "coronary_conductance": 1.203
   },
+  "minimum_pressure_margin_mmHg": 3.0,
+  "scope": "T8.2 core matrix: the T8.0 optimum held fixed across declared operating cases, reference physiology",
+  "design": {
+    "left_scale": 0.536,
+    "right_scale": 0.536,
+    "septal_scale": 0.536,
+    "pericardial_scale": 0.536,
+    "period_s": 1.043,
+    "coronary_conductance": 1.748
+  },
   "compression_kappa": 0.5,
-  "protocol_version": 4,
+  "protocol_version": 5,
   "rows": [
     {
       "case": "no_support",
@@ -23,27 +32,27 @@
         "map_primary": "violated"
       },
       "release_s": null,
-      "MAP_mmHg": 1.9903165289722389,
+      "MAP_mmHg": 1.9627897636925988,
       "violating_sustained_windows": 38,
       "sustained_windows": 38,
       "outcome": "evaluated",
       "groups": {
         "active": {
           "sustained_status": "violated",
-          "unmet_sustained_mL": 36.21142470480282
+          "unmet_sustained_mL": 36.40736170423246
         },
         "preservation": {
           "sustained_status": "violated",
-          "unmet_sustained_mL": 14.580290788968393
+          "unmet_sustained_mL": 14.730718685562259
         },
         "pump": {
           "sustained_status": "violated",
-          "unmet_sustained_mL": 0.6616704314649295
+          "unmet_sustained_mL": 0.6836320255520328
         }
       },
-      "auxiliary_demand_mL_min": 3.4803092783505165,
-      "total_demand_mL_O2_min": 99.71647766323022,
-      "supported_duration_min": 37.15567999229324,
+      "auxiliary_demand_mL_min": 3.6748378487906628,
+      "total_demand_mL_O2_min": 99.84121993127148,
+      "supported_duration_min": 37.10161020497808,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
       "all_groups_satisfied": false
     },
@@ -59,14 +68,14 @@
         "map_primary": "violated"
       },
       "release_s": 1.95,
-      "MAP_mmHg": 46.06354714536857,
-      "violating_sustained_windows": 37,
-      "sustained_windows": 37,
+      "MAP_mmHg": 46.5296295561043,
+      "violating_sustained_windows": 35,
+      "sustained_windows": 35,
       "outcome": "evaluated",
       "groups": {
         "active": {
           "sustained_status": "violated",
-          "unmet_sustained_mL": 0.8376981133438299
+          "unmet_sustained_mL": 0.8018383145758539
         },
         "preservation": {
           "sustained_status": "satisfied",
@@ -74,12 +83,12 @@
         },
         "pump": {
           "sustained_status": "violated",
-          "unmet_sustained_mL": 0.05381799167390588
+          "unmet_sustained_mL": 0.0028930958591914676
         }
       },
-      "auxiliary_demand_mL_min": 7.105007195029259,
-      "total_demand_mL_O2_min": 105.15625354382651,
-      "supported_duration_min": 34.93546129303339,
+      "auxiliary_demand_mL_min": 7.510569107916924,
+      "total_demand_mL_O2_min": 105.55754104569226,
+      "supported_duration_min": 34.78214035338811,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
       "all_groups_satisfied": false
     },
@@ -94,10 +103,10 @@
         "strict_triple": "violated",
         "map_primary": "violated"
       },
-      "release_s": 2.55,
-      "MAP_mmHg": 67.63479100727304,
-      "violating_sustained_windows": 6,
-      "sustained_windows": 37,
+      "release_s": 2.5,
+      "MAP_mmHg": 68.68560403615618,
+      "violating_sustained_windows": 5,
+      "sustained_windows": 35,
       "outcome": "evaluated",
       "groups": {
         "active": {
@@ -109,15 +118,15 @@
           "unmet_sustained_mL": 0.0
         },
         "pump": {
-          "sustained_status": "violated",
-          "unmet_sustained_mL": 0.0016568348755548793
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 2.9569150158695607e-19
         }
       },
-      "auxiliary_demand_mL_min": 7.541625007168023,
-      "total_demand_mL_O2_min": 105.5638687786457,
-      "supported_duration_min": 34.77973347721059,
+      "auxiliary_demand_mL_min": 7.85509373131065,
+      "total_demand_mL_O2_min": 105.8745204115517,
+      "supported_duration_min": 34.661979305463085,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
-      "all_groups_satisfied": false
+      "all_groups_satisfied": true
     },
     {
       "case": "oracle_activation",
@@ -131,9 +140,9 @@
         "map_primary": "satisfied"
       },
       "release_s": 0.5,
-      "MAP_mmHg": 67.6969301282494,
+      "MAP_mmHg": 68.65051467908279,
       "violating_sustained_windows": 0,
-      "sustained_windows": 37,
+      "sustained_windows": 35,
       "outcome": "evaluated",
       "groups": {
         "active": {
@@ -149,9 +158,9 @@
           "unmet_sustained_mL": 0.0
         }
       },
-      "auxiliary_demand_mL_min": 7.811622061090922,
-      "total_demand_mL_O2_min": 105.93295797174385,
-      "supported_duration_min": 34.63991728243661,
+      "auxiliary_demand_mL_min": 8.13728600630375,
+      "total_demand_mL_O2_min": 106.2568772593967,
+      "supported_duration_min": 34.518135021894565,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
       "all_groups_satisfied": true
     },
@@ -166,10 +175,10 @@
         "strict_triple": "violated",
         "map_primary": "violated"
       },
-      "release_s": 2.55,
-      "MAP_mmHg": 67.63479100727304,
-      "violating_sustained_windows": 6,
-      "sustained_windows": 37,
+      "release_s": 2.5,
+      "MAP_mmHg": 68.68560403615618,
+      "violating_sustained_windows": 5,
+      "sustained_windows": 35,
       "outcome": "evaluated",
       "groups": {
         "active": {
@@ -181,15 +190,15 @@
           "unmet_sustained_mL": 0.0
         },
         "pump": {
-          "sustained_status": "violated",
-          "unmet_sustained_mL": 0.0016568348755548793
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 2.9569150158695607e-19
         }
       },
-      "auxiliary_demand_mL_min": 7.541625007168023,
-      "total_demand_mL_O2_min": 105.5638687786457,
-      "supported_duration_min": 34.77973347721059,
+      "auxiliary_demand_mL_min": 7.85509373131065,
+      "total_demand_mL_O2_min": 105.8745204115517,
+      "supported_duration_min": 34.661979305463085,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
-      "all_groups_satisfied": false
+      "all_groups_satisfied": true
     },
     {
       "case": "ventilation_degraded",
@@ -202,10 +211,10 @@
         "strict_triple": "violated",
         "map_primary": "violated"
       },
-      "release_s": 2.55,
-      "MAP_mmHg": 67.63479100727304,
-      "violating_sustained_windows": 6,
-      "sustained_windows": 37,
+      "release_s": 2.5,
+      "MAP_mmHg": 68.68560403615618,
+      "violating_sustained_windows": 5,
+      "sustained_windows": 35,
       "outcome": "evaluated",
       "groups": {
         "active": {
@@ -217,15 +226,15 @@
           "unmet_sustained_mL": 0.0
         },
         "pump": {
-          "sustained_status": "violated",
-          "unmet_sustained_mL": 0.0016568348306396623
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 2.9569150158695607e-19
         }
       },
-      "auxiliary_demand_mL_min": 7.541625007168023,
-      "total_demand_mL_O2_min": 105.5638687786457,
-      "supported_duration_min": 34.77973347721059,
+      "auxiliary_demand_mL_min": 7.85509373131065,
+      "total_demand_mL_O2_min": 105.8745204115517,
+      "supported_duration_min": 34.661979305463085,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
-      "all_groups_satisfied": false
+      "all_groups_satisfied": true
     },
     {
       "case": "partial_recovery",
@@ -238,10 +247,10 @@
         "strict_triple": "violated",
         "map_primary": "violated"
       },
-      "release_s": 2.55,
-      "MAP_mmHg": 105.08076003556042,
+      "release_s": 2.5,
+      "MAP_mmHg": 104.34833798798849,
       "violating_sustained_windows": 3,
-      "sustained_windows": 37,
+      "sustained_windows": 35,
       "outcome": "evaluated",
       "groups": {
         "active": {
@@ -253,15 +262,15 @@
           "unmet_sustained_mL": 0.0
         },
         "pump": {
-          "sustained_status": "violated",
-          "unmet_sustained_mL": 0.002311372671991956
+          "sustained_status": "satisfied",
+          "unmet_sustained_mL": 2.9017192689066855e-19
         }
       },
-      "auxiliary_demand_mL_min": 8.343263916090724,
-      "total_demand_mL_O2_min": 106.36550768756838,
-      "supported_duration_min": 34.477485312072616,
+      "auxiliary_demand_mL_min": 8.621385273771434,
+      "total_demand_mL_O2_min": 106.64081195401248,
+      "supported_duration_min": 34.37489344406429,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
-      "all_groups_satisfied": false
+      "all_groups_satisfied": true
     },
     {
       "case": "shared_failure",
@@ -274,15 +283,15 @@
         "strict_triple": "violated",
         "map_primary": "violated"
       },
-      "release_s": 2.55,
-      "MAP_mmHg": 51.69783390144532,
-      "violating_sustained_windows": 37,
-      "sustained_windows": 37,
+      "release_s": 2.5,
+      "MAP_mmHg": 54.47375648228929,
+      "violating_sustained_windows": 35,
+      "sustained_windows": 35,
       "outcome": "evaluated",
       "groups": {
         "active": {
           "sustained_status": "violated",
-          "unmet_sustained_mL": 0.5769640885489713
+          "unmet_sustained_mL": 0.46316854239896793
         },
         "preservation": {
           "sustained_status": "satisfied",
@@ -290,12 +299,12 @@
         },
         "pump": {
           "sustained_status": "satisfied",
-          "unmet_sustained_mL": 6.623489635547794e-20
+          "unmet_sustained_mL": 2.0028171040823179e-19
         }
       },
-      "auxiliary_demand_mL_min": 5.8702502591357355,
-      "total_demand_mL_O2_min": 102.91613434955669,
-      "supported_duration_min": 35.81680957110934,
+      "auxiliary_demand_mL_min": 6.335407123352606,
+      "total_demand_mL_O2_min": 103.4345717905168,
+      "supported_duration_min": 35.60890457635608,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
       "all_groups_satisfied": false
     },
@@ -310,15 +319,15 @@
         "strict_triple": "violated",
         "map_primary": "violated"
       },
-      "release_s": 2.6,
-      "MAP_mmHg": 65.0633625226468,
-      "violating_sustained_windows": 36,
-      "sustained_windows": 37,
+      "release_s": 2.55,
+      "MAP_mmHg": 66.26698146054281,
+      "violating_sustained_windows": 29,
+      "sustained_windows": 35,
       "outcome": "evaluated",
       "groups": {
         "active": {
           "sustained_status": "violated",
-          "unmet_sustained_mL": 0.5150573219279334
+          "unmet_sustained_mL": 0.46664623921557646
         },
         "preservation": {
           "sustained_status": "satisfied",
@@ -326,12 +335,12 @@
         },
         "pump": {
           "sustained_status": "violated",
-          "unmet_sustained_mL": 0.012610453888356882
+          "unmet_sustained_mL": 0.000541993246020831
         }
       },
-      "auxiliary_demand_mL_min": 7.013223115028201,
-      "total_demand_mL_O2_min": 105.03305000506256,
-      "supported_duration_min": 34.98280555528956,
+      "auxiliary_demand_mL_min": 7.358707372156442,
+      "total_demand_mL_O2_min": 105.37562993807619,
+      "supported_duration_min": 34.85147650872322,
       "duration_limited_by": "circulating glucose pool against hepatic export cap",
       "all_groups_satisfied": false
     }

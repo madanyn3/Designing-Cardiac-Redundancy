@@ -13,8 +13,8 @@ R011,2,"Reportable design A: scale 0.536, 57.5/min, conductance 1.748, 8.137 mL 
 R012,2,"Reportable design B: scale 0.749, 46.0/min, conductance 0.953, 9.596 mL O2/min, +8.93 mmHg",model_output,reports/m8-latency/latency-margin.json; reports/m8-verification/space-filling-kappa0.5.json,verified,margin value from the canonical h40 solve
 R013,2,Design B costs 17.9 per cent more and needs a 40 per cent larger cavity,derived,reports/m8-margin/margin-candidates.json,verified,ratio of the two reported designs
 R014,2,Every conductance band in 0.5-2.0 contains a feasible margin-holding design,derived,reports/m8-joint/joint-kappa0.5.json; reports/m8-margin/margin-candidates.json,verified,four bands sampled; not a continuum claim
-R015,3,One of nine operating cases satisfies every screen,model_output,reports/m8-matrix/matrix-kappa0.5.json,verified,"matrix design holds +2.26 mmHg, below the declared margin"
-R016,3,"The clearest failure reaches MAP 67.63, above threshold, failing on release at 2.55 s",model_output,reports/m8-matrix/matrix-kappa0.5.json,verified,"startup-window allocation, not sustained pressure"
+R015,3,One of nine operating cases satisfies every screen,model_output,reports/m8-matrix/matrix-kappa0.5.json,verified,re-run at the margin-constrained design holding +3.10 mmHg
+R016,3,"Five of nine cases satisfy every organ screen; four fail only on the release window at MAP 68.69-104.35",model_output,reports/m8-matrix/matrix-kappa0.5.json,verified,"startup-window allocation, not sustained pressure; supersedes the 1-of-9 organ result at the below-margin design"
 R017,3,"Margin by release for design A: +3.10, +2.94, -0.67, -9.95, -15.95, -21.00 mmHg",model_output,reports/m8-latency/latency-margin.json,verified,six solved release times
 R018,3,Design A satisfies the screen to 1.41 s and holds the margin to 0.81 s,derived,reports/m8-latency/latency-margin.json,verified,linear interpolation between solved points
 R019,3,Design B holds the margin to 1.57 s,derived,reports/m8-latency/latency-margin.json,verified,linear interpolation between solved points

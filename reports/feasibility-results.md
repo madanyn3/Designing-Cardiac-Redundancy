@@ -117,19 +117,30 @@ The core matrix held the design fixed across nine declared operating cases.
 
 | Case | Pressure | Organs | MAP | Release |
 |---|---|---|---|---|
-| **oracle_activation** | **satisfied** | **satisfied** | 67.70 | 0.50 s |
-| support_with_suppression | violated | pump | 67.63 | 2.55 s |
-| delayed_activation | violated | pump | 67.63 | 2.55 s |
-| ventilation_degraded | violated | pump | 67.63 | 2.55 s |
-| partial_recovery | violated | pump | 105.08 | 2.55 s |
-| support_no_suppression | violated | active, pump | 46.06 | 1.95 s |
-| shared_failure | violated | active | 51.70 | 2.55 s |
-| low_preload | violated | active, pump | 65.06 | 2.60 s |
+| **oracle_activation** | **satisfied** | **satisfied** | 68.65 | 0.50 s |
+| support_with_suppression | violated | **satisfied** | 68.69 | 2.50 s |
+| delayed_activation | violated | **satisfied** | 68.69 | 2.50 s |
+| ventilation_degraded | violated | **satisfied** | 68.69 | 2.50 s |
+| partial_recovery | violated | **satisfied** | 104.35 | 2.50 s |
+| low_preload | violated | active, pump | 66.27 | 2.55 s |
+| shared_failure | violated | active | 54.47 | 2.50 s |
+| support_no_suppression | violated | active, pump | 46.53 | 1.95 s |
+| no_support | violated | active, preservation, pump | 1.96 | — |
 
-`support_with_suppression` reaches MAP 67.63, **above** the enforced threshold,
-and still fails: the observed controller releases at 2.55 s and the window
-containing release lies outside the declared 2 s startup allowance. The design
-is not what fails these cases.
+Re-run at the margin-constrained design (the earlier matrix was held at a
+design holding +2.26 mmHg, below the declared minimum), and the conclusion is
+now much stronger than it was. **Five of nine cases satisfy every organ screen
+including auxiliary self-supply**, against one of nine at the superseded
+design. In four of those five, the auxiliary feeds its own myocardium, every
+organ group is satisfied, and mean pressure sits well above the enforced
+threshold — 68.69, 68.69, 68.69 and 104.35 mmHg — and the case fails **only**
+because release at 2.50 s puts five windows (three for `partial_recovery`)
+outside the declared two-second startup allowance.
+
+**In those four cases nothing about the design fails at all.** At the
+superseded design the same cases also failed the pump group, which left room to
+argue the design was simply inadequate. That reading is now closed off: what
+fails is the arrival time of support, not the support.
 
 The latency relation quantifies the requirement. Time to adequacy is linear in
 latency with a design-dependent slope, because a delayed release both loses
