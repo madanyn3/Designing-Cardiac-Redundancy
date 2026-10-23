@@ -56,12 +56,18 @@ fixture and had to be coupled before optimization was meaningful — the
 auxiliary mass ratio, the activation rate charged in demand, and the auxiliary
 oxygen store.
 
-**Detection, not the pump, is the binding constraint.** Eight of nine operating
-cases fail, and the clearest reaches MAP 67.63, above the enforced threshold,
-failing only because the controller releases at 2.55 s against a declared 2 s
-allowance. Tolerable release is 1.0 to 1.5 s depending on cavity size. The
-study converts a modelling assumption into a design requirement and hands it
-back to detection; it cannot say whether that requirement is achievable.
+**Detection, not the pump, is the binding constraint, and the requirement is
+under one second.** Eight of nine operating cases fail, and the clearest reaches
+MAP 67.63, above the enforced threshold, failing only because the controller
+releases at 2.55 s against a declared 2 s allowance. Re-measured on designs
+holding the declared pressure margin, the reported design satisfies the screen
+up to about 1.4 s of release and **holds the margin only up to about 0.8 s**;
+the larger comparator tolerates 1.5 s, so capacity does buy latency tolerance.
+Beyond 1.5 s margin falls at roughly 12 mmHg per second as the arterial volume
+debt compounds. The study converts a modelling assumption into a design
+requirement and hands it back to detection; it cannot say whether that
+requirement is achievable, and the gap to the M6 controller's 2.55 s is wider
+than the first measurement suggested.
 
 **Feasibility does not depend on the coronary conductance assumption.** A
 margin-holding feasible design exists at or below nominal conductance, at
@@ -167,7 +173,8 @@ verdict-labelling correction at the margin, not a change of conclusion.
 4. State that a feasible design exists at nominal coronary conductance, so
    feasibility does not rest on that bracket.
 5. State the latency requirement as a requirement handed to detection, never as
-   an achieved capability.
+   an achieved capability, and state it as the sub-second budget the margin
+   requirement implies rather than the 1.0-1.5 s the first measurement gave.
 6. Do not describe any deficit as an injury dose, any duration as a survival
    time, or any pressure pass as brain protection. Regional pressure minima
    remain unresolved.

@@ -85,8 +85,14 @@ def one(job):
 
 
 def main(workers=6):
-    # The v4 boundary designs at the settled horizon, plus a larger comparator.
-    designs = [(.475, 1., 1., .5), (.387, .75, 1., .5), (.65, 1., 1., .5)]
+    # The v4 boundary designs at the settled horizon, plus a larger comparator,
+    # plus both designs protocol v5 reports. The first two hold only +1.33 and
+    # +0.69 mmHg of pressure margin, below the declared 3.0 mmHg minimum, so the
+    # relation has to be re-established on designs that clear it: a slope read
+    # off a design sitting on the threshold describes the threshold crossing
+    # rather than the design's latency tolerance. They are kept for comparison.
+    designs = [(.475, 1., 1., .5), (.387, .75, 1., .5), (.65, 1., 1., .5),
+               (.536, 1.043, 1.748, .5), (.749, 1.304, .953, .5)]
     jobs = [(s, p, c, k, r) for (s, p, c, k) in designs for r in RELEASES]
     with ProcessPoolExecutor(max_workers=workers) as pool:
         rows = list(pool.map(one, jobs))

@@ -135,16 +135,34 @@ The latency relation quantifies the requirement. Time to adequacy is linear in
 latency with a design-dependent slope, because a delayed release both loses
 windows and accrues an arterial volume debt to repay:
 
-| Design | Slope (s of adequacy per s of latency) | Tolerable release |
-|---|---|---|
-| scale 0.387 at 80 /min | 2.00 | 1.0 s |
-| scale 0.475 at 60 /min | 3.26 | 1.0 s |
-| scale 0.650 at 60 /min | 1.60 | **1.5 s** |
+| Design | Pressure margin | Slope (s of adequacy per s of latency) | Tolerable release |
+|---|---|---|---|
+| scale 0.387 at 80 /min | +1.33 | 2.00 | 1.0 s |
+| scale 0.475 at 60 /min | +0.69 | 3.26 | 1.0 s |
+| scale 0.650 at 60 /min | **+4.93** | 1.60 | **1.5 s** |
+| **scale 0.536 at 57.5 /min** (reported) | **+3.10** | — | **1.0 s** |
 
-**Every tolerable value lies below the M6 controller's 2.55 s.** Capacity buys
-latency tolerance, so the requirement handed back to detection is a
-detection-plus-recruitment budget under roughly 1.5 s, at a cavity above the
-cost-optimal one.
+The first two designs hold less than the declared 3.0 mmHg margin, so the
+relation was re-established on designs that clear it. It holds, and it tightens
+the requirement. For the reported design the screen degrades as:
+
+| Release | 0.5 s | 1.0 s | 1.5 s | 2.0 s | 2.5 s | 3.0 s |
+|---|---|---|---|---|---|---|
+| Margin (mmHg) | **+3.10** | +2.94 | **−0.67** | −9.95 | −15.95 | −21.00 |
+
+Two thresholds follow, by interpolation between solved points. The design
+**satisfies the screen** up to about **1.4 s**, and **holds the declared
+margin** only up to about **0.8 s** — at a 1.0 s release it holds +2.94,
+marginally short of the 3.0 minimum. Beyond 1.5 s the margin falls at roughly
+12 mmHg per second of further delay, as the arterial volume debt compounds.
+
+**Every tolerable value lies below the M6 controller's 2.55 s, and the
+requirement is stricter than first reported.** Capacity buys latency tolerance,
+confirmed across margin-holding designs: the larger 0.650 design tolerates
+1.5 s where the cost-optimal 0.536 tolerates 1.0 s. Under the full protocol,
+margin included, the detection-plus-recruitment budget handed back is **under
+one second** — a requirement the study converts from an assumption into a
+specification, and cannot say is achievable.
 
 ## 4. Supported duration, and what sets it
 

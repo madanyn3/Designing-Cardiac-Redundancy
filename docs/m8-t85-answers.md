@@ -113,7 +113,11 @@ costlier designs fail on self-supply alone.
 - That cavity scale was the unexamined variable. M5 and M7 reported 0 of 84
   cases reaching the pressure screen while holding scale at the 0.25 fixture;
   inventory never constrained it, and every scale in 0.1–1.0 is admissible.
-- That detection latency binds before the pump does.
+- That detection latency binds before the pump does, re-measured on designs
+  holding the declared margin. The reported design satisfies the screen to
+  about 1.4 s of release and holds the margin only to about 0.8 s, so the
+  budget handed to detection is **under one second** — stricter than the
+  1.0–1.5 s first reported, and further from the M6 controller's 2.55 s.
 - That the coronary bed scaling with cavity size makes self-supply easier for
   larger pumps, not harder.
 - That feasibility does not depend on the coronary conductance assumption: a
