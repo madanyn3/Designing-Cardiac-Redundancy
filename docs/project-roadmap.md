@@ -1,6 +1,6 @@
 # Designing Cardiac Redundancy in Humans: Project Roadmap
 
-**Active sequence (2026-10-15):** [M6 is closed at qualified control-scenario scope](m6-closure.md): 13 paired hydraulic scenarios, 12 paired metabolic replays and 254 tests. M7 uncertainty/sensitivity is underway, followed by M8 optimization. Preprint writing remains parked.
+**Active sequence (2026-10-23):** **M8 is closed** at its declared experiment gate: [closure](m8-closure.md), protocol v5, 465 tests. Two reportable auxiliary designs are established, both arms agree on the machine, and the envelope is bounded by compression kappa above 0.5, adverse physiology and a sub-second detection budget. **M9 is now active**: the Results and Verification sections, and the claim audit. [Methods draft](preprint/methods.md) is written.
 
 **M5 interpretation correction (2026-10-14):** The recorded auxiliary unmet oxygen-equivalent demand is glucose-limited in these runs, not demonstrated oxygen-delivery failure. Pressure failure remains unchanged. [Diagnosis and corrective experiments](m5-failure-diagnosis.md).
 
@@ -37,8 +37,8 @@ Use four labels throughout: **E** = source-supported evidence within its stated 
 | M5. Auxiliary pump and energy budget | Architecture comparison and sizing bounds | M4 | Closed at qualified characterization/accounting scope; 235 tests, 2026-10-14 |
 | M6. Detection, recovery, and failure modes | Controller and fault experiments | M5 | Closed at qualified control-scenario scope; 254 tests, 2026-10-15 |
 | M7. Uncertainty and identifiability | Sensitivity rankings and uncertainty bounds | M6 | Closed at bounded assessment scope; [closure](m7-closure.md) |
-| M8. Feasibility experiments | Frozen experiment suite and results | M7 | Arm A complete at protocol v4; Arm B underway |
-| M9. Scientific synthesis | Technical report and completed primer | M8 | Not started |
+| M8. Feasibility experiments | Frozen experiment suite and results | M7 | **Closed** at declared experiment gate, protocol v5, both arms; [closure](m8-closure.md) |
+| M9. Scientific synthesis | Technical report and completed primer | M8 | **Active**: Methods drafted; Results, Verification and the claim audit open |
 | M10. Reproducible showcase | Release, figures, walkthrough, demo | M9 | Not started |
 
 M0–M5 establish the core scientific model. M6–M8 make the research contribution. M9–M10 make it reviewable and presentable. Optional extensions appear after the core roadmap and must not delay a coherent first release.
@@ -250,6 +250,28 @@ Execution plan: [M3 goals, sequence and M2 handoff](m3-plan.md). T3.1, T3.2 and 
 **Completion gate:** Dominant assumptions and unstable rankings are reported; sampling adequacy is assessed; fitted parameters have identifiability caveats; scenario fractions are not labeled probabilities of patient survival.
 
 ## M8 — Run the frozen feasibility experiments
+
+**Closed 2026-10-23** at its declared experiment gate, protocol v5, 465 tests:
+[closure](m8-closure.md), [Arm A results](../reports/feasibility-results.md),
+[Arm B results](../reports/feasibility-results-armb.md),
+[research-question answers](m8-t85-answers.md).
+
+Two designs are reportable, because cheapness and independence from assumption
+point to opposite corners of the feasible set: scale 0.536 at 57.5 beats/min
+with conductance 1.748 costing 8.137 mL O₂/min, or scale 0.749 at 46.0 with
+conductance 0.953 costing 9.596 — 18 per cent more, but at or below nominal
+conductance and holding +8.97 mmHg of pressure margin. Supported duration is
+33.8 min charging all demand to glucose and 47.1 min when visceral fat may be
+oxidised, limited by the hepatic export *rate* and then by adipose *perfusion*,
+never by stores or lipolytic capacity. The envelope is bounded by compression
+kappa above 0.5, where self-supply fails in every design tested, by adverse
+physiology, and by a detection budget under one second.
+
+The milestone's methodological result is carried into M9: **a flat objective
+against a hard threshold selects the most fragile qualifying design**, so four
+conclusions had to be corrected during the work, three from that one cause.
+Protocol v5 declares a minimum pressure margin and requires disconfirmation to
+sample a spread of the feasible set rather than its cheapest members.
 
 **Objective:** Produce the central research results with traceable comparisons and a declared analysis plan.
 
