@@ -1,6 +1,6 @@
 # M8 feasibility results
 
-2026-10-21. Protocol version 4. Arm A, the glucose-only primary analysis.
+2026-10-23. Protocol version 5. Arm A, the glucose-only primary analysis.
 Figures in `reports/m8-figures/`; searches in `reports/m8-optimize/`,
 `reports/m8-joint/`, `reports/m8-verification/`, `reports/m8-matrix/`.
 
@@ -14,6 +14,7 @@ survives their removal without being re-established:
 | Activation | oracle, 0.5 s prescribed release |
 | Screen horizon | 40 s, plateau confirmed |
 | Fuel | all oxidative demand charged to glucose |
+| Pressure margin | at least 3.0 mmHg above the enforced threshold (protocol v5) |
 
 The nine unresolved requirements of `configs/m4-constraint-policy.json` remain
 attached, so the formal status of even a clean run is *indeterminate*, not
@@ -41,6 +42,38 @@ ranges 1.388–1.808 while demand varies only 7.601–7.614, a spread of 0.17 pe
 cent. The compass refinement improved on its own seed by 0.1 per cent across
 four iterations.
 
+### The unconstrained optimum is not a reportable design
+
+**It holds +0.005 mmHg of pressure margin.** Changing its activation period by
+0.0005 s, four hundredths of one per cent, flips it to violated with two bad
+windows. The runner-up at 7.601 holds +0.040 mmHg and behaves the same way.
+
+This is a **specification error, not a search error**. Minimizing a flat
+objective against a hard threshold presses the answer against the boundary, and
+the boundary is where the verdict is decided by window alignment rather than by
+the design. Nine of 152 feasible designs hold under 0.5 mmHg and the cheapest
+are all among them: the search concentrated on fragility by construction, and
+it did so correctly, because nothing in the objective asked for margin.
+
+Protocol v5 therefore declares a minimum margin of 3.0 mmHg, before the re-run
+rather than after seeing which designs survive it. **Robustness is cheap:**
+
+| Requirement | Cheapest design meeting it | Scale | Rate | Conductance | Margin |
+|---|---|---|---|---|---|
+| Feasible only | 7.600 mL O₂/min | 0.566 | 49.2 /min | 1.027 | **+0.005** |
+| **Margin ≥ 3.0 mmHg** | **8.137** | 0.536 | 57.5 /min | 1.748 | +3.10 |
+| Margin ≥ 3.0 and conductance ≤ 1.00 | 9.596 | 0.749 | 46.0 /min | 0.953 | **+8.97** |
+
+Margin costs **7.1 per cent** more auxiliary oxygen. The reported design is
+therefore **scale 0.536, 57.5 beats/min, conductance 1.748, at 8.137 mL O₂/min
+with +3.10 mmHg of margin** — or the nominal-conductance design below, which
+costs 17.9 per cent more and depends on one assumption fewer.
+
+Thirty-six designs hold the margin and feed their own myocardium. The cheapest
+few margin-holders fail self-supply, because margin wants a larger or faster
+pump while self-supply wants a larger coronary bed, so the two cannot both be
+bought at the cheap end.
+
 Boundary tracing's 7.812 sits 2.7 per cent above the valley. The cause is
 recorded rather than smoothed over: it traced boundaries only at 60, 80 and
 100 beats/min, and the optimum lies near 49–53, between those grid lines. The
@@ -48,9 +81,8 @@ structural argument was sound; the rate axis was sampled too coarsely. **This
 is what the protocol's verification requirement is for**, and it is reported as
 a finding about the method, not hidden.
 
-Reported design: **cavity scale 0.566, 49.2 beats/min, coronary conductance
-1.027, costing 7.600 mL O₂/min.** Where two designs cost the same, the one
-depending least on an unjustified assumption is preferred (§2).
+Where two designs cost the same, the one depending least on an unjustified
+assumption is preferred (§2).
 
 ## 2. Feasibility does not depend on the coronary conductance assumption
 
@@ -58,15 +90,25 @@ The 0.5–2.0 conductance bracket is an exploratory assumption with no measured
 basis, and `docs/uncertainty-plan.md` states that using it as a design control
 requires a verified interface that does not exist. Pooling both searches:
 
-| Conductance ceiling | Cheapest feasible | Scale | Rate |
-|---|---|---|---|
-| **≤ 1.00 (nominal)** | **9.596 mL O₂/min** | 0.749 | 46.0 /min |
-| ≤ 1.10 and above | 7.600 | 0.566 | 49.2 /min |
+| Conductance band | Cheapest margin-holding feasible design | Scale | Rate | Margin |
+|---|---|---|---|---|
+| **0.50–1.00 (at or below nominal)** | **9.596 mL O₂/min** | 0.749 | 46.0 /min | **+8.97** |
+| 1.00–1.25 | 8.373 | 0.516 | 62.6 /min | +5.72 |
+| 1.25–1.50 | 8.396 | 0.550 | 58.0 /min | +4.94 |
+| 1.50–2.00 | **8.137** | 0.536 | 57.5 /min | +3.10 |
 
-**A feasible design exists at or below nominal coronary conductance.** It costs
-26 per cent more oxygen and needs a 32 per cent larger cavity, but it exists.
-The assumption buys optimality, not feasibility, which is the materially weaker
-dependency and should be stated that way.
+**A feasible design exists at or below nominal coronary conductance, and it is
+the most robust design found.** It costs 17.9 per cent more oxygen than the
+margin-constrained optimum and needs a 40 per cent larger cavity, but it holds
+nearly three times the required pressure margin. The assumption buys
+optimality, not feasibility, which is the materially weaker dependency and
+should be stated that way.
+
+Every band is populated, so there is no conductance value at which the design
+problem becomes infeasible within the bracket. Margin *falls* monotonically as
+conductance rises, which is the trade the bracket actually buys: a larger
+coronary bed lets a smaller cavity feed itself, and a smaller cavity holds less
+pressure margin.
 
 ## 3. The binding constraint is detection, not the pump
 

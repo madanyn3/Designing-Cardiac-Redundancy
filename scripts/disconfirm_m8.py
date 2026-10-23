@@ -40,24 +40,71 @@ STRESSES = (('reference', dict(scenario='reference', kappa=.5)),
 
 
 def leading_designs(limit=4):
-    """The best feasible designs found, pooled across the searches."""
-    rows = []
+    """A spread of the margin-holding feasible set, not its cheapest corner.
+
+    Protocol v5 requires both halves of this. Selecting the cheapest designs
+    selects the most fragile ones, because minimizing a flat objective against a
+    hard threshold presses the answer against the boundary: the four designs this
+    function used to return all held under 0.2 mmHg of pressure margin, and the
+    earlier disconfirmation measured that fragility rather than a property of the
+    arm. Two conclusions were corrected once cross-checks looked outside that
+    corner.
+
+    So designs must clear the declared margin, and the selection spans the
+    feasible set by coronary conductance, which is the axis the two corners
+    differ on: a small cavity with an enlarged coronary bed is cheapest but
+    depends on the unjustified 0.5-2.0 bracket, while a large cavity at nominal
+    conductance costs more and depends on no bracket.
+    """
+    floor = PROTOCOL['minimum_pressure_margin_mmHg']
+    verified = ROOT / 'reports/m8-margin/margin-candidates.json'
+    rows = [r for r in json.loads(verified.read_text(encoding='utf-8'))['rows']
+            if r.get('feasible')] if verified.is_file() else []
     for path in ('reports/m8-joint/joint-kappa0.5.json',
                  'reports/m8-verification/space-filling-kappa0.5.json'):
         f = ROOT / path
-        if f.is_file():
-            rows += [r for r in json.loads(f.read_text(encoding='utf-8'))['rows']
-                     if r.get('feasible')]
-    rows.sort(key=lambda r: r['auxiliary_demand_mL_min'])
-    seen, out = set(), []
-    for r in rows:
+        if not f.is_file():
+            continue
+        for r in json.loads(f.read_text(encoding='utf-8'))['rows']:
+            if not r.get('feasible'):
+                continue
+            margin = _margin_of(r)
+            if margin is not None and margin >= floor:
+                rows.append(dict(r, margin_mmHg=margin))
+    seen, pool = set(), []
+    for r in sorted(rows, key=lambda r: r['auxiliary_demand_mL_min']):
         key = (round(r['scale'], 3), round(r['period_s'], 3), round(r['coronary_conductance'], 3))
         if key in seen:
             continue
-        seen.add(key); out.append(r)
-        if len(out) >= limit:
+        seen.add(key); pool.append(r)
+    if not pool:
+        raise SystemExit('no verified design holds the declared %.1f mmHg margin' % floor)
+    # Span the conductance axis: the cheapest design, the one least dependent on
+    # the conductance bracket, and evenly spaced members between them.
+    by_conductance = sorted(pool, key=lambda r: r['coronary_conductance'])
+    picks = [pool[0], by_conductance[0]]
+    for r in by_conductance:
+        if len(picks) >= limit:
             break
+        if all(abs(r['coronary_conductance']-p['coronary_conductance']) > .2 for p in picks):
+            picks.append(r)
+    out, seen = [], set()
+    for r in picks[:limit]:
+        key = (round(r['scale'], 3), round(r['period_s'], 3), round(r['coronary_conductance'], 3))
+        if key not in seen:
+            seen.add(key); out.append(r)
     return out
+
+
+def _margin_of(row):
+    """Pressure margin of a search row, from its saved hydraulic record."""
+    from cardiac_redundancy.feasibility import pressure_margin
+    design = opt.design(row['scale'], row['period_s'], row['coronary_conductance'])
+    folder = opt.name_of(design, .5, .5, PROTOCOL['evaluation_policy']['horizon_s'])
+    f = ROOT / opt.OUT / folder / 'hydraulics.json'
+    if not f.is_file():
+        return None
+    return pressure_margin(json.loads(f.read_text(encoding='utf-8'))['pressure'])
 
 
 def one(job):

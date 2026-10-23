@@ -1,6 +1,6 @@
 # M8 feasibility results — Arm B, fat-capable metabolism
 
-2026-10-22. Protocol version 4. The structural alternative to
+2026-10-23. Protocol version 5. The structural alternative to
 [Arm A](feasibility-results.md), which charges every joule of oxidative demand
 to glucose. Arm B asks what changes when tissue may oxidise fatty acid.
 
@@ -43,21 +43,34 @@ policy, and by nothing else.
 Same search, same objective, same constraints, on the fat-capable model:
 32 Sobol points plus 3 compass iterations, 50 evaluations, 23 feasible, 103 min.
 
-| | Arm A | **Arm B** |
-|---|---|---|
-| Cavity scale | 0.566 | **0.443** |
-| Rate | 49.2 /min | 67.8 /min |
-| Coronary conductance | 1.027 | 1.591 |
-| Auxiliary O₂ demand | 7.600 mL/min | **7.609** |
-| MAP | — | 66.69 mmHg |
-| Glucose fraction | 1.000 | **0.751** |
-| **Supported duration** | 33.7 min | **47.1 min** |
-| At a 3.0 mmol/L floor | 13.5 min | **18.9 min** |
+Both arms' unconstrained optima sit on the pressure boundary and neither is
+reportable under protocol v5: Arm A's holds +0.005 mmHg of margin and Arm B's
++1.011. The comparison below is therefore given twice, unconstrained as the
+searches found it and under the declared 3.0 mmHg margin.
 
-The cavity and rate differences in this table are **not** attributable to the
-fuel model; see below. Only the glucose fraction and the duration rows are.
+| | Arm A | Arm B | **Arm A, margin ≥ 3** | **Arm B, margin ≥ 3** |
+|---|---|---|---|---|
+| Cavity scale | 0.566 | 0.443 | 0.536 | 0.443 |
+| Rate | 49.2 /min | 67.8 /min | 57.5 /min | 74.5 /min |
+| Coronary conductance | 1.027 | 1.591 | 1.748 | 1.471 |
+| Pressure margin | +0.005 | +1.011 | **+3.10** | **+3.79** |
+| Auxiliary O₂ demand | 7.600 | 7.609 | **8.137** | **8.164** |
+| Glucose fraction | 1.000 | **0.751** | 1.000 | **0.751** |
+| **Supported duration** | 33.7 min | **47.1 min** | 33.7 min | **47.1 min** |
+| At a 3.0 mmol/L floor | 13.5 min | **18.9 min** | 13.5 min | **18.9 min** |
+
+**Under the margin requirement the two arms cost the same to within 0.3 per
+cent** — 8.137 against 8.164 mL O₂/min — while the fuel rows are unchanged.
+That is the cleanest statement of the arms' relationship the study has: the
+cavity and rate differences are **not** attributable to the fuel model, and
+only the glucose fraction and duration rows are.
 
 **Fat buys 40 per cent more supported duration. It does not buy a smaller pump.**
+
+Sixteen of the 23 feasible Arm B designs hold the declared margin; the cheapest
+that does is scale 0.443 at 74.5 beats/min with conductance 1.471, at
+8.164 mL O₂/min and +3.79 mmHg, covering 13.1 per cent of non-obligate demand
+with fat.
 
 An earlier draft of this section claimed the 22 per cent smaller cavity as a
 fat effect. A direct cross-check refutes that. Arm B's optimum design — scale

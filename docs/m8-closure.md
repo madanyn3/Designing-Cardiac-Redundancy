@@ -1,13 +1,13 @@
 # M8 closure — frozen feasibility experiments
 
-2026-10-22. **M8 is closed at its declared experiment gate.** This is not a
+2026-10-23. **M8 is closed at its declared experiment gate.** This is not a
 demonstrated auxiliary heart, a validated repair window, or a survival claim.
 M9 is the next milestone; preprint drafting has begun with the Methods section
 and the Results material assembled here.
 
 | Task | Completed evidence | Qualification |
 |---|---|---|
-| T8.1 | [Frozen protocol](m8-t81-protocol.md), [`configs/m8-protocol.json`](../configs/m8-protocol.json) | Version 4 after four recorded amendments, each with its reason, effect size and required re-runs |
+| T8.1 | [Frozen protocol](m8-t81-protocol.md), [`configs/m8-protocol.json`](../configs/m8-protocol.json) | Version 5 after six recorded amendments, each with its reason, effect size and required re-runs |
 | T8.0 | [Boundary trace, joint search and matched-budget verification](../reports/feasibility-results.md) | Best found within declared bounds and budget; no global optimum claimed |
 | T8.2 | [Core matrix](../reports/m8-matrix/matrix-kappa0.5.json), nine operating cases | One case of nine satisfies every screen |
 | T8.3 | [Arm A results](../reports/feasibility-results.md), [Arm B results](../reports/feasibility-results-armb.md), seven figures | Figures regenerate from saved output |
@@ -19,12 +19,33 @@ and the Results material assembled here.
 ## What the milestone establishes
 
 **A feasible configuration exists, inside a narrow envelope.** A design
-satisfying the pressure screen and auxiliary self-supply exists at cavity scale
-0.566, 49.2 beats/min and essentially nominal coronary conductance, costing
-7.600 mL O₂/min. Three independent searches agree, two of them landing within
-0.001 mL O₂/min of each other from different directions. The optimum is a
-shallow valley rather than a point: designs differing in all three variables
-cost within 0.2 per cent of one another.
+satisfying the pressure screen and auxiliary self-supply, and holding the
+declared 3.0 mmHg of pressure margin, exists at cavity scale 0.536,
+57.5 beats/min and coronary conductance 1.748, costing 8.137 mL O₂/min.
+Thirty-six designs hold the margin and feed their own myocardium. The optimum
+is a shallow valley rather than a point: designs differing in all three
+variables cost within 0.2 per cent of one another, and three independent
+searches agree, two landing within 0.001 mL O₂/min of each other from different
+directions.
+
+**The cheapest design the searches found is not a reportable one.** It costs
+7.600 mL O₂/min and holds **+0.005 mmHg** of pressure margin; a four
+hundredths of one per cent change in its activation period flips it to violated
+with two bad windows. Minimizing a flat objective against a hard threshold
+presses the answer against the boundary, where the verdict is decided by window
+alignment rather than by the design: nine of 152 feasible designs held under
+0.5 mmHg and the cheapest were all among them. This is a **specification error
+rather than a search error**, and protocol v5 fixes it by declaring the margin
+in advance. Margin costs 7.1 per cent more oxygen.
+
+**There are two reportable designs, and choosing between them is the clearest
+engineering result in the milestone.** The margin-constrained optimum above
+depends on the unjustified 0.5–2.0 conductance bracket. A second design at
+**scale 0.749, 46.0 beats/min and conductance 0.953** costs 9.596 mL O₂/min,
+17.9 per cent more, and needs a 40 per cent larger cavity — but it sits at or
+below nominal conductance, so it rests on that bracket not at all, and it holds
+**+8.97 mmHg**, nearly three times the requirement. Cheapness and independence
+from assumption point to opposite corners of the feasible set.
 
 **The earlier negative result was an artefact of an unexamined constant.** M5
 and M7 reported 0 of 84 cases reaching the pressure screen while holding cavity
@@ -43,9 +64,13 @@ study converts a modelling assumption into a design requirement and hands it
 back to detection; it cannot say whether that requirement is achievable.
 
 **Feasibility does not depend on the coronary conductance assumption.** A
-feasible design exists at or below nominal conductance, at 9.596 mL O₂/min and
-cavity scale 0.749, against 7.600 at scale 0.566 just above nominal. The
-unjustified 0.5-2.0 bracket buys optimality, not feasibility.
+margin-holding feasible design exists at or below nominal conductance, at
+9.596 mL O₂/min and cavity scale 0.749, and it is the most robust design found.
+Every conductance band in the bracket is populated, so there is no value at
+which the problem becomes infeasible. Margin falls monotonically as conductance
+rises, which is the trade the bracket buys: a larger coronary bed lets a
+smaller cavity feed itself, and a smaller cavity holds less pressure margin.
+The bracket buys optimality, not feasibility.
 
 **Supported duration is a physiology result, not a design result.** The
 hepatic export rate binds, not the glycogen store: the store would last
@@ -57,13 +82,22 @@ floor, which the model does not set.
 
 **Fat changes the fuel budget, not the machine.** Arm B raises supported
 duration from 33.7 to 47.1 minutes by lowering the glucose fraction from 1.000
-to 0.751. It does **not** admit a smaller pump: Arm B's optimum design is
-feasible under Arm A's glucose-only metabolism as well, at 7.627 mL O₂/min
-against 7.600, so the apparent size difference between the arms is an artefact
-of two searches landing in different parts of a flat valley. Adipose perfusion,
-not lipolytic capacity, limits the fuel at every flow examined, and feasibility
-does not rest on the adipose policy: all three leading Arm B designs survive
-with the depot suppressed.
+to 0.751. It does **not** admit a smaller pump, and this is now established
+twice over. A direct cross-check found Arm B's optimum feasible under Arm A's
+glucose-only metabolism at 7.627 mL O₂/min against 7.600, refuting an earlier
+draft's reading of a 22 per cent smaller cavity as a fat effect. Independently,
+**under the declared margin the two arms cost the same to within 0.3 per
+cent** — Arm A 8.137, Arm B 8.164 — while the fuel rows are unchanged. The
+apparent size difference was two searches landing in different parts of a flat
+valley.
+
+What is genuinely Arm B's is the limiting resource. Arm A is bound by the
+hepatic glucose export rate; Arm B replaces that with **adipose perfusion,
+which binds at every flow examined, never lipolytic capacity.** The depot
+covers 12.6 per cent of non-obligate demand against a ceiling of the brain's
+0.266 glucose fraction and roughly 216 min, so the whole gap is circulatory.
+Feasibility does not rest on the adipose policy — all three leading Arm B
+designs survive with the depot suppressed — only duration does.
 
 **The envelope is narrow and was mapped by deliberate disconfirmation.** Of
 four leading Arm A designs under five stresses, four survive reference and
@@ -89,6 +123,8 @@ declared scenario over the others and none has a stronger claim.
 | 3 | Enforced criterion is mean arterial pressure alone | Adult post-arrest guidance states a MAP target and no systolic one; the strict triple is still reported for every run |
 | 3 | Cycle-aligned pressure windows | A fixed grid mixes 1.33 cycles at 80 beats/min and 2.5 at 150 |
 | 4 | Horizon raised to 40 s with a plateau check | Cycle-mean pressure declines toward steady state, so a short horizon credits a value the design does not maintain |
+| 5 | A design must hold at least 3.0 mmHg of pressure margin | The located optimum held +0.005 mmHg and flipped to violated on a 0.04 per cent change of period. A flat objective against a hard threshold selects the most fragile qualifying point |
+| 5 | Disconfirmation samples a spread of the feasible set, not its cheapest members | Two conclusions were corrected by cross-checks that found the opposite outside the sampled corner, both from generalizing from the cheapest corner of a flat valley |
 
 Each amendment records its effect size. The horizon correction, for instance,
 moves the located boundary by about one per cent of cavity scale: a

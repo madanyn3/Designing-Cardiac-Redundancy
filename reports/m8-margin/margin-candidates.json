@@ -2,8 +2,8 @@
   "scope": "self-supply verification of the margin-constrained candidates",
   "minimum_margin_mmHg": 3.0,
   "protocol_version": 5,
-  "tested": 6,
-  "feasible": 2,
+  "tested": 14,
+  "feasible": 7,
   "rows": [
     {
       "scale": 0.496,
@@ -88,6 +88,118 @@
       "MAP_mmHg": 68.83378208235595,
       "auxiliary_demand_mL_min": 8.141186894079013,
       "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.536,
+      "period_s": 1.043,
+      "rate_bpm": 57.52636625119847,
+      "coronary_conductance": 1.508,
+      "margin_mmHg": 3.451321746742863,
+      "demand": 8.145102761499967,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 69.01811504916101,
+      "auxiliary_demand_mL_min": 8.145102761499967,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.56,
+      "period_s": 1.109,
+      "rate_bpm": 54.10279531109107,
+      "coronary_conductance": 0.914,
+      "margin_mmHg": 3.713445220147733,
+      "demand": 8.156124612461259,
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "MAP_mmHg": 68.86128765107799,
+      "auxiliary_demand_mL_min": 8.156124612461259,
+      "sustained_unmet_mL": 0.007851832799458797
+    },
+    {
+      "scale": 0.45,
+      "period_s": 0.828,
+      "rate_bpm": 72.46376811594203,
+      "coronary_conductance": 1.094,
+      "margin_mmHg": 4.981049412296187,
+      "demand": 8.1891830798811,
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "MAP_mmHg": 70.88652964977513,
+      "auxiliary_demand_mL_min": 8.1891830798811,
+      "sustained_unmet_mL": 0.019508208227267163
+    },
+    {
+      "scale": 0.576,
+      "period_s": 1.123,
+      "rate_bpm": 53.42831700801425,
+      "coronary_conductance": 1.748,
+      "margin_mmHg": 3.0639952466893305,
+      "demand": 8.218581801847876,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 69.60024946771364,
+      "auxiliary_demand_mL_min": 8.218581801847876,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.576,
+      "period_s": 1.123,
+      "rate_bpm": 53.42831700801425,
+      "coronary_conductance": 1.628,
+      "margin_mmHg": 3.2529988532496503,
+      "demand": 8.222739466915911,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 69.79722734082608,
+      "auxiliary_demand_mL_min": 8.222739466915911,
+      "sustained_unmet_mL": 2.636779683484747e-16
+    },
+    {
+      "scale": 0.576,
+      "period_s": 1.123,
+      "rate_bpm": 53.42831700801425,
+      "coronary_conductance": 1.508,
+      "margin_mmHg": 3.4431314675964444,
+      "demand": 8.226914015192312,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 69.99542018634693,
+      "auxiliary_demand_mL_min": 8.226914015192312,
+      "sustained_unmet_mL": 0.0
+    },
+    {
+      "scale": 0.567,
+      "period_s": 1.107,
+      "rate_bpm": 54.200542005420054,
+      "coronary_conductance": 0.975,
+      "margin_mmHg": 4.227535228261814,
+      "demand": 8.268966576510465,
+      "feasible": false,
+      "pressure": "satisfied",
+      "self_supply": "violated",
+      "MAP_mmHg": 69.60025290524896,
+      "auxiliary_demand_mL_min": 8.268966576510465,
+      "sustained_unmet_mL": 0.0019827465061718944
+    },
+    {
+      "scale": 0.526,
+      "period_s": 1.0,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 2.0,
+      "margin_mmHg": 3.610479344393326,
+      "demand": 8.299163061173186,
+      "feasible": true,
+      "pressure": "satisfied",
+      "self_supply": "satisfied",
+      "MAP_mmHg": 69.02777089780166,
+      "auxiliary_demand_mL_min": 8.299163061173186,
+      "sustained_unmet_mL": 0.0
     }
   ],
   "best": {
@@ -104,5 +216,5 @@
     "auxiliary_demand_mL_min": 8.13728600630375,
     "sustained_unmet_mL": 0.0
   },
-  "wall_s": 775.0202176000457
+  "wall_s": 3.0580621000844985
 }
