@@ -276,13 +276,17 @@ def fig_conductance_frontier():
                     xytext=(4, 6), textcoords='offset points')
     ax.set_xlabel('coronary conductance ceiling (multiple of nominal)')
     ax.set_ylabel('cheapest feasible design (mL O₂/min)')
-    ax.set_title('A design exists at nominal conductance, at 26% more cost')
+    ax.set_title('A design exists at nominal conductance, at 18% more cost')
     finish(fig, 'fig-conductance-frontier',
-           'Epsilon-constraint frontier pooled across both searches. The 0.5-2.0 conductance '
-           'bracket is a declared assumption with no measured basis, so what matters is that '
-           'feasibility does not depend on it: at or below nominal a design exists at 9.596 mL '
-           'O₂/min and cavity scale 0.749, against 7.600 at scale 0.566 once slightly above '
-           'nominal conductance is allowed. The assumption buys optimality, not feasibility.')
+           'Epsilon-constraint frontier pooled across both searches, over designs holding the '
+           'declared 3.0 mmHg pressure margin. The 0.5-2.0 conductance bracket is a declared '
+           'assumption with no measured basis, so what matters is that feasibility does not '
+           'depend on it: at or below nominal a design exists at 9.596 mL O₂/min and cavity '
+           'scale 0.749, holding +8.97 mmHg, against 8.137 at scale 0.536 once conductance well '
+           'above nominal is allowed. Every band in the bracket is populated, and margin falls '
+           'as conductance rises, because a larger coronary bed lets a smaller cavity feed '
+           'itself and a smaller cavity holds less margin. The assumption buys optimality, not '
+           'feasibility.')
 
 
 if __name__ == '__main__':
