@@ -22,9 +22,18 @@ from cardiac_redundancy.duration import supported_duration
 
 OUT = 'reports/m8-matrix'
 PROTOCOL = json.loads((ROOT / 'configs/m8-protocol.json').read_text(encoding='utf-8'))
-#: The T8.0 joint optimum at the settled 40 s horizon under protocol v4.
-OPTIMUM = dict(left_scale=.496, right_scale=.496, septal_scale=.496, pericardial_scale=.496,
-               period_s=1., coronary_conductance=1.203)
+#: The design the matrix holds fixed: the margin-constrained optimum of protocol
+#: v5. The earlier choice, scale 0.496 at 60/min with conductance 1.203, holds
+#: +2.26 mmHg of pressure margin, below the declared 3.0 mmHg minimum, so the
+#: matrix was describing a design the protocol does not report. The conclusion
+#: concerns which window the release lands in rather than sustained pressure, so
+#: it was not expected to move; it is re-run because a reported matrix should
+#: stand on a reportable design.
+OPTIMUM = dict(left_scale=.536, right_scale=.536, septal_scale=.536, pericardial_scale=.536,
+               period_s=1.043, coronary_conductance=1.748)
+#: Kept so the two can be compared rather than silently swapped.
+SUPERSEDED_OPTIMUM = dict(left_scale=.496, right_scale=.496, septal_scale=.496,
+                          pericardial_scale=.496, period_s=1., coronary_conductance=1.203)
 HYDRAULIC_FLAGS = ('preservation_override', 'deplete_PU', 'restart', 'reopen', 'sensor_loss',
                    'inlet_multiplier', 'rearrest', 'withdraw', 'withdrawal_s')
 METABOLIC_FLAGS = ('apnea', 'demand_restore')
@@ -35,7 +44,14 @@ def one(job):
     design = DesignPoint(**OPTIMUM)
     policy = spec['policy']
     case = {k: v for k, v in spec.items() if k in HYDRAULIC_FLAGS}
-    name = f'{case_name}-kappa{kappa:g}'
+    # The design belongs in the cache key. Without it, re-pointing the matrix at
+    # a different design silently returns the previous design's runs: the
+    # verdicts come back byte-identical and nothing reports that the requested
+    # design was never solved. This is the same defect class as a key missing
+    # the screen horizon, which paired 40 s pressure verdicts with 10 s
+    # self-supply verdicts across 215 stored runs before it was found.
+    name = (f'{case_name}-scale{design.left_scale:g}-period{design.period_s:g}'
+            f'-coron{design.coronary_conductance:g}-kappa{kappa:g}')
     folder = ROOT / OUT / name
     if (folder / 'hydraulics.json').is_file():
         record = json.loads((folder / 'hydraulics.json').read_text(encoding='utf-8'))
@@ -83,7 +99,9 @@ def main(kappa=.5, workers=5):
     jobs = [(name, spec, kappa) for name, spec in PROTOCOL['operating_cases'].items()]
     with ProcessPoolExecutor(max_workers=workers) as pool:
         rows = list(pool.map(one, jobs))
-    result = dict(scope='T8.2 core matrix: the T8.0 optimum held fixed across declared '
+    result = dict(superseded_design=SUPERSEDED_OPTIMUM,
+                  minimum_pressure_margin_mmHg=PROTOCOL['minimum_pressure_margin_mmHg'],
+                  scope='T8.2 core matrix: the T8.0 optimum held fixed across declared '
                         'operating cases, reference physiology',
                   design=OPTIMUM, compression_kappa=kappa,
                   protocol_version=PROTOCOL['version'], rows=rows,
