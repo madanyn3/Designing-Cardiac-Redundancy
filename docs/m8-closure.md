@@ -60,14 +60,15 @@ oxygen store.
 under one second.** Eight of nine operating cases fail, and the clearest reaches
 MAP 67.63, above the enforced threshold, failing only because the controller
 releases at 2.55 s against a declared 2 s allowance. Re-measured on designs
-holding the declared pressure margin, the reported design satisfies the screen
-up to about 1.4 s of release and **holds the margin only up to about 0.8 s**;
-the larger comparator tolerates 1.5 s, so capacity does buy latency tolerance.
+holding the declared pressure margin, the budget is **0.8 to 1.6 s depending on
+which design is built**: the cost-optimal design holds its margin to 0.81 s and
+the nominal-conductance design to 1.57 s. Capacity buys latency tolerance and
+nearly doubles it, so the design that escapes the conductance assumption also
+tolerates roughly twice the detection delay — the two advantages coincide.
 Beyond 1.5 s margin falls at roughly 12 mmHg per second as the arterial volume
 debt compounds. The study converts a modelling assumption into a design
 requirement and hands it back to detection; it cannot say whether that
-requirement is achievable, and the gap to the M6 controller's 2.55 s is wider
-than the first measurement suggested.
+requirement is achievable.
 
 **Feasibility does not depend on the coronary conductance assumption.** A
 margin-holding feasible design exists at or below nominal conductance, at
@@ -173,8 +174,9 @@ verdict-labelling correction at the margin, not a change of conclusion.
 4. State that a feasible design exists at nominal coronary conductance, so
    feasibility does not rest on that bracket.
 5. State the latency requirement as a requirement handed to detection, never as
-   an achieved capability, and state it as the sub-second budget the margin
-   requirement implies rather than the 1.0-1.5 s the first measurement gave.
+   an achieved capability, and state it per design: 0.81 s for the cost-optimal
+   design and 1.57 s for the nominal-conductance one, under the margin
+   requirement.
 6. Do not describe any deficit as an injury dose, any duration as a survival
    time, or any pressure pass as brain protection. Regional pressure minima
    remain unresolved.

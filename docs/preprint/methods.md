@@ -212,6 +212,29 @@ activation, so the binding window is the last one evaluated and a horizon ending
 mid-transient credits a value the design does not maintain. Any run whose final
 cycles have not flattened to within 0.05 mmHg is flagged as horizon-limited.
 
+A design must also hold a **minimum pressure margin of 3.0 mmHg** above the
+enforced threshold to be reported as feasible. This was added to the protocol
+after the first search, and the reason is a general one rather than a detail of
+this model. The objective surface is flat — designs differing in all three
+control variables cost within 0.2 per cent of one another — and the constraint
+is a hard threshold, so minimizing cost drives the solution onto the boundary.
+The design the search located satisfied every screen while holding
+**0.005 mmHg** of margin, and changing its activation period by 0.0005 s, four
+hundredths of one per cent, moved it to violated with two failing windows.
+Nine of 152 feasible designs held under 0.5 mmHg and the cheapest were all
+among them: the search concentrated on fragility by construction, correctly,
+because nothing in the objective asked for margin. We therefore treat this as a
+specification error rather than a search error. The margin was declared before
+the affected analyses were re-run, not chosen after seeing which designs
+survive it, and its cost is reported alongside it (§ Results).
+
+The same reasoning governs how robustness is tested. Re-evaluating only the
+cheapest designs under stress measures the fragility the objective selected, so
+the protocol requires the stressed sample to **span the feasible set** rather
+than its cheapest corner. Two conclusions drawn before this requirement were
+reversed by it, and both are reported with their corrections rather than
+silently replaced.
+
 Nine unresolved requirements — regional organ pressure minima, recovery-linked
 deficit thresholds, CO₂ clearance, reperfusion injury and others — are attached
 to every verdict, so a numerically clean run is reported as *indeterminate*

@@ -1,0 +1,416 @@
+{
+  "scope": "activation-latency relation at designs holding the declared pressure margin",
+  "protocol_version": 5,
+  "minimum_pressure_margin_mmHg": 3.0,
+  "enforced_threshold_mmHg": 65.0,
+  "horizon_s": 40.0,
+  "releases_s": [
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0
+  ],
+  "designs": [
+    {
+      "scale": 0.536,
+      "rate_bpm": 57.52636625119847,
+      "coronary_conductance": 1.748,
+      "label": "margin-constrained optimum",
+      "margin_at_reference_mmHg": 3.0960197762553463,
+      "holds_declared_margin": true,
+      "tolerable_release_screen_s": 1.4073398241508577,
+      "tolerable_release_margin_s": 0.8108103275609158,
+      "solved_releases": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "missing_releases": []
+    },
+    {
+      "scale": 0.749,
+      "rate_bpm": 46.012269938650306,
+      "coronary_conductance": 0.953,
+      "label": "nominal-conductance design",
+      "margin_at_reference_mmHg": 8.933188816411771,
+      "holds_declared_margin": true,
+      "tolerable_release_screen_s": 1.712488106553684,
+      "tolerable_release_margin_s": 1.5657832094408932,
+      "solved_releases": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "missing_releases": []
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "label": "larger comparator",
+      "margin_at_reference_mmHg": 14.638122805112715,
+      "holds_declared_margin": true,
+      "tolerable_release_screen_s": 1.6953193981183228,
+      "tolerable_release_margin_s": 1.5764249959934686,
+      "solved_releases": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "missing_releases": []
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "label": "original, below the declared margin",
+      "margin_at_reference_mmHg": 0.6892641048582817,
+      "holds_declared_margin": false,
+      "tolerable_release_screen_s": 1.1309101236111117,
+      "tolerable_release_margin_s": null,
+      "solved_releases": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "missing_releases": []
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "label": "original, below the declared margin",
+      "margin_at_reference_mmHg": 1.3254538547254668,
+      "holds_declared_margin": false,
+      "tolerable_release_screen_s": 1.195432465731879,
+      "tolerable_release_margin_s": null,
+      "solved_releases": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "missing_releases": []
+    }
+  ],
+  "rows": [
+    {
+      "scale": 0.536,
+      "rate_bpm": 57.52636625119847,
+      "coronary_conductance": 1.748,
+      "release_s": 0.5,
+      "margin_mmHg": 3.0960197762553463,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 68.65051467908279,
+      "source": "reports/m8-optimize/scale0.536-period1.043-coron1.748-kappa0.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.536,
+      "rate_bpm": 57.52636625119847,
+      "coronary_conductance": 1.748,
+      "release_s": 1.0,
+      "margin_mmHg": 2.9415529395050015,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 68.1157490243835,
+      "source": "reports/m8-optimize/scale0.536-period1.043-coron1.748-kappa0.5-rel1-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.536,
+      "rate_bpm": 57.52636625119847,
+      "coronary_conductance": 1.748,
+      "release_s": 1.5,
+      "margin_mmHg": -0.6691337219784117,
+      "pressure_status": "violated",
+      "MAP_mmHg": 68.67267373104394,
+      "source": "reports/m8-optimize/scale0.536-period1.043-coron1.748-kappa0.5-rel1.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.536,
+      "rate_bpm": 57.52636625119847,
+      "coronary_conductance": 1.748,
+      "release_s": 2.0,
+      "margin_mmHg": -9.946595941443931,
+      "pressure_status": "violated",
+      "MAP_mmHg": 68.03684991188135,
+      "source": "reports/m8-optimize/scale0.536-period1.043-coron1.748-kappa0.5-rel2-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.536,
+      "rate_bpm": 57.52636625119847,
+      "coronary_conductance": 1.748,
+      "release_s": 2.5,
+      "margin_mmHg": -15.947855129463356,
+      "pressure_status": "violated",
+      "MAP_mmHg": 68.68560403615618,
+      "source": "reports/m8-optimize/scale0.536-period1.043-coron1.748-kappa0.5-rel2.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.536,
+      "rate_bpm": 57.52636625119847,
+      "coronary_conductance": 1.748,
+      "release_s": 3.0,
+      "margin_mmHg": -20.99511815019377,
+      "pressure_status": "violated",
+      "MAP_mmHg": 68.03323565420902,
+      "source": "reports/m8-optimize/scale0.536-period1.043-coron1.748-kappa0.5-rel3-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.749,
+      "rate_bpm": 46.012269938650306,
+      "coronary_conductance": 0.953,
+      "release_s": 0.5,
+      "margin_mmHg": 8.933188816411771,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 72.65398906442542,
+      "source": "reports/m8-optimize/scale0.749-period1.304-coron0.953-kappa0.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.749,
+      "rate_bpm": 46.012269938650306,
+      "coronary_conductance": 0.953,
+      "release_s": 1.0,
+      "margin_mmHg": 8.53067412085477,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 77.5388187557677,
+      "source": "reports/m8-optimize/scale0.749-period1.304-coron0.953-kappa0.5-rel1-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.749,
+      "rate_bpm": 46.012269938650306,
+      "coronary_conductance": 0.953,
+      "release_s": 1.5,
+      "margin_mmHg": 4.34521500104357,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 73.66914820326028,
+      "source": "reports/m8-optimize/scale0.749-period1.304-coron0.953-kappa0.5-rel1.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.749,
+      "rate_bpm": 46.012269938650306,
+      "coronary_conductance": 0.953,
+      "release_s": 2.0,
+      "margin_mmHg": -5.8793925582170985,
+      "pressure_status": "violated",
+      "MAP_mmHg": 74.50965885537906,
+      "source": "reports/m8-optimize/scale0.749-period1.304-coron0.953-kappa0.5-rel2-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.749,
+      "rate_bpm": 46.012269938650306,
+      "coronary_conductance": 0.953,
+      "release_s": 2.5,
+      "margin_mmHg": -11.529533227968336,
+      "pressure_status": "violated",
+      "MAP_mmHg": 76.3635051663002,
+      "source": "reports/m8-optimize/scale0.749-period1.304-coron0.953-kappa0.5-rel2.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.749,
+      "rate_bpm": 46.012269938650306,
+      "coronary_conductance": 0.953,
+      "release_s": 3.0,
+      "margin_mmHg": -20.50258677426484,
+      "pressure_status": "violated",
+      "MAP_mmHg": 72.01096001247771,
+      "source": "reports/m8-optimize/scale0.749-period1.304-coron0.953-kappa0.5-rel3-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 0.5,
+      "margin_mmHg": 14.638122805112715,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 80.24276431532644,
+      "source": "reports/m8-optimize/scale0.65-period1-coron1-kappa0.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 1.0,
+      "margin_mmHg": 9.965540674505291,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 80.23091792607586,
+      "source": "reports/m8-optimize/scale0.65-period1-coron1-kappa0.5-rel1-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 1.5,
+      "margin_mmHg": 4.928391781975051,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 80.2133533294946,
+      "source": "reports/m8-optimize/scale0.65-period1-coron1-kappa0.5-rel1.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 2.0,
+      "margin_mmHg": -7.687845594994222,
+      "pressure_status": "violated",
+      "MAP_mmHg": 80.19430941484276,
+      "source": "reports/m8-optimize/scale0.65-period1-coron1-kappa0.5-rel2-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 2.5,
+      "margin_mmHg": -13.589588700279158,
+      "pressure_status": "violated",
+      "MAP_mmHg": 80.17509595328329,
+      "source": "reports/m8-optimize/scale0.65-period1-coron1-kappa0.5-rel2.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.65,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 3.0,
+      "margin_mmHg": -20.33150978146528,
+      "pressure_status": "violated",
+      "MAP_mmHg": 80.15744916507644,
+      "source": "reports/m8-optimize/scale0.65-period1-coron1-kappa0.5-rel3-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 0.5,
+      "margin_mmHg": 0.6892641048582817,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 66.12441790134523,
+      "source": "reports/m8-optimize/scale0.475-period1-coron1-kappa0.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 1.0,
+      "margin_mmHg": 0.5757696198992619,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 66.11287471440384,
+      "source": "reports/m8-optimize/scale0.475-period1-coron1-kappa0.5-rel1-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 1.5,
+      "margin_mmHg": -1.6233331080519875,
+      "pressure_status": "violated",
+      "MAP_mmHg": 66.09828441160911,
+      "source": "reports/m8-optimize/scale0.475-period1-coron1-kappa0.5-rel1.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 2.0,
+      "margin_mmHg": -9.980528551012355,
+      "pressure_status": "violated",
+      "MAP_mmHg": 66.08201570697906,
+      "source": "reports/m8-optimize/scale0.475-period1-coron1-kappa0.5-rel2-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 2.5,
+      "margin_mmHg": -16.088037542398496,
+      "pressure_status": "violated",
+      "MAP_mmHg": 66.06417811360954,
+      "source": "reports/m8-optimize/scale0.475-period1-coron1-kappa0.5-rel2.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.475,
+      "rate_bpm": 60.0,
+      "coronary_conductance": 1.0,
+      "release_s": 3.0,
+      "margin_mmHg": -21.10434028771367,
+      "pressure_status": "violated",
+      "MAP_mmHg": 66.0475058112657,
+      "source": "reports/m8-optimize/scale0.475-period1-coron1-kappa0.5-rel3-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "release_s": 0.5,
+      "margin_mmHg": 1.3254538547254668,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 66.28023536912426,
+      "source": "reports/m8-optimize/scale0.387-period0.75-coron1-kappa0.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "release_s": 1.0,
+      "margin_mmHg": 1.2889210908603133,
+      "pressure_status": "satisfied",
+      "MAP_mmHg": 67.03764573151818,
+      "source": "reports/m8-optimize/scale0.387-period0.75-coron1-kappa0.5-rel1-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "release_s": 1.5,
+      "margin_mmHg": -2.0086914271862852,
+      "pressure_status": "violated",
+      "MAP_mmHg": 65.73424024618994,
+      "source": "reports/m8-optimize/scale0.387-period0.75-coron1-kappa0.5-rel1.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "release_s": 2.0,
+      "margin_mmHg": -11.440700345190159,
+      "pressure_status": "violated",
+      "MAP_mmHg": 66.25294710599215,
+      "source": "reports/m8-optimize/scale0.387-period0.75-coron1-kappa0.5-rel2-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "release_s": 2.5,
+      "margin_mmHg": -17.814741298439344,
+      "pressure_status": "violated",
+      "MAP_mmHg": 67.00269024686017,
+      "source": "reports/m8-optimize/scale0.387-period0.75-coron1-kappa0.5-rel2.5-h40/hydraulics.json"
+    },
+    {
+      "scale": 0.387,
+      "rate_bpm": 80.0,
+      "coronary_conductance": 1.0,
+      "release_s": 3.0,
+      "margin_mmHg": -23.052427071188752,
+      "pressure_status": "violated",
+      "MAP_mmHg": 65.6952229723004,
+      "source": "reports/m8-optimize/scale0.387-period0.75-coron1-kappa0.5-rel3-h40/hydraulics.json"
+    }
+  ],
+  "interpretation": "prescribed release stands for detection plus recruitment; crossings are linear interpolations between solved points, never extrapolations, and a design whose solved points do not bracket a level reports None",
+  "supersedes": "reports/m8-optimize/latency.json, measured before a minimum margin was declared, at designs holding +1.33 and +0.69 mmHg"
+}

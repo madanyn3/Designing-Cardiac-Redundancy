@@ -150,19 +150,28 @@ the requirement. For the reported design the screen degrades as:
 |---|---|---|---|---|---|---|
 | Margin (mmHg) | **+3.10** | +2.94 | **−0.67** | −9.95 | −15.95 | −21.00 |
 
-Two thresholds follow, by interpolation between solved points. The design
-**satisfies the screen** up to about **1.4 s**, and **holds the declared
-margin** only up to about **0.8 s** — at a 1.0 s release it holds +2.94,
-marginally short of the 3.0 minimum. Beyond 1.5 s the margin falls at roughly
-12 mmHg per second of further delay, as the arterial volume debt compounds.
+Two thresholds follow per design, by interpolation between solved points
+([artifact](m8-latency/latency-margin.json)): where the screen fails, and where
+the declared margin is lost.
 
-**Every tolerable value lies below the M6 controller's 2.55 s, and the
-requirement is stricter than first reported.** Capacity buys latency tolerance,
-confirmed across margin-holding designs: the larger 0.650 design tolerates
-1.5 s where the cost-optimal 0.536 tolerates 1.0 s. Under the full protocol,
-margin included, the detection-plus-recruitment budget handed back is **under
-one second** — a requirement the study converts from an assumption into a
-specification, and cannot say is achievable.
+| Design | Margin at 0.5 s | Screen satisfied to | Margin held to |
+|---|---|---|---|
+| **scale 0.536, coron 1.748** (cost-optimal) | +3.10 | 1.41 s | **0.81 s** |
+| **scale 0.749, coron 0.953** (nominal) | +8.93 | 1.71 s | **1.57 s** |
+| scale 0.650, coron 1.000 (comparator) | +14.64 | 1.70 s | 1.58 s |
+| scale 0.475, coron 1.000 (below margin) | +0.69 | 1.13 s | — |
+| scale 0.387, coron 1.000 (below margin) | +1.33 | 1.20 s | — |
+
+**Capacity buys latency tolerance, and it nearly doubles it.** The design that
+escapes the conductance assumption (§2) also holds its margin to 1.57 s against
+the cost-optimal design's 0.81 s. The two advantages coincide, so the 18 per
+cent premium in §2 buys more than it first appears.
+
+Beyond 1.5 s the margin falls at roughly 12 mmHg per second as the arterial
+volume debt compounds. **Every tolerable value lies below the M6 controller's
+2.55 s**, and the budget handed back to detection is **0.8 to 1.6 s depending
+on which design is built** — a requirement the study converts from an
+assumption into a specification, and cannot say is achievable.
 
 ## 4. Supported duration, and what sets it
 
