@@ -177,8 +177,12 @@ drain rate, not a prediction of how long a person would be supported.
 
 The binding limit among the release law's four terms was identified by
 measurement, not assumed: mobilisation capacity times liver function (0.105
-mmol/min), against the glycogen term (19,786) and hepatic delivery (0.539, at a
-measured 539 mL/min hepatic outflow). The circulation delivers five times more
+mmol/min), against the accessible glycogen store (329.8 mmol, or 3,141 min at
+that effective rate) and hepatic delivery (0.539 mmol/min, at a measured
+539 mL/min hepatic outflow). An earlier version of this line quoted the store
+term as 19,786, which is the store in mmol multiplied by 60 and is
+dimensionless; the comparison it supports is unaffected, since either figure
+dwarfs the binding rate. The circulation delivers five times more
 hepatic flow than export can use.
 
 A 60 s coupled run at the optimum sustained **zero unmet demand in all three

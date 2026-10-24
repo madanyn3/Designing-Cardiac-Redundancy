@@ -1,8 +1,10 @@
 # Results
 
-Draft for the preprint, written against saved runs. Every number carries the
-file it came from, in `docs/claim-evidence-ledger.csv` under the M8 claim
-range. Conditions common to all results: compression kappa 0.5, reference
+Draft for the preprint, written against saved runs. Tables 1–4 are in
+[`tables.md`](tables.md), generated from the saved artifacts by
+`scripts/build_preprint_tables.py` rather than transcribed. Every number
+carries the file it came from, in [`results-claims.csv`](results-claims.csv),
+audited as `tests/test_results_claims.py`. Conditions common to all results: compression kappa 0.5, reference
 physiology, prescribed 0.5 s activation, a 40 s settled horizon with a plateau
 check, and the declared 3.0 mmHg pressure margin. The nine unresolved
 requirements of §5.2 remain attached, so a numerically clean run is

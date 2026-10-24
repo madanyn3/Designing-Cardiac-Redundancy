@@ -262,7 +262,9 @@ Measured elasticities: **demand -1.03, export +0.15.** Demand dominates because
 the glucose draw is roughly eight times the effective export, so the pool is
 emptied by demand rather than refilled by export. Four limits appear in the
 release law and the binding one was identified by measurement: mobilisation
-capacity times liver function (0.105), not the glycogen store (19,786) and not
+capacity times liver function (0.105 mmol/min), not the accessible glycogen
+store (329.8 mmol, 3,141 min at that rate; an earlier version quoted 19,786,
+which is that store multiplied by 60 and dimensionless) and not
 hepatic delivery (0.539 at a measured 539 mL/min hepatic outflow, five times
 clear). The circulation therefore delivers far more hepatic flow than export can
 use, which is a second reason the design cannot buy duration. The pump is 10-16% of total demand, so

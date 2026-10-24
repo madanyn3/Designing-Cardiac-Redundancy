@@ -200,9 +200,12 @@ Three facts about this endpoint:
 
 **The export rate binds, not the store.** Of the release law's four terms,
 mobilisation capacity times liver function (0.105 mmol/min) binds; the glycogen
-store term is 19,786 and hepatic delivery 0.539 at a measured 539 mL/min
-hepatic outflow. The circulation delivers five times more hepatic flow than
-export can use.
+accessible store is 329.8 mmol, which at that effective rate would last
+3,141 min against 33.8 for the circulating pool, and hepatic delivery is
+0.539 mmol/min at a measured 539 mL/min of hepatic outflow. The circulation
+delivers five times more hepatic flow than export can use. (An earlier version
+of this sentence quoted the store term as "19,786", which is the store in mmol
+multiplied by 60 and carries no dimension.)
 
 **The design barely moves it.** Elasticities are demand −1.03 and export +0.15,
 and the pump is 7–16 per cent of total demand, so scale 0.4 to 1.0 spans only

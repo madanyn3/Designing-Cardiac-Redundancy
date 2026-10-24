@@ -160,29 +160,72 @@ def fig_volume_debt():
 
 
 def fig_latency():
-    d = json.loads((ROOT/'reports/m8-optimize/latency.json').read_text(encoding='utf-8'))
-    groups = {}
-    for r in d['rows']:
-        key = (r['scale'], r['rate_bpm'])
-        groups.setdefault(key, []).append((r['release_s'],
-                                           r['adequacy']['joint']['first_satisfied_window_s']))
-    fig, ax = plt.subplots(figsize=(6., 3.8))
-    for i, (key, rows) in enumerate(sorted(groups.items())):
-        rows = sorted(rows)
-        xs = [a for a, b in rows if b is not None]; ys = [b for a, b in rows if b is not None]
-        if not xs: continue
-        ax.plot(xs, ys, color=SERIES[i % 4], marker='o', markersize=5,
-                markeredgecolor=SURFACE, markeredgewidth=1.5)
-        ax.annotate('scale %.3f, %.0f/min' % key, (xs[-1], ys[-1]), color=SERIES[i % 4],
-                    fontsize=8, xytext=(5, -2), textcoords='offset points')
-    ax.set_xlabel('prescribed activation latency (s)')
-    ax.set_ylabel('first window meeting the screen (s from arrest)')
-    ax.set_title('A second of detection delay costs 1.6 to 3.3 s of adequacy')
-    ax.set_xlim(.3, 3.9)
+    """Pressure margin against activation latency, at designs holding the margin.
+
+    The earlier version of this figure read the pre-margin artifact, which was
+    measured at three designs, two of them holding under 1.4 mmHg. It plotted
+    the first window meeting the screen, a quantity that says nothing about how
+    much room a design has. This plots the margin itself, so the two thresholds
+    the Results section reports -- where the screen fails, and where the declared
+    margin is lost -- are both visible.
+
+    Three margin-holding designs take the categorical hues in fixed order. The
+    two superseded designs are a different category, not a fifth and sixth
+    series, so they are drawn in muted grey and labelled as below the margin
+    rather than given hues the palette does not have.
+    """
+    d = json.loads((ROOT/'reports/m8-latency/latency-margin.json').read_text(encoding='utf-8'))
+    floor = d['minimum_pressure_margin_mmHg']
+    fig, ax = plt.subplots(figsize=(6.2, 3.9))
+    ax.axhspan(-14, 0, color='#eb6834', alpha=.05, zorder=0)
+    ax.axhline(0., color=INK2, linewidth=1., linestyle=(0, (4, 3)), zorder=1)
+    ax.axhline(floor, color=INK2, linewidth=1., linestyle=(0, (1, 2.5)), zorder=1)
+    ax.annotate('screen fails below here', (3.15, 0.), color=INK2, fontsize=7,
+                ha='right', va='bottom', xytext=(0, 3), textcoords='offset points')
+    ax.annotate('declared margin, %.1f mmHg' % floor, (3.15, floor), color=INK2,
+                fontsize=7, ha='right', va='bottom', xytext=(0, 3), textcoords='offset points')
+    holding = [g for g in d['designs'] if g['holds_declared_margin']]
+    other = [g for g in d['designs'] if not g['holds_declared_margin']]
+    for i, g in enumerate(sorted(holding, key=lambda g: -g['margin_at_reference_mmHg'])):
+        pts = sorted((r['release_s'], r['margin_mmHg']) for r in d['rows']
+                     if r['scale'] == g['scale']
+                     and r['coronary_conductance'] == g['coronary_conductance']
+                     and r['margin_mmHg'] is not None)
+        ax.plot([a for a, _ in pts], [b for _, b in pts], color=SERIES[i], marker='o',
+                markersize=5, markeredgecolor=SURFACE, markeredgewidth=1.5, zorder=4,
+                label='scale %.3f, conductance %.3f' % (g['scale'], g['coronary_conductance']))
+    for g in other:
+        pts = sorted((r['release_s'], r['margin_mmHg']) for r in d['rows']
+                     if r['scale'] == g['scale']
+                     and r['coronary_conductance'] == g['coronary_conductance']
+                     and r['margin_mmHg'] is not None)
+        ax.plot([a for a, _ in pts], [b for _, b in pts], color=GRID, linewidth=1.2,
+                marker='o', markersize=3, markeredgecolor=SURFACE, markeredgewidth=.8,
+                zorder=2, label=('superseded, below the declared margin'
+                                 if g is other[0] else None))
+    legend = ax.legend(loc='upper right', fontsize=7.2, frameon=True, framealpha=1.,
+                       borderpad=.6, handlelength=1.8, labelspacing=.45)
+    legend.get_frame().set_facecolor(SURFACE)
+    legend.get_frame().set_edgecolor(GRID)
+    for text in legend.get_texts():
+        text.set_color(INK2)
+    for i, g in enumerate(sorted(holding, key=lambda g: -g['margin_at_reference_mmHg'])):
+        x = g['tolerable_release_margin_s']
+        if x:
+            ax.plot([x], [floor], marker='v', markersize=6, color=SERIES[i],
+                    markeredgecolor=SURFACE, markeredgewidth=1.2, zorder=6)
+    ax.set_xlabel('prescribed activation latency, seconds from arrest')
+    ax.set_ylabel('sustained pressure margin (mmHg)')
+    ax.set_title('Capacity buys latency tolerance, and nearly doubles it')
+    ax.set_xlim(.22, 3.18); ax.set_ylim(-14, 17)
     finish(fig, 'fig-latency-relation',
-           'Oracle-style prescribed release stands for detection plus recruitment. A larger cavity '
-           'flattens the slope and widens the tolerable delay, so capacity and detection substitute '
-           'for one another. Systolic pressure is the last metric to settle in every case.')
+           'Prescribed release stands for detection plus recruitment. Markers are solved points; '
+           'triangles mark where each design loses the declared margin, by interpolation between '
+           'them. The cost-optimal design holds its margin to 0.81 s and the nominal-conductance '
+           'design to 1.57 s, so the design that depends on no coronary conductance assumption '
+           'also tolerates roughly twice the detection delay. Every value lies below the '
+           'implemented controller at 2.55 s. Coronary conductance is 1.000 at scale 0.650, '
+           '0.953 at 0.749 and 1.748 at 0.536.', lines=4)
 
 
 def fig_duration():

@@ -103,3 +103,56 @@ room to read the design as inadequate. That reading is now closed off: what
 fails is the arrival time of support, not the support. Two claims in the
 Results ledger were updated accordingly, and the earlier "one of nine" organ
 figure is recorded as superseded rather than deleted.
+
+---
+
+## 2026-10-24 — Tables, the latency figure, and a dimensionless number
+
+**Scope.** Two gaps left by the previous pass: the Results section cited Tables
+1–4 that did not exist, and the latency figure still read the pre-margin
+artifact.
+
+**Tables.** Built by `scripts/build_preprint_tables.py` from the saved
+artifacts rather than transcribed, because a number typed into the paper no
+longer traces to a run. `tests/test_preprint_tables.py` regenerates them and
+compares, so a hand edit or a table left stale after its artifact changes fails
+the suite. Generating them immediately exposed three defects a transcription
+would have carried into the paper:
+
+1. **Table 3 had no artifact at all.** The three-scenario duration figures —
+   95.2, 33.8 and 22.5 min — existed only in prose. They are now computed by
+   `scripts/build_duration_scenarios.py` from the declared scenario parameters,
+   and reproduce the reported values exactly, including 38.1, 13.5 and 9.0 min
+   at the 3.0 mmol/L floor.
+
+2. **"The glycogen store term is 19,786" is a unit artifact.** The accessible
+   store is 329.76 mmol; 329.76 × 60 = 19,785.6. The figure was quoted as a
+   bare number in three documents with no dimension attached. The comparison it
+   supported is unaffected — the store dwarfs the binding rate either way — but
+   the properly dimensioned statement is 329.8 mmol, or 3,141 minutes at the
+   effective export rate, against a 23.6 mmol circulating pool. Corrected in
+   `reports/feasibility-results.md`, `docs/m8-duration-theory.md` and
+   `docs/m8-t80-findings.md`, each noting what the old figure was.
+
+3. **The stored analytic block is superseded and now says so.** The `analytic`
+   record in `verification-60s.json` reports 39.57 min at reference because it
+   omits the liver-function fraction. That is the pre-correction figure; 33.8
+   supersedes it. The table states the relationship rather than quietly using
+   the newer number beside the older artifact.
+
+**The latency figure.** It read `reports/m8-optimize/latency.json`, measured
+before a margin was declared, at three designs two of which hold under
+1.4 mmHg — and it plotted the first window meeting the screen, which says
+nothing about how much room a design has. It now plots pressure margin against
+release from the corrected artifact, showing both thresholds the Results
+section reports. The three margin-holding designs take the categorical hues in
+fixed order; the two superseded designs are drawn in muted grey as a different
+category rather than given hues the validated four-colour palette does not
+have. Two layout defects found by looking at the rendered output — threshold
+labels overflowing the axes, then series labels clipping at the left edge —
+were fixed by moving the labels inside and replacing direct labels with a
+legend.
+
+**Still not audited.** Methods, Verification and Discussion. Discussion carries
+the ECPR timing citations and the fasting-physiology argument, so it needs the
+same treatment as Results before the paper is assembled.

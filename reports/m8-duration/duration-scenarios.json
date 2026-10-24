@@ -1,0 +1,52 @@
+{
+  "scope": "supported duration across the three declared physiology scenarios",
+  "protocol_version": 5,
+  "floor_mmol_L": 3.0,
+  "demand_source": "total oxidative demand from the coupled replays",
+  "rows": [
+    {
+      "scenario": "favourable",
+      "demand_mL_O2_min": 87.2,
+      "export_mmol_min": 0.4,
+      "release_cap_mmol_min": 0.4,
+      "liver_function_fraction": 1.0,
+      "glucose_demand_mmol_min": 0.6484042711400613,
+      "net_drain_mmol_min": 0.24840427114006125,
+      "duration_min": 95.20226258635665,
+      "duration_at_floor_min": 38.08090503454266,
+      "limited_by": "circulating glucose pool against hepatic export cap",
+      "glycogen_total_mmol": 576.0,
+      "store_limited_minutes": 1440.0
+    },
+    {
+      "scenario": "reference",
+      "demand_mL_O2_min": 108.2,
+      "export_mmol_min": 0.105,
+      "release_cap_mmol_min": 0.21,
+      "liver_function_fraction": 0.5,
+      "glucose_demand_mmol_min": 0.8045566758870943,
+      "net_drain_mmol_min": 0.6995566758870944,
+      "duration_min": 33.80519329425346,
+      "duration_at_floor_min": 13.522077317701385,
+      "limited_by": "circulating glucose pool against hepatic export cap",
+      "glycogen_total_mmol": 329.76,
+      "store_limited_minutes": 3140.5714285714284
+    },
+    {
+      "scenario": "adverse",
+      "demand_mL_O2_min": 144.8,
+      "export_mmol_min": 0.025,
+      "release_cap_mmol_min": 0.1,
+      "liver_function_fraction": 0.25,
+      "glucose_demand_mmol_min": 1.0767080098747805,
+      "net_drain_mmol_min": 1.0517080098747806,
+      "duration_min": 22.485945173569917,
+      "duration_at_floor_min": 8.994378069427967,
+      "limited_by": "circulating glucose pool against hepatic export cap",
+      "glycogen_total_mmol": 216.0,
+      "store_limited_minutes": 8640.0
+    }
+  ],
+  "note": "the liver-function fraction is applied, which the earlier analytic block in verification-60s.json omitted: that block reports 39.57 min at reference against 33.8 here, and the difference is exactly that factor",
+  "interpretation": "interval over which the declared delivery screens can be met; never survival, recovery or injury"
+}
